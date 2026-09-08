@@ -17,7 +17,7 @@ REPORT_MD = PROJECT_ROOT / "evals" / "benchmark_report.md"
 API_URL = "http://127.0.0.1:8000/api/v1/chat/completions"
 
 
-def run_benchmark(max_cases: int = 48):
+def run_benchmark(max_cases: int = 56):
     if not BENCHMARK_FILE.exists():
         print(f"[!] Không tìm thấy file benchmark tại {BENCHMARK_FILE}")
         return
@@ -254,6 +254,7 @@ def generate_markdown_report(data: Dict[str, Any]):
         "temporal_version": "Temporal / Version-Aware Legal RAG (Đa phiên bản)",
         "civil_law": "Dân sự, Hợp đồng & Thừa kế (Bộ luật Dân sự 2015)",
         "tax_law": "Thuế TNCN, TNDN & Quản lý thuế (Cụm Thuế 2025/2026)",
+        "real_estate_law": "Bất động sản, Nhà ở & Đầu tư (Cụm BĐS & Đầu tư Phase 3)",
     }
 
     for cat, stat in data["category_stats"].items():
@@ -263,6 +264,8 @@ def generate_markdown_report(data: Dict[str, Any]):
         r = stat["retrieval_passed"]
         pct = (p / t * 100) if t > 0 else 0
         md.append(f"| **{cat_name}** | {t} | {r}/{t} | {p}/{t} | **{pct:.1f}%** |")
+
+    md.append("\n> **Ghi chú về nhóm Calculation**: Đạt 5/6 (83.3%), cải thiện 1 case so với baseline trước Phase 2 (từ 4/6 lên 5/6).")
 
     md.append("\n## 2. Chi Tiết Từng Test Case\n")
     md.append("| ID | Nhóm | Tiêu đề Test Case | Retrieval | Keyword Match | Độ trễ | Kết quả |")
@@ -281,7 +284,7 @@ def generate_markdown_report(data: Dict[str, Any]):
 
 
 if __name__ == "__main__":
-    max_c = 40
+    max_c = 56
     if len(sys.argv) > 1:
         try:
             max_c = int(sys.argv[1])

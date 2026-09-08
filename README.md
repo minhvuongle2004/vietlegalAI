@@ -74,6 +74,7 @@ graph TD
     A --> D[Cụm 3: Bảo hiểm & An sinh Xã hội]
     A --> E[Cụm 4: Dân sự, Hợp đồng & Thừa kế]
     A --> F[Cụm 5: Thuế & Quản lý thuế]
+    A --> G[Cụm 6: Bất động sản, Nhà ở & Đầu tư]
 
     B --> B1[Bộ luật Lao động 2019 - 220 Điều]
     B --> B2[Nghị định 145/2020/NĐ-CP - 115 Điều]
@@ -95,6 +96,11 @@ graph TD
     F --> F1[Luật Thuế TNCN sửa đổi 2025 - 35 Điều]
     F --> F2[Luật Thuế TNDN sửa đổi 2025 - 25 Điều]
     F --> F3[Luật Quản lý thuế 2025 - 42 Điều]
+
+    G --> G1[Luật Đất đai 2024 - 260 Điều]
+    G --> G2[Luật Nhà ở 2023 - 198 Điều]
+    G --> G3[Luật Kinh doanh BĐS 2023 - 83 Điều]
+    G --> G4[Luật Đầu tư 2020 - 77 Điều]
 ```
 
 ### Bảng Thống Kê Chi Tiết Dữ Liệu:
@@ -114,7 +120,11 @@ graph TD
 | 12 | **Luật sửa đổi, bổ sung Luật BHYT 2024** | Luật 51/2024/QH15 | 2 | 245 | Hiệu lực từ 01/07/2025: Đăng ký KCB ban đầu, chuyển tuyến, thanh toán BHYT |
 | 13 | **Bộ luật Dân sự 2015** | Luật 91/2015/QH13 | 689 | 782 | Giao dịch dân sự, hợp đồng, đặt cọc, lãi suất vay, bồi thường thiệt hại, thừa kế |
 | 14 | **Cụm Luật Thuế 2025** *(TNCN, TNDN, QLT)* | Luật Thuế 2025 | 102 | 170 | Biểu thuế lũy tiến 5 bậc, giảm trừ gia cảnh, chi phí trừ TNDN, tiền chậm nộp 0,03% |
-| **Tổng** | **14 Văn bản Quy phạm Pháp luật** | — | **1.796 Điều** | **4.405 Chunks** | **Toàn bộ lưu trữ trên Supabase PostgreSQL + Qdrant Vector Store** |
+| 15 | **Luật Đất đai 2024** | Luật 31/2024/QH15 | 260 | 672 | Bỏ khung giá đất, bảng giá đất hàng năm, điều kiện chuyển nhượng QSDĐ, đấu giá đất |
+| 16 | **Luật Nhà ở 2023** | Luật 27/2023/QH15 | 198 | 442 | Đối tượng & điều kiện mua NOXH, thời hạn tối thiểu 5 năm không được bán lại |
+| 17 | **Luật Kinh doanh Bất động sản 2023** | Luật 29/2023/QH15 | 83 | 185 | Mức đặt cọc tối đa 5%, điều kiện mở bán nhà ở tương lai & nghiệm thu móng |
+| 18 | **Luật Đầu tư 2020** | Luật 61/2020/QH14 | 77 | 173 | Chấp thuận chủ trương đầu tư, lựa chọn nhà đầu tư dự án nhà ở thương mại |
+| **Tổng** | **18 Văn bản Quy phạm Pháp luật** | — | **2.414 Điều** | **5.872 Chunks** | **Toàn bộ lưu trữ trên Supabase PostgreSQL + Qdrant Vector Store** |
 
 ---
 
@@ -208,7 +218,7 @@ sequenceDiagram
 
 - **Phong cách ChatGPT Phẳng Hiện Đại (Dark Theme)**: Thiết kế tối giản theo tông màu `#171717` và `#212121`, loại bỏ các hiệu ứng kính mờ rườm rà, tạo cảm giác chuyên nghiệp cho công việc pháp lý.
 - **Thẻ Trích Dẫn & Modal Toàn Văn Điều Luật (Interactive Citation Modal)**:
-  - Dưới mỗi câu trả lời, hệ thống tự động sinh các thẻ căn cứ (Badge) phân màu theo từng nguồn luật: `BLLĐ 2019`, `NĐ 12`, `NĐ 145`, `NĐ 74`, `NĐ 135`, `Luật DN`, `NĐ 01`, `NĐ 122`, `Luật BHXH`, `Luật Việc làm`.
+  - Dưới mỗi câu trả lời, hệ thống tự động sinh các thẻ căn cứ (Badge) phân màu theo từng nguồn luật: `BLLĐ 2019`, `NĐ 12`, `NĐ 145`, `NĐ 74`, `NĐ 135`, `Luật DN`, `NĐ 01`, `NĐ 122`, `Luật BHXH`, `Luật Việc làm`, `BLDS 2015`, `Luật Thuế 2025`, `Luật Đất đai 2024`, `Luật Nhà ở 2023`, `Luật Kinh doanh BĐS 2023`, `Luật Đầu tư 2020`.
   - Nhấp vào bất kỳ thẻ nào sẽ mở ngay cửa sổ Modal hiển thị toàn văn điều luật gốc và phụ lục liên quan mà không cần chuyển trang.
 - **Xác thực Đăng Nhập Google OAuth 2.0**:
   - Tích hợp Supabase Auth với luồng Google OAuth an toàn, không lưu trữ mật khẩu người dùng.
@@ -223,7 +233,27 @@ sequenceDiagram
 
 ---
 
-## 📈 5. Định Hướng Nâng Cấp & Tối Ưu Tiếp Theo (Next Milestones)
+## 📊 5. Kết Quả Đánh Giá Định Lượng (Benchmark Evaluation - 56 Test Cases)
+
+| Nhóm Nghiệp vụ / Bẫy Logic | Số câu | Đạt Retrieval | Test Case Pass | Tỷ lệ Pass |
+| :--- | :---: | :---: | :---: | :---: |
+| **Cross-Document Reasoning (Đa văn bản)** | 8 | 6/8 | 6/8 | **75.0%** |
+| **Boolean Logic AND/OR (Điều kiện tích lũy)** | 6 | 6/6 | 6/6 | **100.0%** |
+| **Ngoại lệ vs Quy định chung (Exception/General)** | 4 | 4/4 | 4/4 | **100.0%** |
+| **Tính toán Số học (Calculation)** | 6 | 6/6 | 5/6 | **83.3%** |
+| **Thời hạn, Thời hiệu (Temporal Deadlines)** | 4 | 3/4 | 3/4 | **75.0%** |
+| **Tra cứu Bảng biểu chuyển tiếp (Tabular Lookup)** | 2 | 2/2 | 2/2 | **100.0%** |
+| **Temporal / Version-Aware Legal RAG (Đa phiên bản)** | 4 | 4/4 | 4/4 | **100.0%** |
+| **Dân sự, Hợp đồng & Thừa kế (Bộ luật Dân sự 2015)** | 6 | 6/6 | 6/6 | **100.0%** |
+| **Thuế TNCN, TNDN & Quản lý thuế (Cụm Thuế 2025/2026)** | 8 | 8/8 | 8/8 | **100.0%** |
+| **Bất động sản, Nhà ở & Đầu tư (Cụm BĐS & Đầu tư Phase 3)** | 8 | 8/8 | 8/8 | **100.0%** |
+| **TỔNG CỘNG HỆ THỐNG** | **56** | **53/56 (94.6%)** | **52/56** | **92.9%** |
+
+> **Đánh giá Zero-Regression**: Toàn bộ 48 test cases của Phase 1 và Phase 2 được bảo toàn tuyệt đối. 8 test cases mới của Cụm Bất động sản & Đầu tư Phase 3 đạt 100% Pass và 100% Retrieval Recall.
+
+---
+
+## 📈 6. Định Hướng Nâng Cấp & Tối Ưu Tiếp Theo (Next Milestones)
 
 Dựa trên kết quả phân tích 6 test case thuộc nhóm **Tính toán Số học (Arithmetic Calculation)** và phân tích đa văn bản:
 

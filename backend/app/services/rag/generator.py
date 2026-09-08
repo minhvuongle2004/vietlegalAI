@@ -132,14 +132,15 @@ Hãy trả lời câu hỏi trên dựa trên các căn cứ pháp lý đã cho:
             import asyncio
 
             genai.configure(api_key=self.gemini_key)
-            preferred_model = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+            preferred_model = os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite")
             candidate_models = [
                 preferred_model,
-                "gemini-2.5-flash",
-                "gemini-3.5-flash",
-                "gemini-3.5-flash-lite",
+                "gemini-2.5-flash-lite",
+                "gemini-flash-lite-latest",
                 "gemini-3.1-flash-lite",
-                "gemini-flash-latest"
+                "gemini-flash-latest",
+                "gemini-2.5-flash",
+                "gemini-3.5-flash-lite",
             ]
             # Deduplicate while preserving order
             unique_models = []
@@ -169,7 +170,10 @@ Hãy trả lời câu hỏi trên dựa trên các căn cứ pháp lý đã cho:
                             break
                         except Exception as e:
                             last_error = e
-                            if attempt == 0 and ("503" in str(e) or "429" in str(e) or "high demand" in str(e).lower()):
+                            if "429" in str(e) or "quota" in str(e).lower():
+                                print(f"[!] Gemini {model_name} 429 Quota, chuyển ngay sang fallback model...")
+                                break
+                            if attempt == 0 and ("503" in str(e) or "high demand" in str(e).lower()):
                                 print(f"[!] Gemini {model_name} spike, retrying in 1.5s: {e}")
                                 await asyncio.sleep(1.5)
                                 continue

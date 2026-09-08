@@ -1,5 +1,9 @@
 import os
 import sys
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 from typing import List, Dict, Any, Optional
 from pathlib import Path
 
@@ -18,16 +22,30 @@ class LegalRerankerService:
         if self.model is None:
             from sentence_transformers import CrossEncoder
             import torch
-            device = "cuda" if torch.cuda.is_available() else "cpu"
-            model_kwargs = {"torch_dtype": torch.float16} if device == "cuda" else {}
-            print(f"[*] Đang nạp mô hình Cross-Encoder Reranker '{self.model_name}' trên {device} (FP16: {device == 'cuda'})...")
-            self.model = CrossEncoder(
-                self.model_name,
-                max_length=512,
-                device=device,
-                model_kwargs=model_kwargs
-            )
-            print(f"[+] Reranker '{self.model_name}' đã sẵn sàng!")
+            target_device = os.getenv("RERANKER_DEVICE", "cpu")
+            if target_device == "cuda" and not torch.cuda.is_available():
+                target_device = "cpu"
+            model_kwargs = {"torch_dtype": torch.float16} if target_device == "cuda" else {}
+            print(f"[*] Loading Cross-Encoder Reranker '{self.model_name}' on {target_device}...")
+            try:
+                self.model = CrossEncoder(
+                    self.model_name,
+                    max_length=512,
+                    device=target_device,
+                    model_kwargs=model_kwargs
+                )
+                print(f"[+] Reranker '{self.model_name}' ready on {target_device}!")
+            except Exception as e:
+                if target_device == "cuda":
+                    print(f"[!] CUDA error ({e}), falling back to CPU...")
+                    self.model = CrossEncoder(
+                        self.model_name,
+                        max_length=512,
+                        device="cpu"
+                    )
+                    print(f"[+] Reranker '{self.model_name}' ready on CPU!")
+                else:
+                    raise e
 
     def rerank(
         self, query: str, candidates: List[Dict[str, Any]], top_k: int = 5

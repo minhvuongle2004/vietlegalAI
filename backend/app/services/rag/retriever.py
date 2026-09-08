@@ -607,6 +607,135 @@ class HybridRetriever:
                 ),
             })
 
+        # ------------------------------------------------------------
+        # Nhóm 10: Cụm Bất động sản & Đầu tư (Phase 3)
+        # ------------------------------------------------------------
+        # 10.1. Đặt cọc mua bán nhà ở hình thành trong tương lai (tối đa 5% giá bán)
+        if any(kw in q_lower for kw in ["đặt cọc", "tiền đặt cọc", "mức đặt cọc", "5%", "năm phần trăm", "giữ chỗ"]) and any(kw in q_lower for kw in ["bất động sản", "nhà ở", "hình thành trong tương lai", "chung cư", "chủ đầu tư", "kinh doanh bất động sản"]):
+            sub_queries.append({
+                "category": "re_deposit_limit",
+                "doc_keyword": "re_business",
+                "target_article": 23,
+                "sub_query": (
+                    "nguyên tắc kinh doanh nhà ở công trình xây dựng hình thành trong tương lai thu tiền đặt cọc không quá 5% giá bán cho thuê mua đủ điều kiện "
+                    "Điều 23 Luật Kinh doanh bất động sản 29/2023/QH15"
+                ),
+            })
+            if any(kw in q_lower for kw in ["dân sự", "328", "blds", "tự do thỏa thuận"]):
+                sub_queries.append({
+                    "category": "re_deposit_civil_comparison",
+                    "doc_keyword": "blds",
+                    "target_article": 328,
+                    "sub_query": (
+                        "quy định về đặt cọc xử lý tài sản đặt cọc thỏa thuận của các bên "
+                        "Điều 328 Bộ luật Dân sự 2015"
+                    ),
+                })
+
+        # 10.2. Điều kiện mở bán nhà ở hình thành trong tương lai & Nghiệm thu móng
+        if any(kw in q_lower for kw in ["điều kiện bán", "mở bán", "đưa vào kinh doanh", "nghiệm thu phần móng", "nghiệm thu móng", "bảo lãnh", "giấy phép xây dựng"]) and any(kw in q_lower for kw in ["hình thành trong tương lai", "nhà ở", "công trình", "chung cư", "kinh doanh bất động sản"]):
+            sub_queries.append({
+                "category": "re_future_house_conditions",
+                "doc_keyword": "re_business",
+                "target_article": 24,
+                "sub_query": (
+                    "điều kiện của nhà ở công trình xây dựng hình thành trong tương lai được đưa vào kinh doanh giấy phép xây dựng biên bản nghiệm thu phần móng bảo lãnh ngân hàng "
+                    "Điều 24 Luật Kinh doanh bất động sản 29/2023/QH15"
+                ),
+            })
+
+        # 10.3. Điều kiện chuyển nhượng quyền sử dụng đất (Điều 45 Luật Đất đai 2024)
+        if any(kw in q_lower for kw in ["chuyển nhượng quyền sử dụng đất", "điều kiện chuyển nhượng", "chuyển nhượng đất", "thực hiện các quyền"]) and any(kw in q_lower for kw in ["đất đai", "quyền sử dụng đất", "giấy chứng nhận", "sổ đỏ"]):
+            sub_queries.append({
+                "category": "land_transfer_conditions",
+                "doc_keyword": "land",
+                "target_article": 45,
+                "sub_query": (
+                    "điều kiện thực hiện các quyền chuyển đổi chuyển nhượng cho thuê thừa kế tặng cho quyền sử dụng đất Giấy chứng nhận không tranh chấp không kê biên còn thời hạn sử dụng đất "
+                    "Điều 45 Luật Đất đai 31/2024/QH15"
+                ),
+            })
+
+        # 10.4. Bảng giá đất & Nguyên tắc định giá đất thị trường (Điều 158, 159 Luật Đất đai 2024)
+        if any(kw in q_lower for kw in ["bảng giá đất", "định giá đất", "khung giá đất", "nguyên tắc thị trường", "ban hành bảng giá đất", "giá đất"]):
+            sub_queries.extend([
+                {
+                    "category": "land_valuation_principles",
+                    "doc_keyword": "land",
+                    "target_article": 158,
+                    "sub_query": (
+                        "nguyên tắc căn cứ phương pháp định giá đất theo nguyên tắc thị trường "
+                        "Điều 158 Luật Đất đai 31/2024/QH15"
+                    ),
+                },
+                {
+                    "category": "land_price_table",
+                    "doc_keyword": "land",
+                    "target_article": 159,
+                    "sub_query": (
+                        "bảng giá đất do Ủy ban nhân dân cấp tỉnh xây dựng Hội đồng nhân dân thông qua ban hành áp dụng từ ngày 01 tháng 01 năm 2026 điều chỉnh bổ sung hàng năm "
+                        "Điều 159 Luật Đất đai 31/2024/QH15"
+                    ),
+                },
+            ])
+
+        # 10.5. Nhà ở xã hội: Đối tượng, điều kiện hưởng & Thời hạn 5 năm chuyển nhượng
+        if any(kw in q_lower for kw in ["nhà ở xã hội", "noxh", "mua nhà ở xã hội", "thuê mua nhà ở xã hội"]):
+            if any(kw in q_lower for kw in ["đối tượng", "điều kiện", "thu nhập", "chưa có nhà"]):
+                sub_queries.extend([
+                    {
+                        "category": "housing_social_target",
+                        "doc_keyword": "housing",
+                        "target_article": 76,
+                        "sub_query": (
+                            "đối tượng được hưởng chính sách hỗ trợ về nhà ở xã hội người có công hộ nghèo cận nghèo thu nhập thấp công nhân "
+                            "Điều 76 Luật Nhà ở 27/2023/QH15"
+                        ),
+                    },
+                    {
+                        "category": "housing_social_conditions",
+                        "doc_keyword": "housing",
+                        "target_article": 78,
+                        "sub_query": (
+                            "điều kiện được hưởng chính sách hỗ trợ về nhà ở xã hội điều kiện về nhà ở và điều kiện về thu nhập "
+                            "Điều 78 Luật Nhà ở 27/2023/QH15"
+                        ),
+                    },
+                ])
+            if any(kw in q_lower for kw in ["bán lại", "chuyển nhượng", "5 năm", "05 năm", "bán nhà"]):
+                sub_queries.append({
+                    "category": "housing_social_resale_5years",
+                    "doc_keyword": "housing",
+                    "target_article": 89,
+                    "sub_query": (
+                        "bán lại chuyển nhượng nhà ở xã hội thời hạn tối thiểu 05 năm kể từ ngày thanh toán hết tiền mua chỉ được bán lại cho chủ đầu tư hoặc nộp tiền sử dụng đất "
+                        "Điều 89 Luật Nhà ở 27/2023/QH15"
+                    ),
+                })
+
+        # 10.6. Chấp thuận chủ trương đầu tư & Giao đất qua đấu giá / đấu thầu dự án
+        if any(kw in q_lower for kw in ["chấp thuận chủ trương đầu tư", "chủ trương đầu tư", "lựa chọn nhà đầu tư"]) and any(kw in q_lower for kw in ["đất", "giao đất", "đấu giá", "đấu thầu", "dự án"]):
+            sub_queries.extend([
+                {
+                    "category": "investment_project_approval",
+                    "doc_keyword": "investment",
+                    "target_article": 32,
+                    "sub_query": (
+                        "thẩm quyền chấp thuận chủ trương đầu tư của Ủy ban nhân dân cấp tỉnh đối với dự án đầu tư xây dựng nhà ở khu đô thị "
+                        "Điều 32 Điều 29 Luật Đầu tư 61/2020/QH14"
+                    ),
+                },
+                {
+                    "category": "land_auction_bidding",
+                    "doc_keyword": "land",
+                    "target_article": 125,
+                    "sub_query": (
+                        "giao đất cho thuê đất thông qua đấu giá quyền sử dụng đất đấu thầu lựa chọn nhà đầu tư thực hiện dự án có sử dụng đất "
+                        "Điều 125 Điều 126 Luật Đất đai 31/2024/QH15"
+                    ),
+                },
+            ])
+
         return sub_queries
 
 
@@ -662,6 +791,22 @@ class HybridRetriever:
             art_nums.append("16")
         if "thời hạn nộp thuế" in q_l:
             art_nums.append("14")
+
+        # Real Estate & Investment triggers
+        if "đặt cọc" in q_l or "5%" in q_l or "tiền đặt cọc" in q_l:
+            art_nums.extend(["23", "328"])
+        if "nghiệm thu" in q_l or "móng" in q_l or "mở bán" in q_l:
+            art_nums.append("24")
+        if "chuyển nhượng" in q_l and ("đất" in q_l or "quyền sử dụng đất" in q_l):
+            art_nums.append("45")
+        if "bảng giá đất" in q_l or "định giá đất" in q_l or "khung giá đất" in q_l:
+            art_nums.extend(["158", "159"])
+        if "nhà ở xã hội" in q_l or "noxh" in q_l:
+            art_nums.extend(["76", "78", "89"])
+        if "chấp thuận chủ trương đầu tư" in q_l or "chủ trương đầu tư" in q_l:
+            art_nums.extend(["29", "32"])
+        if "đấu giá" in q_l or "đấu thầu" in q_l:
+            art_nums.extend(["125", "126"])
 
         for num_str in set(art_nums):
             try:
@@ -770,6 +915,14 @@ class HybridRetriever:
             return "Luật Thuế thu nhập doanh nghiệp 2025"
         elif "qlt" in doc_id or "108_2025" in doc_id:
             return "Luật Quản lý thuế 2025"
+        elif "land" in doc_id or "31_2024" in doc_id:
+            return "Luật Đất đai 2024"
+        elif "housing" in doc_id or "27_2023" in doc_id:
+            return "Luật Nhà ở 2023"
+        elif "re_business" in doc_id or "29_2023" in doc_id:
+            return "Luật Kinh doanh Bất động sản 2023"
+        elif "investment" in doc_id or "61_2020" in doc_id:
+            return "Luật Đầu tư 2020"
         elif "bllđ" in doc_id or "bld" in doc_id:
             return "Bộ luật Lao động 2019"
         return "Văn bản Quy phạm Pháp luật"
@@ -853,7 +1006,7 @@ class HybridRetriever:
         # Sắp xếp theo điểm RRF tổng hợp
         sorted_articles = sorted(filtered_scores.items(), key=lambda x: x[1], reverse=True)
 
-        candidate_pool_size = 40 if is_multi_intent else (top_k * 4 if use_reranker else top_k * 2)
+        candidate_pool_size = 14 if is_multi_intent else (top_k * 2)
         candidate_pool = []
         for key, score in sorted_articles[:candidate_pool_size]:
             item = doc_store[key].copy()

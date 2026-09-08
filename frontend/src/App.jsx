@@ -678,6 +678,16 @@ export default function App() {
                             <span className="citation-pill-num">
                               {(() => {
                                 const d = cite.doc_id || '';
+                                if (d.includes('land') || d.includes('31_2024')) return 'Luật Đất đai';
+                                if (d.includes('housing') || d.includes('27_2023')) return 'Luật Nhà ở';
+                                if (d.includes('re_business') || d.includes('29_2023')) return 'Luật KDBĐS';
+                                if (d.includes('investment') || d.includes('61_2020')) return 'Luật Đầu tư';
+                                if (d.includes('tncn') || d.includes('109_2025')) return 'Thuế TNCN';
+                                if (d.includes('tndn') || d.includes('67_2025')) return 'Thuế TNDN';
+                                if (d.includes('qlt') || d.includes('108_2025')) return 'Quản lý thuế';
+                                if (d.includes('blds') || d.includes('91_2015')) return 'BL Dân sự';
+                                if (d.includes('bhxh_41') || d.includes('41_2024')) return 'BHXH 2024';
+                                if (d.includes('bhyt') || d.includes('51_2024')) return 'BHYT 2024';
                                 if (d.includes('bhxh') || d.includes('58')) return 'Luật BHXH';
                                 if (d.includes('vieclam') || d.includes('38')) return 'Luật Việc làm';
                                 if (d.includes('ldn') || d.includes('59')) return 'Luật DN';

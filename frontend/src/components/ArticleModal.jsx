@@ -95,6 +95,86 @@ export default function ArticleModal({ isOpen, onClose, initialArticleNumber, in
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 {(() => {
                   const currentDId = article?.document_id || docId;
+                  if (currentDId?.includes('land') || currentDId?.includes('31_2024')) {
+                    return (
+                      <>
+                        <span className="modal-title">Luật Đất đai 2024</span>
+                        <span className="modal-badge" style={{ backgroundColor: 'rgba(217, 119, 6, 0.15)', color: '#f59e0b' }}>Luật số 31/2024/QH15</span>
+                      </>
+                    );
+                  }
+                  if (currentDId?.includes('housing') || currentDId?.includes('27_2023')) {
+                    return (
+                      <>
+                        <span className="modal-title">Luật Nhà ở 2023</span>
+                        <span className="modal-badge" style={{ backgroundColor: 'rgba(6, 182, 212, 0.15)', color: '#06b6d4' }}>Luật số 27/2023/QH15</span>
+                      </>
+                    );
+                  }
+                  if (currentDId?.includes('re_business') || currentDId?.includes('29_2023')) {
+                    return (
+                      <>
+                        <span className="modal-title">Luật Kinh doanh Bất động sản 2023</span>
+                        <span className="modal-badge" style={{ backgroundColor: 'rgba(16, 185, 129, 0.15)', color: '#10b981' }}>Luật số 29/2023/QH15</span>
+                      </>
+                    );
+                  }
+                  if (currentDId?.includes('investment') || currentDId?.includes('61_2020')) {
+                    return (
+                      <>
+                        <span className="modal-title">Luật Đầu tư 2020</span>
+                        <span className="modal-badge" style={{ backgroundColor: 'rgba(139, 92, 246, 0.15)', color: '#8b5cf6' }}>Luật số 61/2020/QH14</span>
+                      </>
+                    );
+                  }
+                  if (currentDId?.includes('tncn') || currentDId?.includes('109_2025')) {
+                    return (
+                      <>
+                        <span className="modal-title">Luật Thuế thu nhập cá nhân 2025</span>
+                        <span className="modal-badge" style={{ backgroundColor: 'rgba(14, 165, 233, 0.15)', color: '#38bdf8' }}>Luật số 109/2025/QH15</span>
+                      </>
+                    );
+                  }
+                  if (currentDId?.includes('tndn') || currentDId?.includes('67_2025')) {
+                    return (
+                      <>
+                        <span className="modal-title">Luật Thuế thu nhập doanh nghiệp 2025</span>
+                        <span className="modal-badge" style={{ backgroundColor: 'rgba(59, 130, 246, 0.15)', color: '#60a5fa' }}>Luật số 67/2025/QH15</span>
+                      </>
+                    );
+                  }
+                  if (currentDId?.includes('qlt') || currentDId?.includes('108_2025')) {
+                    return (
+                      <>
+                        <span className="modal-title">Luật Quản lý thuế 2025</span>
+                        <span className="modal-badge" style={{ backgroundColor: 'rgba(236, 72, 153, 0.15)', color: '#f472b6' }}>Luật số 108/2025/QH15</span>
+                      </>
+                    );
+                  }
+                  if (currentDId?.includes('blds') || currentDId?.includes('91_2015')) {
+                    return (
+                      <>
+                        <span className="modal-title">Bộ luật Dân sự 2015</span>
+                        <span className="modal-badge" style={{ backgroundColor: 'rgba(168, 85, 247, 0.15)', color: '#c084fc' }}>Luật số 91/2015/QH13</span>
+                      </>
+                    );
+                  }
+                  if (currentDId?.includes('bhxh_41') || currentDId?.includes('41_2024')) {
+                    return (
+                      <>
+                        <span className="modal-title">Luật Bảo hiểm xã hội 2024</span>
+                        <span className="modal-badge" style={{ backgroundColor: 'rgba(16, 185, 129, 0.15)', color: '#34d399' }}>Luật số 41/2024/QH15</span>
+                      </>
+                    );
+                  }
+                  if (currentDId?.includes('bhyt') || currentDId?.includes('51_2024')) {
+                    return (
+                      <>
+                        <span className="modal-title">Luật Bảo hiểm y tế sửa đổi 2024</span>
+                        <span className="modal-badge" style={{ backgroundColor: 'rgba(20, 184, 166, 0.15)', color: '#2dd4bf' }}>Luật số 51/2024/QH15</span>
+                      </>
+                    );
+                  }
                   if (currentDId?.includes('bhxh') || currentDId?.includes('58')) {
                     return (
                       <>
