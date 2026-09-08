@@ -1,0 +1,48 @@
+# Target Legal Documents to Ingest for MVP
+documents:
+  - doc_id: "bllđ_45_2019_qh14"
+    official_number: "45/2019/QH14"
+    title: "Bộ luật Lao động năm 2019"
+    short_title: "Bộ luật Lao động 2019"
+    doc_type: "BO_LUAT"
+    issuer: "Quốc hội"
+    issue_date: "2019-11-20"
+    effective_date: "2021-01-01"
+    status: "CON_HIEU_LUC"
+    source_url: "https://vbpl.vn/TW/Pages/vbpq-toanvan.aspx?ItemID=140306"
+    priority: 1
+
+  - doc_id: "blds_91_2015_qh13"
+    official_number: "91/2015/QH13"
+    title: "Bộ luật Dân sự năm 2015"
+    short_title: "Bộ luật Dân sự 2015"
+    doc_type: "BO_LUAT"
+    issuer: "Quốc hội"
+    issue_date: "2015-11-24"
+    effective_date: "2017-01-01"
+    status: "CON_HIEU_LUC"
+    source_url: "https://vbpl.vn/TW/Pages/vbpq-toanvan.aspx?ItemID=96412"
+    priority: 2
+
+  - doc_id: "ldn_59_2020_qh14"
+    official_number: "59/2020/QH14"
+    title: "Luật Doanh nghiệp năm 2020"
+    short_title: "Luật Doanh nghiệp 2020"
+    doc_type: "LUAT"
+    issuer: "Quốc hội"
+    issue_date: "2020-06-17"
+    effective_date: "2021-01-01"
+    status: "CON_HIEU_LUC"
+    source_url: "https://vbpl.vn/TW/Pages/vbpq-toanvan.aspx?ItemID=144062"
+    priority: 3
+
+  - doc_id: "nd_145_2020_nd_cp"
+    official_number: "145/2020/NĐ-CP"
+    title: "Nghị định quy định chi tiết và hướng dẫn thi hành một số điều của Bộ luật Lao động về điều kiện lao động và quan hệ lao động"
+    short_title: "Nghị định 145/2020/NĐ-CP"
+    doc_type: "NGHI_DINH"
+    issuer: "Chính phủ"
+    issue_date: "2020-12-14"
+    effective_date: "2021-02-01"
+    status: "CON_HIEU_LUC"
+    priority: 4

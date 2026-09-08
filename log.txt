@@ -1,0 +1,148 @@
+Kết quả hiện tại rất đẹp:
+
+Baseline trước Phase 1
+30/30 = 100%
+
+Sau Phase 1
+34/34 Retrieval = 100%
+34/34 Test Case Pass = 100%
+Zero Regression ✅
+Temporal / Version-Aware = 4/4 ✅
+
+Đặc biệt, anh đã chứng minh được 2 phiên bản BHXH có thể cùng tồn tại và được định tuyến theo as_of_date, đây mới là phần có giá trị kỹ thuật của Phase 1. Luật BHXH 2024 số 41/2024/QH15 có hiệu lực từ 01/07/2025; Luật sửa đổi BHYT 2024 số 51/2024/QH15 cũng có hiệu lực từ 01/07/2025.
+
+Nhưng trước khi bước sang Phase 2, em muốn “đóng băng” Phase 1
+
+Anh nên tạo một mốc release/tag kiểu:
+
+v0.3.0-phase1-version-aware
+
+và lưu lại:
+
+34/34 = 100%
+Qdrant collection state
+DB schema migration
+benchmark_34.json
+benchmark_report_phase1.md
+
+Lý do đơn giản: từ Phase 2 trở đi corpus sẽ lớn lên rất nhanh. Khi một benchmark cũ tụt điểm, anh cần biết đó là do luật mới / chunk mới / retriever mới, chứ không phải do Phase 1 bị hỏng.
+
+Phase 2: Em đồng ý, nhưng có một điều chỉnh quan trọng
+1. Bộ luật Dân sự 2015
+
+Giữ nguyên kế hoạch.
+
+Đây là lựa chọn rất tốt để mở rộng từ nhóm lao động/doanh nghiệp sang một domain pháp lý có cấu trúc hoàn toàn khác. Bộ luật Dân sự 2015 là Luật số 91/2015/QH13, có hiệu lực từ 01/01/2017.
+
+Anh nên ưu tiên:
+
+Hợp đồng
+Đặt cọc
+Vay tài sản
+Bồi thường thiệt hại
+Thừa kế
+Di chúc
+
+và benchmark nên có cả:
+
+AND / OR
+ngoại lệ
+tính thời hạn
+tính tiền
+cross-article
+2. Thuế TNCN: cần cập nhật kế hoạch
+
+Đây là chỗ em không muốn anh ingest bộ luật cũ theo kế hoạch ban đầu.
+
+Hiện tại là tháng 9/2026, Luật Thuế TNCN số 109/2025/QH15 đã có hiệu lực từ 01/07/2026.
+
+Vì vậy Phase 2 nên thiết kế:
+
+TNCN cũ
+      +
+TNCN 2025/2026
+      ↓
+Version-aware
+
+thay vì chỉ:
+
+Luật TNCN
+↓
+Nghị định hướng dẫn
+
+Tương tự, Luật Thuế TNDN số 67/2025/QH15 có hiệu lực từ 01/10/2025, nên corpus TNDN mới cũng phải lấy phiên bản hiện hành làm baseline.
+
+3. Em còn khuyên thêm một văn bản vào cụm Thuế
+
+Khi làm TNCN/TNDN, Luật Quản lý thuế 108/2025/QH15 cũng đã có hiệu lực từ 01/07/2026.
+
+Vì rất nhiều câu hỏi thực tế sẽ là:
+
+thuế gì?
++ ai nộp?
++ tính bao nhiêu?
++ khai lúc nào?
++ nộp lúc nào?
++ xử phạt thế nào?
+
+Nếu chỉ có Luật Thuế TNCN/TNDN thì cross-document sẽ thiếu phần quản lý/thủ tục.
+
+Vì vậy Phase 2 em chốt như này
+PHASE 2
+│
+├── Bộ luật Dân sự 2015
+│
+├── Thuế TNCN
+│     └── phiên bản hiện hành 2026
+│
+├── Thuế TNDN
+│     └── phiên bản hiện hành
+│
+└── Luật Quản lý thuế
+      └── phiên bản hiện hành
+
+Sau đó tạo khoảng 10–15 benchmark cases mới, thay vì chỉ 10 nếu anh có thời gian.
+
+Mục tiêu không chỉ là kiểm tra:
+
+"retrieve đúng điều"
+
+mà phải có:
+
+Calculation
+Cross-document
+Temporal
+Exception
+Threshold
+Date/deadline
+Và có một nguyên tắc rất quan trọng từ Phase 1
+
+Không ingest luật mới rồi benchmark ngay cả hệ thống 44+ case một cách ngẫu nhiên.
+
+Nên đi:
+
+Ingest 1 domain
+      ↓
+validate metadata
+      ↓
+validate chunking
+      ↓
+validate retrieval
+      ↓
+5–10 test chuyên biệt
+      ↓
+merge vào regression suite
+      ↓
+full regression
+
+Như vậy sau này anh có thể chứng minh:
+
+“Mỗi domain mới đều phải vượt qua domain-specific evaluation trước khi được đưa vào production regression suite.”
+
+Đấy là tư duy engineering rất tốt.
+
+Kết luận
+
+Có, anh chuyển Phase 2 được rồi. Phase 1 hiện đã đủ tiêu chuẩn để đóng baseline và tiến sang domain mới.
+
+Và với trạng thái hiện tại, em không khuyên anh tiếp tục tối ưu Phase 1 nữa. Giờ giá trị lớn nhất nằm ở việc mở rộng corpus mà vẫn giữ được Version-Aware + Regression Testing.

@@ -1,0 +1,304 @@
+Tổng số case không PASS: 9/30
+
+================================================================================
+Case 1: [TC-11] Tính số tháng hưởng Trợ cấp thất nghiệp theo thâm niên 6 năm
+Category: arithmetic_calculation
+Query: Tôi đóng bảo hiểm thất nghiệp liên tục được 6 năm (đủ 72 tháng). Nếu đủ điều kiện hưởng trợ cấp thất nghiệp, tôi sẽ được nhận trợ cấp trong bao nhiêu tháng và mỗi tháng bao nhiêu % tiền lương bình quân?
+Ground Truth: Theo Điều 50 Luật Việc làm 2013: Mức hưởng bằng 60% mức bình quân tiền lương tháng đóng BHTN của 06 tháng liền kề. Thời gian hưởng: Đóng đủ 12 đến 36 tháng được hưởng 3 tháng; sau đó cứ thêm đủ 12 tháng được hưởng thêm 1 tháng. Đóng 72 tháng = 3 + 3 = 6 tháng trợ cấp.
+Expected Keywords: ['60%', '6 tháng', 'Điều 50', 'Luật Việc làm']
+Forbidden Keywords: ['7 tháng', '5 tháng', '3 tháng trợ cấp']
+Retrieval: OK | Matched: ['Điều 50'] | Missing: []
+KW Ratio: 1.0 | Hit Forbidden: ['3 tháng trợ cấp']
+Status: PARTIAL
+
+--- MODEL ANSWER ---:
+Chào bạn, với tư cách là VietLegal AI, tôi xin giải đáp thắc mắc của bạn dựa trên các quy định tại Luật Việc làm số 38/2013/QH13 như sau:
+
+### 1. Mức hưởng trợ cấp thất nghiệp
+Theo **Khoản 1 Điều 50 Luật Việc làm 2013**, mức hưởng trợ cấp thất nghiệp hằng tháng của bạn được tính như sau:
+*   **Tỷ lệ hưởng:** Bằng **60%** mức bình quân tiền lương tháng đóng bảo hiểm thất nghiệp của 06 tháng liền kề trước khi bạn thất nghiệp.
+*   **Giới hạn tối đa:** 
+    *   Đối với người lao động thực hiện chế độ tiền lương do Nhà nước quy định: Không quá 05 lần mức lương cơ sở.
+    *   Đối với người lao động thực hiện chế độ tiền lương do người sử dụng lao động quyết định: Không quá 05 lần mức lương tối thiểu vùng tại thời điểm chấm dứt hợp đồng lao động.
+
+### 2. Thời gian hưởng trợ cấp thất nghiệp
+Theo **Khoản 2 Điều 50 Luật Việc làm 2013**, thời gian hưởng trợ cấp thất nghiệp được tính dựa trên tổng thời gian bạn đã đóng bảo hiểm thất nghiệp (6 năm tương đương 72 tháng), cụ thể:
+
+*   **Quy tắc tính:**
+    *   Đóng đủ 12 tháng đến đủ 36 tháng: Được hưởng 03 tháng trợ cấp.
+    *   Sau đó, cứ đóng đủ thêm 12 tháng: Được hưởng thêm 01 tháng trợ cấp.
+
+*   **Áp dụng cho trường hợp của bạn (6 năm = 72 tháng):**
+    *   36 tháng đầu tiên: Được hưởng **03 tháng** trợ cấp.
+    *   36 tháng tiếp theo (72 - 36 = 36 tháng): Tương ứng với 3 lần (mỗi lần 12 tháng), bạn được hưởng thêm 3 tháng trợ cấp nữa.
+    *   **Tổng cộng:** Bạn sẽ được hưởng **06 tháng** trợ cấp thất nghiệp.
+
+**Lưu ý quan trọng:**
+*   Để được nhận các quyền lợi này, bạn cần đáp ứng đầy đủ các điều kiện quy định tại **Điều 49 Luật Việc làm 2013** (đang đóng bảo hiểm thất nghiệp, chấm dứt hợp đồng lao động đúng quy định, đã nộp hồ sơ trong thời hạn 03 tháng theo **Khoản 1 Điều 46** và chưa tìm được việc làm sau 15 ngày nộp hồ sơ).
+*   Thời gian hưởng trợ cấp thất nghiệp nêu trên được tính căn cứ vào tổng thời gian đóng bảo hiểm thất nghiệp của bạn. Nếu sau này bạn tiếp tục làm việc và đóng bảo hiểm thất nghiệp, phần thời gian đóng chưa được hưởng trợ cấp sẽ được bảo lưu theo **Khoản 4 Điều 53 Luật Việc làm 2013**.
+
+*Thông tin cung cấp dựa trên các căn cứ pháp lý được nêu tại phần "Căn cứ pháp lý" trong yêu cầu của bạn.*
+
+================================================================================
+Case 2: [TC-13] Tính ngày nghỉ phép năm tăng thêm theo thâm niên
+Category: arithmetic_calculation
+Query: Người lao động làm việc cho một công ty được 12 năm trong điều kiện bình thường. Năm nay người đó có bao nhiêu ngày nghỉ hằng năm có hưởng lương theo Điều 113 và 114 BLLĐ 2019?
+Ground Truth: Mức chuẩn theo Điều 113 là 12 ngày. Theo Điều 114, cứ đủ 05 năm làm việc thì được tăng thêm 01 ngày. Đủ 12 năm có 2 chu kỳ 5 năm (được cộng thêm 2 ngày). Tổng cộng là 12 + 2 = 14 ngày nghỉ hằng năm.
+Expected Keywords: ['14 ngày', 'Điều 113', 'Điều 114', 'cứ đủ 05 năm']
+Forbidden Keywords: ['12 ngày', '13 ngày', '15 ngày']
+Retrieval: OK | Matched: ['Điều 113', 'Điều 114'] | Missing: []
+KW Ratio: 1.0 | Hit Forbidden: ['12 ngày']
+Status: PARTIAL
+
+--- MODEL ANSWER ---:
+Chào bạn, VietLegal AI xin giải đáp câu hỏi của bạn dựa trên các quy định tại Bộ luật Lao động 2019 như sau:
+
+Theo quy định, số ngày nghỉ hằng năm của người lao động được xác định dựa trên số ngày nghỉ cơ bản và số ngày nghỉ tăng thêm theo thâm niên. Đối với trường hợp của bạn (làm việc 12 năm trong điều kiện bình thường), cách tính như sau:
+
+### 1. Số ngày nghỉ hằng năm cơ bản
+Theo **Điểm a Khoản 1 Điều 113 Bộ luật Lao động 2019**, người lao động làm việc trong điều kiện bình thường được hưởng **12 ngày làm việc** nghỉ hằng năm.
+
+### 2. Số ngày nghỉ tăng thêm theo thâm niên
+Theo **Điều 114 Bộ luật Lao động 2019**, cứ đủ 05 năm làm việc cho một người sử dụng lao động thì người lao động được tăng thêm 01 ngày nghỉ hằng năm.
+*   Với 12 năm làm việc, số ngày nghỉ của bạn được tính như sau:
+    *   05 năm đầu tiên: Được cộng 01 ngày.
+    *   10 năm tiếp theo (tính đến mốc 10 năm): Được cộng thêm 01 ngày nữa.
+    *   Tổng số ngày nghỉ tăng thêm theo thâm niên là: **02 ngày**.
+
+### 3. Tổng số ngày nghỉ hằng năm
+Tổng số ngày nghỉ hằng năm của bạn = (Số ngày nghỉ cơ bản) + (Số ngày nghỉ tăng thêm theo thâm niên)
+= 12 ngày + 2 ngày = **14 ngày làm việc.**
+
+**Kết luận:** Với 12 năm làm việc trong điều kiện bình thường, năm nay bạn có **14 ngày nghỉ hằng năm** hưởng nguyên lương.
+
+*Lưu ý: Việc bố trí lịch nghỉ hằng năm sẽ do người sử dụng lao động quy định sau khi tham khảo ý kiến của người lao động và phải thông báo trước cho bạn theo quy định tại Khoản 4 Điều 113 Bộ luật Lao động 2019.*
+
+================================================================================
+Case 3: [TC-16] Tra cứu tuổi nghỉ hưu Nữ sinh tháng 7/1972 (Phụ lục I NĐ 135)
+Category: tabular_lookup
+Query: Lao động nữ sinh vào tháng 7 năm 1972 làm việc trong điều kiện lao động bình thường. Căn cứ Phụ lục I Nghị định 135/2020/NĐ-CP, người này sẽ nghỉ hưu ở độ tuổi nào và thời điểm hưởng lương hưu là khi nào?
+Ground Truth: Theo Phụ lục I Nghị định 135/2020/NĐ-CP, nữ sinh từ tháng 05/1972 đến tháng 12/1972 nghỉ hưu ở tuổi 58 tuổi 4 tháng. Thời điểm nghỉ hưu là tháng 11/2030, thời điểm hưởng lương hưu là ngày 01/12/2030.
+Expected Keywords: ['58 tuổi 4 tháng', 'Phụ lục I', 'Nghị định 135']
+Forbidden Keywords: ['60 tuổi', '55 tuổi']
+Retrieval: OK | Matched: ['Điều 4'] | Missing: []
+KW Ratio: 0.67 | Hit Forbidden: ['60 tuổi']
+Status: PARTIAL
+
+--- MODEL ANSWER ---:
+Chào bạn, dựa trên các quy định tại **Nghị định 135/2020/NĐ-CP** mà bạn đã cung cấp, tôi xin giải đáp thắc mắc của bạn như sau:
+
+### 1. Cơ sở pháp lý
+*   **Điều 3, Nghị định 135/2020/NĐ-CP:** Quy định về thời điểm nghỉ hưu là ngày cuối cùng của tháng đủ tuổi, và thời điểm hưởng lương hưu là ngày đầu tiên của tháng liền kề sau đó.
+*   **Điều 4, Nghị định 135/2020/NĐ-CP:** Quy định lộ trình tăng tuổi nghỉ hưu đối với lao động nữ làm việc trong điều kiện bình thường (cứ mỗi năm tăng thêm 04 tháng cho đến khi đủ 60 tuổi vào năm 2035).
+
+### 2. Xác định tuổi nghỉ hưu và thời điểm hưởng lương hưu
+Đối với lao động nữ sinh **tháng 7 năm 1972** làm việc trong điều kiện lao động bình thường, việc xác định tuổi nghỉ hưu và thời điểm hưởng lương hưu được thực hiện theo lộ trình tại **Bảng 2, Khoản 2 Điều 4 Nghị định 135/2020/NĐ-CP**:
+
+*   **Độ tuổi nghỉ hưu:** Lao động nữ sinh tháng 7 năm 1972 sẽ nghỉ hưu ở độ tuổi **58 tuổi**.
+*   **Thời điểm nghỉ hưu:** Người lao động sẽ nghỉ hưu khi kết thúc ngày cuối cùng của tháng đủ tuổi nghỉ hưu (**ngày 31 tháng 7 năm 2030**).
+*   **Thời điểm hưởng lương hưu:** Là ngày đầu tiên của tháng liền kề sau tháng nghỉ hưu, cụ thể là **ngày 01 tháng 8 năm 2030**.
+
+---
+**Lưu ý quan trọng:**
+*   Các thông tin trên được áp dụng cho lao động nữ làm việc trong **điều kiện lao động bình thường**.
+*   Số liệu "51 tuổi" tại Phụ lục II mà bạn thấy trong căn cứ pháp lý được cung cấp chỉ dành riêng cho trường hợp lao động nữ làm nghề, công việc **nặng nhọc, độc hại, nguy hiểm** hoặc suy giảm khả năng lao động. Tuyệt đối không áp dụng mức tuổi này cho người làm việc trong điều kiện bình thường.
+
+================================================================================
+Case 4: [TC-17] Chấm dứt HĐLĐ vì lý do thay đổi cơ cấu: Phương án sử dụng lao động & Trợ cấp mất việc làm
+Category: cross_document
+Query: Doanh nghiệp sáp nhập dẫn đến dôi dư lao động và phải cho 10 người thôi việc. Theo BLLĐ 2019 và Nghị định 145/2020/NĐ-CP, doanh nghiệp phải xây dựng phương án sử dụng lao động ra sao và chi trả trợ cấp mất việc làm với mức tối thiểu là bao nhiêu?
+Ground Truth: Xây dựng phương án theo Điều 44 BLLĐ 2019. Trả trợ cấp mất việc làm theo Điều 47 BLLĐ và Điều 8 NĐ 145/2020: mỗi năm làm việc trả 01 tháng tiền lương nhưng ít nhất phải bằng 02 tháng tiền lương.
+Expected Keywords: ['Điều 44', 'Điều 47', 'Nghị định 145', 'ít nhất bằng 02 tháng tiền lương', 'trợ cấp mất việc làm']
+Forbidden Keywords: []
+Retrieval: FAILED | Matched: ['Điều 8'] | Missing: ['Điều 44 (bllđ)', 'Điều 47 (bllđ)']
+KW Ratio: 0.8 | Hit Forbidden: []
+Status: PARTIAL
+
+--- MODEL ANSWER ---:
+Chào bạn, với tư cách là VietLegal AI, tôi xin giải đáp thắc mắc của bạn dựa trên các quy định pháp luật hiện hành như sau:
+
+### 1. Về nghĩa vụ xây dựng phương án sử dụng lao động
+Khi doanh nghiệp thực hiện sáp nhập dẫn đến việc nhiều người lao động bị ảnh hưởng (cụ thể là dôi dư và phải cho thôi việc 10 người), theo **Khoản 1 Điều 43 Bộ luật Lao động 2019**, người sử dụng lao động có nghĩa vụ xây dựng phương án sử dụng lao động theo quy định tại **Điều 44 của Bộ luật Lao động 2019**.
+
+*Lưu ý: Mặc dù bạn yêu cầu cung cấp quy định về phương án sử dụng lao động, nhưng hiện tại cơ sở dữ liệu được cung cấp chưa chứa nội dung chi tiết của Điều 44 Bộ luật Lao động 2019. Do đó, tôi chưa thể liệt kê các thành phần cụ thể của phương án này cho bạn. Bạn vui lòng tham khảo trực tiếp văn bản Bộ luật Lao động 2019 hoặc tư vấn từ luật sư chuyên trách để nắm rõ các bước soạn thảo phương án này.*
+
+### 2. Về chi trả trợ cấp mất việc làm
+Khi người lao động bị thôi việc do sáp nhập doanh nghiệp, người sử dụng lao động có trách nhiệm chi trả trợ cấp mất việc làm theo quy định. Dưới đây là các thông tin dựa trên cơ sở dữ liệu cung cấp:
+
+*   **Căn cứ:** Theo **Khoản 3 Điều 43 Bộ luật Lao động 2019**, người lao động bị thôi việc trong trường hợp sáp nhập doanh nghiệp được nhận trợ cấp mất việc làm theo quy định tại **Điều 47 của Bộ luật Lao động 2019**.
+*   **Xác định thời gian làm việc để tính trợ cấp:** Theo **Điểm c2 Khoản 4 Điều 8 Nghị định 145/2020/NĐ-CP**:
+    *   Thời gian người lao động đã làm việc thực tế cho người sử dụng lao động được tính trả trợ cấp mất việc làm là **tổng thời gian làm việc thực tế theo các hợp đồng lao động cho người sử dụng lao động sau khi sáp nhập**.
+    *   Thời gian người lao động đã làm việc thực tế cho người sử dụng lao động được tính trả trợ cấp thôi việc là thời gian làm việc thực tế theo các hợp đồng lao động cho người sử dụng lao động trước khi sáp nhập.
+
+**Lưu ý quan trọng về mức chi trả:**
+Hiện tại, các văn bản pháp luật được cung cấp trong cơ sở dữ liệu **chưa chứa quy định về công thức tính cụ thể hoặc "mức tối thiểu" bằng số tiền/tháng lương** cho trợ cấp mất việc làm tại Điều 47 Bộ luật Lao động 2019.
+
+Để đảm bảo tính chính xác và tuân thủ đúng quy định pháp luật, bạn vui lòng tham khảo trực tiếp văn bản Bộ luật Lao động 2019 (đặc biệt là Điều 47 về trợ cấp mất việc làm) hoặc liên hệ cơ quan quản lý lao động địa phương để được hướng dẫn chi tiết về cách tính trợ cấp cụ thể cho 10 nhân sự này.
+
+***
+
+**VietLegal AI nhắc nhở:**
+*   Bạn cần tuân thủ nghiêm ngặt việc xây dựng phương án sử dụng lao động trước khi thực hiện chấm dứt hợp đồng lao động.
+*   Việc xác định thời gian làm việc phải tách bạch rõ giai đoạn "trước" và "sau" sáp nhập theo hướng dẫn tại **Khoản 4 Điều 8 Nghị định 145/2020/NĐ-CP** để đảm bảo quyền lợi cho người lao động.
+
+================================================================================
+Case 5: [TC-20] Thời điểm bắt đầu hưởng lương hưu hàng tháng
+Category: temporal_deadlines
+Query: Lao động nam đủ tuổi nghỉ hưu vào ngày 15/08/2024 và có quyết định nghỉ việc từ kết thúc ngày 31/08/2024. Theo Nghị định 135/2020/NĐ-CP, thời điểm hưởng chế độ hưu trí bắt đầu từ ngày nào?
+Ground Truth: Theo Khoản 2 Điều 3 Nghị định 135/2020/NĐ-CP, thời điểm hưởng chế độ hưu trí là ngày đầu tiên của tháng liền kề sau tháng đủ tuổi nghỉ hưu hoặc sau tháng chấm dứt HĐLĐ, tức là ngày 01/09/2024.
+Expected Keywords: ['ngày 01/09/2024', 'ngày đầu tiên của tháng liền kề', 'Điều 3', 'Nghị định 135']
+Forbidden Keywords: ['ngày 15/08/2024']
+Retrieval: OK | Matched: ['Điều 3'] | Missing: []
+KW Ratio: 1.0 | Hit Forbidden: ['ngày 15/08/2024']
+Status: PARTIAL
+
+--- MODEL ANSWER ---:
+Chào bạn, với câu hỏi của bạn về thời điểm hưởng chế độ hưu trí, **VietLegal AI** xin giải đáp dựa trên các quy định tại Nghị định 135/2020/NĐ-CP như sau:
+
+### 1. Cơ sở pháp lý
+*   **Khoản 1 Điều 3 Nghị định 135/2020/NĐ-CP:** Quy định thời điểm nghỉ hưu là kết thúc ngày cuối cùng của tháng đủ tuổi nghỉ hưu. Đối với người lao động tiếp tục làm việc sau khi đã đủ tuổi nghỉ hưu, thời điểm nghỉ hưu là thời điểm chấm dứt hợp đồng lao động.
+*   **Khoản 2 Điều 3 Nghị định 135/2020/NĐ-CP:** Quy định thời điểm hưởng chế độ hưu trí là bắt đầu ngày đầu tiên của tháng liền kề sau thời điểm nghỉ hưu.
+
+### 2. Giải đáp trường hợp của bạn
+Dựa trên thông tin bạn cung cấp:
+*   Người lao động nam đủ tuổi nghỉ hưu vào ngày **15/08/2024**.
+*   Người lao động có quyết định nghỉ việc từ kết thúc ngày **31/08/2024**.
+
+Vì người lao động đã làm việc đến hết ngày 31/08/2024 (tức là sau thời điểm đủ tuổi nghỉ hưu ngày 15/08/2024), nên theo quy định tại Khoản 1 Điều 3 nêu trên, thời điểm nghỉ hưu được tính là ngày chấm dứt hợp đồng lao động, tức là ngày **31/08/2024**.
+
+Do đó, thời điểm hưởng chế độ hưu trí được xác định như sau:
+*   **Thời điểm hưởng chế độ hưu trí là ngày 01/09/2024** (ngày đầu tiên của tháng liền kề sau tháng nghỉ hưu là tháng 08/2024).
+
+**Lưu ý:** Bạn cần đảm bảo các điều kiện về thời gian đóng bảo hiểm xã hội theo quy định của Luật Bảo hiểm xã hội để được hưởng lương hưu tại thời điểm nêu trên. Nếu bạn có các vấn đề pháp lý phức tạp hơn về hồ sơ hưởng hưu, bạn nên liên hệ trực tiếp với cơ quan Bảo hiểm xã hội nơi quản lý hồ sơ để được hướng dẫn cụ thể.
+
+================================================================================
+Case 6: [TC-21] Chậm đóng BHXH: Trách nhiệm theo BLLĐ và Mức phạt theo NĐ 12
+Category: cross_document
+Query: Công ty chậm đóng bảo hiểm xã hội bắt buộc cho người lao động 3 tháng. Theo Bộ luật Lao động 2019 và Nghị định 12/2022/NĐ-CP, công ty có trách nhiệm gì và mức phạt tiền đối với người sử dụng lao động là bao nhiêu?
+Ground Truth: Theo Điều 168 BLLĐ 2019, NSDLĐ phải đóng đủ BHXH và bồi thường nếu gây thiệt hại. Theo Điều 39 Nghị định 12/2022/NĐ-CP, NSDLĐ bị phạt tiền từ 12% đến 15% tổng số tiền phải đóng BHXH bắt buộc tại thời điểm lập biên bản nhưng tối đa không quá 75.000.000 đồng (đối với cá nhân) hoặc 150.000.000 đồng (đối với tổ chức) và phải nộp số tiền lãi chậm đóng.
+Expected Keywords: ['Điều 168', 'Điều 39', 'Nghị định 12', 'chậm đóng', 'tiền lãi']
+Forbidden Keywords: []
+Retrieval: FAILED | Matched: ['Điều 39'] | Missing: ['Điều 168 (bllđ)']
+KW Ratio: 0.8 | Hit Forbidden: []
+Status: PARTIAL
+
+--- MODEL ANSWER ---:
+Chào bạn, dựa trên các căn cứ pháp lý được cung cấp, VietLegal AI xin giải đáp thắc mắc của bạn về việc công ty chậm đóng bảo hiểm xã hội (BHXH) như sau:
+
+### 1. Trách nhiệm của người sử dụng lao động khi chậm đóng BHXH
+Theo quy định tại **Khoản 3 Điều 122 Luật Bảo hiểm xã hội 2014**, người sử dụng lao động có hành vi chậm đóng bảo hiểm xã hội từ 30 ngày trở lên phải thực hiện các trách nhiệm sau:
+
+*   **Đóng đủ số tiền:** Phải đóng đủ số tiền chưa đóng, chậm đóng.
+*   **Nộp tiền lãi:** Phải nộp số tiền lãi bằng **02 lần mức lãi suất đầu tư quỹ bảo hiểm xã hội bình quân** của năm trước liền kề tính trên số tiền và thời gian chậm đóng.
+*   **Cưỡng chế:** Nếu không tự nguyện thực hiện, theo yêu cầu của người có thẩm quyền, các ngân hàng, tổ chức tín dụng hoặc kho bạc nhà nước sẽ trích từ tài khoản tiền gửi của người sử dụng lao động để nộp số tiền chưa đóng, chậm đóng và tiền lãi vào tài khoản của cơ quan bảo hiểm xã hội.
+
+### 2. Mức phạt tiền đối với hành vi chậm đóng BHXH
+Theo **Khoản 5 Điều 39 Nghị định 12/2022/NĐ-CP**, hành vi chậm đóng bảo hiểm xã hội bắt buộc bị xử phạt vi phạm hành chính như sau:
+
+*   **Hình thức xử phạt:** Phạt tiền từ **12% đến 15% tổng số tiền phải đóng** bảo hiểm xã hội bắt buộc tại thời điểm lập biên bản vi phạm hành chính.
+
+---
+**Lưu ý:**
+*   Các quy định trên áp dụng cho hành vi vi phạm về chậm đóng bảo hiểm xã hội bắt buộc. 
+*   Mức phạt tiền nêu tại **Khoản 5 Điều 39 Nghị định 12/2022/NĐ-CP** là mức phạt đối với **cá nhân**. Theo quy định chung về xử phạt hành chính trong lĩnh vực lao động, BHXH, mức phạt đối với tổ chức (công ty) thường gấp 02 lần mức phạt đối với cá nhân. Tuy nhiên, do văn bản quy phạm pháp luật bạn cung cấp tại Căn cứ #2 chỉ liệt kê mức % (12%-15%), nếu bạn cần xác định chính xác số tiền cụ thể cho công ty, bạn nên kiểm tra thêm quy định về chủ thể áp dụng tại Nghị định 12/2022/NĐ-CP hoặc tham vấn cơ quan chức năng để biết chính xác mức áp dụng cho tổ chức.
+
+Nếu bạn cần tư vấn sâu hơn về quy trình xử lý hoặc các khía cạnh pháp lý khác, vui lòng liên hệ với luật sư hoặc cơ quan bảo hiểm xã hội tại địa phương để được hỗ trợ cụ thể.
+
+================================================================================
+Case 7: [TC-22] Các trường hợp tạm hoãn HĐLĐ (Điều 30 BLLĐ)
+Category: boolean_logic
+Query: Người lao động đi học nghề tự túc tại nước ngoài có được đương nhiên tạm hoãn hợp đồng lao động không, hay phải có sự thỏa thuận với người sử dụng lao động theo Điều 30 BLLĐ 2019?
+Ground Truth: Theo Điều 30 BLLĐ 2019, đi nghĩa vụ quân sự hoặc bị tạm giam thì đương nhiên được tạm hoãn HĐLĐ. Trường hợp đi học nghề tự túc không thuộc diện luật định đương nhiên tạm hoãn, nên bắt buộc phải có sự thỏa thuận và đồng ý của người sử dụng lao động (theo Điểm h Khoản 1 Điều 30).
+Expected Keywords: ['Điều 30', 'phải thỏa thuận', 'không đương nhiên']
+Forbidden Keywords: ['đương nhiên được tạm hoãn']
+Retrieval: OK | Matched: ['Điều 30'] | Missing: []
+KW Ratio: 0.33 | Hit Forbidden: []
+Status: PARTIAL
+
+--- MODEL ANSWER ---:
+Chào bạn, với tư cách là VietLegal AI, tôi xin giải đáp thắc mắc của bạn dựa trên các quy định pháp luật hiện hành như sau:
+
+Việc người lao động đi học nghề tự túc tại nước ngoài **không thuộc trường hợp được đương nhiên tạm hoãn hợp đồng lao động**.
+
+Căn cứ vào **Khoản 1 Điều 30 Bộ luật Lao động 2019**, các trường hợp tạm hoãn thực hiện hợp đồng lao động đã được liệt kê cụ thể tại các điểm từ a đến g (bao gồm các trường hợp như: thực hiện nghĩa vụ quân sự, bị tạm giữ/tạm giam, lao động nữ mang thai, bổ nhiệm quản lý doanh nghiệp nhà nước...). Việc đi học nghề tự túc không nằm trong danh mục các trường hợp này.
+
+Do đó, để được tạm hoãn hợp đồng lao động trong trường hợp đi học nghề, người lao động phải thực hiện theo **Điểm h Khoản 1 Điều 30 Bộ luật Lao động 2019**, cụ thể là: **phải có sự thỏa thuận giữa người lao động và người sử dụng lao động.**
+
+**Các lưu ý quan trọng:**
+*   **Thỏa thuận tạm hoãn:** Vì đây là trường hợp "do hai bên thỏa thuận", người sử dụng lao động có quyền đồng ý hoặc không đồng ý với yêu cầu tạm hoãn của người lao động.
+*   **Quyền lợi trong thời gian tạm hoãn:** Theo **Khoản 2 Điều 30 Bộ luật Lao động 2019**, trong thời gian tạm hoãn hợp đồng lao động, người lao động sẽ không được hưởng lương và các quyền, lợi ích đã giao kết trong hợp đồng lao động, trừ khi hai bên có thỏa thuận khác.
+*   **Sau khi kết thúc thời gian tạm hoãn:** Theo **Điều 31 Bộ luật Lao động 2019**, trong thời hạn 15 ngày kể từ ngày hết thời hạn tạm hoãn, người lao động phải có mặt tại nơi làm việc và người sử dụng lao động có trách nhiệm nhận người lao động trở lại làm việc theo hợp đồng đã giao kết (nếu hợp đồng còn thời hạn), trừ khi có thỏa thuận khác.
+
+Tóm lại, bạn không có quyền đương nhiên tạm hoãn hợp đồng để đi học mà bắt buộc phải thương lượng và đạt được sự đồng ý bằng thỏa thuận với người sử dụng lao động.
+
+================================================================================
+Case 8: [TC-26] Hồ sơ đăng ký thay đổi người đại diện theo pháp luật của Công ty TNHH
+Category: cross_document
+Query: Công ty TNHH 2 thành viên muốn thay đổi người đại diện theo pháp luật thì phải nộp hồ sơ gồm những giấy tờ gì và trong thời hạn bao nhiêu ngày theo Luật Doanh nghiệp 2020 và Nghị định 01/2021/NĐ-CP?
+Ground Truth: Theo Luật Doanh nghiệp và Điều 50 Nghị định 01/2021/NĐ-CP, công ty phải thông báo đến Phòng Đăng ký kinh doanh trong thời hạn 10 ngày kể từ ngày có thay đổi. Hồ sơ gồm Thông báo thay đổi, Nghị quyết/quyết định và biên bản họp của Hội đồng thành viên, giấy tờ pháp lý của người đại diện mới.
+Expected Keywords: ['Nghị định 01', '10 ngày', 'Thông báo', 'Hội đồng thành viên', 'người đại diện']
+Forbidden Keywords: []
+Retrieval: FAILED | Matched: ['Điều 50'] | Missing: ['Điều 12 (ldn)']
+KW Ratio: 0.8 | Hit Forbidden: []
+Status: PARTIAL
+
+--- MODEL ANSWER ---:
+Chào bạn, với tư cách là VietLegal AI, tôi xin giải đáp thắc mắc của bạn về việc thay đổi người đại diện theo pháp luật cho Công ty TNHH 2 thành viên trở lên như sau:
+
+### 1. Hồ sơ thay đổi người đại diện theo pháp luật
+Dựa trên các căn cứ pháp lý được cung cấp tại **Nghị định 01/2021/NĐ-CP**, quy định về việc đăng ký thay đổi người đại diện theo pháp luật cụ thể như sau:
+
+*   **Người ký thông báo:** Theo **Khoản 2 Điều 50 Nghị định 01/2021/NĐ-CP**, người ký thông báo thay đổi người đại diện theo pháp luật là **Chủ tịch Hội đồng thành viên**.
+    *   Trường hợp Chủ tịch Hội đồng thành viên cũ là người đại diện theo pháp luật, thì người ký thông báo là **Chủ tịch Hội đồng thành viên mới** được Hội đồng thành viên bầu.
+    *   Trong các trường hợp đặc biệt (Chủ tịch Hội đồng thành viên vắng mặt, chết, mất tích, bị tạm giam... hoặc không thể thực hiện quyền và nghĩa vụ), người ký sẽ là người được ủy quyền hoặc người được bầu tạm thời làm Chủ tịch Hội đồng thành viên theo quy định pháp luật.
+
+*   **Về thành phần hồ sơ:** Hiện tại, trong các Căn cứ Pháp lý được cung cấp, **không có quy định liệt kê danh mục chi tiết các giấy tờ cụ thể** (như mẫu đơn, biên bản họp, quyết định) cần nộp cho thủ tục thay đổi người đại diện theo pháp luật của Công ty TNHH 2 thành viên trở lên. 
+
+### 2. Thời hạn thông báo
+Liên quan đến thời hạn thực hiện thủ tục, **Căn cứ Pháp lý #5 (Điều 60 Nghị định 01/2021/NĐ-CP)** chỉ quy định về thời hạn 03 ngày làm việc đối với việc thông báo thay đổi thông tin cổ đông nước ngoài hoặc người đại diện theo ủy quyền của cổ đông nước ngoài.
+
+Đối với thủ tục thay đổi người đại diện theo pháp luật của Công ty TNHH 2 thành viên trở lên, các văn bản bạn cung cấp **không chứa quy định cụ thể về thời hạn** phải thực hiện thủ tục này.
+
+---
+**Kết luận:**
+Hiện tại, cơ sở dữ liệu được cung cấp chưa có quy định trực tiếp về danh mục hồ sơ cụ thể và thời hạn thực hiện thủ tục thay đổi người đại diện theo pháp luật cho Công ty TNHH 2 thành viên trở lên. Bạn vui lòng tham khảo thêm ý kiến của luật sư hoặc cơ quan có thẩm quyền (Phòng Đăng ký kinh doanh thuộc Sở Kế hoạch và Đầu tư) để có hướng dẫn chi tiết theo quy định hiện hành của Luật Doanh nghiệp 2020.
+
+================================================================================
+Case 9: [TC-28] Tra cứu tuổi nghỉ hưu Nam sinh tháng 3/1966 (Phụ lục I NĐ 135)
+Category: tabular_lookup
+Query: Lao động nam sinh vào tháng 3 năm 1966 trong điều kiện lao động bình thường. Theo Phụ lục I Nghị định 135/2020/NĐ-CP, người này nghỉ hưu ở tuổi nào?
+Ground Truth: Theo Phụ lục I Nghị định 135/2020/NĐ-CP: Nam sinh từ tháng 01/1966 đến tháng 03/1966 nghỉ hưu ở tuổi 61 tuổi 6 tháng. Thời điểm nghỉ hưu là tháng 9/2027.
+Expected Keywords: ['61 tuổi 6 tháng', 'Phụ lục I', 'Nghị định 135']
+Forbidden Keywords: ['62 tuổi', '60 tuổi']
+Retrieval: OK | Matched: ['Điều 4'] | Missing: []
+KW Ratio: 0.67 | Hit Forbidden: ['62 tuổi']
+Status: PARTIAL
+
+--- MODEL ANSWER ---:
+Chào bạn, với tư cách là VietLegal AI, tôi xin giải đáp thắc mắc của bạn dựa trên các căn cứ pháp lý được cung cấp như sau:
+
+Đối với lao động nam sinh vào **tháng 3 năm 1966** làm việc trong **điều kiện lao động bình thường**, căn cứ theo quy định tại Điều 4 và Phụ lục I của Nghị định 135/2020/NĐ-CP, thông tin về tuổi nghỉ hưu của người này như sau:
+
+### 1. Tuổi nghỉ hưu theo quy định
+Theo **Phụ lục I (Bảng tra cứu lộ trình tuổi nghỉ hưu đối với lao động nam)** ban hành kèm theo **Nghị định 135/2020/NĐ-CP**:
+*   Lao động nam sinh tháng 3 năm 1966 có tuổi nghỉ hưu là: **61 tuổi 9 tháng**.
+
+### 2. Thời điểm nghỉ hưu và hưởng lương hưu
+*   **Thời điểm nghỉ hưu:** Là kết thúc ngày cuối cùng của tháng mà người lao động đủ 61 tuổi 9 tháng (tương ứng với tháng 12/2027).
+*   **Thời điểm hưởng lương hưu:** Là bắt đầu ngày đầu tiên của tháng liền kề sau thời điểm nghỉ hưu, cụ thể là **tháng 01 năm 2028**.
+
+---
+### Bảng đối chiếu quan trọng (Cảnh báo về đối tượng áp dụng)
+Để tránh nhầm lẫn, bạn cần phân biệt rõ giữa quy định về điều kiện lao động bình thường và các trường hợp đặc biệt:
+
+| Tiêu chí | Điều kiện lao động bình thường (Áp dụng cho bạn) | Diện làm nghề nặng nhọc, độc hại hoặc suy giảm KNLĐ |
+| :--- | :--- | :--- |
+| **Căn cứ pháp lý** | Điều 4 & Phụ lục I, NĐ 135/2020/NĐ-CP | Điều 5 & Phụ lục II, NĐ 135/2020/NĐ-CP |
+| **Tuổi nghỉ hưu** | **61 tuổi 9 tháng** | 56 tuổi 9 tháng |
+| **Ghi chú** | **Áp dụng cho trường hợp của bạn.** | Chỉ áp dụng nếu thuộc danh mục nghề nặng nhọc, độc hại hoặc suy giảm khả năng lao động từ 61% trở lên. |
+
+**Lưu ý quan trọng:**
+*   Các con số thuộc Phụ lục II (như 56 tuổi 9 tháng) **tuyệt đối không được áp dụng** cho người làm việc trong điều kiện lao động bình thường. 
+*   Lộ trình tăng tuổi nghỉ hưu của nam giới theo điều kiện bình thường sẽ kết thúc vào năm 2028 ở mốc 62 tuổi. Tất cả lao động nam sinh từ tháng 04/1966 trở đi sẽ áp dụng mốc 62 tuổi để nghỉ hưu. Trường hợp của bạn (sinh tháng 3/1966) là trường hợp cuối cùng trong lộ trình trước khi đạt mốc 62 tuổi ổn định.
+
+Hy vọng thông tin này giúp bạn nắm rõ quy định pháp luật hiện hành.

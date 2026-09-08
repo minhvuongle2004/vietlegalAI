@@ -1,0 +1,3 @@
+# Root Requirements for VietLegal AI
+-r pipeline/requirements.txt
+-r backend/requirements.txt

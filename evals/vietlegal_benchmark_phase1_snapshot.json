@@ -1,0 +1,888 @@
+[
+  {
+    "id": "TC-01",
+    "category": "cross_document",
+    "title": "Nghỉ việc hưởng BHXH một lần vs Trợ cấp thất nghiệp",
+    "query": "Tôi nghỉ việc sau 6 năm làm việc, trong đó có đóng BHXH và bảo hiểm thất nghiệp đầy đủ. Khi nghỉ việc, tôi có thể được hưởng những chế độ nào? Hãy phân biệt điều kiện hưởng BHXH một lần và trợ cấp thất nghiệp, đồng thời chỉ rõ căn cứ pháp lý của từng chế độ.",
+    "expected_articles": [
+      {
+        "doc_keyword": "bhxh",
+        "article_number": 60
+      },
+      {
+        "doc_keyword": "vieclam",
+        "article_number": 49
+      }
+    ],
+    "ground_truth": "Người lao động được hưởng Trợ cấp thất nghiệp (Điều 49 Luật Việc làm 2013) và có thể hưởng BHXH một lần nếu thuộc các trường hợp quy định tại Điều 60 Luật BHXH 2014. Đóng 6 năm BHTN được hưởng 6 tháng trợ cấp.",
+    "expected_keywords": [
+      "Điều 60",
+      "Điều 49",
+      "Luật Việc làm",
+      "Luật Bảo hiểm xã hội",
+      "thất nghiệp",
+      "một lần"
+    ],
+    "forbidden_keywords": [
+      "cơ sở dữ liệu chưa có quy định về bhxh một lần",
+      "chưa có quy định trực tiếp về điều kiện và cách tính hưởng bhxh một lần"
+    ],
+    "trap_type": "Cross-Document Semantic Starvation: query kép dễ khiến một trong hai văn bản bị đè bẹp.",
+    "as_of_date": "2024-12-31"
+  },
+  {
+    "id": "TC-02",
+    "category": "cross_document",
+    "title": "Phân biệt Trợ cấp thôi việc (BLLĐ) và Trợ cấp thất nghiệp (Luật Việc làm)",
+    "query": "Công ty cho tôi nghỉ việc đúng luật sau 8 năm làm việc. Tôi nghe nói có cả trợ cấp thôi việc và trợ cấp thất nghiệp. Xin hỏi hai khoản này khác nhau thế nào, ai chi trả và thời gian làm việc để tính trợ cấp thôi việc được xác định ra sao?",
+    "expected_articles": [
+      {
+        "doc_keyword": "bllđ",
+        "article_number": [
+          46,
+          47
+        ]
+      },
+      {
+        "doc_keyword": "vieclam",
+        "article_number": [
+          45,
+          49,
+          50
+        ]
+      }
+    ],
+    "ground_truth": "Trợ cấp thôi việc do Người sử dụng lao động chi trả theo Điều 46 BLLĐ 2019. Thời gian làm việc tính trợ cấp thôi việc là tổng thời gian đã làm việc trừ đi thời gian đã tham gia BHTN. Trợ cấp thất nghiệp do Quỹ BHTN chi trả theo Điều 49 Luật Việc làm 2013.",
+    "expected_keywords": [
+      "Điều 46",
+      "Bộ luật Lao động",
+      "Luật Việc làm",
+      "Người sử dụng lao động",
+      "Quỹ bảo hiểm thất nghiệp"
+    ],
+    "forbidden_keywords": [],
+    "trap_type": "Cross-Document & Deduction Logic: Bắt buộc nêu rõ quy tắc trừ thời gian đã đóng BHTN khi tính trợ cấp thôi việc.",
+    "as_of_date": "2024-12-31"
+  },
+  {
+    "id": "TC-03",
+    "category": "cross_document",
+    "title": "Sa thải trái luật: Bồi thường theo BLLĐ và Mức phạt vi phạm theo NĐ 12",
+    "query": "Công ty đơn phương sa thải tôi mà không tổ chức họp xử lý kỷ luật lao động. Việc này vi phạm quy định nào của Bộ luật Lao động 2019 và công ty có thể bị phạt bao nhiêu tiền theo Nghị định 12/2022/NĐ-CP?",
+    "expected_articles": [
+      {
+        "doc_keyword": "bllđ",
+        "article_number": [
+          41,
+          122,
+          125
+        ]
+      },
+      {
+        "doc_keyword": "nd_12",
+        "article_number": 19
+      }
+    ],
+    "ground_truth": "Vi phạm trình tự xử lý kỷ luật theo Điều 122 BLLĐ 2019. Công ty (tổ chức) bị phạt tiền từ 10.000.000 đồng đến 20.000.000 đồng (hoặc 5-10 triệu đối với cá nhân) theo Điều 19 Nghị định 12/2022/NĐ-CP.",
+    "expected_keywords": [
+      "Điều 122",
+      "Bộ luật Lao động",
+      "Nghị định 12",
+      "trình tự",
+      "phạt tiền"
+    ],
+    "forbidden_keywords": [],
+    "trap_type": "Cross-Document (Substantive Law vs Administrative Penalty): Kết hợp giữa quy định quyền và chế tài xử phạt hành chính.",
+    "as_of_date": "2024-12-31"
+  },
+  {
+    "id": "TC-04",
+    "category": "cross_document",
+    "title": "Chế độ thai sản của Lao động nữ và Bảo lưu bảo hiểm",
+    "query": "Lao động nữ sinh con sau khi đã đóng BHXH được 8 tháng trong vòng 12 tháng trước khi sinh nhưng đã nghỉ việc trước thời điểm sinh. Theo Luật BHXH 2014 và BLLĐ 2019, người này có được hưởng chế độ thai sản không?",
+    "expected_articles": [
+      {
+        "doc_keyword": "bhxh",
+        "article_number": 31
+      }
+    ],
+    "ground_truth": "Theo Khoản 2 Điều 31 Luật BHXH 2014, lao động nữ đóng BHXH từ đủ 06 tháng trở lên trong thời gian 12 tháng trước khi sinh con thì vẫn được hưởng chế độ thai sản dù đã chấm dứt hợp đồng lao động trước khi sinh.",
+    "expected_keywords": [
+      "Điều 31",
+      "Luật Bảo hiểm xã hội",
+      "đủ 06 tháng",
+      "được hưởng"
+    ],
+    "forbidden_keywords": [
+      "không được hưởng"
+    ],
+    "trap_type": "Condition check: Nhầm lẫn rằng phải đang có việc làm mới được hưởng chế độ thai sản.",
+    "as_of_date": "2024-12-31"
+  },
+  {
+    "id": "TC-05",
+    "category": "boolean_logic",
+    "title": "Điều kiện hưởng Trợ cấp thất nghiệp (AND Logic bắt buộc)",
+    "query": "Một người nghỉ việc, đã đóng BHTN được 18 tháng trong vòng 24 tháng trước khi nghỉ. Người này chưa nộp hồ sơ tại Trung tâm dịch vụ việc làm mà đã qua 4 tháng kể từ ngày nghỉ việc. Người này có được nhận trợ cấp thất nghiệp cho đợt nghỉ việc này không?",
+    "expected_articles": [
+      {
+        "doc_keyword": "vieclam",
+        "article_number": 49
+      },
+      {
+        "doc_keyword": "vieclam",
+        "article_number": 46
+      }
+    ],
+    "ground_truth": "Không được nhận trợ cấp thất nghiệp cho đợt này. Theo Điều 46 và Điều 49 Luật Việc làm 2013, trong thời hạn 03 tháng kể từ ngày chấm dứt HĐLĐ phải nộp hồ sơ. Đã qua 4 tháng là hết thời hạn nộp, thời gian đóng sẽ được bảo lưu theo Khoản 4 Điều 53.",
+    "expected_keywords": [
+      "không được|không còn đủ điều kiện|quá thời hạn",
+      "03 tháng",
+      "thời hạn",
+      "bảo lưu|cộng dồn"
+    ],
+    "forbidden_keywords": [
+      "vẫn được hưởng trợ cấp ngay"
+    ],
+    "trap_type": "Boolean AND: Thiếu 1 trong 4 điều kiện bắt buộc (thời hạn 3 tháng nộp hồ sơ) thì kết luận phải là KHÔNG.",
+    "as_of_date": "2024-12-31"
+  },
+  {
+    "id": "TC-06",
+    "category": "boolean_logic",
+    "title": "Điều kiện xử lý kỷ luật Sa thải (AND/OR Logic)",
+    "query": "Người lao động có hành vi trộm cắp tài sản của công ty nhưng trị giá tài sản dưới 2 triệu đồng và công ty chưa quy định cụ thể trong nội quy lao động. Người sử dụng lao động có được quyền sa thải người này không theo Điều 125 BLLĐ 2019?",
+    "expected_articles": [
+      {
+        "doc_keyword": "bllđ",
+        "article_number": 125
+      }
+    ],
+    "ground_truth": "Theo Khoản 1 Điều 125 BLLĐ 2019, người lao động có hành vi trộm cắp tại nơi làm việc thì bị áp dụng hình thức xử lý kỷ luật sa thải mà không phụ thuộc vào giá trị tài sản trộm cắp (không quy định mức sàn 2 triệu như luật hình sự).",
+    "expected_keywords": [
+      "Điều 125",
+      "sa thải",
+      "trộm cắp"
+    ],
+    "forbidden_keywords": [
+      "phải trên 2 triệu mới được sa thải"
+    ],
+    "trap_type": "Legal misconception: Lấy định mức 2 triệu của Bộ luật Hình sự áp đặt sai vào Bộ luật Lao động.",
+    "as_of_date": "2024-12-31"
+  },
+  {
+    "id": "TC-07",
+    "category": "boolean_logic",
+    "title": "Điều kiện hưởng BHXH một lần (OR Logic giữa các trường hợp)",
+    "query": "Người lao động 35 tuổi, có 7 năm đóng BHXH, vừa nghỉ việc được 1 tháng và hiện vẫn ở Việt Nam, sức khỏe bình thường. Người này có được nộp hồ sơ rút BHXH một lần ngay lập tức không?",
+    "expected_articles": [
+      {
+        "doc_keyword": "bhxh",
+        "article_number": 60
+      }
+    ],
+    "ground_truth": "Không được rút ngay lập tức. Theo Điều 60 Luật BHXH 2014 và Nghị quyết 93/2015/QH13, trường hợp nghỉ việc thông thường phải sau 12 tháng không tiếp tục đóng BHXH mới được hưởng BHXH một lần (trừ khi mắc bệnh hiểm nghèo, định cư nước ngoài, đủ tuổi nghỉ hưu).",
+    "expected_keywords": [
+      "Điều 60",
+      "không được|chưa đủ điều kiện|chưa thuộc",
+      "ngay lập tức|12 tháng|bảo lưu"
+    ],
+    "forbidden_keywords": [
+      "được rút ngay lập tức"
+    ],
+    "trap_type": "Condition Temporal check: Nghỉ việc thông thường bắt buộc phải sau 12 tháng ngắt quãng.",
+    "as_of_date": "2024-12-31"
+  },
+  {
+    "id": "TC-08",
+    "category": "exception_vs_general",
+    "title": "Tuổi nghỉ hưu Nam sinh năm 1970 (Điều kiện bình thường vs Ngoại lệ)",
+    "query": "Một lao động nam sinh vào tháng 6 năm 1970, làm việc văn phòng trong điều kiện bình thường. Theo quy định tại Nghị định 135/2020/NĐ-CP, tuổi nghỉ hưu của người này là bao nhiêu tuổi và vào năm nào?",
+    "expected_articles": [
+      {
+        "doc_keyword": "135",
+        "article_number": 4
+      }
+    ],
+    "ground_truth": "Lao động nam làm việc trong điều kiện bình thường sinh sau tháng 4/1966 (như sinh năm 1970) sẽ nghỉ hưu ở mốc đủ 62 tuổi vào năm 2032 (theo Điều 4 và Phụ lục I). Mức 56 tuổi 9 tháng chỉ áp dụng cho người làm nghề nặng nhọc, độc hại hoặc suy giảm KNLĐ theo Phụ lục II.",
+    "expected_keywords": [
+      "62 tuổi",
+      "Phụ lục I",
+      "2032",
+      "bình thường"
+    ],
+    "forbidden_keywords": [
+      "nghỉ hưu ở tuổi 56 tuổi",
+      "nghỉ hưu ở tuổi 56"
+    ],
+    "trap_type": "General vs Exception trap: Tuyệt đối không lấy mức 56 tuổi của Phụ lục II áp cho lao động văn phòng điều kiện bình thường.",
+    "as_of_date": "2024-12-31"
+  },
+  {
+    "id": "TC-09",
+    "category": "exception_vs_general",
+    "title": "Thời gian thử việc tối đa (Quy định chung vs HĐLĐ dưới 1 tháng)",
+    "query": "Doanh nghiệp ký hợp đồng lao động thời hạn 20 ngày với người lao động và yêu cầu thử việc 3 ngày. Việc này có đúng luật lao động không?",
+    "expected_articles": [
+      {
+        "doc_keyword": "bllđ",
+        "article_number": 24
+      }
+    ],
+    "ground_truth": "Không đúng luật. Theo Khoản 3 Điều 24 Bộ luật Lao động 2019, không áp dụng thử việc đối với người lao động giao kết hợp đồng lao động có thời hạn dưới 01 tháng.",
+    "expected_keywords": [
+      "Điều 24",
+      "không áp dụng thử việc",
+      "dưới 01 tháng",
+      "không đúng"
+    ],
+    "forbidden_keywords": [
+      "được phép thử việc 3 ngày"
+    ],
+    "trap_type": "Exception trap: Ngoại lệ cấm thử việc với HĐLĐ dưới 1 tháng.",
+    "as_of_date": "2024-12-31"
+  },
+  {
+    "id": "TC-10",
+    "category": "exception_vs_general",
+    "title": "Giới hạn làm thêm giờ (Mốc chung 200h vs Ngoại lệ 300h)",
+    "query": "Doanh nghiệp muốn thỏa thuận cho người lao động làm thêm 280 giờ trong một năm. Trường hợp nào doanh nghiệp được làm thêm trên 200 giờ đến 300 giờ trong năm theo Điều 107 BLLĐ 2019?",
+    "expected_articles": [
+      {
+        "doc_keyword": "bllđ",
+        "article_number": 107
+      }
+    ],
+    "ground_truth": "Quy định chung không quá 200 giờ/năm. Được làm thêm đến 300 giờ/năm chỉ trong một số ngành, nghề, công việc cụ thể như dệt may, da giày, chế biến thủy hải sản, viễn thông, cấp điện nước hoặc giải quyết công việc cấp bách theo Khoản 3 Điều 107 BLLĐ 2019 và phải thông báo cho Sở LĐ-TB&XH.",
+    "expected_keywords": [
+      "Điều 107",
+      "200 giờ",
+      "300 giờ",
+      "dệt may",
+      "thủy sản",
+      "thông báo"
+    ],
+    "forbidden_keywords": [],
+    "trap_type": "General vs Exception conditions list.",
+    "as_of_date": "2024-12-31"
+  },
+  {
+    "id": "TC-11",
+    "category": "arithmetic_calculation",
+    "title": "Tính số tháng hưởng Trợ cấp thất nghiệp theo thâm niên 6 năm",
+    "query": "Tôi đóng bảo hiểm thất nghiệp liên tục được 6 năm (đủ 72 tháng). Nếu đủ điều kiện hưởng trợ cấp thất nghiệp, tôi sẽ được nhận trợ cấp trong bao nhiêu tháng và mỗi tháng bao nhiêu % tiền lương bình quân?",
+    "expected_articles": [
+      {
+        "doc_keyword": "vieclam",
+        "article_number": 50
+      }
+    ],
+    "ground_truth": "Theo Điều 50 Luật Việc làm 2013: Mức hưởng bằng 60% mức bình quân tiền lương tháng đóng BHTN của 06 tháng liền kề. Thời gian hưởng: Đóng đủ 12 đến 36 tháng được hưởng 3 tháng; sau đó cứ thêm đủ 12 tháng được hưởng thêm 1 tháng. Đóng 72 tháng = 3 + 3 = 6 tháng trợ cấp.",
+    "expected_keywords": [
+      "60%",
+      "6 tháng",
+      "Điều 50",
+      "Luật Việc làm"
+    ],
+    "forbidden_keywords": [
+      "7 tháng",
+      "5 tháng",
+      "chỉ được 3 tháng",
+      "tổng cộng 3 tháng",
+      "hưởng tối đa 3 tháng"
+    ],
+    "trap_type": "Arithmetic Step: Tính lũy tiến 36 tháng đầu = 3 tháng, 36 tháng sau = 3 tháng, tổng = 6 tháng.",
+    "as_of_date": "2024-12-31"
+  },
+  {
+    "id": "TC-12",
+    "category": "arithmetic_calculation",
+    "title": "Tính tiền lương làm thêm giờ vào ngày nghỉ Lễ, Tết (300%)",
+    "query": "Người lao động hưởng lương theo ngày, vào ngày lễ 30/4 đi làm thêm ban ngày thì được trả lương làm thêm giờ ít nhất bằng bao nhiêu phần trăm theo Điều 98 BLLĐ 2019?",
+    "expected_articles": [
+      {
+        "doc_keyword": "bllđ",
+        "article_number": 98
+      }
+    ],
+    "ground_truth": "Theo Điểm c Khoản 1 Điều 98 BLLĐ 2019, làm thêm vào ngày nghỉ lễ, tết, ngày nghỉ có hưởng lương được trả ít nhất bằng 300% chưa kể tiền lương ngày lễ, tết đối với người lao động hưởng lương ngày (tổng cộng nhận ít nhất 400%).",
+    "expected_keywords": [
+      "Điều 98",
+      "300%",
+      "ít nhất"
+    ],
+    "forbidden_keywords": [
+      "150%",
+      "200%"
+    ],
+    "trap_type": "Arithmetic Percentage: 300% chưa kể lương ngày nghỉ lễ.",
+    "as_of_date": "2024-12-31"
+  },
+  {
+    "id": "TC-13",
+    "category": "arithmetic_calculation",
+    "title": "Tính ngày nghỉ phép năm tăng thêm theo thâm niên",
+    "query": "Người lao động làm việc cho một công ty được 12 năm trong điều kiện bình thường. Năm nay người đó có bao nhiêu ngày nghỉ hằng năm có hưởng lương theo Điều 113 và 114 BLLĐ 2019?",
+    "expected_articles": [
+      {
+        "doc_keyword": "bllđ",
+        "article_number": 113
+      },
+      {
+        "doc_keyword": "bllđ",
+        "article_number": 114
+      }
+    ],
+    "ground_truth": "Mức chuẩn theo Điều 113 là 12 ngày. Theo Điều 114, cứ đủ 05 năm làm việc thì được tăng thêm 01 ngày. Đủ 12 năm có 2 chu kỳ 5 năm (được cộng thêm 2 ngày). Tổng cộng là 12 + 2 = 14 ngày nghỉ hằng năm.",
+    "expected_keywords": [
+      "14 ngày",
+      "Điều 113",
+      "Điều 114",
+      "cứ đủ 05 năm | cứ đủ 5 năm"
+    ],
+    "forbidden_keywords": [
+      "13 ngày",
+      "15 ngày",
+      "chỉ có 12 ngày",
+      "chỉ được 12 ngày",
+      "tổng cộng 12 ngày",
+      "tổng số là 12 ngày"
+    ],
+    "trap_type": "Arithmetic Step: 12 + floor(12/5) = 14 ngày.",
+    "as_of_date": "2024-12-31"
+  },
+  {
+    "id": "TC-14",
+    "category": "temporal_deadlines",
+    "title": "Thời hạn báo trước khi đơn phương chấm dứt HĐLĐ không xác định thời hạn",
+    "query": "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn muốn đơn phương chấm dứt hợp đồng hợp pháp thì phải báo trước cho người sử dụng lao động ít nhất bao nhiêu ngày theo Điều 35 BLLĐ 2019?",
+    "expected_articles": [
+      {
+        "doc_keyword": "bllđ",
+        "article_number": 35
+      }
+    ],
+    "ground_truth": "Theo Điểm a Khoản 1 Điều 35 Bộ luật Lao động 2019, người lao động phải báo trước ít nhất 45 ngày (trừ một số ngành nghề, công việc đặc thù).",
+    "expected_keywords": [
+      "Điều 35",
+      "ít nhất 45 ngày",
+      "45 ngày"
+    ],
+    "forbidden_keywords": [
+      "30 ngày",
+      "3 ngày"
+    ],
+    "trap_type": "Deadline Matching: Hợp đồng không xác định thời hạn là 45 ngày, không phải 30 ngày.",
+    "as_of_date": "2024-12-31"
+  },
+  {
+    "id": "TC-15",
+    "category": "temporal_deadlines",
+    "title": "Thời hiệu xử lý kỷ luật lao động (Quy định 6 tháng vs 12 tháng)",
+    "query": "Thời hiệu xử lý kỷ luật lao động thông thường là bao lâu và trường hợp nào được kéo dài thời hiệu lên tối đa 12 tháng theo Điều 123 BLLĐ 2019?",
+    "expected_articles": [
+      {
+        "doc_keyword": "bllđ",
+        "article_number": 123
+      }
+    ],
+    "ground_truth": "Theo Điều 123 BLLĐ 2019, thời hiệu xử lý kỷ luật lao động là 06 tháng kể từ ngày xảy ra hành vi vi phạm. Được kéo dài tối đa 12 tháng đối với hành vi vi phạm liên quan trực tiếp đến tài chính, tài sản, tiết lộ bí mật công nghệ, bí mật kinh doanh.",
+    "expected_keywords": [
+      "Điều 123",
+      "06 tháng",
+      "12 tháng",
+      "tài chính",
+      "bí mật kinh doanh"
+    ],
+    "forbidden_keywords": [],
+    "trap_type": "Temporal Exception: 6 tháng thông thường, 12 tháng cho tài chính/bí mật.",
+    "as_of_date": "2024-12-31"
+  },
+  {
+    "id": "TC-16",
+    "category": "tabular_lookup",
+    "title": "Tra cứu tuổi nghỉ hưu Nữ sinh tháng 7/1972 (Phụ lục I NĐ 135)",
+    "query": "Lao động nữ sinh vào tháng 7 năm 1972 làm việc trong điều kiện lao động bình thường. Căn cứ Phụ lục I Nghị định 135/2020/NĐ-CP, người này sẽ nghỉ hưu ở độ tuổi nào và thời điểm hưởng lương hưu là khi nào?",
+    "expected_articles": [
+      {
+        "doc_keyword": "135",
+        "article_number": [
+          4,
+          13
+        ]
+      }
+    ],
+    "ground_truth": "Theo Phụ lục I Nghị định 135/2020/NĐ-CP, nữ sinh từ tháng 05/1972 đến tháng 12/1972 nghỉ hưu ở tuổi 58 tuổi 4 tháng. Thời điểm nghỉ hưu là tháng 11/2030, thời điểm hưởng lương hưu là ngày 01/12/2030.",
+    "expected_keywords": [
+      "58 tuổi 4 tháng | 58 tuổi 04 tháng",
+      "Phụ lục I",
+      "Nghị định 135"
+    ],
+    "forbidden_keywords": [
+      "60 tuổi",
+      "55 tuổi"
+    ],
+    "trap_type": "Tabular Lookup: Tra chính xác dải tháng 05/1972-12/1972 trong bảng lộ trình.",
+    "as_of_date": "2024-12-31"
+  },
+  {
+    "id": "TC-17",
+    "category": "cross_document",
+    "title": "Chấm dứt HĐLĐ vì lý do thay đổi cơ cấu: Phương án sử dụng lao động & Trợ cấp mất việc làm",
+    "query": "Doanh nghiệp sáp nhập dẫn đến dôi dư lao động và phải cho 10 người thôi việc. Theo BLLĐ 2019 và Nghị định 145/2020/NĐ-CP, doanh nghiệp phải xây dựng phương án sử dụng lao động ra sao và chi trả trợ cấp mất việc làm với mức tối thiểu là bao nhiêu?",
+    "expected_articles": [
+      {
+        "doc_keyword": "bllđ",
+        "article_number": 44
+      },
+      {
+        "doc_keyword": "bllđ",
+        "article_number": 47
+      },
+      {
+        "doc_keyword": "145",
+        "article_number": 8
+      }
+    ],
+    "ground_truth": "Xây dựng phương án theo Điều 44 BLLĐ 2019. Trả trợ cấp mất việc làm theo Điều 47 BLLĐ và Điều 8 NĐ 145/2020: mỗi năm làm việc trả 01 tháng tiền lương nhưng ít nhất phải bằng 02 tháng tiền lương.",
+    "expected_keywords": [
+      "Điều 44",
+      "Điều 47",
+      "Nghị định 145",
+      "ít nhất bằng 02 tháng tiền lương",
+      "trợ cấp mất việc làm"
+    ],
+    "forbidden_keywords": [],
+    "trap_type": "Cross-Document Floor Constraint: Mức trợ cấp mất việc làm tối thiểu 02 tháng lương.",
+    "as_of_date": "2024-12-31"
+  },
+  {
+    "id": "TC-18",
+    "category": "boolean_logic",
+    "title": "Bảo hiểm thất nghiệp: Đơn phương chấm dứt HĐLĐ trái pháp luật",
+    "query": "Tôi tự ý bỏ việc không báo trước 45 ngày (đơn phương chấm dứt HĐLĐ trái pháp luật) sau 4 năm đóng BHTN. Khi tôi ra nộp hồ sơ hưởng trợ cấp thất nghiệp thì có được giải quyết chi trả không?",
+    "expected_articles": [
+      {
+        "doc_keyword": "vieclam",
+        "article_number": 49
+      }
+    ],
+    "ground_truth": "Không được giải quyết hưởng trợ cấp thất nghiệp. Theo Khoản 1 Điều 49 Luật Việc làm 2013, điều kiện hưởng trợ cấp thất nghiệp loại trừ trường hợp: 'Người lao động đơn phương chấm dứt hợp đồng lao động, hợp đồng làm việc trái pháp luật'. Thời gian đóng BHTN sẽ được bảo lưu.",
+    "expected_keywords": [
+      "không được",
+      "Khoản 1 Điều 49",
+      "trái pháp luật",
+      "bảo lưu"
+    ],
+    "forbidden_keywords": [
+      "vẫn được nhận trợ cấp thất nghiệp"
+    ],
+    "trap_type": "Exclusion Boolean Clause: Ngoại lệ loại trừ ngay tại Khoản 1 Điều 49.",
+    "as_of_date": "2024-12-31"
+  },
+  {
+    "id": "TC-19",
+    "category": "arithmetic_calculation",
+    "title": "Tính tiền trợ cấp thôi việc khi có thời gian lẻ tháng",
+    "query": "Người lao động làm việc từ ngày 01/01/2018 đến 30/09/2023 thì chấm dứt HĐLĐ hợp pháp. Trong suốt thời gian này người lao động không thuộc diện tham gia BHTN. Hỏi thời gian tính trợ cấp thôi việc là bao nhiêu năm?",
+    "expected_articles": [
+      {
+        "doc_keyword": "bllđ",
+        "article_number": 46
+      },
+      {
+        "doc_keyword": "145",
+        "article_number": 8
+      }
+    ],
+    "ground_truth": "Thời gian làm việc thực tế là 5 năm 9 tháng. Theo Điều 8 Nghị định 145/2020/NĐ-CP: từ trên 06 tháng đến dưới 12 tháng được làm tròn thành 01 năm. Do đó thời gian tính trợ cấp thôi việc được làm tròn thành 06 năm (hưởng 3 tháng tiền lương).",
+    "expected_keywords": [
+      "06 năm",
+      "làm tròn",
+      "Nghị định 145",
+      "Điều 46",
+      "3 tháng"
+    ],
+    "forbidden_keywords": [
+      "5 năm 9 tháng tính thành 5 năm"
+    ],
+    "trap_type": "Rounding Rule: Trên 6 tháng làm tròn thành 1 năm.",
+    "as_of_date": "2024-12-31"
+  },
+  {
+    "id": "TC-20",
+    "category": "temporal_deadlines",
+    "title": "Thời điểm bắt đầu hưởng lương hưu hàng tháng",
+    "query": "Lao động nam đủ tuổi nghỉ hưu vào ngày 15/08/2024 và có quyết định nghỉ việc từ kết thúc ngày 31/08/2024. Theo Nghị định 135/2020/NĐ-CP, thời điểm hưởng chế độ hưu trí bắt đầu từ ngày nào?",
+    "expected_articles": [
+      {
+        "doc_keyword": "135",
+        "article_number": 3
+      }
+    ],
+    "ground_truth": "Theo Khoản 2 Điều 3 Nghị định 135/2020/NĐ-CP, thời điểm hưởng chế độ hưu trí là ngày đầu tiên của tháng liền kề sau tháng đủ tuổi nghỉ hưu hoặc sau tháng chấm dứt HĐLĐ, tức là ngày 01/09/2024.",
+    "expected_keywords": [
+      "ngày 01/09/2024 | 01/09/2024",
+      "ngày đầu tiên của tháng liền kề",
+      "Điều 3",
+      "Nghị định 135"
+    ],
+    "forbidden_keywords": [
+      "bắt đầu từ ngày 15/08/2024",
+      "hưởng từ ngày 15/08/2024",
+      "hưởng lương hưu từ ngày 15/08/2024",
+      "hưởng chế độ hưu trí từ ngày 15/08/2024"
+    ],
+    "trap_type": "Next-month 1st-day temporal rule: Bắt đầu hưởng vào ngày 01 của tháng liền kề.",
+    "as_of_date": "2024-12-31"
+  },
+  {
+    "id": "TC-21",
+    "category": "cross_document",
+    "title": "Chậm đóng BHXH: Trách nhiệm theo BLLĐ và Mức phạt theo NĐ 12",
+    "query": "Công ty chậm đóng bảo hiểm xã hội bắt buộc cho người lao động 3 tháng. Theo Bộ luật Lao động 2019 và Nghị định 12/2022/NĐ-CP, công ty có trách nhiệm gì và mức phạt tiền đối với người sử dụng lao động là bao nhiêu?",
+    "expected_articles": [
+      {
+        "doc_keyword": "bllđ",
+        "article_number": 168
+      },
+      {
+        "doc_keyword": "nd_12",
+        "article_number": 39
+      }
+    ],
+    "ground_truth": "Theo Điều 168 BLLĐ 2019, NSDLĐ phải đóng đủ BHXH và bồi thường nếu gây thiệt hại. Theo Điều 39 Nghị định 12/2022/NĐ-CP, NSDLĐ bị phạt tiền từ 12% đến 15% tổng số tiền phải đóng BHXH bắt buộc tại thời điểm lập biên bản nhưng tối đa không quá 75.000.000 đồng (đối với cá nhân) hoặc 150.000.000 đồng (đối với tổ chức) và phải nộp số tiền lãi chậm đóng.",
+    "expected_keywords": [
+      "Điều 168",
+      "Điều 39",
+      "Nghị định 12",
+      "chậm đóng",
+      "tiền lãi"
+    ],
+    "forbidden_keywords": [],
+    "trap_type": "Cross-Document Administrative Penalty: Trách nhiệm bồi hoàn + Phạt theo tỷ lệ % số tiền chậm đóng.",
+    "as_of_date": "2024-12-31"
+  },
+  {
+    "id": "TC-22",
+    "category": "boolean_logic",
+    "title": "Các trường hợp tạm hoãn HĐLĐ (Điều 30 BLLĐ)",
+    "query": "Người lao động đi học nghề tự túc tại nước ngoài có được đương nhiên tạm hoãn hợp đồng lao động không, hay phải có sự thỏa thuận với người sử dụng lao động theo Điều 30 BLLĐ 2019?",
+    "expected_articles": [
+      {
+        "doc_keyword": "bllđ",
+        "article_number": 30
+      }
+    ],
+    "ground_truth": "Theo Điều 30 BLLĐ 2019, đi nghĩa vụ quân sự hoặc bị tạm giam thì đương nhiên được tạm hoãn HĐLĐ. Trường hợp đi học nghề tự túc không thuộc diện luật định đương nhiên tạm hoãn, nên bắt buộc phải có sự thỏa thuận và đồng ý của người sử dụng lao động (theo Điểm h Khoản 1 Điều 30).",
+    "expected_keywords": [
+      "Điều 30",
+      "thỏa thuận | phải thỏa thuận | có sự thỏa thuận | hai bên thỏa thuận | cần sự thỏa thuận",
+      "không đương nhiên | không được đương nhiên | đương nhiên | không thuộc"
+    ],
+    "forbidden_keywords": [
+      "vẫn đương nhiên được tạm hoãn",
+      "được quyền đương nhiên tạm hoãn",
+      "tự động được tạm hoãn",
+      "được tạm hoãn mà không cần thỏa thuận"
+    ],
+    "trap_type": "Boolean Logic: Phân biệt trường hợp luật định đương nhiên vs trường hợp bắt buộc phải thỏa thuận.",
+    "as_of_date": "2024-12-31"
+  },
+  {
+    "id": "TC-23",
+    "category": "exception_vs_general",
+    "title": "Tiền lương làm việc vào ban đêm và làm thêm giờ ban đêm",
+    "query": "Người lao động làm thêm giờ vào ban đêm của một ngày làm việc bình thường thì mức tiền lương được tính như thế nào theo Điều 98 BLLĐ 2019?",
+    "expected_articles": [
+      {
+        "doc_keyword": "bllđ",
+        "article_number": 98
+      }
+    ],
+    "ground_truth": "Theo Khoản 2 & 3 Điều 98 BLLĐ 2019: Làm việc ban đêm được trả thêm ít nhất 30% lương ngày bình thường. Khi làm thêm giờ ban đêm thì ngoài tiền lương làm thêm giờ (150% ngày thường), còn được trả thêm 30% tiền lương ban đêm và 20% tiền lương tính theo đơn giá tiền lương ban ngày của ngày làm việc bình thường (tối thiểu 210%).",
+    "expected_keywords": [
+      "Điều 98",
+      "30%",
+      "20%",
+      "ít nhất",
+      "ban đêm"
+    ],
+    "forbidden_keywords": [],
+    "trap_type": "Multi-tier additive calculation: 150% + 30% + 20% = 210%.",
+    "as_of_date": "2024-12-31"
+  },
+  {
+    "id": "TC-24",
+    "category": "arithmetic_calculation",
+    "title": "Nghĩa vụ bồi thường khi NSDLĐ đơn phương chấm dứt HĐLĐ trái pháp luật",
+    "query": "Công ty đơn phương chấm dứt HĐLĐ trái luật với người lao động có mức lương 10 triệu đồng/tháng. Người lao động không muốn trở lại làm việc. Công ty phải trả ít nhất bao nhiêu tháng tiền lương theo Điều 41 BLLĐ 2019?",
+    "expected_articles": [
+      {
+        "doc_keyword": "bllđ",
+        "article_number": 41
+      }
+    ],
+    "ground_truth": "Theo Khoản 2 Điều 41 BLLĐ 2019: Ngoài tiền lương những ngày không được làm việc và trợ cấp thôi việc, NSDLĐ phải bồi thường thêm cho người lao động ít nhất 02 tháng tiền lương theo hợp đồng lao động.",
+    "expected_keywords": [
+      "Điều 41",
+      "ít nhất 02 tháng",
+      "trợ cấp thôi việc",
+      "tiền lương"
+    ],
+    "forbidden_keywords": [
+      "1 tháng"
+    ],
+    "trap_type": "Statutory Floor Compensation: Ít nhất 02 tháng tiền lương bồi thường thêm.",
+    "as_of_date": "2024-12-31"
+  },
+  {
+    "id": "TC-25",
+    "category": "temporal_deadlines",
+    "title": "Thời hạn thanh toán quyền lợi khi chấm dứt HĐLĐ",
+    "query": "Khi chấm dứt hợp đồng lao động, người sử dụng lao động có trách nhiệm thanh toán đầy đủ các khoản tiền liên quan đến quyền lợi của người lao động trong thời hạn bao nhiêu ngày theo Điều 48 BLLĐ 2019?",
+    "expected_articles": [
+      {
+        "doc_keyword": "bllđ",
+        "article_number": 48
+      }
+    ],
+    "ground_truth": "Theo Khoản 1 Điều 48 BLLĐ 2019, trong thời hạn 14 ngày làm việc kể từ ngày chấm dứt HĐLĐ, hai bên có trách nhiệm thanh toán đầy đủ. Có thể kéo dài nhưng không quá 30 ngày trong trường hợp đặc biệt (thiên tai, dịch bệnh, giải thể, phá sản).",
+    "expected_keywords": [
+      "Điều 48",
+      "14 ngày làm việc",
+      "không quá 30 ngày"
+    ],
+    "forbidden_keywords": [
+      "7 ngày",
+      "45 ngày"
+    ],
+    "trap_type": "Temporal Working Days: 14 ngày làm việc (không phải ngày lịch).",
+    "as_of_date": "2024-12-31"
+  },
+  {
+    "id": "TC-26",
+    "category": "cross_document",
+    "title": "Hồ sơ đăng ký thay đổi người đại diện theo pháp luật của Công ty TNHH",
+    "query": "Công ty TNHH 2 thành viên muốn thay đổi người đại diện theo pháp luật thì phải nộp hồ sơ gồm những giấy tờ gì và trong thời hạn bao nhiêu ngày theo Luật Doanh nghiệp 2020 và Nghị định 01/2021/NĐ-CP?",
+    "expected_articles": [
+      {
+        "doc_keyword": "ldn",
+        "article_number": 12
+      },
+      {
+        "doc_keyword": "01_2021",
+        "article_number": 50
+      }
+    ],
+    "ground_truth": "Theo Luật Doanh nghiệp và Điều 50 Nghị định 01/2021/NĐ-CP, công ty phải thông báo đến Phòng Đăng ký kinh doanh trong thời hạn 10 ngày kể từ ngày có thay đổi. Hồ sơ gồm Thông báo thay đổi, Nghị quyết/quyết định và biên bản họp của Hội đồng thành viên, giấy tờ pháp lý của người đại diện mới.",
+    "expected_keywords": [
+      "Nghị định 01",
+      "10 ngày",
+      "Thông báo",
+      "Hội đồng thành viên",
+      "người đại diện"
+    ],
+    "forbidden_keywords": [],
+    "trap_type": "Cross-Document Corporate Law: Thủ tục đăng ký kinh doanh và thời hạn 10 ngày.",
+    "as_of_date": "2024-12-31"
+  },
+  {
+    "id": "TC-27",
+    "category": "boolean_logic",
+    "title": "Điều kiện người lao động nước ngoài làm việc tại Việt Nam",
+    "query": "Người lao động nước ngoài chỉ cần có bằng đại học là được đương nhiên làm việc tại Việt Nam mà không cần giấy phép lao động đúng không theo Điều 151 và 154 BLLĐ 2019?",
+    "expected_articles": [
+      {
+        "doc_keyword": "bllđ",
+        "article_number": 151
+      },
+      {
+        "doc_keyword": "bllđ",
+        "article_number": 154
+      }
+    ],
+    "ground_truth": "Sai. Theo Điều 151 BLLĐ 2019, người lao động nước ngoài phải có Giấy phép lao động do cơ quan có thẩm quyền Việt Nam cấp, trừ các trường hợp ngoại lệ quy định tại Điều 154 (như luật sư nước ngoài, chủ sở hữu vốn góp trên định mức...). Chỉ có bằng đại học không đủ để miễn giấy phép lao động.",
+    "expected_keywords": [
+      "Điều 151",
+      "Giấy phép lao động",
+      "không đúng",
+      "Điều 154"
+    ],
+    "forbidden_keywords": [
+      "đúng, chỉ cần bằng đại học là được"
+    ],
+    "trap_type": "Misconception / Missing Permit condition: Phải có Work Permit trừ ngoại lệ luật định.",
+    "as_of_date": "2024-12-31"
+  },
+  {
+    "id": "TC-28",
+    "category": "tabular_lookup",
+    "title": "Tra cứu tuổi nghỉ hưu Nam sinh tháng 3/1966 (Phụ lục I NĐ 135)",
+    "query": "Lao động nam sinh vào tháng 3 năm 1966 trong điều kiện lao động bình thường. Theo Phụ lục I Nghị định 135/2020/NĐ-CP, người này nghỉ hưu ở tuổi nào?",
+    "expected_articles": [
+      {
+        "doc_keyword": "135",
+        "article_number": [
+          4,
+          10
+        ]
+      }
+    ],
+    "ground_truth": "Theo Phụ lục I Nghị định 135/2020/NĐ-CP: Nam sinh từ tháng 09/1965 đến tháng 03/1966 nghỉ hưu ở tuổi 61 tuổi 9 tháng (hưởng lương hưu từ tháng 07/2027 đến tháng 01/2028). Từ tháng 04/1966 trở đi nghỉ hưu ở tuổi 62 tuổi.",
+    "expected_keywords": [
+      "61 tuổi 9 tháng | 61 tuổi 09 tháng",
+      "Phụ lục I",
+      "Nghị định 135"
+    ],
+    "forbidden_keywords": [
+      "60 tuổi"
+    ],
+    "trap_type": "Tabular Transition Boundary: Tháng 3/1966 là mốc cuối của nhóm 61 tuổi 9 tháng (từ tháng 4/1966 mới lên 62 tuổi).",
+    "as_of_date": "2024-12-31"
+  },
+  {
+    "id": "TC-29",
+    "category": "arithmetic_calculation",
+    "title": "Tiền lương ngừng việc do sự cố điện nước hoặc thiên tai",
+    "query": "Công ty bị mất điện do sự cố lưới điện toàn khu công nghiệp và phải cho công nhân ngừng việc 2 ngày. Tiền lương ngừng việc trong trường hợp này được trả thế nào theo Điều 99 BLLĐ 2019?",
+    "expected_articles": [
+      {
+        "doc_keyword": "bllđ",
+        "article_number": 99
+      }
+    ],
+    "ground_truth": "Theo Khoản 3 Điều 99 BLLĐ 2019, nếu do sự cố điện, nước mà không do lỗi của NSDLĐ hoặc do thiên tai, dịch bệnh thì tiền lương ngừng việc do hai bên thỏa thuận nhưng không được thấp hơn mức lương tối thiểu.",
+    "expected_keywords": [
+      "Điều 99",
+      "thỏa thuận",
+      "lương tối thiểu",
+      "Khoản 3"
+    ],
+    "forbidden_keywords": [
+      "trả đủ 100% lương"
+    ],
+    "trap_type": "Conditional Salary rule: Phân biệt ngừng việc do lỗi NSDLĐ (trả đủ) vs do sự cố khách quan (thỏa thuận không dưới lương tối thiểu).",
+    "as_of_date": "2024-12-31"
+  },
+  {
+    "id": "TC-30",
+    "category": "cross_document",
+    "title": "Bồi thường tai nạn lao động do lỗi của người lao động",
+    "query": "Người lao động bị tai nạn lao động suy giảm 15% khả năng lao động nhưng do chính lỗi của người lao động gây ra. Người sử dụng lao động có phải bồi thường không và mức trợ cấp là bao nhiêu theo Điều 145 BLLĐ 2019?",
+    "expected_articles": [
+      {
+        "doc_keyword": "bllđ",
+        "article_number": 145
+      }
+    ],
+    "ground_truth": "Theo Khoản 2 Điều 145 BLLĐ 2019, trường hợp tai nạn lao động do lỗi của chính người lao động thì NSDLĐ vẫn phải trợ cấp một khoản tiền ít nhất bằng 40% mức bồi thường quy định tại Khoản 1 (với suy giảm 15% là ít nhất 40% của 1,5 tháng tiền lương).",
+    "expected_keywords": [
+      "Điều 145",
+      "Khoản 2",
+      "ít nhất bằng 40%",
+      "trợ cấp"
+    ],
+    "forbidden_keywords": [
+      "không phải trả đồng nào"
+    ],
+    "trap_type": "Fault-based Reduction Logic: Lỗi của NLĐ thì giảm về mức 40% trợ cấp, chứ không phải miễn trừ hoàn toàn.",
+    "as_of_date": "2024-12-31"
+  },
+  {
+    "id": "TC-31",
+    "category": "temporal_version",
+    "title": "Rút BHXH một lần trước ngày 01/07/2025 (Áp dụng Luật BHXH 2014)",
+    "as_of_date": "2024-12-31",
+    "query": "Tại thời điểm tháng 12/2024, người lao động sau 1 năm nghỉ việc không tiếp tục đóng BHXH và chưa đủ 20 năm đóng BHXH có được rút BHXH một lần không theo quy định Luật BHXH?",
+    "expected_articles": [
+      {
+        "doc_keyword": "bhxh_58",
+        "article_number": 60
+      }
+    ],
+    "ground_truth": "Tại thời điểm năm 2024 (trước ngày 01/07/2025), áp dụng Điều 60 Luật BHXH 2014 và Nghị quyết 93/2015/QH13, người lao động sau 1 năm nghỉ việc không tiếp tục đóng BHXH mà chưa đủ 20 năm đóng BHXH có yêu cầu thì được hưởng BHXH một lần.",
+    "expected_keywords": [
+      "Điều 60",
+      "Luật Bảo hiểm xã hội",
+      "được hưởng|được rút",
+      "một lần"
+    ],
+    "forbidden_keywords": [
+      "áp dụng luật bảo hiểm xã hội 2024"
+    ],
+    "trap_type": "Temporal routing: Phải trích xuất Điều 60 Luật BHXH 2014 khi as_of_date là năm 2024, không được áp dụng Luật 2024."
+  },
+  {
+    "id": "TC-32",
+    "category": "temporal_version",
+    "title": "Rút BHXH một lần từ ngày 01/07/2025 (Áp dụng Luật BHXH 2024)",
+    "as_of_date": "2025-08-01",
+    "query": "Từ ngày 01/07/2025 khi Luật BHXH 2024 có hiệu lực thi hành, điều kiện rút BHXH một lần đối với người lao động sau 12 tháng không thuộc diện tham gia BHXH bắt buộc được quy định tại điều nào?",
+    "expected_articles": [
+      {
+        "doc_keyword": "bhxh_41",
+        "article_number": [
+          70,
+          102
+        ]
+      }
+    ],
+    "ground_truth": "Từ ngày 01/07/2025, áp dụng Điều 70 (và Điều 102 cho BHXH tự nguyện) Luật Bảo hiểm xã hội 2024 (số 41/2024/QH15). Người lao động tham gia BHXH trước ngày 01/07/2025 sau 12 tháng không thuộc diện tham gia BHXH bắt buộc mà chưa đủ 20 năm đóng thì được hưởng BHXH một lần.",
+    "expected_keywords": [
+      "Điều 70|Điều 102",
+      "Luật Bảo hiểm xã hội 2024|41/2024/QH15",
+      "một lần"
+    ],
+    "forbidden_keywords": [
+      "Điều 60 Luật Bảo hiểm xã hội 2014"
+    ],
+    "trap_type": "Temporal routing: Phải chuyển sang Điều 70/102 Luật BHXH 2024 khi as_of_date sau 01/07/2025."
+  },
+  {
+    "id": "TC-33",
+    "category": "temporal_version",
+    "title": "Thời gian đóng BHXH tối thiểu hưởng lương hưu 15 năm (Luật BHXH 2024)",
+    "as_of_date": "2025-08-01",
+    "query": "Theo Luật Bảo hiểm xã hội 2024 có hiệu lực từ ngày 01/07/2025, người lao động đủ tuổi nghỉ hưu cần đóng BHXH tối thiểu bao nhiêu năm để được hưởng lương hưu hàng tháng theo Điều 64?",
+    "expected_articles": [
+      {
+        "doc_keyword": "bhxh_41",
+        "article_number": 64
+      }
+    ],
+    "ground_truth": "Theo Điều 64 Luật Bảo hiểm xã hội 2024, người lao động đủ tuổi nghỉ hưu và có thời gian đóng BHXH bắt buộc từ đủ 15 năm trở lên (thay vì 20 năm như Luật 2014) thì được hưởng lương hưu hàng tháng.",
+    "expected_keywords": [
+      "Điều 64",
+      "15 năm",
+      "Luật Bảo hiểm xã hội 2024|41/2024/QH15",
+      "lương hưu"
+    ],
+    "forbidden_keywords": [
+      "bắt buộc phải đủ 20 năm mới được hưởng lương hưu"
+    ],
+    "trap_type": "Substantive change: Giảm từ 20 năm xuống 15 năm đóng BHXH tối thiểu theo Điều 64 Luật 2024."
+  },
+  {
+    "id": "TC-34",
+    "category": "temporal_version",
+    "title": "Quyền lợi và phạm vi điều chỉnh theo Luật BHYT sửa đổi 2024 (số 51/2024/QH15)",
+    "as_of_date": "2025-08-01",
+    "query": "Luật sửa đổi, bổ sung một số điều của Luật Bảo hiểm y tế số 51/2024/QH15 có hiệu lực từ ngày 01/07/2025 sửa đổi quy định gì về mức hưởng và đăng ký khám bệnh, chữa bệnh bảo hiểm y tế?",
+    "expected_articles": [
+      {
+        "doc_keyword": "bhyt_51",
+        "article_number": 1
+      }
+    ],
+    "ground_truth": "Theo Điều 1 Luật sửa đổi, bổ sung một số điều của Luật Bảo hiểm y tế 2024 (số 51/2024/QH15), luật sửa đổi các quy định về đối tượng tham gia, đăng ký KCB ban đầu, chuyển tuyến và mức hưởng BHYT khi KCB đúng tuyến, trái tuyến.",
+    "expected_keywords": [
+      "51/2024/QH15|Luật Bảo hiểm y tế",
+      "Điều 1",
+      "khám bệnh|chữa bệnh",
+      "mức hưởng|tuyến"
+    ],
+    "forbidden_keywords": [],
+    "trap_type": "New statute retrieval: Trích xuất chính xác văn bản sửa đổi BHYT số 51/2024/QH15."
+  }
+]

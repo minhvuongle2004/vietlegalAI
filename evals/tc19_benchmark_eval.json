@@ -1,0 +1,23 @@
+{
+  "tc_id": "TC-19",
+  "retrieval": true,
+  "matched_articles": [
+    "Điều 46 (bllđ)",
+    "Điều 8 (145)"
+  ],
+  "missing_articles": [],
+  "kw_ratio": 0.8,
+  "matched_keywords": [
+    "06 năm",
+    "làm tròn",
+    "Nghị định 145",
+    "Điều 46"
+  ],
+  "missing_keywords": [
+    "3 tháng"
+  ],
+  "hit_forbidden": [],
+  "status": "PASSED",
+  "latency_ms": 17605,
+  "answer_text": "Chào bạn, với tư cách là Trợ lý VietLegal AI, tôi xin giải đáp thắc mắc của bạn về việc tính thời gian hưởng trợ cấp thôi việc dựa trên các căn cứ pháp lý đã cung cấp như sau:\n\n### 1. Cơ sở pháp lý về cách xác định thời gian tính trợ cấp thôi việc\nTheo **Khoản 2 Điều 46 Bộ luật Lao động 2019**, thời gian làm việc để tính trợ cấp thôi việc được xác định là:\n*   Tổng thời gian người lao động đã làm việc thực tế cho người sử dụng lao động.\n*   **Trừ đi:** Thời gian người lao động đã tham gia bảo hiểm thất nghiệp (BHTN).\n*   **Trừ đi:** Thời gian làm việc đã được người sử dụng lao động chi trả trợ cấp thôi việc, trợ cấp mất việc làm trước đó.\n\n### 2. Tính toán thời gian làm việc thực tế\n*   **Thời gian bắt đầu:** 01/01/2018\n*   **Thời gian kết thúc:** 30/09/2023\n*   **Tổng thời gian làm việc:** 05 năm 09 tháng.\n\n### 3. Áp dụng quy tắc làm tròn (Theo Nghị định 145/2020/NĐ-CP)\nTại **Điểm a Khoản 3 Điều 8 Nghị định 145/2020/NĐ-CP**, quy định về cách tính thời gian làm việc để tính trợ cấp thôi việc như sau:\n*   Thời gian làm việc có tháng lẻ:\n    *   Từ đủ 01 tháng đến dưới 06 tháng được tính là 1/2 năm.\n    *   Từ đủ 06 tháng trở lên được tính là 01 năm.\n\nTrong trường hợp của bạn:\n*   Tổng thời gian là 05 năm 09 tháng.\n*   Phần lẻ là 09 tháng (lớn hơn 06 tháng), do đó được làm tròn thành 01 năm.\n*   Tổng thời gian làm việc thực tế sau khi làm tròn là: **06 năm**.\n\n### 4. Kết luận\nVì bạn nêu rõ trong suốt quá trình làm việc này bạn **không thuộc diện tham gia BHTN** và (giả định) bạn chưa được chi trả trợ cấp thôi việc/mất việc làm trước đó, nên thời gian để tính trợ cấp thôi việc được xác định như sau:\n\n*   **Thời gian tính trợ cấp thôi việc:** 06 năm.\n\n**Lưu ý quan trọng:**\n1.  Việc chi trả trợ cấp thôi việc chỉ áp dụng nếu hợp đồng lao động của bạn chấm dứt theo các trường hợp quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 Bộ luật Lao động 2019 (**Khoản 1 Điều 46 Bộ luật Lao động 2019**).\n2.  Nếu việc chấm dứt hợp đồng rơi vào trường hợp người lao động đơn phương chấm dứt hợp đồng trái pháp luật, bạn sẽ không được hưởng trợ cấp thôi việc theo **Khoản 1 Điều 40 Bộ luật Lao động 2019**.\n3.  Bạn nên kiểm tra lại hồ sơ nhân sự để đảm bảo việc chấm dứt HĐLĐ thuộc trường hợp được hưởng trợ cấp theo luật định."
+}

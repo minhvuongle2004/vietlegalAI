@@ -1,0 +1,363 @@
+[
+  {
+    "id": "tc-01",
+    "category": "Thử việc",
+    "query": "Thời gian thử việc tối đa là bao lâu đối với vị trí công việc cần trình độ đại học trở lên?",
+    "expected_articles": [25],
+    "description": "Khoản 2 Điều 25: không quá 60 ngày đối với công việc có chức danh nghề nghiệp cần trình độ chuyên môn kỹ thuật từ cao đẳng trở lên."
+  },
+  {
+    "id": "tc-02",
+    "category": "Thử việc",
+    "query": "Tiền lương của người lao động trong thời gian thử việc ít nhất bằng bao nhiêu phần trăm lương chính thức?",
+    "expected_articles": [26],
+    "description": "Điều 26: Tiền lương do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó."
+  },
+  {
+    "id": "tc-03",
+    "category": "Hợp đồng lao động",
+    "query": "Bộ luật Lao động 2019 hiện nay quy định có mấy loại hợp đồng lao động?",
+    "expected_articles": [20],
+    "description": "Điều 20: 02 loại hợp đồng (Không xác định thời hạn và Xác định thời hạn tối đa 36 tháng)."
+  },
+  {
+    "id": "tc-04",
+    "category": "Hợp đồng lao động",
+    "query": "Người sử dụng lao động có được giữ bản chính bằng cấp, chứng chỉ của người lao động khi ký hợp đồng không?",
+    "expected_articles": [17],
+    "description": "Điều 17: Hành vi bị nghiêm cấm khi giao kết, thực hiện HĐLĐ (giữ bản chính giấy tờ tùy thân, văn bằng, chứng chỉ)."
+  },
+  {
+    "id": "tc-05",
+    "category": "Đơn phương chấm dứt",
+    "query": "Người lao động làm việc theo hợp đồng không xác định thời hạn muốn nghỉ việc thì phải báo trước bao nhiêu ngày?",
+    "expected_articles": [35],
+    "description": "Điểm a Khoản 1 Điều 35: Ít nhất 45 ngày đối với hợp đồng không xác định thời hạn."
+  },
+  {
+    "id": "tc-06",
+    "category": "Đơn phương chấm dứt",
+    "query": "Những trường hợp nào người lao động được quyền nghỉ việc ngay mà không cần báo trước?",
+    "expected_articles": [35],
+    "description": "Khoản 2 Điều 35: Không được bố trí đúng công việc, không được trả đủ lương, bị ngược đãi, bị quấy rối tình dục..."
+  },
+  {
+    "id": "tc-07",
+    "category": "Đơn phương chấm dứt",
+    "query": "Công ty muốn đơn phương chấm dứt hợp đồng lao động xác định thời hạn từ 12 đến 36 tháng phải báo trước bao nhiêu ngày?",
+    "expected_articles": [36],
+    "description": "Điểm b Khoản 2 Điều 36: Ít nhất 30 ngày đối với hợp đồng lao động có thời hạn từ 12 tháng đến 36 tháng."
+  },
+  {
+    "id": "tc-08",
+    "category": "Đơn phương chấm dứt",
+    "query": "Người sử dụng lao động không được thực hiện quyền đơn phương chấm dứt hợp đồng trong những trường hợp nào?",
+    "expected_articles": [37],
+    "description": "Điều 37: Người lao động ốm đau đang điều trị, nghỉ hằng năm, lao động nữ mang thai/nghỉ thai sản..."
+  },
+  {
+    "id": "tc-09",
+    "category": "Sa thải trái luật",
+    "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có nghĩa vụ bồi thường những gì?",
+    "expected_articles": [40],
+    "description": "Điều 40: Không được trợ cấp thôi việc, bồi thường nửa tháng tiền lương và khoản tiền tương ứng tiền lương những ngày không báo trước."
+  },
+  {
+    "id": "tc-10",
+    "category": "Sa thải trái luật",
+    "query": "Người sử dụng lao động đơn phương chấm dứt hợp đồng trái luật phải nhận lại người lao động và bồi thường những khoản nào?",
+    "expected_articles": [41],
+    "description": "Điều 41: Nhận lại vào làm việc, trả lương những ngày không được làm việc và đóng BHXH, trả thêm ít nhất 02 tháng tiền lương."
+  },
+  {
+    "id": "tc-11",
+    "category": "Trợ cấp",
+    "query": "Điều kiện để người lao động được hưởng trợ cấp thôi việc là gì và mức hưởng tính như thế nào?",
+    "expected_articles": [46],
+    "description": "Điều 46: Làm việc thường xuyên từ đủ 12 tháng trở lên, mỗi năm làm việc được trợ cấp một nửa tháng tiền lương."
+  },
+  {
+    "id": "tc-12",
+    "category": "Trợ cấp",
+    "query": "Trợ cấp mất việc làm được chi trả trong trường hợp nào và mức chi trả tối thiểu là bao nhiêu?",
+    "expected_articles": [47],
+    "description": "Điều 47: Cho thôi việc do thay đổi cơ cấu công nghệ hoặc chia tách doanh nghiệp, mỗi năm trả 01 tháng lương, tối thiểu 02 tháng lương."
+  },
+  {
+    "id": "tc-13",
+    "category": "Đào tạo nghề",
+    "query": "Hợp đồng đào tạo nghề giữa doanh nghiệp và người lao động phải có những nội dung chủ yếu nào?",
+    "expected_articles": [62],
+    "description": "Điều 62: Nghề đào tạo, địa điểm, chi phí đào tạo, thời hạn cam kết làm việc và trách nhiệm hoàn trả chi phí."
+  },
+  {
+    "id": "tc-14",
+    "category": "Tiền lương",
+    "query": "Người sử dụng lao động có được ép buộc người lao động chi tiêu lương vào việc mua hàng hóa của công ty không?",
+    "expected_articles": [94],
+    "description": "Khoản 2 Điều 94: Người sử dụng lao động không được hạn chế hoặc can thiệp vào quyền tự quyết chi tiêu lương của người lao động."
+  },
+  {
+    "id": "tc-15",
+    "category": "Tiền lương",
+    "query": "Khi trả lương qua tài khoản ngân hàng thì ai là người phải trả phí mở tài khoản và chuyển tiền?",
+    "expected_articles": [96],
+    "description": "Khoản 2 Điều 96: Người sử dụng lao động phải trả các loại phí liên quan đến mở tài khoản và chuyển tiền lương."
+  },
+  {
+    "id": "tc-16",
+    "category": "Tiền lương",
+    "query": "Nếu công ty chậm trả lương cho nhân viên thì phải đền bù lãi suất như thế nào?",
+    "expected_articles": [97],
+    "description": "Khoản 4 Điều 97: Chậm từ 15 ngày trở lên phải đền bù số tiền ít nhất bằng số tiền lãi của số tiền trả chậm theo lãi suất huy động tiền gửi."
+  },
+  {
+    "id": "tc-17",
+    "category": "Làm thêm giờ",
+    "query": "Tiền lương làm thêm giờ vào ngày nghỉ hằng tuần được tính ít nhất bằng bao nhiêu phần trăm?",
+    "expected_articles": [98],
+    "description": "Điểm b Khoản 1 Điều 98: Vào ngày nghỉ hằng tuần, ít nhất bằng 200% tiền lương tính theo giờ."
+  },
+  {
+    "id": "tc-18",
+    "category": "Làm thêm giờ",
+    "query": "Làm thêm giờ vào ngày nghỉ lễ, tết, ngày nghỉ có hưởng lương được tính ít nhất bằng bao nhiêu phần trăm lương?",
+    "expected_articles": [98],
+    "description": "Điểm c Khoản 1 Điều 98: Vào ngày nghỉ lễ, tết, ít nhất bằng 300% chưa kể tiền lương ngày lễ, tết."
+  },
+  {
+    "id": "tc-19",
+    "category": "Làm thêm giờ",
+    "query": "Người lao động làm việc vào ban đêm thì được trả thêm ít nhất bao nhiêu phần trăm tiền lương?",
+    "expected_articles": [98],
+    "description": "Khoản 2 Điều 98: Được trả thêm ít nhất bằng 30% tiền lương tính theo đơn giá tiền lương hoặc tiền lương thực trả."
+  },
+  {
+    "id": "tc-20",
+    "category": "Ngừng việc",
+    "query": "Nếu phải ngừng việc do lỗi của người sử dụng lao động thì người lao động được trả lương thế nào?",
+    "expected_articles": [99],
+    "description": "Khoản 1 Điều 99: Người lao động được trả đủ tiền lương theo hợp đồng lao động."
+  },
+  {
+    "id": "tc-21",
+    "category": "Thưởng",
+    "query": "Tiền thưởng Tết cho người lao động có bắt buộc phải bằng tiền mặt không?",
+    "expected_articles": [104],
+    "description": "Khoản 1 Điều 104: Thưởng là số tiền hoặc tài sản hoặc bằng các hình thức khác mà NSDLĐ thưởng cho NLĐ."
+  },
+  {
+    "id": "tc-22",
+    "category": "Thời giờ làm việc",
+    "query": "Thời giờ làm việc bình thường của người lao động theo quy định không được vượt quá bao nhiêu giờ trong một ngày?",
+    "expected_articles": [105],
+    "description": "Khoản 1 Điều 105: Không quá 08 giờ trong 01 ngày và không quá 48 giờ trong 01 tuần."
+  },
+  {
+    "id": "tc-23",
+    "category": "Thời giờ làm việc",
+    "query": "Giờ làm việc ban đêm được tính từ mấy giờ đến mấy giờ?",
+    "expected_articles": [106],
+    "description": "Điều 106: Giờ làm việc ban đêm được tính từ 22 giờ đến 06 giờ sáng ngày hôm sau."
+  },
+  {
+    "id": "tc-24",
+    "category": "Làm thêm giờ",
+    "query": "Số giờ làm thêm tối đa của người lao động trong một tháng và trong một năm là bao nhiêu?",
+    "expected_articles": [107],
+    "description": "Khoản 2 Điều 107: Không quá 40 giờ trong 01 tháng và không quá 200 giờ trong 01 năm (trừ trường hợp đặc biệt không quá 300 giờ)."
+  },
+  {
+    "id": "tc-25",
+    "category": "Nghỉ ngơi",
+    "query": "Làm việc theo ca liên tục từ 6 giờ trở lên thì người lao động được nghỉ giữa giờ ít nhất bao nhiêu phút?",
+    "expected_articles": [109],
+    "description": "Khoản 1 Điều 109: Nghỉ giữa giờ ít nhất 30 phút liên tục (ban đêm ít nhất 45 phút liên tục)."
+  },
+  {
+    "id": "tc-26",
+    "category": "Nghỉ ngơi",
+    "query": "Mỗi tuần người lao động được nghỉ ít nhất bao nhiêu giờ liên tục?",
+    "expected_articles": [111],
+    "description": "Khoản 1 Điều 111: Mỗi tuần, người lao động được nghỉ ít nhất 24 giờ liên tục."
+  },
+  {
+    "id": "tc-27",
+    "category": "Nghỉ lễ tết",
+    "query": "Hằng năm người lao động được nghỉ làm việc hưởng nguyên lương tổng cộng bao nhiêu ngày lễ, tết?",
+    "expected_articles": [112],
+    "description": "Khoản 1 Điều 112: Tổng cộng 11 ngày (Tết Dương lịch 1, Tết Âm lịch 5, Giỗ Tổ 1, Chiến thắng 1, Quốc tế LĐ 1, Quốc khánh 2)."
+  },
+  {
+    "id": "tc-28",
+    "category": "Nghỉ phép năm",
+    "query": "Người lao động làm việc đủ 12 tháng trong điều kiện bình thường thì được nghỉ phép hằng năm bao nhiêu ngày?",
+    "expected_articles": [113],
+    "description": "Điểm a Khoản 1 Điều 113: 12 ngày làm việc đối với người làm công việc trong điều kiện bình thường."
+  },
+  {
+    "id": "tc-29",
+    "category": "Nghỉ phép năm",
+    "query": "Cứ làm việc đủ bao nhiêu năm thì người lao động được tăng thêm 01 ngày nghỉ phép hằng năm theo thâm niên?",
+    "expected_articles": [114],
+    "description": "Điều 114: Cứ đủ 05 năm làm việc cho một NSDLĐ thì số ngày nghỉ hằng năm được tăng thêm tương ứng 01 ngày."
+  },
+  {
+    "id": "tc-30",
+    "category": "Nghỉ việc riêng",
+    "query": "Bản thân người lao động kết hôn thì được nghỉ việc riêng hưởng nguyên lương mấy ngày?",
+    "expected_articles": [115],
+    "description": "Điểm a Khoản 1 Điều 115: Kết hôn: nghỉ 03 ngày hưởng nguyên lương."
+  },
+  {
+    "id": "tc-31",
+    "category": "Nghỉ việc riêng",
+    "query": "Bố đẻ, mẹ đẻ, vợ hoặc chồng, con chết thì người lao động được nghỉ mấy ngày hưởng nguyên lương?",
+    "expected_articles": [115],
+    "description": "Điểm c Khoản 1 Điều 115: Cha đẻ, mẹ đẻ, vợ hoặc chồng, con chết: nghỉ 03 ngày hưởng nguyên lương."
+  },
+  {
+    "id": "tc-32",
+    "category": "Kỷ luật lao động",
+    "query": "Doanh nghiệp sử dụng từ bao nhiêu người lao động trở lên thì bắt buộc phải ban hành Nội quy lao động bằng văn bản?",
+    "expected_articles": [118],
+    "description": "Khoản 1 Điều 118: Người sử dụng lao động sử dụng từ 10 người lao động trở lên phải có nội quy lao động bằng văn bản."
+  },
+  {
+    "id": "tc-33",
+    "category": "Kỷ luật lao động",
+    "query": "Bộ luật Lao động quy định có những hình thức xử lý kỷ luật lao động nào?",
+    "expected_articles": [124],
+    "description": "Điều 124: 1. Khiển trách; 2. Kéo dài thời hạn nâng lương không quá 6 tháng; 3. Cách chức; 4. Sa thải."
+  },
+  {
+    "id": "tc-34",
+    "category": "Kỷ luật sa thải",
+    "query": "Người lao động tự ý bỏ việc bao nhiêu ngày cộng dồn trong một tháng thì có thể bị áp dụng hình thức sa thải?",
+    "expected_articles": [125],
+    "description": "Khoản 4 Điều 125: Tự ý bỏ việc 05 ngày cộng dồn trong thời hạn 30 ngày hoặc 20 ngày cộng dồn trong 365 ngày mà không có lý do chính đáng."
+  },
+  {
+    "id": "tc-35",
+    "category": "Kỷ luật bị cấm",
+    "query": "Công ty có được quyền phạt tiền hoặc trừ lương của nhân viên thay cho việc xử lý kỷ luật lao động không?",
+    "expected_articles": [127],
+    "description": "Khoản 2 Điều 127: Cấm dùng hình thức phạt tiền, cắt lương thay việc xử lý kỷ luật lao động."
+  },
+  {
+    "id": "tc-36",
+    "category": "Tạm đình chỉ",
+    "query": "Thời hạn tạm đình chỉ công việc đối với người lao động tối đa không được quá bao nhiêu ngày?",
+    "expected_articles": [128],
+    "description": "Khoản 2 Điều 128: Thời hạn tạm đình chỉ công việc không được quá 15 ngày, trường hợp đặc biệt không quá 90 ngày."
+  },
+  {
+    "id": "tc-37",
+    "category": "Lao động nữ",
+    "query": "Lao động nữ mang thai từ tháng thứ mấy thì người sử dụng lao động không được bố trí làm thêm giờ hoặc làm việc ban đêm?",
+    "expected_articles": [137],
+    "description": "Điểm a Khoản 1 Điều 137: Mang thai từ tháng thứ 07 hoặc từ tháng thứ 06 nếu làm việc ở vùng cao, vùng sâu, hải đảo."
+  },
+  {
+    "id": "tc-38",
+    "category": "Thai sản",
+    "query": "Lao động nữ sinh con được nghỉ chế độ thai sản trước và sau khi sinh tổng cộng bao nhiêu tháng?",
+    "expected_articles": [139],
+    "description": "Khoản 1 Điều 139: Lao động nữ được nghỉ thai sản trước và sau khi sinh con là 06 tháng; sinh đôi trở lên thì từ con thứ hai thêm 1 tháng."
+  },
+  {
+    "id": "tc-39",
+    "category": "Tuổi nghỉ hưu",
+    "query": "Theo lộ trình của Bộ luật Lao động 2019, tuổi nghỉ hưu của lao động nam và lao động nữ trong điều kiện bình thường được điều chỉnh thế nào?",
+    "expected_articles": [169],
+    "description": "Khoản 2 Điều 169: Điều chỉnh theo lộ trình cho đến khi đủ 62 tuổi đối với lao động nam vào năm 2028 và đủ 60 tuổi đối với lao động nữ vào năm 2035."
+  },
+  {
+    "id": "tc-40",
+    "category": "Bảo vệ việc làm",
+    "query": "Công ty có được quyền sa thải hoặc đơn phương chấm dứt hợp đồng với lao động nữ vì lý do kết hôn hoặc nuôi con dưới 12 tháng tuổi không?",
+    "expected_articles": [137],
+    "description": "Khoản 3 Điều 137: Không được sa thải hoặc đơn phương chấm dứt HĐLĐ vì lý do kết hôn, mang thai, nghỉ thai sản, nuôi con dưới 12 tháng tuổi."
+  },
+
+  {
+    "id": "tc-41",
+    "category": "Out-of-Domain",
+    "query": "Thủ tục sang tên sổ đỏ nhà đất và lệ phí trước bạ chuyển nhượng bất động sản là bao nhiêu?",
+    "expected_articles": [],
+    "is_out_of_domain": true,
+    "description": "Thuộc Luật Đất đai và Luật Thuế, không thuộc Bộ luật Lao động 2019."
+  },
+  {
+    "id": "tc-42",
+    "category": "Out-of-Domain",
+    "query": "Mức xử phạt hành vi điều khiển xe máy khi có nồng độ cồn trong hơi thở là bao nhiêu tiền?",
+    "expected_articles": [],
+    "is_out_of_domain": true,
+    "description": "Thuộc Nghị định 100/2019/NĐ-CP và Luật Giao thông đường bộ."
+  },
+  {
+    "id": "tc-43",
+    "category": "Out-of-Domain",
+    "query": "Tội trộm cắp tài sản có giá trị từ 50 triệu đồng thì bị phạt tù bao nhiêu năm?",
+    "expected_articles": [],
+    "is_out_of_domain": true,
+    "description": "Thuộc Bộ luật Hình sự 2015."
+  },
+  {
+    "id": "tc-44",
+    "category": "Out-of-Domain",
+    "query": "Thủ tục thuận tình ly hôn và nguyên tắc phân chia tài sản chung của vợ chồng tại Tòa án?",
+    "expected_articles": [],
+    "is_out_of_domain": true,
+    "description": "Thuộc Luật Hôn nhân và Gia đình 2014."
+  },
+  {
+    "id": "tc-45",
+    "category": "Out-of-Domain",
+    "query": "Điều kiện để người nước ngoài được cấp giấy phép cư trú vĩnh viễn tại Việt Nam?",
+    "expected_articles": [],
+    "is_out_of_domain": true,
+    "description": "Thuộc Luật Nhập cảnh, xuất cảnh, quá cảnh, cư trú của người nước ngoài tại Việt Nam."
+  },
+  {
+    "id": "tc-46",
+    "category": "Out-of-Domain",
+    "query": "Doanh nghiệp mới thành lập phải nộp thuế môn bài và thuế thu nhập doanh nghiệp bao nhiêu?",
+    "expected_articles": [],
+    "is_out_of_domain": true,
+    "description": "Thuộc Luật Doanh nghiệp và Luật Thuế thu nhập doanh nghiệp."
+  },
+  {
+    "id": "tc-47",
+    "category": "Out-of-Domain",
+    "query": "Vượt đèn đỏ xe ô tô theo quy định mới nhất bị phạt bao nhiêu tiền và tước bằng lái mấy tháng?",
+    "expected_articles": [],
+    "is_out_of_domain": true,
+    "description": "Thuộc Luật Giao thông đường bộ và Nghị định xử phạt hành chính giao thông."
+  },
+  {
+    "id": "tc-48",
+    "category": "Out-of-Domain",
+    "query": "Hợp đồng thế chấp quyền sử dụng đất tại ngân hàng có bắt buộc phải công chứng không?",
+    "expected_articles": [],
+    "is_out_of_domain": true,
+    "description": "Thuộc Bộ luật Dân sự và Luật Đất đai."
+  },
+  {
+    "id": "tc-49",
+    "category": "Out-of-Domain",
+    "query": "Mức hình phạt đối với hành vi sản xuất buôn bán hàng giả theo quy định pháp luật?",
+    "expected_articles": [],
+    "is_out_of_domain": true,
+    "description": "Thuộc Bộ luật Hình sự 2015."
+  },
+  {
+    "id": "tc-50",
+    "category": "Out-of-Domain",
+    "query": "Thủ tục đăng ký khai sinh cho con có yếu tố nước ngoài cần nộp những giấy tờ gì?",
+    "expected_articles": [],
+    "is_out_of_domain": true,
+    "description": "Thuộc Luật Hộ tịch."
+  }
+]

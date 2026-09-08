@@ -1,0 +1,1305 @@
+{
+  "baseline": {
+    "h1": 13,
+    "h1_rate": 32.5,
+    "h3": 39,
+    "h3_rate": 97.5,
+    "mrr": 0.648,
+    "avg_latency_ms": 392.7
+  },
+  "with_reranker": {
+    "h1": 39,
+    "h1_rate": 97.5,
+    "h3": 40,
+    "h3_rate": 100.0,
+    "mrr": 0.983,
+    "avg_latency_ms": 9766.2
+  },
+  "delta": {
+    "delta_h1": 65.0,
+    "delta_mrr": 0.335,
+    "delta_latency_ms": 9373.5
+  },
+  "details": [
+    {
+      "id": "tc-01",
+      "category": "Thử việc",
+      "query": "Thời gian thử việc tối đa là bao lâu đối với vị trí công việc cần trình độ đại học trở lên?",
+      "expected": [
+        25
+      ],
+      "baseline": {
+        "top_1": 25,
+        "top_3": [
+          25,
+          26,
+          24
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 436.6
+      },
+      "reranked": {
+        "top_1": 25,
+        "top_3": [
+          25,
+          24,
+          27
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 9745.2
+      }
+    },
+    {
+      "id": "tc-02",
+      "category": "Thử việc",
+      "query": "Tiền lương của người lao động trong thời gian thử việc ít nhất bằng bao nhiêu phần trăm lương chính thức?",
+      "expected": [
+        26
+      ],
+      "baseline": {
+        "top_1": 26,
+        "top_3": [
+          26,
+          29,
+          25
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 406.5
+      },
+      "reranked": {
+        "top_1": 26,
+        "top_3": [
+          26,
+          29,
+          98
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 7241.4
+      }
+    },
+    {
+      "id": "tc-03",
+      "category": "Hợp đồng lao động",
+      "query": "Bộ luật Lao động 2019 hiện nay quy định có mấy loại hợp đồng lao động?",
+      "expected": [
+        20
+      ],
+      "baseline": {
+        "top_1": 21,
+        "top_3": [
+          21,
+          20,
+          14
+        ],
+        "h1": false,
+        "h3": true,
+        "rr": 0.5,
+        "latency_ms": 402.3
+      },
+      "reranked": {
+        "top_1": 20,
+        "top_3": [
+          20,
+          14,
+          19
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 10477.1
+      }
+    },
+    {
+      "id": "tc-04",
+      "category": "Hợp đồng lao động",
+      "query": "Người sử dụng lao động có được giữ bản chính bằng cấp, chứng chỉ của người lao động khi ký hợp đồng không?",
+      "expected": [
+        17
+      ],
+      "baseline": {
+        "top_1": 21,
+        "top_3": [
+          21,
+          17,
+          1
+        ],
+        "h1": false,
+        "h3": true,
+        "rr": 0.5,
+        "latency_ms": 362.7
+      },
+      "reranked": {
+        "top_1": 17,
+        "top_3": [
+          17,
+          14,
+          13
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 7359.0
+      }
+    },
+    {
+      "id": "tc-05",
+      "category": "Đơn phương chấm dứt",
+      "query": "Người lao động làm việc theo hợp đồng không xác định thời hạn muốn nghỉ việc thì phải báo trước bao nhiêu ngày?",
+      "expected": [
+        35
+      ],
+      "baseline": {
+        "top_1": 36,
+        "top_3": [
+          36,
+          35,
+          29
+        ],
+        "h1": false,
+        "h3": true,
+        "rr": 0.5,
+        "latency_ms": 399.1
+      },
+      "reranked": {
+        "top_1": 35,
+        "top_3": [
+          35,
+          36,
+          41
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 11374.8
+      }
+    },
+    {
+      "id": "tc-06",
+      "category": "Đơn phương chấm dứt",
+      "query": "Những trường hợp nào người lao động được quyền nghỉ việc ngay mà không cần báo trước?",
+      "expected": [
+        35
+      ],
+      "baseline": {
+        "top_1": 36,
+        "top_3": [
+          36,
+          35,
+          100
+        ],
+        "h1": false,
+        "h3": true,
+        "rr": 0.5,
+        "latency_ms": 361.0
+      },
+      "reranked": {
+        "top_1": 35,
+        "top_3": [
+          35,
+          36,
+          115
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 8635.9
+      }
+    },
+    {
+      "id": "tc-07",
+      "category": "Đơn phương chấm dứt",
+      "query": "Công ty muốn đơn phương chấm dứt hợp đồng lao động xác định thời hạn từ 12 đến 36 tháng phải báo trước bao nhiêu ngày?",
+      "expected": [
+        36
+      ],
+      "baseline": {
+        "top_1": 36,
+        "top_3": [
+          36,
+          35,
+          38
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 402.2
+      },
+      "reranked": {
+        "top_1": 36,
+        "top_3": [
+          36,
+          35,
+          48
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 9931.3
+      }
+    },
+    {
+      "id": "tc-08",
+      "category": "Đơn phương chấm dứt",
+      "query": "Người sử dụng lao động không được thực hiện quyền đơn phương chấm dứt hợp đồng trong những trường hợp nào?",
+      "expected": [
+        37
+      ],
+      "baseline": {
+        "top_1": 36,
+        "top_3": [
+          36,
+          35,
+          34
+        ],
+        "h1": false,
+        "h3": false,
+        "rr": 0.25,
+        "latency_ms": 384.3
+      },
+      "reranked": {
+        "top_1": 37,
+        "top_3": [
+          37,
+          35,
+          36
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 11732.2
+      }
+    },
+    {
+      "id": "tc-09",
+      "category": "Sa thải trái luật",
+      "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có nghĩa vụ bồi thường những gì?",
+      "expected": [
+        40
+      ],
+      "baseline": {
+        "top_1": 41,
+        "top_3": [
+          41,
+          40,
+          35
+        ],
+        "h1": false,
+        "h3": true,
+        "rr": 0.5,
+        "latency_ms": 396.6
+      },
+      "reranked": {
+        "top_1": 40,
+        "top_3": [
+          40,
+          41,
+          188
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 11493.6
+      }
+    },
+    {
+      "id": "tc-10",
+      "category": "Sa thải trái luật",
+      "query": "Người sử dụng lao động đơn phương chấm dứt hợp đồng trái luật phải nhận lại người lao động và bồi thường những khoản nào?",
+      "expected": [
+        41
+      ],
+      "baseline": {
+        "top_1": 41,
+        "top_3": [
+          41,
+          36,
+          1
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 367.4
+      },
+      "reranked": {
+        "top_1": 41,
+        "top_3": [
+          41,
+          40,
+          36
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 11363.4
+      }
+    },
+    {
+      "id": "tc-11",
+      "category": "Trợ cấp",
+      "query": "Điều kiện để người lao động được hưởng trợ cấp thôi việc là gì và mức hưởng tính như thế nào?",
+      "expected": [
+        46
+      ],
+      "baseline": {
+        "top_1": 41,
+        "top_3": [
+          41,
+          46,
+          42
+        ],
+        "h1": false,
+        "h3": true,
+        "rr": 0.5,
+        "latency_ms": 384.4
+      },
+      "reranked": {
+        "top_1": 46,
+        "top_3": [
+          46,
+          47,
+          42
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 10570.2
+      }
+    },
+    {
+      "id": "tc-12",
+      "category": "Trợ cấp",
+      "query": "Trợ cấp mất việc làm được chi trả trong trường hợp nào và mức chi trả tối thiểu là bao nhiêu?",
+      "expected": [
+        47
+      ],
+      "baseline": {
+        "top_1": 47,
+        "top_3": [
+          47,
+          46,
+          42
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 359.5
+      },
+      "reranked": {
+        "top_1": 47,
+        "top_3": [
+          47,
+          42,
+          46
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 8566.8
+      }
+    },
+    {
+      "id": "tc-13",
+      "category": "Đào tạo nghề",
+      "query": "Hợp đồng đào tạo nghề giữa doanh nghiệp và người lao động phải có những nội dung chủ yếu nào?",
+      "expected": [
+        62
+      ],
+      "baseline": {
+        "top_1": 21,
+        "top_3": [
+          21,
+          62,
+          59
+        ],
+        "h1": false,
+        "h3": true,
+        "rr": 0.5,
+        "latency_ms": 376.2
+      },
+      "reranked": {
+        "top_1": 62,
+        "top_3": [
+          62,
+          21,
+          61
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 10584.3
+      }
+    },
+    {
+      "id": "tc-14",
+      "category": "Tiền lương",
+      "query": "Người sử dụng lao động có được ép buộc người lao động chi tiêu lương vào việc mua hàng hóa của công ty không?",
+      "expected": [
+        94
+      ],
+      "baseline": {
+        "top_1": 6,
+        "top_3": [
+          6,
+          94,
+          1
+        ],
+        "h1": false,
+        "h3": true,
+        "rr": 0.5,
+        "latency_ms": 488.3
+      },
+      "reranked": {
+        "top_1": 94,
+        "top_3": [
+          94,
+          3,
+          17
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 11693.4
+      }
+    },
+    {
+      "id": "tc-15",
+      "category": "Tiền lương",
+      "query": "Khi trả lương qua tài khoản ngân hàng thì ai là người phải trả phí mở tài khoản và chuyển tiền?",
+      "expected": [
+        96
+      ],
+      "baseline": {
+        "top_1": 96,
+        "top_3": [
+          96,
+          94,
+          100
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 406.2
+      },
+      "reranked": {
+        "top_1": 96,
+        "top_3": [
+          96,
+          95,
+          94
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 6426.8
+      }
+    },
+    {
+      "id": "tc-16",
+      "category": "Tiền lương",
+      "query": "Nếu công ty chậm trả lương cho nhân viên thì phải đền bù lãi suất như thế nào?",
+      "expected": [
+        97
+      ],
+      "baseline": {
+        "top_1": 97,
+        "top_3": [
+          97,
+          101,
+          129
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 381.4
+      },
+      "reranked": {
+        "top_1": 97,
+        "top_3": [
+          97,
+          100,
+          101
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 8020.5
+      }
+    },
+    {
+      "id": "tc-17",
+      "category": "Làm thêm giờ",
+      "query": "Tiền lương làm thêm giờ vào ngày nghỉ hằng tuần được tính ít nhất bằng bao nhiêu phần trăm?",
+      "expected": [
+        98
+      ],
+      "baseline": {
+        "top_1": 107,
+        "top_3": [
+          107,
+          98,
+          67
+        ],
+        "h1": false,
+        "h3": true,
+        "rr": 0.5,
+        "latency_ms": 364.3
+      },
+      "reranked": {
+        "top_1": 98,
+        "top_3": [
+          98,
+          107,
+          111
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 11832.5
+      }
+    },
+    {
+      "id": "tc-18",
+      "category": "Làm thêm giờ",
+      "query": "Làm thêm giờ vào ngày nghỉ lễ, tết, ngày nghỉ có hưởng lương được tính ít nhất bằng bao nhiêu phần trăm lương?",
+      "expected": [
+        98
+      ],
+      "baseline": {
+        "top_1": 107,
+        "top_3": [
+          107,
+          98,
+          112
+        ],
+        "h1": false,
+        "h3": true,
+        "rr": 0.5,
+        "latency_ms": 406.5
+      },
+      "reranked": {
+        "top_1": 98,
+        "top_3": [
+          98,
+          112,
+          107
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 7274.2
+      }
+    },
+    {
+      "id": "tc-19",
+      "category": "Làm thêm giờ",
+      "query": "Người lao động làm việc vào ban đêm thì được trả thêm ít nhất bao nhiêu phần trăm tiền lương?",
+      "expected": [
+        98
+      ],
+      "baseline": {
+        "top_1": 107,
+        "top_3": [
+          107,
+          98,
+          2
+        ],
+        "h1": false,
+        "h3": true,
+        "rr": 0.5,
+        "latency_ms": 394.2
+      },
+      "reranked": {
+        "top_1": 98,
+        "top_3": [
+          98,
+          95,
+          106
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 11975.9
+      }
+    },
+    {
+      "id": "tc-20",
+      "category": "Ngừng việc",
+      "query": "Nếu phải ngừng việc do lỗi của người sử dụng lao động thì người lao động được trả lương thế nào?",
+      "expected": [
+        99
+      ],
+      "baseline": {
+        "top_1": 41,
+        "top_3": [
+          41,
+          99,
+          217
+        ],
+        "h1": false,
+        "h3": true,
+        "rr": 0.5,
+        "latency_ms": 374.1
+      },
+      "reranked": {
+        "top_1": 99,
+        "top_3": [
+          99,
+          29,
+          207
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 10046.2
+      }
+    },
+    {
+      "id": "tc-21",
+      "category": "Thưởng",
+      "query": "Tiền thưởng Tết cho người lao động có bắt buộc phải bằng tiền mặt không?",
+      "expected": [
+        104
+      ],
+      "baseline": {
+        "top_1": 104,
+        "top_3": [
+          104,
+          96,
+          95
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 389.0
+      },
+      "reranked": {
+        "top_1": 96,
+        "top_3": [
+          96,
+          95,
+          104
+        ],
+        "h1": false,
+        "h3": true,
+        "rr": 0.3333333333333333,
+        "latency_ms": 6918.5
+      }
+    },
+    {
+      "id": "tc-22",
+      "category": "Thời giờ làm việc",
+      "query": "Thời giờ làm việc bình thường của người lao động theo quy định không được vượt quá bao nhiêu giờ trong một ngày?",
+      "expected": [
+        105
+      ],
+      "baseline": {
+        "top_1": 107,
+        "top_3": [
+          107,
+          105,
+          67
+        ],
+        "h1": false,
+        "h3": true,
+        "rr": 0.5,
+        "latency_ms": 387.9
+      },
+      "reranked": {
+        "top_1": 105,
+        "top_3": [
+          105,
+          146,
+          109
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 7960.0
+      }
+    },
+    {
+      "id": "tc-23",
+      "category": "Thời giờ làm việc",
+      "query": "Giờ làm việc ban đêm được tính từ mấy giờ đến mấy giờ?",
+      "expected": [
+        106
+      ],
+      "baseline": {
+        "top_1": 107,
+        "top_3": [
+          107,
+          106,
+          98
+        ],
+        "h1": false,
+        "h3": true,
+        "rr": 0.5,
+        "latency_ms": 374.9
+      },
+      "reranked": {
+        "top_1": 106,
+        "top_3": [
+          106,
+          109,
+          146
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 7087.0
+      }
+    },
+    {
+      "id": "tc-24",
+      "category": "Làm thêm giờ",
+      "query": "Số giờ làm thêm tối đa của người lao động trong một tháng và trong một năm là bao nhiêu?",
+      "expected": [
+        107
+      ],
+      "baseline": {
+        "top_1": 107,
+        "top_3": [
+          107,
+          108,
+          98
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 375.0
+      },
+      "reranked": {
+        "top_1": 107,
+        "top_3": [
+          107,
+          146,
+          105
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 7336.1
+      }
+    },
+    {
+      "id": "tc-25",
+      "category": "Nghỉ ngơi",
+      "query": "Làm việc theo ca liên tục từ 6 giờ trở lên thì người lao động được nghỉ giữa giờ ít nhất bao nhiêu phút?",
+      "expected": [
+        109
+      ],
+      "baseline": {
+        "top_1": 113,
+        "top_3": [
+          113,
+          109,
+          107
+        ],
+        "h1": false,
+        "h3": true,
+        "rr": 0.5,
+        "latency_ms": 407.4
+      },
+      "reranked": {
+        "top_1": 109,
+        "top_3": [
+          109,
+          110,
+          111
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 7569.9
+      }
+    },
+    {
+      "id": "tc-26",
+      "category": "Nghỉ ngơi",
+      "query": "Mỗi tuần người lao động được nghỉ ít nhất bao nhiêu giờ liên tục?",
+      "expected": [
+        111
+      ],
+      "baseline": {
+        "top_1": 113,
+        "top_3": [
+          113,
+          111,
+          105
+        ],
+        "h1": false,
+        "h3": true,
+        "rr": 0.5,
+        "latency_ms": 396.5
+      },
+      "reranked": {
+        "top_1": 111,
+        "top_3": [
+          111,
+          109,
+          105
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 7167.2
+      }
+    },
+    {
+      "id": "tc-27",
+      "category": "Nghỉ lễ tết",
+      "query": "Hằng năm người lao động được nghỉ làm việc hưởng nguyên lương tổng cộng bao nhiêu ngày lễ, tết?",
+      "expected": [
+        112
+      ],
+      "baseline": {
+        "top_1": 113,
+        "top_3": [
+          113,
+          112,
+          114
+        ],
+        "h1": false,
+        "h3": true,
+        "rr": 0.5,
+        "latency_ms": 408.9
+      },
+      "reranked": {
+        "top_1": 112,
+        "top_3": [
+          112,
+          113,
+          111
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 10387.7
+      }
+    },
+    {
+      "id": "tc-28",
+      "category": "Nghỉ phép năm",
+      "query": "Người lao động làm việc đủ 12 tháng trong điều kiện bình thường thì được nghỉ phép hằng năm bao nhiêu ngày?",
+      "expected": [
+        113
+      ],
+      "baseline": {
+        "top_1": 113,
+        "top_3": [
+          113,
+          2,
+          9
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 346.8
+      },
+      "reranked": {
+        "top_1": 113,
+        "top_3": [
+          113,
+          114,
+          111
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 11472.7
+      }
+    },
+    {
+      "id": "tc-29",
+      "category": "Nghỉ phép năm",
+      "query": "Cứ làm việc đủ bao nhiêu năm thì người lao động được tăng thêm 01 ngày nghỉ phép hằng năm theo thâm niên?",
+      "expected": [
+        114
+      ],
+      "baseline": {
+        "top_1": 113,
+        "top_3": [
+          113,
+          114,
+          111
+        ],
+        "h1": false,
+        "h3": true,
+        "rr": 0.5,
+        "latency_ms": 531.9
+      },
+      "reranked": {
+        "top_1": 114,
+        "top_3": [
+          114,
+          113,
+          169
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 10245.1
+      }
+    },
+    {
+      "id": "tc-30",
+      "category": "Nghỉ việc riêng",
+      "query": "Bản thân người lao động kết hôn thì được nghỉ việc riêng hưởng nguyên lương mấy ngày?",
+      "expected": [
+        115
+      ],
+      "baseline": {
+        "top_1": 36,
+        "top_3": [
+          36,
+          115,
+          17
+        ],
+        "h1": false,
+        "h3": true,
+        "rr": 0.5,
+        "latency_ms": 375.6
+      },
+      "reranked": {
+        "top_1": 115,
+        "top_3": [
+          115,
+          113,
+          112
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 11218.3
+      }
+    },
+    {
+      "id": "tc-31",
+      "category": "Nghỉ việc riêng",
+      "query": "Bố đẻ, mẹ đẻ, vợ hoặc chồng, con chết thì người lao động được nghỉ mấy ngày hưởng nguyên lương?",
+      "expected": [
+        115
+      ],
+      "baseline": {
+        "top_1": 113,
+        "top_3": [
+          113,
+          115,
+          112
+        ],
+        "h1": false,
+        "h3": true,
+        "rr": 0.5,
+        "latency_ms": 402.6
+      },
+      "reranked": {
+        "top_1": 115,
+        "top_3": [
+          115,
+          113,
+          112
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 9520.5
+      }
+    },
+    {
+      "id": "tc-32",
+      "category": "Kỷ luật lao động",
+      "query": "Doanh nghiệp sử dụng từ bao nhiêu người lao động trở lên thì bắt buộc phải ban hành Nội quy lao động bằng văn bản?",
+      "expected": [
+        118
+      ],
+      "baseline": {
+        "top_1": 42,
+        "top_3": [
+          42,
+          118,
+          3
+        ],
+        "h1": false,
+        "h3": true,
+        "rr": 0.5,
+        "latency_ms": 382.3
+      },
+      "reranked": {
+        "top_1": 118,
+        "top_3": [
+          118,
+          121,
+          119
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 12587.5
+      }
+    },
+    {
+      "id": "tc-33",
+      "category": "Kỷ luật lao động",
+      "query": "Bộ luật Lao động quy định có những hình thức xử lý kỷ luật lao động nào?",
+      "expected": [
+        124
+      ],
+      "baseline": {
+        "top_1": 122,
+        "top_3": [
+          122,
+          124,
+          1
+        ],
+        "h1": false,
+        "h3": true,
+        "rr": 0.5,
+        "latency_ms": 387.0
+      },
+      "reranked": {
+        "top_1": 124,
+        "top_3": [
+          124,
+          122,
+          127
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 12299.6
+      }
+    },
+    {
+      "id": "tc-34",
+      "category": "Kỷ luật sa thải",
+      "query": "Người lao động tự ý bỏ việc bao nhiêu ngày cộng dồn trong một tháng thì có thể bị áp dụng hình thức sa thải?",
+      "expected": [
+        125
+      ],
+      "baseline": {
+        "top_1": 36,
+        "top_3": [
+          36,
+          125,
+          41
+        ],
+        "h1": false,
+        "h3": true,
+        "rr": 0.5,
+        "latency_ms": 370.9
+      },
+      "reranked": {
+        "top_1": 125,
+        "top_3": [
+          125,
+          29,
+          36
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 11444.3
+      }
+    },
+    {
+      "id": "tc-35",
+      "category": "Kỷ luật bị cấm",
+      "query": "Công ty có được quyền phạt tiền hoặc trừ lương của nhân viên thay cho việc xử lý kỷ luật lao động không?",
+      "expected": [
+        127
+      ],
+      "baseline": {
+        "top_1": 122,
+        "top_3": [
+          122,
+          30,
+          127
+        ],
+        "h1": false,
+        "h3": true,
+        "rr": 0.3333333333333333,
+        "latency_ms": 420.3
+      },
+      "reranked": {
+        "top_1": 127,
+        "top_3": [
+          127,
+          124,
+          125
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 9609.8
+      }
+    },
+    {
+      "id": "tc-36",
+      "category": "Tạm đình chỉ",
+      "query": "Thời hạn tạm đình chỉ công việc đối với người lao động tối đa không được quá bao nhiêu ngày?",
+      "expected": [
+        128
+      ],
+      "baseline": {
+        "top_1": 128,
+        "top_3": [
+          128,
+          36,
+          25
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 386.3
+      },
+      "reranked": {
+        "top_1": 128,
+        "top_3": [
+          128,
+          29,
+          35
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 8267.8
+      }
+    },
+    {
+      "id": "tc-37",
+      "category": "Lao động nữ",
+      "query": "Lao động nữ mang thai từ tháng thứ mấy thì người sử dụng lao động không được bố trí làm thêm giờ hoặc làm việc ban đêm?",
+      "expected": [
+        137
+      ],
+      "baseline": {
+        "top_1": 137,
+        "top_3": [
+          137,
+          139,
+          138
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 381.6
+      },
+      "reranked": {
+        "top_1": 137,
+        "top_3": [
+          137,
+          139,
+          122
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 10891.5
+      }
+    },
+    {
+      "id": "tc-38",
+      "category": "Thai sản",
+      "query": "Lao động nữ sinh con được nghỉ chế độ thai sản trước và sau khi sinh tổng cộng bao nhiêu tháng?",
+      "expected": [
+        139
+      ],
+      "baseline": {
+        "top_1": 137,
+        "top_3": [
+          137,
+          139,
+          140
+        ],
+        "h1": false,
+        "h3": true,
+        "rr": 0.5,
+        "latency_ms": 390.8
+      },
+      "reranked": {
+        "top_1": 139,
+        "top_3": [
+          139,
+          137,
+          141
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 9491.9
+      }
+    },
+    {
+      "id": "tc-39",
+      "category": "Tuổi nghỉ hưu",
+      "query": "Theo lộ trình của Bộ luật Lao động 2019, tuổi nghỉ hưu của lao động nam và lao động nữ trong điều kiện bình thường được điều chỉnh thế nào?",
+      "expected": [
+        169
+      ],
+      "baseline": {
+        "top_1": 219,
+        "top_3": [
+          219,
+          4,
+          169
+        ],
+        "h1": false,
+        "h3": true,
+        "rr": 0.3333333333333333,
+        "latency_ms": 389.8
+      },
+      "reranked": {
+        "top_1": 169,
+        "top_3": [
+          169,
+          219,
+          135
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 11691.0
+      }
+    },
+    {
+      "id": "tc-40",
+      "category": "Bảo vệ việc làm",
+      "query": "Công ty có được quyền sa thải hoặc đơn phương chấm dứt hợp đồng với lao động nữ vì lý do kết hôn hoặc nuôi con dưới 12 tháng tuổi không?",
+      "expected": [
+        137
+      ],
+      "baseline": {
+        "top_1": 137,
+        "top_3": [
+          137,
+          35,
+          30
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 348.5
+      },
+      "reranked": {
+        "top_1": 137,
+        "top_3": [
+          137,
+          37,
+          35
+        ],
+        "h1": true,
+        "h3": true,
+        "rr": 1.0,
+        "latency_ms": 11138.3
+      }
+    }
+  ]
+}

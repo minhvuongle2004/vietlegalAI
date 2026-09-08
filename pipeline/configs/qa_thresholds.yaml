@@ -1,0 +1,19 @@
+# Data Quality Acceptance Criteria Thresholds
+thresholds:
+  unicode_normalization: "NFC"
+  min_article_length_chars: 20
+  max_article_length_chars: 4500
+  min_ocr_confidence: 0.85
+  max_allowed_article_jump: 1 # Ensuring sequence continuity (An+1 - An == 1)
+  required_document_metadata:
+    - official_number
+    - title
+    - issuer
+    - issue_date
+    - status
+  forbidden_phrases:
+    - "CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM"
+    - "Độc lập - Tự do - Hạnh phúc"
+    - "Nơi nhận:"
+    - "CHỦ TỊCH QUỐC HỘI"
+    - "THỦ TƯỚNG CHÍNH PHỦ"

@@ -1,0 +1,46 @@
+{
+  "retrieval_ok": true,
+  "matched": [
+    "Điều 46 (bllđ)",
+    "Điều 8 (145)"
+  ],
+  "missing": [],
+  "top_5": [
+    {
+      "rank": 1,
+      "doc_id": "bllđ_45_2019_qh14",
+      "doc_title": "Bộ luật Lao động 2019",
+      "article_number": 46,
+      "article_title": "Trợ cấp thôi việc"
+    },
+    {
+      "rank": 2,
+      "doc_id": "nd_145_2020_nd_cp",
+      "doc_title": "Nghị định 145/2020/NĐ-CP",
+      "article_number": 8,
+      "article_title": "Trợ cấp thôi việc, trợ cấp mất việc làm"
+    },
+    {
+      "rank": 3,
+      "doc_id": "bllđ_45_2019_qh14",
+      "doc_title": "Bộ luật Lao động 2019",
+      "article_number": 47,
+      "article_title": "Trợ cấp mất việc làm"
+    },
+    {
+      "rank": 4,
+      "doc_id": "bllđ_45_2019_qh14",
+      "doc_title": "Bộ luật Lao động 2019",
+      "article_number": 40,
+      "article_title": "Nghĩa vụ của người lao động khi đơn phương chấm dứt hợp đồng lao động trái pháp luật"
+    },
+    {
+      "rank": 5,
+      "doc_id": "vieclam_38_2013_qh13",
+      "doc_title": "Luật Việc làm 2013",
+      "article_number": 53,
+      "article_title": "Tạm dừng, tiếp tục, chấm dứt hưởng trợ cấp thất nghiệp"
+    }
+  ],
+  "answer_text": "Chào bạn, với tư cách là VietLegal AI, tôi xin giải đáp thắc mắc của bạn về việc tính thời gian hưởng trợ cấp thôi việc như sau:\n\nDựa trên các quy định pháp luật hiện hành, việc xác định thời gian tính trợ cấp thôi việc cho trường hợp của bạn được căn cứ như sau:\n\n### 1. Nguyên tắc tính thời gian trợ cấp thôi việc\nTheo **Khoản 2 Điều 46 Bộ luật Lao động 2019**, thời gian làm việc để tính trợ cấp thôi việc là:\n> \"Tổng thời gian người lao động đã làm việc thực tế cho người sử dụng lao động **trừ đi** thời gian người lao động đã tham gia bảo hiểm thất nghiệp theo quy định của pháp luật về bảo hiểm thất nghiệp và thời gian làm việc đã được người sử dụng lao động chi trả trợ cấp thôi việc, trợ cấp mất việc làm.\"\n\n### 2. Áp dụng cho trường hợp của bạn\nDữ liệu bạn cung cấp cho thấy:\n*   **Tổng thời gian làm việc thực tế:** Từ ngày 01/01/2018 đến ngày 30/09/2023.\n    *   Từ 01/01/2018 đến 31/12/2022: 5 năm.\n    *   Từ 01/01/2023 đến 30/09/2023: 9 tháng.\n    *   **Tổng cộng:** 5 năm 9 tháng (tương đương 5,75 năm).\n*   **Thời gian tham gia Bảo hiểm thất nghiệp (BHTN):** Bạn xác nhận trong suốt thời gian làm việc này, bạn **không thuộc diện tham gia BHTN**.\n\nVì bạn không thuộc diện tham gia BHTN, nên thời gian làm việc để tính trợ cấp thôi việc sẽ bằng tổng thời gian làm việc thực tế (do không có khoản thời gian nào để trừ ra theo quy định tại Khoản 2 Điều 46 nêu trên).\n\n### 3. Kết luận về số năm tính trợ cấp\nTheo **Khoản 1 Điều 46 Bộ luật Lao động 2019**, người lao động làm việc thường xuyên từ đủ 12 tháng trở lên khi chấm dứt hợp đồng lao động đúng pháp luật sẽ được trả trợ cấp thôi việc với mức **mỗi năm làm việc được trợ cấp một nửa tháng tiền lương**.\n\n*   Thời gian làm việc của bạn là **5 năm 9 tháng**.\n*   Khi tính trợ cấp thôi việc, thời gian lẻ dưới 01 năm thường được tính theo quy định cụ thể của Chính phủ (tại Nghị định 145/2020/NĐ-CP, thời gian làm việc được tính trợ cấp thôi việc bao gồm cả tháng lẻ). \n*   Cụ thể, thời gian làm việc của bạn là **5,75 năm**.\n\n**Lưu ý quan trọng:** \nViệc tính toán này dựa trên giả định bạn chấm dứt hợp đồng lao động thuộc một trong các trường hợp được hưởng trợ cấp thôi việc theo quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 Bộ luật Lao động 2019 và bạn không thuộc trường hợp bị loại trừ (như đủ điều kiện hưởng lương hưu hoặc bị sa thải/đơn phương chấm dứt HĐLĐ trái pháp luật theo Điều 40).\n\nNếu bạn cần tính chính xác số tiền dựa trên mức lương bình quân 6 tháng liền kề, bạn có thể áp dụng công thức:\n> **Số tiền trợ cấp = (Số năm tính trợ cấp) x 0,5 x (Tiền lương bình quân 6 tháng liền kề)**\n\n*Lưu ý: Nếu trong thời gian làm việc bạn có những giai đoạn bị kỷ luật sa thải hoặc đơn phương chấm dứt HĐLĐ trái pháp luật, thời gian đó sẽ không được tính (theo Điểm b Khoản 4 Điều 8 Nghị định 145/2020/NĐ-CP).*"
+}
