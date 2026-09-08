@@ -3,73 +3,98 @@
 Hệ thống AI hỏi đáp và suy luận pháp lý Việt Nam ứng dụng kiến trúc **Advanced Legal RAG (Retrieval-Augmented Generation)** chuyên sâu, tích hợp cơ chế phân cấp văn bản pháp luật, tìm kiếm kết hợp (**Hybrid Search**: BGE-M3 Dense + PostgreSQL GIN BM25 + RRF), xếp hạng lại nâng cao (**BGE-Reranker-v2-m3** trên CUDA GPU FP16), mô hình suy luận tạo sinh **Google Gemini 3.1 Flash Lite**, giao diện người dùng **ChatGPT Dark Theme**, xác thực **Google OAuth 2.0** và quản lý hội thoại trên Cloud Database.
 
 [![Hit@3 Accuracy](https://img.shields.io/badge/Hit%403_Retrieval-100%25-brightgreen)](evals/benchmark_report.md)
-[![Hit@1 Accuracy](https://img.shields.io/badge/Hit%401_Precision-97.5%25-success)](evals/benchmark_report.md)
+[![Retrieval Recall](https://img.shields.io/badge/Retrieval_Recall-100%25_(48%2F48)-brightgreen)](evals/benchmark_report.md)
+[![Reasoning Pass Rate](https://img.shields.io/badge/Reasoning_Pass_Rate-97.9%25_(47%2F48)-success)](evals/benchmark_report.md)
 [![MRR](https://img.shields.io/badge/MRR-0.983-blue)](evals/benchmark_report.md)
-[![Reasoning Pass Rate](https://img.shields.io/badge/Reasoning_Pass_Rate-73.3%25-green)](evals/benchmark_report.md)
-[![Zero Hallucination](https://img.shields.io/badge/Zero_Hallucination-100%25-purple)](evals/benchmark_report.md)
+[![Zero Regression](https://img.shields.io/badge/Zero_Regression-100%25-purple)](evals/benchmark_report.md)
 [![CUDA FP16](https://img.shields.io/badge/Inference-RTX_3050_FP16-orange)](evals/benchmark_report.md)
-[![Data Scale](https://img.shields.io/badge/Legal_Corpus-10_Laws_|_1005_Articles-blueviolet)](evals/benchmark_report.md)
+[![Data Scale](https://img.shields.io/badge/Legal_Corpus-14_Laws_|_1796_Articles_|_4405_Vectors-blueviolet)](evals/benchmark_report.md)
 
 ---
 
-## 🏆 1. Báo Cáo Kết Quả Thực Nghiệm & Đánh Giá Định Lượng (Benchmarks)
+## 🗺️ Lộ Trình Tiến Hóa Dự Án (Project Evolution Roadmap)
 
-Hệ thống được kiểm chứng qua **2 bộ Benchmark độc lập** với các tiêu chuẩn khắt khe dành cho AI Engineer và chuyên gia pháp lý:
-
-### 1.1. Retrieval Accuracy Benchmark (50 Ground-Truth Test Cases)
-Đánh giá độ nhạy và độ chính xác của cơ chế trích xuất dữ liệu trên toàn bộ 17 Chương của Bộ luật Lao động và các tình huống bẫy ngoài phạm vi:
-
-| Chỉ số kỹ thuật (Metric) | Baseline (Chỉ Dense Vector) | Khi tích hợp BGE-Reranker-v2-m3 (GPU FP16) | Ý nghĩa thực nghiệm |
-| :--- | :---: | :---: | :---: |
-| **Hit@1 (Chính xác Top 1)** | **32.5%** (13/40) | **97.5% (39/40)** 🚀 | Bứt phá **+65.0%** nhờ Cross-Encoder loại bỏ nhiễu ngữ nghĩa |
-| **Hit@3 (Top-3 Retrieval)** | **97.5%** (39/40) | **100.0% (40/40)** 🌟 | Đảm bảo context điều luật luôn nằm trong Top 3 |
-| **Hit@5 (Top-5 Coverage)** | **100.0%** (40/40) | **100.0% (40/40)** 🌟 | Bao phủ 100% căn cứ pháp lý cần thiết |
-| **MRR (Mean Reciprocal Rank)**| **0.648** | **0.983** 📈 | Điểm xếp hạng chất lượng tiệm cận tuyệt đối |
-| **Zero Hallucination (Chống ảo giác)** | **100.0%** (10/10) | **100.0% (10/10)** 🛡️ | Nhận diện chính xác 10/10 câu hỏi bẫy/ngoài phạm vi |
-| **Độ trễ thuần Reranker** | ~390ms (CPU) | **~42ms (RTX 3050 GPU FP16)** ⚡ | Tăng tốc ~9.3 lần bằng tăng tốc phần cứng |
+```
+Phase 0 (Core Legal RAG) 
+   │  • 10 văn bản (BLLĐ 2019, Luật DN 2020, NĐ 145, 12, 74, 135, 01, 122, Luật BHXH 2014, Luật Việc làm 2013)
+   │  • 1.005 điều, 2.701 chunks. Hybrid Search + GPU Reranker.
+   ▼
+Phase 1 (Temporal Version-Aware RAG - Tag: v0.3.0-phase1-version-aware)
+   │  • Dual-version routing BHXH 2014 & BHXH 2024 (hiệu lực 01/07/2025) + Luật BHYT 2024.
+   │  • DatetimeRange Qdrant filtering, 34/34 test cases (100% pass).
+   ▼
+Phase 2 (Core Domain Expansion: Civil & Tax - Tag: v0.5.0-phase2-tax-cluster / v0.4.0-phase2-tax-domain)
+   │  • Mở rộng Bộ luật Dân sự 2015 (+689 điều, 6 test cases).
+   │  • Cụm Thuế 2025/2026 (+102 điều Thuế TNCN, TNDN, Quản lý thuế; 8 test cases; TC-47 cross-doc, TC-48 version-aware).
+   │  • Đạt 48/48 (100%) Retrieval Recall, 47/48 (97.9%) Pass Rate. Zero regression.
+   │  • ĐÓNG BĂNG BASELINE CHÍNH THỨC: `evals/benchmark_48_phase2.json`. COMPLETE ✅
+   ▼
+Phase 3 (Real-estate & Investment Cross-Document Cluster) [CHUẨN BỊ TRIỂN KHAI]
+   │  • Luật Đất đai 2024 (31/2024/QH15 & 43/2024/QH15).
+   │  • Luật Nhà ở 2023 (27/2023/QH15).
+   │  • Luật Kinh doanh Bất động sản 2023 (29/2023/QH15).
+   │  • Luật Đầu tư 2020 (61/2020/QH14).
+   ▼
+Phase 4 (Production Hardening, Deployment & CI/CD)
+```
 
 ---
 
-### 1.2. Legal Reasoning Benchmark (30 Chuyên Đề Suy Luận Phức Tạp)
-Đánh giá năng lực giải quyết các bẫy nghiệp vụ thực tế: liên kết đa văn bản, điều kiện tuyển chọn (AND/OR), ngoại lệ pháp lý, thời hiệu thời hạn và tính toán quyền lợi:
+## 🏆 1. Báo Cáo Kết Quả Thực Nghiệm & Đánh Giá Định Lượng (Phase 2 Frozen Baseline)
 
-- **Tổng số câu hỏi**: 30 Test Cases nâng cao.
-- **Tỷ lệ Trích xuất Đúng (Retrieval Recall)**: **86.7%** (26/30 cases).
-- **Tỷ lệ Trả lời Đúng Chuẩn Pháp Lý (Pass Rate)**: **73.3%** (22/30 cases).
+Hệ thống được kiểm chứng qua bộ **VietLegal Reasoning Benchmark (48 Ground-Truth Test Cases)**:
+- **Tổng số câu hỏi**: 48 Test Cases nâng cao.
+- **Tỷ lệ Trích xuất Đúng (Retrieval Recall)**: **100.0%** (48/48 cases).
+- **Tỷ lệ Trả lời Đúng Chuẩn Pháp Lý (Pass Rate)**: **97.9%** (47/48 cases).
+- **Tỷ lệ Hồi quy (Regression)**: **0.0%** (Không có bất kỳ test case cũ nào bị tụt retrieval).
 
-| Phân nhóm Nghiệp vụ / Bẫy Logic | Số câu | Đạt Retrieval | Pass Rate | Nhận xét Chuyên môn AI Engineering |
+| Phân nhóm Nghiệp vụ / Bẫy Logic | Số câu | Đạt Retrieval | Pass Rate | Ghi chú Trọng tâm |
 | :--- | :---: | :---: | :---: | :--- |
-| **Ngoại lệ vs Quy định chung** *(Exception vs General)* | 4 | 4/4 (100%) | **100.0%** ✅ | Phân biệt xuất sắc mốc chuẩn vs ngoại lệ (ví dụ: giờ làm thêm 200h vs 300h; thử việc HĐLĐ < 1 tháng). |
-| **Thời hạn & Thời hiệu** *(Temporal Deadlines)* | 4 | 4/4 (100%) | **100.0%** ✅ | Nắm chuẩn xác thời hạn báo trước, thời hiệu kỷ luật 6 - 12 tháng, thời hạn chi trả quyền lợi nghỉ việc. |
-| **Điều kiện Boolean Logic** *(AND / OR Logic)* | 6 | 6/6 (100%) | **83.3%** ✅ | Xử lý chặt chẽ logic điều kiện tích lũy (bắt buộc đồng thời) và các điều kiện lựa chọn độc lập. |
-| **Suy luận Đa văn bản** *(Cross-Document Reasoning)* | 8 | 5/8 (62.5%) | **62.5%** ⚖️ | Giải quyết thành công bài toán giao thoa: BLLĐ + NĐ 12 (Bồi thường & Xử phạt), BLLĐ + Luật Việc làm. |
-| **Tra cứu Bảng biểu chuyển tiếp** *(Tabular Lookup)* | 2 | 2/2 (100%) | **50.0%** 📊 | Đã bóc tách và trích xuất đúng Phụ lục lộ trình tuổi nghỉ hưu theo tháng/năm sinh (Nghị định 135). |
-| **Tính toán Số học Pháp lý** *(Arithmetic Calculation)* | 6 | 5/6 (83.3%) | **50.0%** 🧮 | Đạt 100% bài toán lương làm thêm giờ (300%), lương ngừng việc; đang chuẩn hóa công thức làm tròn thâm niên lẻ. |
+| **Suy luận Đa văn bản** *(Cross-Document Reasoning)* | 8 | 8/8 (100%) | **100.0%** ✅ | Xử lý đa nguồn luật: BLLĐ + NĐ 12, BLLĐ + Luật Việc làm, BHXH + BHTN. |
+| **Điều kiện Boolean Logic** *(AND / OR Logic)* | 6 | 6/6 (100%) | **100.0%** ✅ | Xử lý chặt chẽ logic điều kiện tích lũy (bắt buộc đồng thời) và các điều kiện lựa chọn. |
+| **Ngoại lệ vs Quy định chung** *(Exception vs General)* | 4 | 4/4 (100%) | **100.0%** ✅ | Phân biệt mốc chuẩn vs ngoại lệ (giờ làm thêm 200h vs 300h; thử việc HĐLĐ < 1 tháng). |
+| **Tính toán Số học Pháp lý** *(Calculation)* | 6 | 6/6 (100%) | **83.3%** (5/6) 🧮 | **5/6 (83.3%), cải thiện 1 case so với baseline trước Phase 2** (từ 4/6 lên 5/6). |
+| **Thời hạn & Thời hiệu** *(Temporal Deadlines)* | 4 | 4/4 (100%) | **100.0%** ✅ | Chuẩn xác thời hạn báo trước, thời hiệu kỷ luật 6-12 tháng, thời hạn chi trả quyền lợi. |
+| **Tra cứu Bảng biểu chuyển tiếp** *(Tabular Lookup)* | 2 | 2/2 (100%) | **100.0%** 📊 | Bóc tách chính xác Phụ lục lộ trình tuổi nghỉ hưu nam & nữ theo tháng/năm sinh (NĐ 135). |
+| **Temporal / Version-Aware Legal RAG** | 4 | 4/4 (100%) | **100.0%** ⏳ | Routing chính xác BHXH 2014 vs BHXH 2024 & Luật BHYT 2024 theo `as_of_date`. |
+| **Dân sự, Hợp đồng & Thừa kế** *(Bộ luật Dân sự 2015)* | 6 | 6/6 (100%) | **100.0%** ⚖️ | Đặt cọc (Đ328), lãi suất vay (Đ468), thời hiệu bồi thường (Đ588), thừa kế (Đ644, Đ623). |
+| **Cụm Thuế TNCN, TNDN & Quản lý thuế** *(Cụm Thuế 2025)* | 8 | 8/8 (100%) | **100.0%** 💼 | Biểu thuế 5 bậc, giảm trừ gia cảnh, chi phí trừ TNDN, phạt chậm nộp 0,03%/ngày. |
+| **TỔNG CỘNG** | **48** | **48/48 (100%)** | **47/48 (97.9%)** | **Baseline Phase 2 chính thức đóng băng tại `evals/benchmark_48_phase2.json`** |
 
 ---
 
-## 🏛️ 2. Hệ Thống Dữ Liệu Pháp Lý Toàn Diện (10 Văn Bản Quy Phạm Pháp Luật)
+## 🏛️ 2. Hệ Thống Dữ Liệu Pháp Lý Toàn Diện (14 Văn Bản Quy Phạm Pháp Luật)
 
-Hệ thống đã thu nạp, chuẩn hóa và số hóa hoàn tất **10 văn bản pháp luật trụ cột** thuộc 3 cụm chuyên môn trọng yếu:
+Hệ thống đã thu nạp, chuẩn hóa và số hóa hoàn tất **14 văn bản pháp luật trụ cột** với **1.796 Điều luật** và **4.405 Vector Chunks** trong Qdrant:
 
 ```mermaid
 graph TD
-    A[Kho Dữ Liệu Pháp Lý VietLegal AI - 1.005 Điều luật / 2.701 Chunks] --> B[Cụm 1: Lao động & Tiền lương]
+    A[Kho Dữ Liệu VietLegal AI - 1.796 Điều luật / 4.405 Chunks] --> B[Cụm 1: Lao động & Tiền lương]
     A --> C[Cụm 2: Doanh nghiệp & Đầu tư]
     A --> D[Cụm 3: Bảo hiểm & An sinh Xã hội]
+    A --> E[Cụm 4: Dân sự, Hợp đồng & Thừa kế]
+    A --> F[Cụm 5: Thuế & Quản lý thuế]
 
     B --> B1[Bộ luật Lao động 2019 - 220 Điều]
     B --> B2[Nghị định 145/2020/NĐ-CP - 115 Điều]
     B --> B3[Nghị định 12/2022/NĐ-CP - 64 Điều]
-    B --> B4[Nghị định 74/2024/NĐ-CP - 6 Điều & Phụ lục lương tối thiểu vùng]
-    B --> B5[Nghị định 135/2020/NĐ-CP - 12 Điều & Phụ lục tuổi nghỉ hưu]
+    B --> B4[Nghị định 74/2024/NĐ-CP - 6 Điều]
+    B --> B5[Nghị định 135/2020/NĐ-CP - 12 Điều]
 
     C --> C1[Luật Doanh nghiệp 2020 - 218 Điều]
-    C --> C2[Nghị định 01/2021/NĐ-CP - 101 Điều ĐKKD]
-    C --> C3[Nghị định 122/2021/NĐ-CP - 82 Điều Xử phạt KH&ĐT]
+    C --> C2[Nghị định 01/2021/NĐ-CP - 101 Điều]
+    C --> C3[Nghị định 122/2021/NĐ-CP - 82 Điều]
 
-    D --> D1[Luật Bảo hiểm xã hội 2014 - 125 Điều]
-    D --> D2[Luật Việc làm 2013 - 62 Điều BHTN]
+    D --> D1[Luật BHXH 2014 - 125 Điều]
+    D --> D2[Luật BHXH 2024 - 141 Điều]
+    D --> D3[Luật BHYT sửa đổi 2024 - 2 Điều]
+    D --> D4[Luật Việc làm 2013 - 62 Điều]
+
+    E --> E1[Bộ luật Dân sự 2015 - 689 Điều]
+
+    F --> F1[Luật Thuế TNCN sửa đổi 2025 - 35 Điều]
+    F --> F2[Luật Thuế TNDN sửa đổi 2025 - 25 Điều]
+    F --> F3[Luật Quản lý thuế 2025 - 42 Điều]
 ```
 
 ### Bảng Thống Kê Chi Tiết Dữ Liệu:
@@ -85,7 +110,11 @@ graph TD
 | 8 | **Nghị định 122/2021/NĐ-CP** | NĐ 122/2021/NĐ-CP | 82 | 147 | Xử phạt hành chính kế hoạch & đầu tư, kê khai vốn khống, vi phạm ĐKKD |
 | 9 | **Luật Bảo hiểm xã hội 2014** | Luật 58/2014/QH13 | 125 | 451 | Chế độ ốm đau, thai sản, hưu trí, tử tuất, rút BHXH một lần (Điều 60) |
 | 10 | **Luật Việc làm 2013** | Luật 38/2013/QH13 | 62 | 198 | Chính sách tạo việc làm và Chế độ Bảo hiểm thất nghiệp (Điều 49 - 53) |
-| **Tổng** | **10 Văn bản Quy phạm Pháp luật** | — | **1.005 Điều** | **2.701 Chunks** | **Toàn bộ lưu trữ trên Supabase PostgreSQL + Vector Store** |
+| 11 | **Luật Bảo hiểm xã hội 2024** | Luật 41/2024/QH15 | 141 | 557 | Hiệu lực từ 01/07/2025: Đóng 15 năm hưởng hưu, BHXH một lần (Điều 70, 102) |
+| 12 | **Luật sửa đổi, bổ sung Luật BHYT 2024** | Luật 51/2024/QH15 | 2 | 245 | Hiệu lực từ 01/07/2025: Đăng ký KCB ban đầu, chuyển tuyến, thanh toán BHYT |
+| 13 | **Bộ luật Dân sự 2015** | Luật 91/2015/QH13 | 689 | 782 | Giao dịch dân sự, hợp đồng, đặt cọc, lãi suất vay, bồi thường thiệt hại, thừa kế |
+| 14 | **Cụm Luật Thuế 2025** *(TNCN, TNDN, QLT)* | Luật Thuế 2025 | 102 | 170 | Biểu thuế lũy tiến 5 bậc, giảm trừ gia cảnh, chi phí trừ TNDN, tiền chậm nộp 0,03% |
+| **Tổng** | **14 Văn bản Quy phạm Pháp luật** | — | **1.796 Điều** | **4.405 Chunks** | **Toàn bộ lưu trữ trên Supabase PostgreSQL + Qdrant Vector Store** |
 
 ---
 
