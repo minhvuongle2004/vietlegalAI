@@ -50,8 +50,18 @@ yarn-error.log*
 # Vector DB & Storage local mounts
 qdrant_storage/
 data/qdrant_storage/
+data/03_vectordb/
 postgres_data/
 redis_data/
+
+# Scratchpad & temporary evaluation dumps
+scratch/
+*.log
+
+# Environment files
+.env
+.env.*
+!.env.example
 
 # IDE & OS
 .vscode/
