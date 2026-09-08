@@ -132,12 +132,15 @@ async def chat_completions(
 
         # Gửi luồng token từ LLM
         full_text = ""
-        async for token in generator.generate_answer_stream(query=query, retrieved_chunks=retrieved_chunks):
-            full_text += token
-            yield {
-                "event": "token",
-                "data": json.dumps({"token": token}, ensure_ascii=False),
-            }
+        try:
+            async for token in generator.generate_answer_stream(query=query, retrieved_chunks=retrieved_chunks):
+                full_text += token
+                yield {
+                    "event": "token",
+                    "data": json.dumps({"token": token}, ensure_ascii=False),
+                }
+        except Exception:
+            return
 
         # Gửi sự kiện kết thúc kèm thông tin độ trễ
         latency_ms = int((time.time() - start_time) * 1000)

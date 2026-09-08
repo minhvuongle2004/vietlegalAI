@@ -93,6 +93,7 @@ class HybridRetriever:
                 {
                     "category": "restructuring_bllđ",
                     "doc_keyword": "bllđ",
+                    "target_article": 44,
                     "sub_query": (
                         "sáp nhập hợp nhất chia tách cơ cấu lại doanh nghiệp "
                         "phương án sử dụng lao động Điều 44 "
@@ -102,6 +103,7 @@ class HybridRetriever:
                 {
                     "category": "redundancy_allowance_bllđ",
                     "doc_keyword": "bllđ",
+                    "target_article": 47,
                     "sub_query": (
                         "dôi dư lao động cho người lao động thôi việc "
                         "trợ cấp mất việc làm Điều 47 "
@@ -112,8 +114,84 @@ class HybridRetriever:
                 {
                     "category": "restructuring_nd145",
                     "doc_keyword": "145",
+                    "target_article": 8,
                     "sub_query": (
-                        "phương án sử dụng lao động "
+                        "thời gian làm việc để tính trợ cấp mất việc làm "
+                        "Điều 8 Nghị định 145/2020/NĐ-CP"
+                    ),
+                },
+            ])
+
+        # ------------------------------------------------------------
+        # Cross-Document Intent: Trợ cấp thôi việc (BLLĐ) vs Trợ cấp thất nghiệp (Luật Việc làm) (TC-02)
+        # BLLĐ 2019: Điều 46, Điều 47 | Luật Việc làm 2013: Điều 49, 50
+        # ------------------------------------------------------------
+        is_severance_vs_bhtn_intent = (
+            ("thôi việc" in q_lower or "trợ cấp thôi việc" in q_lower)
+            and ("thất nghiệp" in q_lower or "trợ cấp thất nghiệp" in q_lower or "bhtn" in q_lower)
+            and any(k in q_lower for k in ["khác nhau", "phân biệt", "ai chi trả", "hai khoản", "cả hai", "chế độ nào", "quyền lợi nào"])
+        )
+
+        if is_severance_vs_bhtn_intent:
+            sub_queries.extend([
+                {
+                    "category": "severance_allowance",
+                    "doc_keyword": "bllđ",
+                    "target_article": 46,
+                    "sub_query": (
+                        "trách nhiệm chi trả điều kiện thời gian làm việc tính trợ cấp thôi việc Điều 46 "
+                        "Bộ luật Lao động 2019"
+                    ),
+                },
+                {
+                    "category": "unemployment_benefit",
+                    "doc_keyword": "vieclam",
+                    "target_article": 50,
+                    "sub_query": (
+                        "quỹ bảo hiểm thất nghiệp điều kiện mức thời gian hưởng trợ cấp thất nghiệp Điều 49 Điều 50 "
+                        "Luật Việc làm 2013"
+                    ),
+                },
+            ])
+
+        # ------------------------------------------------------------
+        # Legal Dependency Intent: Tính tiền trợ cấp thôi việc / thời gian làm việc có tháng lẻ (TC-19)
+        # BLLĐ 2019: Điều 46 (Căn cứ chung)
+        # NĐ 145/2020: Điều 8 (Quy định chi tiết thời gian làm việc & làm tròn tháng lẻ)
+        # ------------------------------------------------------------
+        severance_calc_keywords = [
+            "tính trợ cấp thôi việc",
+            "tính tiền trợ cấp thôi việc",
+            "thời gian làm việc để tính trợ cấp",
+            "tháng lẻ",
+            "làm tròn",
+        ]
+        is_severance_calc_intent = (
+            any(kw in q_lower for kw in severance_calc_keywords)
+            or (
+                ("trợ cấp thôi việc" in q_lower or "thôi việc" in q_lower)
+                and any(t in q_lower for t in ["làm việc từ", "đến ngày", "tháng lẻ", "làm tròn", "bao nhiêu năm", "bao nhiêu tháng", "phải trả"])
+            )
+        ) and not is_severance_vs_bhtn_intent
+
+        if is_severance_calc_intent:
+            sub_queries.extend([
+                {
+                    "category": "severance_allowance",
+                    "doc_keyword": "bllđ",
+                    "target_article": 46,
+                    "sub_query": (
+                        "trách nhiệm chi trả điều kiện mức hưởng trợ cấp thôi việc Điều 46 "
+                        "Bộ luật Lao động 2019"
+                    ),
+                },
+                {
+                    "category": "severance_working_time",
+                    "doc_keyword": "145",
+                    "target_article": 8,
+                    "sub_query": (
+                        "thời gian làm việc để tính trợ cấp thôi việc "
+                        "thời gian lẻ tháng quy định làm tròn "
                         "Điều 8 Nghị định 145/2020/NĐ-CP"
                     ),
                 },
@@ -321,7 +399,7 @@ class HybridRetriever:
         if bhtn_negated:
             has_bhtn = False
 
-        if has_bhtn:
+        if has_bhtn and not is_severance_vs_bhtn_intent:
             sub_queries.append({
                 "category": "bhtn",
                 "doc_keyword": "vieclam",
@@ -354,6 +432,7 @@ class HybridRetriever:
             and not (has_bhxh and has_bhtn)
             and not is_restructuring_intent
             and not is_late_bhxh_intent
+            and not is_severance_vs_bhtn_intent
         ):
             sub_queries.append({
                 "category": "hdld",
@@ -366,23 +445,32 @@ class HybridRetriever:
             })
 
         # ------------------------------------------------------------
-        # Nhóm 4: Nghỉ hưu / Tuổi nghỉ hưu
+        # Nhóm 4: Nghỉ hưu / Tuổi nghỉ hưu vs Thời điểm hưởng hưu trí (TC-20)
         # ------------------------------------------------------------
-        has_retirement = any(
-            kw in q_lower
-            for kw in [
-                "tuổi nghỉ hưu",
-                "nghỉ hưu",
-                "hưu trí",
-                "lương hưu",
-                "điều 169",
-                "nghị định 135",
-            ]
+        is_retirement_timing_intent = (
+            any(kw in q_lower for kw in ["thời điểm hưởng", "bắt đầu hưởng", "ngày hưởng", "thời điểm nghỉ hưu", "thời điểm bắt đầu hưởng"])
+            or ("thời điểm" in q_lower and ("hưu" in q_lower or "nghỉ hưu" in q_lower or "hưu trí" in q_lower))
         )
 
-        if has_retirement and not (has_bhxh and has_bhtn):
+        is_retirement_age_lookup = (
+            any(kw in q_lower for kw in ["sinh năm", "sinh tháng", "tháng sinh", "năm sinh", "bao nhiêu tuổi", "độ tuổi nào", "lộ trình", "bảng tra cứu", "phụ lục i", "phụ lục 1", "phụ lục ii", "điều 169"])
+            or ("tuổi nghỉ hưu" in q_lower and any(kw in q_lower for kw in ["nam", "nữ", "bao nhiêu", "năm nào", "thời điểm nào", "lộ trình", "là bao nhiêu"]))
+        )
+
+        if is_retirement_timing_intent:
             sub_queries.append({
-                "category": "retirement",
+                "category": "retirement_timing",
+                "doc_keyword": "135",
+                "target_article": 3,
+                "sub_query": (
+                    "thời điểm nghỉ hưu thời điểm hưởng chế độ hưu trí "
+                    "ngày đầu tiên của tháng liền kề Điều 3 "
+                    "Nghị định 135/2020/NĐ-CP"
+                ),
+            })
+        elif is_retirement_age_lookup and not (has_bhxh and has_bhtn):
+            sub_queries.append({
+                "category": "retirement_age_lookup",
                 "doc_keyword": "135",
                 "sub_query": (
                     "tuổi nghỉ hưu điều kiện hưởng lương hưu "
@@ -808,6 +896,14 @@ class HybridRetriever:
         if "đấu giá" in q_l or "đấu thầu" in q_l:
             art_nums.extend(["125", "126"])
 
+        # Labor & Employment triggers (TC-02, TC-17, TC-20)
+        if any(kw in q_l for kw in ["thời điểm hưởng", "thời điểm nghỉ hưu", "ngày hưởng", "thời điểm bắt đầu hưởng"]):
+            art_nums.append("3")
+        if "trợ cấp thôi việc" in q_l or "thôi việc" in q_l:
+            art_nums.extend(["46", "47", "8"])
+        if "phương án sử dụng lao động" in q_l or "trợ cấp mất việc" in q_l:
+            art_nums.extend(["44", "47", "8"])
+
         for num_str in set(art_nums):
             try:
                 num = int(num_str)
@@ -980,7 +1076,7 @@ class HybridRetriever:
                     doc_store[key] = hit
 
         # 2. Thu thập ứng viên từ Sparse Search (BM25 & Title Match & Article Number)
-        sparse_hits = self._sparse_search_bm25(query, limit=15, as_of_date=as_of_date)
+        sparse_hits = self._sparse_search_bm25(query, limit=35, as_of_date=as_of_date)
         for rank, hit in enumerate(sparse_hits, start=1):
             art_num = hit.get("article_number")
             if not art_num:
@@ -1006,13 +1102,38 @@ class HybridRetriever:
         # Sắp xếp theo điểm RRF tổng hợp
         sorted_articles = sorted(filtered_scores.items(), key=lambda x: x[1], reverse=True)
 
-        candidate_pool_size = 14 if is_multi_intent else (top_k * 2)
-        candidate_pool = []
-        for key, score in sorted_articles[:candidate_pool_size]:
-            item = doc_store[key].copy()
-            item["rrf_score"] = score
-            candidate_pool.append(item)
+        # Bảo toàn Target Evidence từ sub_query_configs vào candidate pool
+        target_keys = set()
+        for cfg in sub_query_configs:
+            tgt = cfg.get("target_article")
+            if tgt:
+                tgt_strs = {str(tgt)} if isinstance(tgt, (int, str)) else {str(t) for t in tgt}
+                doc_kw = cfg.get("doc_keyword", "").lower()
+                for k, v in doc_store.items():
+                    if doc_kw in v.get("doc_id", "").lower() and str(v.get("article_number")) in tgt_strs:
+                        target_keys.add(k)
 
+        candidate_pool_size = max(20, len(sub_query_configs) * 7) if is_multi_intent else (top_k * 2)
+        candidate_pool = []
+        selected_pool_keys = set()
+
+        # 1. Đảm bảo các target articles luôn có mặt trong candidate pool
+        for key in target_keys:
+            if key in doc_store:
+                item = doc_store[key].copy()
+                item["rrf_score"] = rrf_scores.get(key, 0.0)
+                candidate_pool.append(item)
+                selected_pool_keys.add(key)
+
+        # 2. Lấy thêm các ứng viên RRF cao nhất cho đến khi đủ candidate_pool_size
+        for key, score in sorted_articles:
+            if len(candidate_pool) >= candidate_pool_size:
+                break
+            if key not in selected_pool_keys and key in doc_store:
+                selected_pool_keys.add(key)
+                item = doc_store[key].copy()
+                item["rrf_score"] = score
+                candidate_pool.append(item)
 
         # 4. Rerank bằng Cross-Encoder (Reranker)
         final_ranked = candidate_pool
@@ -1039,8 +1160,10 @@ class HybridRetriever:
 
                 matched_target = None
                 if target_art:
+                    targets = [target_art] if isinstance(target_art, (int, str)) else target_art
+                    target_str_set = {str(t) for t in targets}
                     for h in category_hits:
-                        if h.get("article_number") == target_art:
+                        if str(h.get("article_number")) in target_str_set:
                             matched_target = h
                             break
 

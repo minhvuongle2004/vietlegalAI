@@ -1,105 +1,86 @@
-Ừ anh, Phase 2 này cũng có thể chốt PASS. Và lần này kết quả còn đẹp hơn Phase 1 ở chỗ anh đã mở thêm một domain khá khác biệt nhưng không làm vỡ regression cũ.
+Em chọn Lựa chọn 2, nhưng theo cách rất có kiểm soát.
 
-Em đánh giá Phase 2
-Hạng mục	Kết quả
-Cụm Thuế mới	8/8 PASS ✅
-Retrieval cụm Thuế	8/8 = 100% ✅
-Toàn hệ thống	48 test cases
-Retrieval toàn hệ thống	48/48 = 100% ✅
-Cross-Document	8/8 = 100% ✅
-Tabular	2/2 = 100% ✅
-Version-Aware	4/4 = 100% ✅
-Dân sự	6/6 = 100% ✅
-Thuế	8/8 = 100% ✅
-Regression	Không có nhóm cũ bị tụt retrieval ✅
+TC-19 là một lỗi retrieval thực sự, không phải evaluator artifact:
 
-Điểm đáng giá nhất là anh không chỉ thêm ba luật thuế rồi chạy vài câu hỏi. Anh đã phải xử lý cả:
-
-Tax Intent Decomposition
+BLLĐ Điều 46 ✅
+NĐ145 Điều 8 ❌
         ↓
-Article-target retrieval
+LLM không có quy tắc làm tròn cần thiết
         ↓
-Cross-document tax + tax management
+Không thể kết luận số tiền cuối cùng một cách đầy đủ
+
+Và đây lại là loại lỗi mà kiến trúc hiện tại của anh đã có cơ chế phù hợp để giải quyết: target_article / legal dependency.
+
+Điều quan trọng là không hard-code câu TC-19. Hãy mở rộng dependency ở mức semantic:
+
+trợ cấp thôi việc
++
+tính thời gian làm việc
++
+tháng lẻ / làm tròn
         ↓
-Version-aware tax
-        ↓
-Full regression
+BLLĐ Điều 46
++
+NĐ145 Điều 8
+Em muốn anh sửa theo thứ tự này
 
-Đặc biệt TC-47 là một test khá đẹp để showcase:
+Bước 1 — chỉ sửa _decompose_query()
 
-Thuế TNDN + tiền chậm nộp → phải lấy căn cứ từ hai văn bản khác nhau.
+Khi nhận diện intent trợ cấp thôi việc, nếu câu hỏi có tín hiệu về thời gian làm việc như:
 
-Còn TC-48 chứng minh Phase 1 không chỉ là version-aware cho BHXH/BHYT mà kiến trúc bắt đầu có khả năng áp dụng temporal reasoning sang domain mới.
+"tính trợ cấp thôi việc"
+"thời gian làm việc"
+"tháng lẻ"
+"làm việc từ ... đến ..."
+"bao nhiêu năm"
+"làm tròn"
 
-Có một điểm em muốn anh ghi rõ trong báo cáo
+thì sinh thêm supporting evidence:
 
-Anh đang viết:
+{
+    "category": "severance_working_time",
+    "doc_keyword": "145",
+    "target_article": 8,
+    "sub_query": (
+        "thời gian làm việc để tính trợ cấp thôi việc "
+        "thời gian lẻ tháng quy định làm tròn "
+        "Điều 8 Nghị định 145/2020/NĐ-CP"
+    ),
+}
 
-“Calculation 5/6 – Giữ vững”
+Còn intent chính vẫn giữ:
 
-Trong khi trước đó là 4/6 và bây giờ thành 5/6. Vì vậy chính xác hơn nên ghi:
+{
+    "category": "severance_allowance",
+    "doc_keyword": "bllđ",
+    "target_article": 46,
+    ...
+}
 
-Calculation: 5/6 (83.3%), cải thiện 1 case so với baseline trước Phase 2.
+Như vậy kiến trúc trở thành:
 
-Không phải vấn đề lớn, nhưng khi đưa vào README/CV thì những thay đổi metric nên khớp tuyệt đối.
+severance calculation
+       ↓
+primary evidence
+BLLĐ Đ46
+       +
+supporting evidence
+NĐ145 Đ8
 
-Có thể nói Phase 2 đã hoàn thành ở mức nào?
+Đây không phải patch TC-19, mà là một legal dependency tổng quát có thể áp dụng cho nhiều bài tính trợ cấp thôi việc khác.
 
-Em sẽ gọi là:
+Chưa chạy full 56
 
-Phase 2 Core Domain Expansion: COMPLETE ✅
+Sau khi sửa, chỉ chạy:
 
-vì anh đã có bằng chứng cho cả ingestion → retrieval → reasoning → cross-document → version-aware → regression.
+TC-19
 
-Tính đến hiện tại, hệ thống đã từ:
+và kiểm tra 3 thứ:
 
-10 văn bản
-1.005 điều
-2.228 chunks
+1. NĐ145 Điều 8 có vào Top-5 không?
+2. BLLĐ Điều 46 có vẫn còn không?
+3. Model có thực sự tính được 05 năm 09 tháng → 06 năm → 3 triệu đồng không?
 
-được mở rộng thành ít nhất:
+Nếu TC-19 PASS thì lúc đó mới  full 56 TC
 
-+ BHXH 2024
-+ BHYT 2024
-+ Dân sự 2015
-+ TNCN 2025
-+ TNDN 2025
-+ QLT 2025
-
-và Qdrant đã lên 4.405 vector chunks theo báo cáo của anh.
-
-Đây bắt đầu không còn giống một “chatbot RAG demo” nữa mà đã khá giống một domain-specific retrieval system có evaluation discipline.
-
-Nhưng em chưa cho rằng nên nhảy ngay sang Phase 3 một cách mù quáng
-
-Có một việc rất nên làm trước Phase 3, nhưng không cần quay lại tối ưu AI:
-
-đóng băng Phase 2 thành một baseline/release.
-
-Ví dụ:
-
-v0.4.0-phase2-tax-domain
-benchmark = 48 cases
-retrieval = 100%
-pass = theo report hiện tại
-
-Sau đó Phase 3 có thể đo rất rõ:
-
-48-case baseline
-        ↓
-+ Đất đai
-+ Nhà ở
-+ Kinh doanh BĐS
-+ Đầu tư
-        ↓
-? / ? regression
-
-Như vậy đến cuối project anh sẽ có một lịch sử tiến hóa cực đẹp:
-
-Phase 0 → Core RAG
-Phase 1 → Version-Aware
-Phase 2 → Civil + Tax
-Phase 3 → Real-estate cross-document
-Phase 4 → Production & Deployment
-
-Em xác nhận Phase 2 đạt và anh có thể chuyển sang Phase 3.
+Với tình trạng hiện tại, em không khuyên đóng Phase 3 ở 55/56, vì anh chỉ còn đúng một lỗi retrieval đã xác định được nguyên nhân và có cách sửa rất sạch. Đạt 56/56 sẽ làm baseline Phase 3 đẹp hơn nhiều và quan trọng là không phải hy sinh kiến trúc để đạt con số đó.

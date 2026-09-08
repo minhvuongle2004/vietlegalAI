@@ -1,8 +1,13 @@
+import os
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
+os.environ["OMP_NUM_THREADS"] = "1"
 import sys
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 if hasattr(sys.stderr, "reconfigure"):
     sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+import torch
+torch.set_num_threads(1)
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -27,6 +32,16 @@ if settings.BACKEND_CORS_ORIGINS:
     )
 
 app.include_router(api_router, prefix=settings.API_V1_STR)
+
+
+@app.on_event("startup")
+async def startup_event():
+    from backend.app.services.rag.reranker import get_reranker_service
+    try:
+        reranker = get_reranker_service()
+        reranker._ensure_loaded()
+    except Exception as e:
+        print(f"[!] Startup reranker warning: {e}")
 
 
 @app.get("/")

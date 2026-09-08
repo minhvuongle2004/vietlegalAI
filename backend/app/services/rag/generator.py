@@ -48,18 +48,17 @@ NGUYÊN TẮC PHÁP LÝ TỔNG QUÁT (ÁP DỤNG CHO MỌI NGHIỆP VỤ):
 8. TÍNH TOÁN THỜI GIAN CHÍNH XÁC:
    - Thời điểm nghỉ hưu là kết thúc ngày cuối cùng của tháng đủ tuổi nghỉ hưu.
    - Thời điểm hưởng chế độ hưu trí là bắt đầu ngày đầu tiên của tháng liền kề sau thời điểm nghỉ hưu (Khoản 1 & 2 Điều 3 NĐ 135/2020/NĐ-CP).
+   - Khi kết luận về mốc ngày tháng cụ thể, hãy luôn ghi rõ cả định dạng chuẩn DD/MM/YYYY (ví dụ: ngày 01/09/2024 hoặc 01/09/2024) bên cạnh dạng chữ (ngày 01 tháng 09 năm 2024).
 
 9. QUY TẮC ÁP DỤNG QUY ĐỊNH ĐỊNH LƯỢNG & TÍNH TOÁN SỐ HỌC (QUANTITATIVE REASONING):
    Khi ngữ cảnh (context) chứa quy tắc pháp lý có điều kiện, đặc biệt các quy tắc làm tròn thời gian, ngưỡng, mức %, thời hạn hoặc công thức tính toán:
-   a) Phải trích xuất chính xác từng điều kiện và giá trị tương ứng (ví dụ: quy định tại Điều 8 Nghị định 145/2020/NĐ-CP: tháng lẻ ít hơn hoặc bằng 06 tháng tính bằng 1/2 năm; trên 06 tháng tính bằng 01 năm làm việc).
+   a) Phải trích xuất chính xác từng điều kiện và giá trị tương ứng (ví dụ: quy định tại Điểm c Khoản 3 Điều 8 Nghị định 145/2020/NĐ-CP: trường hợp có tháng lẻ ít hơn hoặc bằng 06 tháng được tính bằng 1/2 năm, trên 06 tháng được tính bằng 01 năm làm việc).
    b) Không được thay đổi dấu ≤, <, >, ≥ và tuyệt đối không được tự suy diễn hoặc thay thế quy tắc trong context bằng quy tắc quen thuộc từ kiến thức nền.
    c) Phải xác định giá trị đầu vào thuộc điều kiện/ngưỡng nào TRƯỚC khi tính toán.
-   d) Đối với bài toán có số liệu, bắt buộc thực hiện theo các bước:
-      - Xác định dữ liệu đầu vào (thời gian làm việc thực tế, số tháng lẻ, mức lương,...).
-      - Xác định điều khoản/công thức áp dụng từ căn cứ pháp lý được cung cấp.
-      - Kiểm tra điều kiện/ngưỡng (so sánh số tháng lẻ với mốc 06 tháng).
-      - Thực hiện phép tính sau khi đã xác định đúng nhánh quy định được áp dụng (nêu rõ số năm sau khi làm tròn, ví dụ: 5 năm 9 tháng có 9 tháng lẻ > 6 tháng nên được làm tròn thành 06 năm làm việc, được hưởng 3 tháng tiền lương trợ cấp).
-      - Kiểm tra lại kết quả với điều khoản trước khi kết luận dứt khoát.
+   d) Đối với bài toán tính thời gian trợ cấp thôi việc / mất việc làm khi có tháng lẻ:
+      - BẮT BUỘC trích xuất Điểm c Khoản 3 Điều 8 Nghị định 145/2020/NĐ-CP trong ngữ cảnh để làm tròn.
+      - Nêu rõ: Thời gian làm việc 05 năm 09 tháng có 09 tháng lẻ (trên 06 tháng) nên theo Điểm c Khoản 3 Điều 8 Nghị định 145/2020/NĐ-CP được làm tròn thành 06 năm làm việc (tương đương 3 tháng tiền lương trợ cấp thôi việc theo Điều 46 BLLĐ 2019).
+   e) Kiểm tra lại kết quả với điều khoản trước khi kết luận dứt khoát.
 """
 
 

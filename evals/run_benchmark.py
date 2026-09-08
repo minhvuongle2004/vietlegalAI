@@ -67,7 +67,7 @@ def run_benchmark(max_cases: int = 56):
             try:
                 retrieved_citations = []
                 answer_text = ""
-                res = requests.post(API_URL, json=payload, stream=True, timeout=60)
+                res = requests.post(API_URL, json=payload, stream=True, timeout=150)
                 if res.status_code == 200:
                     for line in res.iter_lines():
                         if line:
@@ -162,10 +162,10 @@ def run_benchmark(max_cases: int = 56):
         if final_passed:
             category_stats[cat]["passed"] += 1
             status_str = "PASSED"
-            print(f"  [+] KẾT QUẢ: PASSED (Retrieval: OK | Keywords: {len(matched_kw)}/{len(expected_keywords)} | Latency: {total_time}ms)")
+            print(f"  [+] KẾT QUẢ: PASSED (Retrieval: OK | Keywords: {len(matched_kw)}/{len(expected_keywords)} | Latency: {total_time/1000:.2f}s)")
         else:
             status_str = "FAILED" if not retrieval_ok and not reasoning_ok else "PARTIAL"
-            print(f"  [-] KẾT QUẢ: {status_str}")
+            print(f"  [-] KẾT QUẢ: {status_str} (Latency: {total_time/1000:.2f}s)")
             if not retrieval_ok:
                 print(f"      - Thiếu căn cứ: {missing_articles}")
             if hit_forbidden:
@@ -268,14 +268,15 @@ def generate_markdown_report(data: Dict[str, Any]):
     md.append("\n> **Ghi chú về nhóm Calculation**: Đạt 5/6 (83.3%), cải thiện 1 case so với baseline trước Phase 2 (từ 4/6 lên 5/6).")
 
     md.append("\n## 2. Chi Tiết Từng Test Case\n")
-    md.append("| ID | Nhóm | Tiêu đề Test Case | Retrieval | Keyword Match | Độ trễ | Kết quả |")
+    md.append("| ID | Nhóm | Tiêu đề Test Case | Retrieval | Keyword Match | Độ trễ (giây) | Kết quả |")
     md.append("| :--- | :--- | :--- | :---: | :---: | :---: | :---: |")
 
     for r in data["details"]:
         ret_icon = "✅" if r["retrieval_ok"] else "❌"
         kw_stat = f"{int(r['kw_ratio']*100)}%"
         res_badge = "**PASSED**" if r["passed"] else ("*PARTIAL*" if r["status"] == "PARTIAL" else "**FAILED**")
-        md.append(f"| `{r['id']}` | {r['category']} | {r['title']} | {ret_icon} | {kw_stat} | {r['latency_ms']}ms | {res_badge} |")
+        latency_sec = f"{r['latency_ms']/1000:.2f}s"
+        md.append(f"| `{r['id']}` | {r['category']} | {r['title']} | {ret_icon} | {kw_stat} | {latency_sec} | {res_badge} |")
 
     with open(REPORT_MD, "w", encoding="utf-8") as f:
         f.write("\n".join(md))

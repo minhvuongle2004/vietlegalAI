@@ -25,7 +25,7 @@ class LegalRerankerService:
             target_device = os.getenv("RERANKER_DEVICE", "cpu")
             if target_device == "cuda" and not torch.cuda.is_available():
                 target_device = "cpu"
-            model_kwargs = {"torch_dtype": torch.float16} if target_device == "cuda" else {}
+            model_kwargs = {"torch_dtype": torch.float16} if target_device == "cuda" else {"low_cpu_mem_usage": True}
             print(f"[*] Loading Cross-Encoder Reranker '{self.model_name}' on {target_device}...")
             try:
                 self.model = CrossEncoder(
@@ -41,7 +41,8 @@ class LegalRerankerService:
                     self.model = CrossEncoder(
                         self.model_name,
                         max_length=512,
-                        device="cpu"
+                        device="cpu",
+                        model_kwargs={"low_cpu_mem_usage": True}
                     )
                     print(f"[+] Reranker '{self.model_name}' ready on CPU!")
                 else:
