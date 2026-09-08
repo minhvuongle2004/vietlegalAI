@@ -441,6 +441,64 @@ class HybridRetriever:
                 ),
             })
 
+        # ------------------------------------------------------------
+        # Nhóm 8: Bộ luật Dân sự 2015 (Hợp đồng, Đặt cọc, Vay tài sản, Bồi thường, Thừa kế)
+        # ------------------------------------------------------------
+        # 8.1. Đặt cọc
+        if any(kw in q_lower for kw in ["đặt cọc", "phạt cọc", "tiền cọc", "điều 328"]):
+            sub_queries.append({
+                "category": "deposit_blds",
+                "doc_keyword": "blds",
+                "sub_query": (
+                    "quy định về đặt cọc xử lý tài sản đặt cọc phạt cọc khi từ chối giao kết thực hiện hợp đồng "
+                    "Điều 328 Bộ luật Dân sự 2015"
+                ),
+            })
+
+        # 8.2. Vay tài sản & Lãi suất
+        if any(kw in q_lower for kw in ["vay tài sản", "cho vay", "lãi suất vay", "trần lãi suất", "lãi suất 20%", "điều 468"]):
+            sub_queries.append({
+                "category": "loan_interest_blds",
+                "doc_keyword": "blds",
+                "sub_query": (
+                    "hợp đồng vay tài sản trần mức lãi suất vay tối đa 20% một năm "
+                    "Điều 468 Bộ luật Dân sự 2015"
+                ),
+            })
+
+        # 8.3. Bồi thường thiệt hại ngoài hợp đồng
+        if any(kw in q_lower for kw in ["bồi thường thiệt hại ngoài hợp đồng", "thiệt hại ngoài hợp đồng", "thời hiệu bồi thường", "điều 584", "điều 588"]):
+            sub_queries.append({
+                "category": "tort_damages_blds",
+                "doc_keyword": "blds",
+                "sub_query": (
+                    "căn cứ phát sinh trách nhiệm và thời hiệu khởi kiện yêu cầu bồi thường thiệt hại ngoài hợp đồng 03 năm "
+                    "Điều 584 Điều 588 Bộ luật Dân sự 2015"
+                ),
+            })
+
+        # 8.4. Thừa kế & Di chúc
+        if any(kw in q_lower for kw in ["thừa kế", "di chúc", "chia di sản", "mở thừa kế", "không phụ thuộc", "điều 611", "điều 623", "điều 644"]):
+            sub_queries.append({
+                "category": "inheritance_blds",
+                "doc_keyword": "blds",
+                "sub_query": (
+                    "thừa kế theo di chúc theo pháp luật mở thừa kế thời hiệu chia di sản thừa kế 30 năm người thừa kế không phụ thuộc vào nội dung của di chúc "
+                    "Điều 611 Điều 623 Điều 644 Bộ luật Dân sự 2015"
+                ),
+            })
+
+        # 8.5. Giao dịch dân sự vô hiệu
+        if any(kw in q_lower for kw in ["giao dịch dân sự", "vô hiệu", "hợp đồng vô hiệu", "điều kiện có hiệu lực", "điều 117", "điều 131"]):
+            sub_queries.append({
+                "category": "invalid_transaction_blds",
+                "doc_keyword": "blds",
+                "sub_query": (
+                    "điều kiện có hiệu lực của giao dịch dân sự và hậu quả pháp lý của giao dịch dân sự vô hiệu "
+                    "Điều 117 Điều 131 Bộ luật Dân sự 2015"
+                ),
+            })
+
         return sub_queries
 
 
@@ -578,6 +636,8 @@ class HybridRetriever:
             return "Nghị định 01/2021/NĐ-CP"
         elif "ldn" in doc_id:
             return "Luật Doanh nghiệp 2020"
+        elif "blds" in doc_id or "91_2015" in doc_id:
+            return "Bộ luật Dân sự 2015"
         elif "bllđ" in doc_id or "bld" in doc_id:
             return "Bộ luật Lao động 2019"
         return "Văn bản Quy phạm Pháp luật"

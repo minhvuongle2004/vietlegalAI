@@ -285,8 +285,15 @@
       "Luật Việc làm"
     ],
     "forbidden_keywords": [
-      "7 tháng",
-      "5 tháng",
+      "được hưởng 7 tháng",
+      "được nhận 7 tháng",
+      "hưởng tối đa 7 tháng",
+      "chỉ được 5 tháng",
+      "chỉ có 5 tháng",
+      "tổng cộng 5 tháng",
+      "được hưởng 5 tháng",
+      "được nhận 5 tháng",
+      "hưởng 5 tháng trợ cấp",
       "chỉ được 3 tháng",
       "tổng cộng 3 tháng",
       "hưởng tối đa 3 tháng"
@@ -884,5 +891,151 @@
     ],
     "forbidden_keywords": [],
     "trap_type": "New statute retrieval: Trích xuất chính xác văn bản sửa đổi BHYT số 51/2024/QH15."
+  },
+  {
+    "id": "TC-35",
+    "category": "civil_law",
+    "title": "Đặt cọc và Xử lý tài sản đặt cọc khi vi phạm hợp đồng (Điều 328)",
+    "as_of_date": "2024-12-31",
+    "query": "Bên A đặt cọc cho bên B số tiền 100 triệu đồng để mua đất nhưng sau đó bên B đổi ý không chịu bán nữa. Theo Điều 328 Bộ luật Dân sự 2015, việc xử lý tiền đặt cọc được quy định thế nào và bên B phải trả cho bên A bao nhiêu tiền?",
+    "expected_articles": [
+      {
+        "doc_keyword": "blds",
+        "article_number": 328
+      }
+    ],
+    "expected_keywords": [
+      "Điều 328",
+      "Bộ luật Dân sự",
+      "trả lại",
+      "phạt cọc|tương đương|khoản tiền tương đương"
+    ],
+    "forbidden_keywords": [
+      "chỉ trả lại 100 triệu mà không bị phạt",
+      "không phải trả lại tiền cọc"
+    ]
+  },
+  {
+    "id": "TC-36",
+    "category": "civil_law",
+    "title": "Mức trần lãi suất vay tài sản tối đa 20%/năm (Điều 468)",
+    "as_of_date": "2024-12-31",
+    "query": "Các bên thỏa thuận hợp đồng vay tiền cá nhân với mức lãi suất 2,5%/tháng (tức 30%/năm). Mức lãi suất này có phù hợp với quy định của Bộ luật Dân sự 2015 không và theo Điều 468 thì mức lãi suất tối đa được phép thỏa thuận là bao nhiêu?",
+    "expected_articles": [
+      {
+        "doc_keyword": "blds",
+        "article_number": 468
+      }
+    ],
+    "expected_keywords": [
+      "Điều 468",
+      "Bộ luật Dân sự",
+      "20%/năm|20% một năm|20% / năm",
+      "không vượt quá|vượt quá",
+      "không có hiệu lực|vô hiệu"
+    ],
+    "forbidden_keywords": [
+      "phù hợp, được phép thỏa thuận 30%"
+    ]
+  },
+  {
+    "id": "TC-37",
+    "category": "civil_law",
+    "title": "Thời hiệu khởi kiện yêu cầu bồi thường thiệt hại ngoài hợp đồng (Điều 588)",
+    "as_of_date": "2024-12-31",
+    "query": "Thời hiệu khởi kiện yêu cầu bồi thường thiệt hại ngoài hợp đồng được xác định là bao nhiêu năm và tính từ thời điểm nào theo Điều 588 Bộ luật Dân sự 2015?",
+    "expected_articles": [
+      {
+        "doc_keyword": "blds",
+        "article_number": 588
+      }
+    ],
+    "expected_keywords": [
+      "Điều 588",
+      "Bộ luật Dân sự",
+      "03 năm|3 năm",
+      "thời điểm",
+      "quyền, lợi ích hợp pháp bị xâm phạm"
+    ],
+    "forbidden_keywords": [
+      "01 năm",
+      "02 năm",
+      "5 năm"
+    ]
+  },
+  {
+    "id": "TC-38",
+    "category": "civil_law",
+    "title": "Người thừa kế không phụ thuộc vào nội dung của di chúc (Điều 644)",
+    "as_of_date": "2024-12-31",
+    "query": "Người để lại di chúc truất toàn bộ quyền thừa kế của con chưa thành niên và vợ hợp pháp. Theo Điều 644 Bộ luật Dân sự 2015, những người này có được hưởng di sản không và mức hưởng bằng bao nhiêu phần của một suất thừa kế theo pháp luật?",
+    "expected_articles": [
+      {
+        "doc_keyword": "blds",
+        "article_number": 644
+      }
+    ],
+    "expected_keywords": [
+      "Điều 644",
+      "Bộ luật Dân sự",
+      "vẫn được hưởng",
+      "hai phần ba|2/3",
+      "suất thừa kế theo pháp luật"
+    ],
+    "forbidden_keywords": [
+      "không được hưởng đồng nào",
+      "bị truất hoàn toàn"
+    ]
+  },
+  {
+    "id": "TC-39",
+    "category": "civil_law",
+    "title": "Điều kiện có hiệu lực của giao dịch dân sự & Hậu quả vô hiệu (Điều 117, 131)",
+    "as_of_date": "2024-12-31",
+    "query": "Giao dịch dân sự cần đáp ứng những điều kiện nào để có hiệu lực theo Điều 117 Bộ luật Dân sự 2015 và khi bị tuyên vô hiệu thì quyền, nghĩa vụ các bên được giải quyết ra sao theo Điều 131?",
+    "expected_articles": [
+      {
+        "doc_keyword": "blds",
+        "article_number": [
+          117,
+          131
+        ]
+      }
+    ],
+    "expected_keywords": [
+      "Điều 117",
+      "Điều 131",
+      "Bộ luật Dân sự",
+      "tự nguyện",
+      "khôi phục lại tình trạng ban đầu",
+      "hoàn trả"
+    ],
+    "forbidden_keywords": []
+  },
+  {
+    "id": "TC-40",
+    "category": "civil_law",
+    "title": "Thời điểm mở thừa kế và thời hiệu chia di sản bất động sản 30 năm (Điều 611, 623)",
+    "as_of_date": "2024-12-31",
+    "query": "Thời điểm mở thừa kế được xác định khi nào theo Điều 611 và thời hiệu để người thừa kế yêu cầu chia di sản thừa kế đối với bất động sản là bao nhiêu năm theo Điều 623 Bộ luật Dân sự 2015?",
+    "expected_articles": [
+      {
+        "doc_keyword": "blds",
+        "article_number": [
+          611,
+          623
+        ]
+      }
+    ],
+    "expected_keywords": [
+      "Điều 611",
+      "Điều 623",
+      "người có tài sản chết",
+      "30 năm",
+      "bất động sản"
+    ],
+    "forbidden_keywords": [
+      "10 năm đối với bất động sản"
+    ]
   }
 ]
