@@ -17,7 +17,7 @@ REPORT_MD = PROJECT_ROOT / "evals" / "benchmark_report.md"
 API_URL = "http://127.0.0.1:8000/api/v1/chat/completions"
 
 
-def run_benchmark(max_cases: int = 40):
+def run_benchmark(max_cases: int = 48):
     if not BENCHMARK_FILE.exists():
         print(f"[!] Không tìm thấy file benchmark tại {BENCHMARK_FILE}")
         return
@@ -253,6 +253,7 @@ def generate_markdown_report(data: Dict[str, Any]):
         "tabular_lookup": "Tra cứu Bảng biểu chuyển tiếp (Tabular Lookup)",
         "temporal_version": "Temporal / Version-Aware Legal RAG (Đa phiên bản)",
         "civil_law": "Dân sự, Hợp đồng & Thừa kế (Bộ luật Dân sự 2015)",
+        "tax_law": "Thuế TNCN, TNDN & Quản lý thuế (Cụm Thuế 2025/2026)",
     }
 
     for cat, stat in data["category_stats"].items():

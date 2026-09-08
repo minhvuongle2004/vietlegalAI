@@ -205,6 +205,33 @@ class HybridRetriever:
                 },
             ])
 
+        # ------------------------------------------------------------
+        # Cross-Document Intent: Thuế TNDN + Quản lý thuế (Chậm nộp thuế TNDN)
+        # ------------------------------------------------------------
+        is_late_tndn_intent = (
+            ("tndn" in q_lower or "thuế thu nhập doanh nghiệp" in q_lower)
+            and ("chậm nộp" in q_lower or "quá hạn" in q_lower or "quản lý thuế" in q_lower)
+        )
+        if is_late_tndn_intent:
+            sub_queries.extend([
+                {
+                    "category": "cross_tax_tndn",
+                    "doc_keyword": "tndn",
+                    "sub_query": (
+                        "nghĩa vụ người nộp thuế thu nhập doanh nghiệp mức thuế suất thuế thu nhập doanh nghiệp 20% "
+                        "Điều 2 Điều 10 Điều 11 Luật Thuế thu nhập doanh nghiệp 67/2025/QH15"
+                    ),
+                },
+                {
+                    "category": "cross_tax_qlt",
+                    "doc_keyword": "qlt",
+                    "sub_query": (
+                        "thời hạn nộp thuế khoản thu khác xử lý đối với việc chậm nộp tiền thuế mức tính tiền chậm nộp 0,03% ngày "
+                        "Điều 14 Điều 16 Luật Quản lý thuế 108/2025/QH15"
+                    ),
+                },
+            ])
+
         # ============================================================
         # 1. CÁC DETECTOR HIỆN TẠI
         # ============================================================
@@ -499,6 +526,87 @@ class HybridRetriever:
                 ),
             })
 
+        # ------------------------------------------------------------
+        # Nhóm 9: Cụm Thuế 2025/2026 (Thuế TNCN, Thuế TNDN, Luật Quản lý thuế)
+        # ------------------------------------------------------------
+        # 9.1. Thuế TNCN: Biểu thuế luỹ tiến từng phần & Tính thuế tiền lương
+        if any(kw in q_lower for kw in ["biểu thuế luỹ tiến", "biểu thuế lũy tiến", "bậc thuế", "thuế suất tncn", "lũy tiến từng phần", "thuế thu nhập cá nhân đối với thu nhập từ tiền lương", "điều 9"]):
+            sub_queries.extend([
+                {
+                    "category": "tncn_progressive_tax",
+                    "doc_keyword": "tncn",
+                    "target_article": 9,
+                    "sub_query": (
+                        "biểu thuế luỹ tiến từng phần bậc 1 bậc 2 bậc 3 bậc 4 bậc 5 thuế suất 5% 10% 20% 30% 35% "
+                        "Điều 9 Luật Thuế thu nhập cá nhân 109/2025/QH15"
+                    ),
+                },
+                {
+                    "category": "tncn_salary_tax",
+                    "doc_keyword": "tncn",
+                    "target_article": 8,
+                    "sub_query": (
+                        "thuế thu nhập cá nhân đối với thu nhập từ tiền lương tiền công cá nhân cư trú thu nhập tính thuế "
+                        "Điều 8 Luật Thuế thu nhập cá nhân 109/2025/QH15"
+                    ),
+                },
+            ])
+
+        # 9.2. Thuế TNCN: Giảm trừ gia cảnh
+        if any(kw in q_lower for kw in ["giảm trừ gia cảnh", "người phụ thuộc", "giảm trừ bản thân", "15,5 triệu", "6,2 triệu", "nuôi dưỡng", "điều 10"]):
+            sub_queries.append({
+                "category": "tncn_deduction",
+                "doc_keyword": "tncn",
+                "sub_query": (
+                    "mức giảm trừ gia cảnh người nộp thuế 15,5 triệu đồng người phụ thuộc 6,2 triệu đồng nguyên tắc giảm trừ "
+                    "Điều 10 Luật Thuế thu nhập cá nhân 109/2025/QH15"
+                ),
+            })
+
+        # 9.3. Thuế TNDN: Thuế suất phổ thông & Ưu đãi
+        if any(kw in q_lower for kw in ["thuế suất tndn", "thuế suất thuế thu nhập doanh nghiệp", "tndn 20%", "doanh thu dưới 3 tỷ", "thuế suất 15%", "thuế suất 17%", "điều 10"]):
+            sub_queries.append({
+                "category": "tndn_rate",
+                "doc_keyword": "tndn",
+                "sub_query": (
+                    "thuế suất thuế thu nhập doanh nghiệp 20% doanh nghiệp có tổng doanh thu năm không quá 3 tỷ 15% từ trên 3 đến 50 tỷ 17% "
+                    "Điều 10 Luật Thuế thu nhập doanh nghiệp 67/2025/QH15"
+                ),
+            })
+
+        # 9.4. Thuế TNDN: Chi phí được trừ & Hóa đơn chứng từ
+        if any(kw in q_lower for kw in ["chi phí được trừ", "chi phí không được trừ", "khoản chi được trừ", "hóa đơn", "thanh toán không dùng tiền mặt", "điều 9"]):
+            sub_queries.append({
+                "category": "tndn_deductible_expenses",
+                "doc_keyword": "tndn",
+                "sub_query": (
+                    "các khoản chi được trừ và không được trừ khi xác định thu nhập chịu thuế TNDN hóa đơn chứng từ "
+                    "Điều 9 Luật Thuế thu nhập doanh nghiệp 67/2025/QH15"
+                ),
+            })
+
+        # 9.5. Quản lý thuế: Thời hạn nộp thuế & Tờ khai
+        if any(kw in q_lower for kw in ["thời hạn nộp thuế", "thời hạn nộp tờ khai", "thời hạn khai thuế", "hồ sơ khai thuế", "tờ khai quý", "quyết toán năm", "điều 12", "điều 14"]):
+            sub_queries.append({
+                "category": "qlt_filing_deadline",
+                "doc_keyword": "qlt",
+                "sub_query": (
+                    "thời hạn nộp thuế chậm nhất là ngày cuối cùng của thời hạn nộp hồ sơ khai thuế khai theo quý quyết toán năm "
+                    "Điều 14 Điều 12 Luật Quản lý thuế 108/2025/QH15"
+                ),
+            })
+
+        # 9.6. Quản lý thuế: Xử lý chậm nộp tiền thuế 0,03%/ngày
+        if any(kw in q_lower for kw in ["chậm nộp", "tiền chậm nộp", "0,03%", "0,03%/ngày", "chậm nộp tiền thuế", "điều 16"]):
+            sub_queries.append({
+                "category": "qlt_late_payment",
+                "doc_keyword": "qlt",
+                "sub_query": (
+                    "xử lý đối với việc chậm nộp tiền thuế mức tính tiền chậm nộp bằng 0,03% ngày tính trên số tiền thuế chậm nộp "
+                    "Điều 16 Luật Quản lý thuế 108/2025/QH15"
+                ),
+            })
+
         return sub_queries
 
 
@@ -508,7 +616,7 @@ class HybridRetriever:
         results = self.vector_store.search_similar(query_vector=query_vector, limit=limit, as_of_date=as_of_date)
         return results
 
-    def _sparse_search_bm25(self, query: str, limit: int = 15, as_of_date: Optional[str] = None) -> List[Dict[str, Any]]:
+    def _sparse_search_bm25(self, query: str, limit: int = 30, as_of_date: Optional[str] = None) -> List[Dict[str, Any]]:
         """Tìm kiếm từ khóa và số hiệu điều luật chính xác trên Supabase có hỗ trợ Temporal Filtering"""
         if not self.supabase_url or not self.supabase_key:
             return []
@@ -543,13 +651,25 @@ class HybridRetriever:
 
         # 1. Trích xuất các số hiệu Điều được nhắc đến trực tiếp (ví dụ: 'Điều 60', 'Điều 49')
         art_nums = re.findall(r"(?:điều|khoản)\s*(\d+)", query.lower())
-        for num_str in set(art_nums[:3]):
+        q_l = query.lower()
+        if any(term in q_l for term in ["biểu thuế luỹ tiến", "biểu thuế lũy tiến", "biểu thuế 5 bậc"]):
+            art_nums.extend(["9", "8"])
+        if "giảm trừ gia cảnh" in q_l:
+            art_nums.append("10")
+        if "chi phí được trừ" in q_l or "khoản chi được trừ" in q_l:
+            art_nums.append("9")
+        if "chậm nộp" in q_l:
+            art_nums.append("16")
+        if "thời hạn nộp thuế" in q_l:
+            art_nums.append("14")
+
+        for num_str in set(art_nums):
             try:
                 num = int(num_str)
                 params = {
                     "article_number": f"eq.{num}",
                     "select": "document_id,article_number,article_title,full_text,chapter_info,status",
-                    "limit": "6",
+                    "limit": "25",
                 }
                 res = requests.get(endpoint, headers=headers, params=params, timeout=5)
                 if res.status_code == 200:
@@ -582,6 +702,12 @@ class HybridRetriever:
             target_phrases.append("thất nghiệp")
         if "nghỉ hưu" in q_lower or "hưu trí" in q_lower:
             target_phrases.append("nghỉ hưu")
+        if "biểu thuế" in q_lower or "lũy tiến" in q_lower or "luỹ tiến" in q_lower:
+            target_phrases.append("biểu thuế")
+        if "giảm trừ gia cảnh" in q_lower:
+            target_phrases.append("giảm trừ")
+        if "chậm nộp" in q_lower:
+            target_phrases.append("chậm nộp")
 
         for phrase in target_phrases:
             try:
@@ -638,6 +764,12 @@ class HybridRetriever:
             return "Luật Doanh nghiệp 2020"
         elif "blds" in doc_id or "91_2015" in doc_id:
             return "Bộ luật Dân sự 2015"
+        elif "tncn" in doc_id or "109_2025" in doc_id:
+            return "Luật Thuế thu nhập cá nhân 2025"
+        elif "tndn" in doc_id or "67_2025" in doc_id:
+            return "Luật Thuế thu nhập doanh nghiệp 2025"
+        elif "qlt" in doc_id or "108_2025" in doc_id:
+            return "Luật Quản lý thuế 2025"
         elif "bllđ" in doc_id or "bld" in doc_id:
             return "Bộ luật Lao động 2019"
         return "Văn bản Quy phạm Pháp luật"
@@ -749,13 +881,28 @@ class HybridRetriever:
             # Vòng 1: Chọn chunk tốt nhất của từng chủ đề/văn bản
             for cfg in sub_query_configs:
                 doc_kw = cfg["doc_keyword"]
+                target_art = cfg.get("target_article")
                 category_hits = [c for c in final_ranked if doc_kw in c.get("doc_id", "").lower()]
-                if category_hits:
-                    best_hit = category_hits[0]
-                    key = f"{best_hit.get('doc_id')}_{best_hit.get('article_number')}"
-                    if key not in selected_keys:
-                        selected_keys.add(key)
-                        selected_items.append(best_hit)
+
+                matched_target = None
+                if target_art:
+                    for h in category_hits:
+                        if h.get("article_number") == target_art:
+                            matched_target = h
+                            break
+
+                chosen = matched_target if (matched_target and f"{matched_target.get('doc_id')}_{matched_target.get('article_number')}" not in selected_keys) else None
+                if not chosen:
+                    for hit in category_hits:
+                        key = f"{hit.get('doc_id')}_{hit.get('article_number')}"
+                        if key not in selected_keys:
+                            chosen = hit
+                            break
+
+                if chosen:
+                    key = f"{chosen.get('doc_id')}_{chosen.get('article_number')}"
+                    selected_keys.add(key)
+                    selected_items.append(chosen)
 
             # Vòng 2: Lấy thêm chunk thứ 2 của từng chủ đề nếu còn slot
             for cfg in sub_query_configs:

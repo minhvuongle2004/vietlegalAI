@@ -129,32 +129,60 @@ Hãy trả lời câu hỏi trên dựa trên các căn cứ pháp lý đã cho:
 
         elif self.provider == "gemini":
             import google.generativeai as genai
+            import asyncio
 
             genai.configure(api_key=self.gemini_key)
-            model_name = os.getenv("GEMINI_MODEL", "gemini-3.1-flash-lite")
+            preferred_model = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+            candidate_models = [
+                preferred_model,
+                "gemini-2.5-flash",
+                "gemini-3.5-flash",
+                "gemini-3.5-flash-lite",
+                "gemini-3.1-flash-lite",
+                "gemini-flash-latest"
+            ]
+            # Deduplicate while preserving order
+            unique_models = []
+            for m in candidate_models:
+                if m not in unique_models:
+                    unique_models.append(m)
 
-            model = genai.GenerativeModel(
-                model_name=model_name,
-                system_instruction=SYSTEM_PROMPT,
-            )
-            import asyncio
-            for attempt in range(3):
+            success = False
+            last_error = None
+
+            for model_name in unique_models:
                 try:
-                    response = await model.generate_content_async(user_message, stream=True)
-                    async for chunk in response:
+                    model = genai.GenerativeModel(
+                        model_name=model_name,
+                        system_instruction=SYSTEM_PROMPT,
+                    )
+                    for attempt in range(2):
                         try:
-                            if chunk.text:
-                                yield chunk.text
-                        except (ValueError, AttributeError):
-                            # Chunk kết thúc của Gemini chứa finish_reason (STOP) chứ không chứa text
-                            pass
-                    break
+                            response = await model.generate_content_async(user_message, stream=True)
+                            async for chunk in response:
+                                try:
+                                    if chunk.text:
+                                        yield chunk.text
+                                except (ValueError, AttributeError):
+                                    pass
+                            success = True
+                            break
+                        except Exception as e:
+                            last_error = e
+                            if attempt == 0 and ("503" in str(e) or "429" in str(e) or "high demand" in str(e).lower()):
+                                print(f"[!] Gemini {model_name} spike, retrying in 1.5s: {e}")
+                                await asyncio.sleep(1.5)
+                                continue
+                            raise e
+                    if success:
+                        break
                 except Exception as e:
-                    if attempt < 2 and ("503" in str(e) or "429" in str(e) or "high demand" in str(e).lower() or "unavailable" in str(e).lower()):
-                        print(f"[!] Gemini API spike (attempt {attempt+1}/3), retrying in 2s: {e}")
-                        await asyncio.sleep(2.0)
-                        continue
-                    raise e
+                    last_error = e
+                    print(f"[!] Chuyển sang model fallback tiếp theo do lỗi ở {model_name}: {e}")
+                    continue
+
+            if not success and last_error:
+                raise last_error
 
         else:
             # Mock generator cho trường hợp chưa điền key
