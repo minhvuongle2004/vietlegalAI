@@ -413,7 +413,7 @@ export default function App() {
 
   // Profile data
   const userMetadata = user?.user_metadata || {};
-  const userName = userMetadata.full_name || userMetadata.name || user?.email?.split('@')[0] || 'Lê Minh Vương';
+  const userName = userMetadata.full_name || userMetadata.name || user?.email?.split('@')[0] || (user ? 'Người dùng' : 'Khách');
   const userAvatar = userMetadata.avatar_url || userMetadata.picture;
   const userEmail = user?.email || '';
 
