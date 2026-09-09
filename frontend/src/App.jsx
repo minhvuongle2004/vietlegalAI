@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import ArticleModal from './components/ArticleModal';
 import { useAuth } from './context/AuthContext';
+import { API_BASE_URL } from './lib/api';
 import './App.css';
 
 // Logo Google SVG chuẩn
@@ -118,7 +119,7 @@ export default function App() {
   const fetchCloudConversations = async () => {
     if (!session?.access_token) return;
     try {
-      const res = await fetch('/api/v1/conversations', {
+      const res = await fetch(`${API_BASE_URL}/api/v1/conversations`, {
         headers: { Authorization: `Bearer ${session.access_token}` },
       });
       if (res.ok) {
@@ -172,7 +173,7 @@ export default function App() {
 
     if (user && session?.access_token) {
       try {
-        const res = await fetch(`/api/v1/conversations/${conv.id}`, {
+        const res = await fetch(`${API_BASE_URL}/api/v1/conversations/${conv.id}`, {
           headers: { Authorization: `Bearer ${session.access_token}` },
         });
         if (res.ok) {
@@ -207,7 +208,7 @@ export default function App() {
 
     if (user && session?.access_token) {
       try {
-        await fetch(`/api/v1/conversations/${id}`, {
+        await fetch(`${API_BASE_URL}/api/v1/conversations/${id}`, {
           method: 'DELETE',
           headers: { Authorization: `Bearer ${session.access_token}` },
         });
@@ -268,7 +269,7 @@ export default function App() {
     if (!activeId) {
       if (user && session?.access_token) {
         try {
-          const res = await fetch('/api/v1/conversations', {
+          const res = await fetch(`${API_BASE_URL}/api/v1/conversations`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -302,7 +303,7 @@ export default function App() {
         headers['Authorization'] = `Bearer ${session.access_token}`;
       }
 
-      const response = await fetch('/api/v1/chat/completions', {
+      const response = await fetch(`${API_BASE_URL}/api/v1/chat/completions`, {
         method: 'POST',
         headers,
         body: JSON.stringify({
@@ -635,6 +636,10 @@ export default function App() {
                 </div>
               ))}
             </div>
+
+            <div className="input-disclaimer" style={{ marginTop: '20px' }}>
+              ⚠️ <strong>Khuyến cáo pháp lý:</strong> VietLegal AI là trợ lý tra cứu & suy luận quy định pháp luật tự động. Mọi câu trả lời chỉ mang tính chất tham khảo, không thay thế cho ý kiến tư vấn pháp lý chính thức từ Luật sư hoặc cơ quan Nhà nước có thẩm quyền.
+            </div>
           </div>
         ) : (
           /* Message List */
@@ -768,7 +773,7 @@ export default function App() {
             </div>
 
             <div className="input-disclaimer">
-              VietLegal AI tham chiếu văn bản pháp luật chính thức. Vui lòng kiểm tra lại trước khi áp dụng vào các tranh chấp thực tế.
+              ⚠️ <strong>Khuyến cáo pháp lý:</strong> VietLegal AI là trợ lý tra cứu & suy luận tự động. Mọi thông tin chỉ mang tính chất tham khảo, không thay thế ý kiến tư vấn pháp lý chính thức từ Luật sư hoặc cơ quan có thẩm quyền.
             </div>
           </div>
         )}

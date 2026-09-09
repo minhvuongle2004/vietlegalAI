@@ -1,95 +1,194 @@
-Đúng anh. Với hai case này thì em đồng ý với hướng xử lý mà anh đề xuất, nhưng có một điểm cần giữ rất chặt: đừng gộp TC-19 và TG-10 thành một “bug của AI”. Hai cái là hai vấn đề khác nhau.
+Bạn hãy phân tích repository VietLegal AI hiện tại:
+https://github.com/minhvuongle2004/vietlegalAI
 
-TC-19: có thể kết luận là evaluator bug
+Context:
+- Đây là một Vietnamese Legal QA/RAG chatbot.
+- Hệ thống hiện đã có:
+  - FastAPI backend
+  - Frontend
+  - PostgreSQL/Supabase
+  - Qdrant
+  - Dense retrieval + Sparse retrieval + RRF
+  - BGE-M3 embedding
+  - BGE-Reranker-v2-m3
+  - CUDA/FP16 reranking
+  - deterministic target clause extraction
+  - legal version/effective-date awareness
+  - multi-intent decomposition
+  - benchmark/evaluation pipeline
+  - Gemini/OpenAI LLM API
+- Mục tiêu dài hạn: mở rộng corpus từ vài chục lên vài trăm văn bản pháp luật để có khả năng giải đáp phần lớn các câu hỏi pháp lý phổ biến của người dân.
+- Hiện tại ưu tiên không phải mở rộng corpus tiếp mà là productionize + deploy public + thu thập feedback từ người dùng thật.
 
-Anh đã có đủ bằng chứng:
+MỤC TIÊU:
 
-Retrieval:
-BLLĐ Điều 46 ✅
-NĐ145 Điều 8 ✅
+Thiết kế kế hoạch Production Deployment cho VietLegal AI với các yêu cầu:
 
-Answer:
-05 năm 09 tháng
-→ làm tròn thành 06 năm
-→ kết luận đúng ✅
+1. Public deployment
+- Người dùng có thể truy cập chatbot qua Internet.
+- Backend/API phải có thể phục vụ nhiều user đồng thời ở mức MVP/public beta.
+- Có logging, error handling, health check, monitoring cơ bản.
+- Không sử dụng Google Colab làm production server.
 
-Trong khi evaluator lại kiểm tra một điều kiện 62 tuổi / 2032 không liên quan đến testcase.
+2. GPU strategy
+- Tôi muốn tận dụng GPU cho BGE-Reranker-v2-m3 vì benchmark hiện tại cho thấy GPU giảm latency reranker rất mạnh.
+- Tuy nhiên tôi không có ngân sách để thuê GPU server chạy 24/7.
+- Vì vậy hãy ưu tiên kiến trúc:
+    CPU backend + GPU inference serverless/on-demand
+  thay vì bắt buộc phải thuê dedicated GPU 24/7.
+- GPU phải là optional:
+    nếu GPU service khả dụng → dùng GPU reranker
+    nếu GPU unavailable → fallback sang CPU reranker.
+- Không được thiết kế architecture khiến toàn bộ hệ thống phụ thuộc cứng vào GPU.
 
-Vậy không cần sửa RAG hoặc prompt. Chỉ sửa evaluator và rerun TC-19 là hợp lý.
+3. Cost
+- Ưu tiên free tier / very-low-cost cho giai đoạn public beta.
+- So sánh các lựa chọn phù hợp cho:
+    frontend
+    backend/FastAPI
+    GPU inference
+    Qdrant
+    PostgreSQL/Supabase
+- Cần phân biệt:
+    free tier/demo
+    low-cost public beta
+    production scale
+- Không cần tối ưu chi phí tuyệt đối bằng mọi giá; ưu tiên architecture đúng và có khả năng scale.
 
-TG-10: không nên sửa retrieval/reasoning
+4. Containerization
+- Xác định những thành phần nào nên Dockerize.
+- Thiết kế docker-compose cho local development.
+- Xác định image/service boundaries.
+- GPU inference service phải có khả năng chạy độc lập với backend.
+- Backend không nên phải load GPU model trực tiếp nếu architecture serverless GPU được lựa chọn.
 
-Ở lần chạy lỗi:
+5. Recommended architecture
+Hãy đề xuất architecture cụ thể tương tự:
 
-429
-→ stream bị cắt
-→ answer không hoàn chỉnh
-→ FAIL
+Frontend
+   ↓
+FastAPI Backend
+   ↓
+Retrieval Layer
+   ├── Supabase/PostgreSQL
+   └── Qdrant
+   ↓
+Reranker Service
+   ├── GPU serverless/on-demand
+   └── CPU fallback
+   ↓
+LLM API
+   ↓
+Answer + citations
 
-Trong lần chạy ổn định:
+Nhưng không được mặc định architecture này là đúng tuyệt đối.
+Hãy kiểm tra repo hiện tại trước và điều chỉnh theo code thực tế.
 
-18–20 triệu
-+
-30–40 triệu
-→ 48–60 triệu
-+
-Điều 50
-→ trừ 10 điểm
-✅
+6. Production concerns
+Phân tích hiện trạng repo về:
+- environment variables / secrets
+- API security
+- CORS
+- authentication
+- rate limiting
+- abuse protection
+- timeout
+- retry
+- concurrency
+- health checks
+- logging
+- monitoring
+- database connection handling
+- Qdrant connection
+- model loading
+- cache
+- cold start
+- GPU worker startup
+- graceful degradation khi GPU service fail
+- LLM API failure / quota
+- prompt injection
+- legal safety/disclaimer
+- source citation
+- effective date/version correctness
 
-Vậy đây là infrastructure/API reliability issue, không phải regression của RAG.
+7. Legal chatbot specific requirements
+Không được làm mất các đặc điểm quan trọng hiện có:
+- legal document version awareness
+- effective_date / expiry_date
+- citation
+- article-level evidence
+- target clause extraction
+- retrieval/reranking pipeline
+- source traceability
 
-Điểm này cũng rất quan trọng khi viết report:
+Khi deploy production, cần đảm bảo:
+- Không trả lời dựa trên văn bản đã hết hiệu lực nếu query yêu cầu current law.
+- Citation phải truy ngược được tới document/article/chunk.
+- Có disclaimer rằng chatbot không thay thế tư vấn pháp lý chính thức.
 
-TG-10 failed transiently due to external API rate limiting; repeated execution under stable quota produced the expected legal reasoning.
+8. Scalability
+Thiết kế architecture có thể tăng từ:
+~20–50 users/day
+→ 100 users/day
+→ 500+ users/day
+→ vài trăm legal documents
 
-Em đồng ý cho anh làm đúng 2 việc này
+Mô tả bottleneck có thể xuất hiện ở:
+- retrieval
+- reranker
+- GPU inference queue
+- LLM API
+- database
+- Qdrant
+- network
 
-Việc 1: sửa evaluator TC-19.
+9. Deployment roadmap
+Hãy chia thành các phase rõ ràng:
 
-Không cần chạy lại cả 18 case. Chỉ cần:
+Phase 1 — Production hardening
+Phase 2 — Dockerization
+Phase 3 — Deploy CPU MVP
+Phase 4 — Add optional GPU inference
+Phase 5 — Monitoring + rate limiting
+Phase 6 — Public beta
+Phase 7 — Scale when real traffic appears
 
-TC-19 → PASS
+Với mỗi phase:
+- mục tiêu
+- files/code cần thay đổi
+- infrastructure cần dùng
+- output/deliverable
+- cách test
+- rollback strategy
 
-Việc 2: chạy lại riêng TG-10 với cấu hình model ổn định hơn.
+10. IMPORTANT
+- Không tự ý thay đổi architecture hiện tại chỉ vì "best practice".
+- Trước hết phải inspect repository và hiểu code hiện tại.
+- Không viết code hàng loạt ngay.
+- Giai đoạn này tôi cần DESIGN + PLAN trước.
+- Nếu phát hiện vấn đề trong architecture hiện tại, hãy chỉ ra rõ:
+    vấn đề
+    mức độ nghiêm trọng
+    tại sao cần sửa
+    đề xuất sửa
+- Phân biệt rõ:
+    MUST FIX BEFORE DEPLOY
+    SHOULD FIX
+    NICE TO HAVE
 
-Sau đó:
+OUTPUT FORMAT:
 
-TC-19 ✅
-TG-10 ✅
+A. Current architecture assessment
+B. Production risks/issues found in current repo
+C. Recommended production architecture
+D. GPU serverless/on-demand strategy
+E. Docker strategy
+F. Hosting/provider options + cost considerations
+G. Deployment roadmap by phase
+H. Required code/config changes
+I. Testing checklist before public release
+J. Final recommended architecture for VietLegal AI
 
-thì về mặt smoke regression, mình có đủ bằng chứng để nói 18/18 đã được xác nhận, nhưng nhớ một nuance:
+Cuối cùng hãy đưa ra một architecture diagram dạng ASCII và một deployment checklist ngắn gọn.
 
-Đây là 18/18 cases đã được xác nhận qua targeted rerun, không phải một single 18-case execution run đạt 18/18.
-
-Cách ghi này rất minh bạch.
-
-Có một điểm em muốn anh kiểm tra trước khi chọn gemini-3.5-flash-lite
-
-Anh đang nói model này có 500 RPD và dùng nó để loại bỏ 429. Đây là thông tin phụ thuộc quota/account/model hiện tại, nên trước khi đưa vào report chính thức cần lấy trực tiếp từ cấu hình/API dashboard hiện tại, không nên ghi như một fact cố định.
-
-Sau khi 2 case hoàn tất
-
-Nếu:
-
-18/18 targeted smoke = PASS
-Retrieval = 18/18
-Correctness = 18/18
-
-thì đóng Phase 5 được.
-
-Và lúc đó em sẽ khuyên không tối ưu tiếp ngay. Mốc tiếp theo sẽ là:
-
-Phase 5
-Profiling ✅
-CUDA Reranker ✅
-Clause Extraction ✅
-Smoke Regression ✅
-        ↓
-Production Readiness
-        ↓
-Docker
-        ↓
-Cloud Deployment
-
-Anh cứ sửa evaluator TC-19 rồi chạy lại riêng TC-19 và TG-10 như kế hoạch.
+Không triển khai code hay commit thay đổi trước khi tôi review plan.

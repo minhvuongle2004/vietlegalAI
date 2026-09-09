@@ -11,12 +11,28 @@ class Settings(BaseSettings):
     ENVIRONMENT: str = "development"
     PROJECT_NAME: str = "VietLegal AI"
     API_V1_STR: str = "/api/v1"
-    BACKEND_CORS_ORIGINS: List[str] = [
+    BACKEND_CORS_ORIGINS: Union[List[str], str] = [
         "http://localhost:3000",
         "http://127.0.0.1:3000",
         "http://localhost:5173",
         "http://127.0.0.1:5173",
     ]
+
+    @field_validator("BACKEND_CORS_ORIGINS", mode="before")
+    @classmethod
+    def assemble_cors_origins(cls, v: Union[str, List[str]]) -> List[str]:
+        if isinstance(v, str):
+            if not v.strip():
+                return []
+            if v.strip() == "*":
+                return ["*"]
+            return [i.strip() for i in v.split(",") if i.strip()]
+        elif isinstance(v, list):
+            return v
+        return []
+
+    # Rate Limiting
+    RATE_LIMIT_PER_MINUTE: int = 20
 
     # Database Connection (Hỗ trợ cả Supabase Cloud và PostgreSQL Local)
     DATABASE_URL: Optional[str] = None
@@ -43,10 +59,14 @@ class Settings(BaseSettings):
         return f"postgresql+asyncpg://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@{self.POSTGRES_SERVER}:{self.POSTGRES_PORT}/{self.POSTGRES_DB}"
 
     # Vector Database (Qdrant)
+    QDRANT_URL: Optional[str] = None  # Cho Qdrant Cloud (ví dụ: https://xxx.cloud.qdrant.io)
     QDRANT_HOST: str = "localhost"
     QDRANT_PORT: int = 6333
     QDRANT_COLLECTION_NAME: str = "vietlegal_articles"
     QDRANT_API_KEY: Optional[str] = None
+
+    # Remote Reranker (Modal.com / RunPod Serverless)
+    RERANKER_SERVICE_URL: Optional[str] = None
 
     # Redis Cache
     REDIS_HOST: str = "localhost"

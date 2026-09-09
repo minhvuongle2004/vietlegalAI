@@ -27,11 +27,13 @@ class QdrantVectorStore:
     def __init__(
         self,
         collection_name: str = "vietlegal_articles",
+        url: Optional[str] = None,
         host: Optional[str] = None,
         port: int = 6333,
         api_key: Optional[str] = None,
     ):
         self.collection_name = collection_name
+        self.url = url or os.getenv("QDRANT_URL")
         self.host = host or os.getenv("QDRANT_HOST", "localhost")
         self.port = int(os.getenv("QDRANT_PORT", str(port)))
         self.api_key = api_key or os.getenv("QDRANT_API_KEY")
@@ -39,24 +41,57 @@ class QdrantVectorStore:
         self.client = self._init_client()
 
     def _init_client(self) -> QdrantClient:
-        # Nếu đã có thư mục dữ liệu local và không có Qdrant Cloud API key, ưu tiên dùng Local Storage
-        local_storage = PROJECT_ROOT / "data" / "qdrant_storage"
-        if not self.api_key and local_storage.exists() and any(local_storage.iterdir()):
-            return QdrantClient(path=str(local_storage))
+        is_production = os.getenv("ENVIRONMENT", "development").lower() == "production"
 
-        # Thử kết nối Docker / Server / Cloud
+        # 1. Kết nối qua QDRANT_URL (Dành cho Qdrant Cloud hoặc Remote Service)
+        if self.url:
+            try:
+                client = QdrantClient(
+                    url=self.url,
+                    api_key=self.api_key if self.api_key else None,
+                    timeout=5.0,
+                )
+                client.get_collections()
+                print(f"[+] Kết nối Qdrant Cloud thành công: {self.url}")
+                return client
+            except Exception as e:
+                print(f"[!] Lỗi kết nối Qdrant URL ({self.url}): {e}")
+                if is_production:
+                    raise RuntimeError(f"Không thể kết nối Qdrant Cloud trong môi trường Production: {e}")
+
+        # 2. Nếu ở môi trường local development và có sẵn thư mục data/qdrant_storage, ưu tiên dùng Local Storage
+        local_storage = PROJECT_ROOT / "data" / "qdrant_storage"
+        if not is_production and not self.api_key and local_storage.exists() and any(local_storage.iterdir()):
+            try:
+                print(f"[*] Sử dụng Qdrant Local Embedded Storage tại: {local_storage}")
+                return QdrantClient(path=str(local_storage))
+            except Exception as lock_err:
+                print(f"[!] Local storage đã bị tiến trình khác chiếm quyền lock: {lock_err}. Tiếp tục thử kết nối Server...")
+
+        # 3. Thử kết nối qua Host & Port (Docker / Self-hosted Qdrant)
         try:
             client = QdrantClient(
                 host=self.host,
                 port=self.port,
                 api_key=self.api_key if self.api_key else None,
-                timeout=1.0,
+                timeout=3.0,
             )
             client.get_collections()
+            print(f"[+] Kết nối Qdrant Host:Port thành công ({self.host}:{self.port})")
             return client
-        except Exception:
-            local_storage.mkdir(parents=True, exist_ok=True)
-            return QdrantClient(path=str(local_storage))
+        except Exception as e:
+            if is_production:
+                raise RuntimeError(
+                    f"Không thể kết nối Qdrant Server ({self.host}:{self.port}) trong môi trường Production: {e}. "
+                    f"Vui lòng cấu hình QDRANT_URL hoặc QDRANT_HOST chính xác để tránh lỗi file lock."
+                )
+            print(f"[!] Qdrant Server không khả dụng, fallback sang Local Embedded Storage: {e}")
+            try:
+                local_storage.mkdir(parents=True, exist_ok=True)
+                return QdrantClient(path=str(local_storage))
+            except Exception as final_e:
+                print(f"[!] Local Storage đang bị tiến trình khác chiếm quyền lock ({final_e}). Tạm thời sử dụng In-Memory client cho tiến trình phụ...")
+                return QdrantClient(":memory:")
 
     def ensure_collection(self, vector_size: int, recreate: bool = False):
         """Khởi tạo collection nếu chưa tồn tại hoặc tái tạo mới"""

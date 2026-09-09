@@ -63,6 +63,9 @@ NGUYÊN TẮC PHÁP LÝ TỔNG QUÁT (ÁP DỤNG CHO MỌI NGHIỆP VỤ):
 10. NGUYÊN TẮC XỬ LÝ VI PHẠM NHIỀU HÀNH VI (MULTI-VIOLATION PENALTIES & POINTS):
    a) Về phạt tiền: Khi người vi phạm thực hiện nhiều hành vi vi phạm hành chính trong cùng một lần, người có thẩm quyền xử phạt về từng hành vi và cộng các khoản tiền phạt thành tổng mức phạt tiền chung. Khi người dùng hỏi "tổng mức phạt tiền", BẮT BUỘC phải cộng dồn biên dưới và biên trên của từng hành vi để đưa ra khoảng tổng mức phạt tiền cụ thể (ví dụ: Hành vi A phạt từ 18 - 20 triệu, Hành vi B phạt từ 30 - 40 triệu -> Tổng mức phạt tiền từ 48.000.000 đồng đến 60.000.000 đồng).
    b) Về trừ điểm GPLX: Tuân thủ nghiêm ngặt quy định tại Điểm b Khoản 1 Điều 50 Nghị định 168/2024/NĐ-CP: Trường hợp cá nhân thực hiện nhiều hành vi vi phạm mà bị xử phạt trong cùng một lần, nếu có từ 02 hành vi vi phạm trở lên theo quy định bị trừ điểm giấy phép lái xe thì CHỈ ÁP DỤNG TRỪ ĐIỂM ĐỐI VỚI HÀNH VI VI PHẠM BỊ TRỪ NHIỀU ĐIỂM NHẤT (không được cộng dồn điểm trừ giữa các hành vi).
+
+11. KHUYẾN CÁO MIỄN TRỪ TRÁCH NHIỆM (LEGAL DISCLAIMER):
+   - Luôn giữ thái độ khách quan, khoa học; nội dung trả lời nhằm mục đích hỗ trợ tra cứu và hiểu rõ quy định pháp luật. Đối với các vụ việc phát sinh tranh chấp hoặc xử lý thủ tục hành chính cụ thể, người dân cần liên hệ cơ quan có thẩm quyền hoặc Luật sư để được tư vấn theo hồ sơ thực tế.
 """
 
 

@@ -1,10 +1,12 @@
 import json
 import time
 from typing import List, Dict, Any, Optional
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends, Request
 from pydantic import BaseModel, Field
 from sse_starlette.sse import EventSourceResponse
 
+from backend.app.core.limiter import limiter
+from backend.app.core.config import settings
 from backend.app.services.rag.retriever import HybridRetriever
 from backend.app.services.rag.generator import LegalAnswerGenerator
 
@@ -79,7 +81,9 @@ def _save_message_to_db(conversation_id: str, role: str, content: str, citations
 
 
 @router.post("/chat/completions")
+@limiter.limit(f"{settings.RATE_LIMIT_PER_MINUTE}/minute")
 async def chat_completions(
+    http_request: Request,
     request: ChatMessageRequest,
     current_user: Optional[AuthenticatedUser] = Depends(get_current_user_optional),
 ):
@@ -87,6 +91,7 @@ async def chat_completions(
     Core RAG Endpoint: Nhận câu hỏi, tìm kiếm kết hợp Hybrid Search,
     và trả về luồng phản hồi thời gian thực qua Server-Sent Events (SSE).
     Đồng thời tự động đồng bộ tin nhắn vào Supabase nếu có conversation_id.
+    Áp dụng giới hạn tần suất gọi API (Rate Limiting).
     """
     start_time = time.time()
     query = request.query.strip()
@@ -134,6 +139,9 @@ async def chat_completions(
         full_text = ""
         try:
             async for token in generator.generate_answer_stream(query=query, retrieved_chunks=retrieved_chunks):
+                if await http_request.is_disconnected():
+                    print("[!] Client disconnected from SSE stream, aborting generation.")
+                    break
                 full_text += token
                 yield {
                     "event": "token",

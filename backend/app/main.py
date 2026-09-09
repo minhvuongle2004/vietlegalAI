@@ -14,12 +14,19 @@ from fastapi.middleware.cors import CORSMiddleware
 from backend.app.core.config import settings
 from backend.app.api.v1.api import api_router
 
+from slowapi.errors import RateLimitExceeded
+from slowapi import _rate_limit_exceeded_handler
+from backend.app.core.limiter import limiter
+
 app = FastAPI(
     title=settings.PROJECT_NAME,
     openapi_url=f"{settings.API_V1_STR}/openapi.json",
     docs_url="/docs",
     redoc_url="/redoc",
 )
+
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 # CORS configuration
 if settings.BACKEND_CORS_ORIGINS:
@@ -32,6 +39,13 @@ if settings.BACKEND_CORS_ORIGINS:
     )
 
 app.include_router(api_router, prefix=settings.API_V1_STR)
+
+
+@app.get("/health")
+async def health_check_root():
+    """Endpoint Health Check phục vụ Cloud Load Balancers và Container Probes"""
+    from backend.app.api.v1.endpoints.health import health_check
+    return await health_check()
 
 
 @app.on_event("startup")
@@ -51,3 +65,5 @@ async def root():
         "environment": settings.ENVIRONMENT,
         "docs_url": "/docs",
     }
+
+

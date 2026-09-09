@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { X, Search, Copy, Check, ExternalLink, BookOpen, ShieldCheck } from 'lucide-react';
+import { API_BASE_URL } from '../lib/api';
 
 export default function ArticleModal({ isOpen, onClose, initialArticleNumber, initialDocId }) {
   const [articleNumber, setArticleNumber] = useState(initialArticleNumber || 1);
@@ -14,9 +15,9 @@ export default function ArticleModal({ isOpen, onClose, initialArticleNumber, in
   useEffect(() => {
     if (initialArticleNumber) {
       setArticleNumber(initialArticleNumber);
-      setDocId(initialDocId || 'bllđ_45_2019_qh14');
-      fetchArticle(initialArticleNumber, initialDocId);
+      if (initialDocId) setDocId(initialDocId);
       setMode('view');
+      fetchArticle(initialArticleNumber, initialDocId);
     }
   }, [initialArticleNumber, initialDocId, isOpen]);
 
@@ -24,8 +25,8 @@ export default function ArticleModal({ isOpen, onClose, initialArticleNumber, in
     setLoading(true);
     try {
       const url = dId
-        ? `/api/v1/legal/articles/${num}?doc_id=${encodeURIComponent(dId)}`
-        : `/api/v1/legal/articles/${num}`;
+        ? `${API_BASE_URL}/api/v1/legal/articles/${num}?doc_id=${encodeURIComponent(dId)}`
+        : `${API_BASE_URL}/api/v1/legal/articles/${num}`;
       const res = await fetch(url);
       if (res.ok) {
         const data = await res.json();
@@ -59,7 +60,7 @@ export default function ArticleModal({ isOpen, onClose, initialArticleNumber, in
     // Tra cứu full-text search
     setLoading(true);
     try {
-      const res = await fetch(`/api/v1/legal/search?q=${encodeURIComponent(searchQuery)}`);
+      const res = await fetch(`${API_BASE_URL}/api/v1/legal/search?q=${encodeURIComponent(searchQuery)}`);
       if (res.ok) {
         const data = await res.json();
         setSearchResults(data);
