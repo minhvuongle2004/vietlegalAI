@@ -16,8 +16,11 @@ import {
   Cpu,
   LogOut,
   User,
+  Menu,
+  Settings,
 } from 'lucide-react';
 import ArticleModal from './components/ArticleModal';
+import ProfileModal from './components/ProfileModal';
 import { useAuth } from './context/AuthContext';
 import { API_BASE_URL } from './lib/api';
 import './App.css';
@@ -84,6 +87,8 @@ export default function App() {
 
   // Sidebar & Conversations State
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const [conversations, setConversations] = useState([]);
   const [currentChatId, setCurrentChatId] = useState(null);
 
@@ -161,6 +166,7 @@ export default function App() {
     setCurrentChatId(null);
     setMessages([]);
     setInput('');
+    setIsMobileDrawerOpen(false);
     if (textareaRef.current) {
       textareaRef.current.style.height = 'auto';
     }
@@ -170,6 +176,7 @@ export default function App() {
   const handleSelectConversation = async (conv) => {
     setCurrentChatId(conv.id);
     setInput('');
+    setIsMobileDrawerOpen(false);
 
     if (user && session?.access_token) {
       try {
@@ -412,8 +419,16 @@ export default function App() {
 
   return (
     <div className="chatgpt-layout">
+      {/* Mobile Drawer Backdrop */}
+      {isMobileDrawerOpen && (
+        <div
+          className="mobile-drawer-backdrop"
+          onClick={() => setIsMobileDrawerOpen(false)}
+        />
+      )}
+
       {/* Left Sidebar */}
-      <aside className={`chatgpt-sidebar ${!sidebarOpen ? 'collapsed' : ''}`}>
+      <aside className={`chatgpt-sidebar ${!sidebarOpen ? 'collapsed' : ''} ${isMobileDrawerOpen ? 'mobile-open' : ''}`}>
         <div className="sidebar-header">
           <div className="sidebar-brand">
             <div className="sidebar-brand-icon">
@@ -528,12 +543,57 @@ export default function App() {
             </button>
           )}
         </div>
+        {/* Mobile Sidebar Bottom Actions (ChatGPT iOS Style - Image 2) */}
+        <div className="mobile-sidebar-actions">
+          <button className="mobile-new-chat-pill" onClick={handleNewChat}>
+            <Plus size={18} />
+            <span>Đoạn chat</span>
+          </button>
+          <button
+            className="mobile-settings-btn"
+            onClick={() => {
+              setIsMobileDrawerOpen(false);
+              setIsProfileModalOpen(true);
+            }}
+            aria-label="Cài đặt tài khoản"
+          >
+            <Settings size={20} />
+          </button>
+        </div>
       </aside>
 
       {/* Main Chat Area */}
       <main className="chatgpt-main">
-        {/* Top Navbar */}
-        <div className="main-navbar">
+        {/* Mobile Topbar (ChatGPT iOS Style - Image 3) */}
+        <header className="mobile-topbar">
+          <button
+            className="mobile-round-btn"
+            onClick={() => setIsMobileDrawerOpen(true)}
+            aria-label="Mở Menu"
+          >
+            <Menu size={20} />
+          </button>
+
+          <button
+            className={`mobile-mode-badge ${useReranker ? 'deep' : ''}`}
+            onClick={() => setUseReranker(!useReranker)}
+            title="Chuyển chế độ suy luận"
+          >
+            {useReranker ? <Cpu size={14} /> : <Zap size={14} />}
+            <span>{useReranker ? 'Chuyên sâu (GPU)' : 'Tiêu chuẩn'}</span>
+          </button>
+
+          <button
+            className="mobile-round-btn"
+            onClick={handleNewChat}
+            aria-label="Đoạn chat mới"
+          >
+            <Plus size={20} />
+          </button>
+        </header>
+
+        {/* Desktop Top Navbar */}
+        <div className="main-navbar desktop-only-navbar">
           <div className="nav-left-section">
             {!sidebarOpen && (
               <button
@@ -778,6 +838,12 @@ export default function App() {
           </div>
         )}
       </main>
+
+      {/* User Profile / Settings Modal (ChatGPT iOS Style - Image 1) */}
+      <ProfileModal
+        isOpen={isProfileModalOpen}
+        onClose={() => setIsProfileModalOpen(false)}
+      />
 
       {/* Article Inspection Modal */}
       <ArticleModal
