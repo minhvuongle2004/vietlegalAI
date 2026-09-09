@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import ArticleModal from './components/ArticleModal';
 import ProfileModal from './components/ProfileModal';
+import LoginPromptModal from './components/LoginPromptModal';
 import { useAuth } from './context/AuthContext';
 import { API_BASE_URL } from './lib/api';
 import './App.css';
@@ -89,6 +90,7 @@ export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
+  const [isLoginPromptOpen, setIsLoginPromptOpen] = useState(false);
   const [conversations, setConversations] = useState([]);
   const [currentChatId, setCurrentChatId] = useState(null);
 
@@ -238,6 +240,16 @@ export default function App() {
   const handleSend = async (customQuery) => {
     const queryText = (customQuery || input).trim();
     if (!queryText || loading) return;
+
+    // Giới hạn 2 câu hỏi miễn phí đối với khách chưa đăng nhập Google
+    if (!user) {
+      const guestQueryCount = parseInt(localStorage.getItem('vietlegal_guest_query_count') || '0', 10);
+      if (guestQueryCount >= 2) {
+        setIsLoginPromptOpen(true);
+        return;
+      }
+      localStorage.setItem('vietlegal_guest_query_count', (guestQueryCount + 1).toString());
+    }
 
     setInput('');
     if (textareaRef.current) {
@@ -829,6 +841,12 @@ export default function App() {
       <ProfileModal
         isOpen={isProfileModalOpen}
         onClose={() => setIsProfileModalOpen(false)}
+      />
+
+      {/* Login Required Modal (Sau 2 câu hỏi miễn phí của khách) */}
+      <LoginPromptModal
+        isOpen={isLoginPromptOpen}
+        onClose={() => setIsLoginPromptOpen(false)}
       />
 
       {/* Article Inspection Modal */}

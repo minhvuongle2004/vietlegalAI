@@ -1480,4 +1480,154 @@ body, html {
   }
 }
 
+/* ==============================================================================
+   LOGIN PROMPT MODAL (AFTER 2 GUEST QUESTIONS)
+   ============================================================================== */
+.login-prompt-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.login-prompt-dialog {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background-color: #171717;
+  border: 1px solid #2e2e2e;
+  border-radius: 24px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+  animation: scaleUp 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes scaleUp {
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.login-prompt-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #262626;
+  border: 1px solid #333333;
+  color: #a3a3a3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.login-prompt-close:hover {
+  background: #333333;
+  color: #ffffff;
+}
+
+.login-prompt-icon-wrapper {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.login-prompt-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.login-prompt-desc {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #a3a3a3;
+  margin-bottom: 20px;
+}
+
+.login-prompt-desc strong {
+  color: #38bdf8;
+  font-weight: 600;
+}
+
+.login-prompt-benefits {
+  width: 100%;
+  background: #212121;
+  border: 1px solid #2a2a2a;
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 22px;
+  text-align: left;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.82rem;
+  color: #e5e5e5;
+  line-height: 1.35;
+}
+
+.benefit-icon {
+  flex-shrink: 0;
+}
+
+.login-prompt-google-btn {
+  width: 100%;
+  height: 46px;
+  border-radius: 23px;
+  background-color: #ffffff;
+  color: #1f1f1f;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(255, 255, 255, 0.2);
+  transition: background-color 0.15s, transform 0.1s;
+}
+
+.login-prompt-google-btn:active {
+  transform: scale(0.98);
+}
+
+.login-prompt-google-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.login-prompt-subnote {
+  font-size: 0.74rem;
+  color: #737373;
+  margin-top: 12px;
+}
+
+
 
