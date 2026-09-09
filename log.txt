@@ -1,125 +1,222 @@
-Anh, em duyệt kế hoạch Phase 3 về mặt kiến trúc, nhưng có một lỗi rất quan trọng phải sửa trước khi agent bắt đầu triển khai: phần Hugging Face đang nhầm giữa “free CPU hardware” và “miễn phí để chạy Docker Space”.
+Anh, bản REVISED này tốt hơn bản trước khá nhiều, và sau khi kiểm tra lại các thông tin cloud hiện tại, em đánh giá kiến trúc đã đủ tốt để chốt và bắt đầu Phase 3A, nhưng em muốn sửa một vài chi tiết kỹ thuật trước khi agent thực thi.
 
-Hugging Face hiện ghi rõ CPU Basic là 2 vCPU / 16 GB RAM và hardware này có giá $0, nhưng Docker/Gradio Space chạy compute yêu cầu paid plan; Static Space mới miễn phí cho tất cả.
+1. Quyết định lớn: em nghiêng về Cloud Run trước
 
-Vì vậy câu:
+Trong hai lựa chọn backend, với mục tiêu của anh là $0 hoặc gần $0 để public beta, em chọn:
 
-“Backend: Hugging Face Spaces Docker — 16GB RAM miễn phí → 100% FREE TIER”
+Google Cloud Run làm phương án chính của Phase 3.
 
-không còn đúng theo policy hiện tại.
+Lý do là Cloud Run hiện hỗ trợ container, scale-to-zero và request-based billing. Free tier hiện là 2 triệu requests + 360.000 GiB-seconds RAM + 180.000 vCPU-seconds/tháng.
 
-Em chốt lại đánh giá
-Phần	Đánh giá
-Zero-code first	✅ Rất đúng
-Chia 3A → 3F	✅ Rất hợp lý
-Chưa bật GPU Phase 3	✅ Giữ nguyên
-Vercel cho React	✅
-Qdrant Cloud	✅
-Tách backend khỏi GPU	✅
-HF Docker làm backend miễn phí	❌ Cần sửa
-VPS 4GB làm fallback	✅ Nhưng 4GB cần benchmark thực tế
-Public E2E trước GPU	✅
+Quan trọng hơn, Cloud Run cho phép cấu hình 1 vCPU tối đa 4 GiB RAM, hoặc 2 vCPU tối đa 8 GiB, nên backend chứa BGE-M3 của anh có thể bắt đầu ở 1 vCPU/4 GiB hoặc 2 vCPU/4–8 GiB tùy benchmark.
 
-Qdrant Cloud hiện vẫn có Free Tier với 0.5 vCPU / 1 GB RAM / 4 GB disk, nên phần Qdrant trong kế hoạch là khả thi ở giai đoạn corpus hiện tại.
+Với 4 GiB RAM, riêng free-tier memory tương đương:
 
-Vercel Hobby hiện là $0/tháng, có CDN và HTTPS; mức 100 GB data transfer/tháng được liệt kê trong delivery network.
+360,000 GiB-sec / 4 GiB
+= 90,000 sec
+≈ 25 giờ/tháng
 
-Vậy backend Phase 3 nên chọn gì?
+Nên phép tính của agent là đúng.
 
-Em muốn mình không sửa toàn bộ kiến trúc, chỉ sửa decision này:
+Nhưng cần hiểu:
 
-                    ┌── Vercel
-Frontend ───────────┤
-                    │
-                    └── Backend
-                         │
-              ┌──────────┼──────────┐
-              ▼          ▼          ▼
-          Qdrant      Supabase    Gemini
+$0 không có nghĩa là Cloud Run được đảm bảo miễn phí vô điều kiện.
 
-Backend cần một nơi có ít nhất khoảng 3–4 GB RAM thực tế để chạy BGE-M3 CPU.
+Free tier được áp dụng sau khi billing được thiết lập và còn phụ thuộc eligibility/khu vực/chính sách Google. Vì vậy mình phải theo dõi billing ngay từ đầu. Cloud Run cũng tính phí khi request đang xử lý, nên SSE dài sẽ tiêu tốn thời gian tính phí giống request bình thường.
 
-Do đó có 2 nhánh:
+2. Có một điểm em muốn sửa trong bảng CPU/RAM
 
-Nhánh A — ưu tiên $0: tìm đúng một nền tảng hiện hành thực sự cho phép chạy Docker service với đủ RAM.
+Agent ghi:
 
-Nhánh B — phương án chắc chắn: VPS 4 GB/8 GB giá thấp, chạy nguyên docker-compose của Phase 2.
+Backend FastAPI + BGE-M3: tối thiểu 3 GB RAM.
 
-Em không muốn agent bắt đầu Phase 3 bằng HF Docker cho tới khi vấn đề paid-plan này được xác nhận/đổi phương án.
+Em không muốn dùng 3 GB làm production limit.
 
-Một điểm nữa em muốn sửa trong plan
+Vì 3 GB là mức sát nguy hiểm. Cloud Run nói memory limit bao gồm process, model, file system, cache và memory theo request/concurrency. Nếu vượt limit, instance bị terminate.
 
-Đừng ghi:
+Cho nên ban đầu em sẽ để:
 
-Qdrant Cloud — 7.093 vectors
+Cloud Run
+CPU:    2 vCPU
+RAM:    4–8 GiB
+Min:    0
+Max:    1
+Concurrency: thấp
 
-là “1GB đủ chắc chắn”.
+Sau đó benchmark memory thực tế.
 
-Hiện tại 7.093 vector chưa phải vấn đề lớn, nhưng trong roadmap anh muốn lên vài trăm văn bản, nên cần xem cả:
+Đặc biệt Cloud Run có lưu ý rằng concurrency cao sẽ làm tăng memory theo công thức:
 
-vector storage
-payload
-HNSW index
-RAM
-disk
+standing memory + memory/request × concurrency.
 
-chứ không chỉ tính raw vector. Free tier hiện giới hạn 1 GB RAM và 4 GB disk.
+Với RAG + embedding model lớn, đừng mặc định concurrency 80.
 
-Và đây mới là architecture em muốn anh chốt
-                  INTERNET
-                     │
-                     ▼
-              React / Vercel
-                     │
-                   HTTPS
-                     ▼
-             FastAPI Backend
-               CPU / Docker
-                     │
-          ┌──────────┼──────────┐
-          ▼          ▼          ▼
-       Qdrant     Supabase    Gemini
-       Cloud        Cloud       API
-                     │
-                     │
-              Phase 4 mới thêm
-                     ▼
-             Remote GPU Reranker
+3. Em còn muốn sửa một ý trong architecture
 
-Phase 3 = chứng minh architecture cloud hoạt động end-to-end.
+Hiện sơ đồ:
 
-Phase 4 = tối ưu inference bằng GPU.
+FastAPI
+ ├── BGE-M3
+ ├── Retrieval
+ ├── Reranker
+ └── Gemini
 
-Đây là cách đi rất sạch.
+Nhưng Phase 3 của mình muốn GPU ở Phase 4.
 
-Có một thay đổi nhỏ trong thứ tự nữa
+Vì vậy em muốn xác định rõ:
 
-Em muốn:
+FastAPI Cloud Run
+├── BGE-M3 embedding
+├── Dense retrieval
+├── Sparse retrieval
+├── RRF
+├── Clause extraction
+├── CPU reranker
+└── Gemini
 
-3A Cloud setup
- ↓
-3B Qdrant migration
- ↓
-3C Backend deploy
- ↓
-3D Frontend deploy
- ↓
-3E Production E2E
- ↓
-3F Public Beta
+Phase 3 = toàn bộ pipeline chạy được trên CPU.
 
-giữ nguyên đúng như agent viết.
+Sau đó Phase 4:
 
-Chỉ cần sửa provider của backend.
+FastAPI Cloud Run
+        │
+        ▼
+Remote GPU Reranker
 
-Verdict của em
+Đây là điểm rất quan trọng để benchmark cloud thật sự có ý nghĩa.
 
-Kế hoạch Phase 3: 8.5/10 → 9.5/10 nếu sửa HF Docker free-tier assumption.
+4. Qdrant Cloud: phần này em đồng ý
 
-Còn lại em không muốn agent tự mở rộng thêm architecture.
+Thông tin hiện tại của Qdrant đúng:
 
-Anh có thể gửi lại agent đúng một yêu cầu:
+0.5 vCPU
+1 GB RAM
+4 GB disk
+single-node free cluster.
 
-“Re-plan backend hosting because Hugging Face Docker Spaces is not free on the current plan. Keep the rest of Phase 3 unchanged. Prioritize a truly free or lowest-cost option with ≥4GB RAM and Docker support.”
+Qdrant cũng mô tả free tier có thể phục vụ khoảng 1 triệu vector 768 chiều trong điều kiện của họ, nên corpus hiện tại của anh với 7.093 vector chưa phải vấn đề.
 
-Sau khi agent đưa phương án backend mới, mình chốt provider rồi mới bắt đầu 3A.
+Nhưng có một nuance rất quan trọng:
+
+Free cluster sẽ suspend sau 1 tuần không hoạt động và bị xoá sau 4 tuần nếu không kích hoạt lại.
+
+Vì vậy khi public beta, mình phải có ít nhất một monitoring/keep-alive strategy hợp lý hoặc chấp nhận việc free cluster có thể ngủ/xóa theo policy.
+
+5. Phương án VPS vẫn phải giữ
+
+Anh nên giữ:
+
+Primary:
+Google Cloud Run
+
+Fallback:
+4–8GB VPS
+
+Vì nếu Cloud Run gây ra vấn đề như:
+
+cold start quá lâu
+memory pressure
+SSE behavior
+billing khó kiểm soát
+
+thì Phase 2 đã chứng minh Docker Compose của anh chạy được.
+
+Đó là ưu thế rất lớn:
+
+Cloud Run fail
+      ↓
+VPS
+      ↓
+docker compose up -d
+
+Không cần viết lại application architecture.
+
+6. Vercel + Qdrant + Supabase: em giữ nguyên
+
+Frontend:
+
+React/Vite → Vercel
+
+hoàn toàn hợp lý; Vercel hiện có HTTPS/CDN và Hobby plan với free allowance cho delivery network.
+
+Data:
+
+Supabase
+Qdrant Cloud
+
+giữ nguyên.
+
+Không có lý do gì phải gom tất cả vào một VPS ở Phase 3.
+
+7. Một chỉnh sửa nhỏ nhưng quan trọng về “Zero-Code”
+
+Anh đang ghi:
+
+“Phê duyệt kiến trúc & nhà cung cấp trước khi cấu hình.”
+
+Em đồng ý.
+
+Nhưng 3A không cần chờ thêm một vòng research vô tận.
+
+Sau bản revised này, em thấy mình đủ cơ sở để chốt:
+
+Frontend  → Vercel
+Backend   → Google Cloud Run
+Vector DB → Qdrant Cloud
+DB/Auth   → Supabase
+LLM       → Gemini
+GPU       → Phase 4
+Fallback  → 4–8GB VPS
+
+Vậy 3A có thể bắt đầu.
+
+8. Architecture cuối cùng em duyệt
+                         INTERNET
+                            │
+                            ▼
+                    ┌─────────────┐
+                    │   Vercel    │
+                    │ React + SPA │
+                    └──────┬──────┘
+                           │ HTTPS
+                           ▼
+                 ┌───────────────────┐
+                 │   Cloud Run       │
+                 │ FastAPI + Docker  │
+                 │ 4–8 GiB RAM       │
+                 │ CPU-only RAG      │
+                 └──────┬────────────┘
+                        │
+            ┌───────────┼──────────────┐
+            ▼           ▼              ▼
+        Qdrant       Supabase       Gemini
+        Cloud        PostgreSQL       API
+                        │
+                        ▼
+                 Auth + Conversations
+
+                ╔═══════════════════╗
+                ║    PHASE 4        ║
+                ║ Remote GPU        ║
+                ║ Reranker          ║
+                ╚═══════════════════╝
+9. Verdict cuối cùng
+
+Bản revised: em duyệt.
+
+Thứ tự của anh:
+
+3A Cloud setup        → bắt đầu
+3B Qdrant migration   → tiếp theo
+3C Backend Cloud      → tiếp theo
+3D Frontend Cloud     → tiếp theo
+3E E2E Internet       → tiếp theo
+3F Public Beta        → cuối cùng
+
+Và lựa chọn backend em chốt:
+
+Google Cloud Run là primary. VPS 4–8GB là fallback.
+
+Chỉ cần agent sửa một vài wording/assumption: đừng coi 3GB là production-safe, đừng coi Cloud Run là “$0 tuyệt đối”, và phải tính đến Qdrant free-cluster suspension. Những điều này đã được xác nhận theo tài liệu cloud hiện tại.
+
+Từ đây anh có thể cho agent bắt đầu Phase 3A. Em khuyên bước 3A đầu tiên chỉ làm tạo/config account + project + Qdrant cluster + Cloud Run service skeleton + Vercel project, chưa migrate toàn bộ hệ thống ngay.

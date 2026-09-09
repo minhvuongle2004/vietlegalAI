@@ -42,14 +42,13 @@ Hệ thống tuân thủ nguyên tắc **tách biệt rủi ro**, giữ đúng p
 Do mô hình `BAAI/bge-m3` nặng ~2.2GB, khi nạp vào bộ nhớ CPU tiến trình backend chiếm từ **`2.6GB - 3.0GB RAM`**. Các PaaS Free Tier 512MB (Render, Koyeb) chắc chắn bị **OOM Kill (Exit 137)**.  
 Dưới đây là 2 nhánh phương án tuyển chọn đáp ứng đúng tiêu chí của Mentor:
 
-| Tiêu chí | **Nhánh A.1: Google Cloud Run** *(Serverless $0)* | **Nhánh A.2: Oracle Cloud Always Free** *(12GB RAM $0)* | **Nhánh B: Low-Cost VPS** *(Chắc chắn nhất)* |
-| :--- | :--- | :--- | :--- |
-| **Chi phí** | **$0 / tháng** (Trong hạn mức Free Tier) | **$0 / tháng** (Trọn đời) | **~90.000 - 150.000 VNĐ / tháng** |
-| **Cấu hình phần cứng** | 1-2 vCPU, **4 GB RAM** | 2 OCPU (ARM Ampere), **12 GB RAM** | 2 vCPU, **4 GB - 8 GB RAM**, 40GB NVMe |
-| **Cơ chế Free Tier thực tế** | **360.000 GiB-seconds memory / tháng** + 2 triệu requests/tháng miễn phí. Với cấu hình 4GB RAM, được **90.000 giây (~25 giờ) active compute** mỗi tháng. Scale to zero khi không có request $\rightarrow$ hoàn toàn $0. | Miễn phí cố định **2 OCPU / 12 GB RAM / 200 GB Storage** (Policy OCI cập nhật 2026). Chạy 24/7 liên tục không bị tính phí. | Thuê VPS trả trước (Hetzner Cloud CX22 ~3.5€/tháng, OVHcloud, hoặc VPS Việt Nam Vietnix/TinoHost). |
-| **Khả năng chạy Docker** | ✅ Docker Container Native (Deploy trực tiếp [Dockerfile.backend](file:///d:/%C4%90i%20l%C3%A0m/VietLegal%20AI/Dockerfile.backend)) | ✅ Cài Docker & Docker Compose chạy 24/7 | ✅ Tái sử dụng **100%** [docker-compose.yml](file:///d:/%C4%90i%20l%C3%A0m/VietLegal%20AI/docker-compose.yml) của Phase 2 |
-| **Độ trễ / Cold Start** | ⚠️ Cold Start: ~20-30s khi container scale từ 0 lên để nạp model PyTorch. | ❌ Không có Cold Start (Server chạy 24/7). Ping từ Singapore/Tokyo về VN ~40-60ms. | ❌ Không có Cold Start (Server chạy 24/7). Ping nội địa VN < 10ms nếu dùng VPS trong nước. |
-| **Độ phức tạp thiết lập** | 🟢 Thấp: Chỉ cần Google Cloud CLI hoặc Web Console kết nối Container Registry. | 🟡 Trung bình: Cần thẻ thanh toán quốc tế xác minh tài khoản OCI Always Free. | 🟢 Rất thấp: SSH vào VPS, `git clone` và `docker compose up -d`. |
+| Tiêu chí | **Nhánh A: Google Cloud Run** *(CHỐT CHÍNH THỨC)* | **Nhánh B: Low-Cost VPS 4–8GB** *(FALLBACK DỰ PHÒNG)* |
+| :--- | :--- | :--- |
+| **Vai trò** | **Phương án chính thức Phase 3** | **Phương án dự phòng chắc chắn** |
+| **Cấu hình phần cứng** | **2 vCPU, 4–8 GiB RAM** (Tránh ngưỡng 3GB sát nguy hiểm, concurrency thấp) | 2 vCPU, **4 GB - 8 GB RAM**, 40GB NVMe |
+| **Cơ chế tài nguyên** | Scale-to-zero (Min instance: 0, Max instance: 1), Free tier 360.000 GiB-seconds RAM + 2 triệu req/tháng. Hạn chế concurrency để tránh nhân đôi RAM. | Chạy 24/7 liên tục, chi phí ~90k - 150k VNĐ/tháng (Hetzner / Vietnix). |
+| **Khả năng chạy Docker** | ✅ Deploy trực tiếp [Dockerfile.backend](file:///d:/%C4%90i%20l%C3%A0m/VietLegal%20AI/Dockerfile.backend) | ✅ Tái sử dụng **100%** [docker-compose.yml](file:///d:/%C4%90i%20l%C3%A0m/VietLegal%20AI/docker-compose.yml) của Phase 2 |
+| **Lưu ý chi phí & vận hành** | Theo dõi billing dashboard từ đầu. SSE request dài tính compute time bình thường. | An toàn tuyệt đối, không cold start, kiểm soát 100%. |
 
 ### 📌 Đề xuất lựa chọn Backend:
 - **Nếu anh muốn trải nghiệm 100% chi phí $0**: Chọn **Google Cloud Run (Nhánh A.1)** cho giai đoạn test và demo ban đầu.

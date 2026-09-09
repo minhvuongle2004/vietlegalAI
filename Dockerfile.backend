@@ -29,12 +29,13 @@ RUN pip install --no-cache-dir -r /app/backend/requirements.txt
 COPY backend/ /app/backend/
 COPY pipeline/ /app/pipeline/
 
-# Khai báo cổng lắng nghe
+# Khai báo cổng lắng nghe mặc định
+ENV PORT=8000
 EXPOSE 8000
 
 # Liveness Healthcheck probe kiểm tra tiến trình Uvicorn
 HEALTHCHECK --interval=15s --timeout=5s --start-period=30s --retries=3 \
-    CMD curl -f http://localhost:8000/health || exit 1
+    CMD curl -f http://localhost:${PORT:-8000}/health || exit 1
 
-# Khởi chạy Uvicorn Server
-CMD ["uvicorn", "backend.app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Khởi chạy Uvicorn Server (Hỗ trợ biến môi trường PORT của Google Cloud Run)
+CMD ["sh", "-c", "uvicorn backend.app.main:app --host 0.0.0.0 --port ${PORT:-8000}"]
