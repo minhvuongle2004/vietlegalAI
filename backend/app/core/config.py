@@ -20,6 +20,7 @@ class Settings(BaseSettings):
         "http://127.0.0.1:3000",
         "http://localhost:5173",
         "http://127.0.0.1:5173",
+        "https://vietlegal-ai-orcin.vercel.app",
     ]
 
     @field_validator("BACKEND_CORS_ORIGINS", mode="before")
