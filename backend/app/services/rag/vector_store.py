@@ -212,6 +212,11 @@ class QdrantVectorStore:
                 "chapter": r.payload.get("chapter"),
                 "context_header": r.payload.get("context_header"),
                 "content": r.payload.get("content"),
+                "effective_date": r.payload.get("effective_date"),
+                "effective_from": r.payload.get("effective_from") or r.payload.get("effective_date"),
+                "effective_to": r.payload.get("effective_to") or r.payload.get("expiry_date"),
+                "amended_by": r.payload.get("amended_by"),
+                "status": r.payload.get("status"),
             })
         return formatted
 

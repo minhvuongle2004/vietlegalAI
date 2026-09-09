@@ -1,0 +1,132 @@
+[
+  {
+    "id": "TG-01",
+    "title": "Xe máy vượt đèn đỏ: Mức phạt tiền và trừ điểm GPLX",
+    "status": "PASSED",
+    "passed": true,
+    "retrieval_ok": true,
+    "reasoning_ok": true,
+    "version_ok": true,
+    "context_length_chars": 24586,
+    "hydrated_articles": [
+      "traffic_penalty_168_2024_nd_cp:Đ7",
+      "traffic_order_36_2024_qh15:Đ11",
+      "traffic_order_36_2024_qh15:Đ58",
+      "traffic_penalty_168_2024_nd_cp:Đ50"
+    ],
+    "retrieval_time_ms": 50109,
+    "ttft_ms": 17545,
+    "gen_time_ms": 20959,
+    "total_time_ms": 71069,
+    "matched_keywords": [
+      "Điều 7",
+      "Nghị định 168/2024",
+      "4.000.000",
+      "6.000.000",
+      "trừ",
+      "4 điểm",
+      "Điều 11",
+      "Luật Trật tự, an toàn giao thông"
+    ],
+    "missing_keywords": [],
+    "hit_forbidden": [],
+    "answer_preview": "Chào bạn, căn cứ theo các quy định tại **Luật Trật tự, an toàn giao thông đường bộ 2024** và **Nghị định 168/2024/NĐ-CP**, mức xử phạt đối với hành vi vượt đèn đỏ (không chấp hành hiệu lệnh của đèn tín hiệu giao thông) của người điều khiển xe mô tô, xe gắn máy được quy định cụ thể như sau:\n\n---\n\n### 1. Quy định về tín hiệu đèn giao thông\n* Căn cứ theo **Điểm c Khoản 4 Điều 11 Luật Trật tự, an toàn..."
+  },
+  {
+    "id": "TG-02",
+    "title": "Ô tô quá tốc độ 25 km/h: Phạt tiền và trừ điểm GPLX",
+    "status": "PASSED",
+    "passed": true,
+    "retrieval_ok": true,
+    "reasoning_ok": true,
+    "version_ok": true,
+    "context_length_chars": 27313,
+    "hydrated_articles": [
+      "traffic_order_36_2024_qh15:Đ12",
+      "traffic_order_36_2024_qh15:Đ58",
+      "traffic_penalty_168_2024_nd_cp:Đ50"
+    ],
+    "retrieval_time_ms": 47879,
+    "ttft_ms": 14314,
+    "gen_time_ms": 16823,
+    "total_time_ms": 64703,
+    "matched_keywords": [
+      "Điều 6",
+      "Nghị định 168/2024",
+      "6.000.000",
+      "8.000.000",
+      "trừ",
+      "4 điểm",
+      "tốc độ"
+    ],
+    "missing_keywords": [],
+    "hit_forbidden": [],
+    "answer_preview": "Chào bạn, dựa trên các căn cứ pháp lý được cung cấp tại **Nghị định số 168/2024/NĐ-CP**, VietLegal AI xin giải đáp thắc mắc của bạn như sau:\n\n---\n\n### 1. Về mức phạt tiền\nHành vi điều khiển xe ô tô chạy quá tốc độ quy định 25 km/h thuộc khung vi phạm **\"chạy quá tốc độ quy định trên 20 km/h đến 35 km/h\"**.\n\n* **Căn cứ pháp lý:** Điểm a Khoản 6 Điều 6 Nghị định 168/2024/NĐ-CP.\n* **Mức phạt tiền:** ..."
+  },
+  {
+    "id": "TG-05",
+    "title": "Không có Giấy phép lái xe ô tô hoặc GPLX không phù hợp",
+    "status": "PASSED",
+    "passed": true,
+    "retrieval_ok": true,
+    "reasoning_ok": true,
+    "version_ok": true,
+    "context_length_chars": 17982,
+    "hydrated_articles": [
+      "traffic_penalty_168_2024_nd_cp:Đ18",
+      "traffic_order_36_2024_qh15:Đ57"
+    ],
+    "retrieval_time_ms": 22805,
+    "ttft_ms": 12464,
+    "gen_time_ms": 20177,
+    "total_time_ms": 42983,
+    "matched_keywords": [
+      "Điều 18",
+      "18.000.000",
+      "20.000.000",
+      "Nghị định 168/2024",
+      "không phù hợp",
+      "không có giấy phép lái xe"
+    ],
+    "missing_keywords": [],
+    "hit_forbidden": [],
+    "answer_preview": "Chào bạn,\n\nTheo quy định hiện hành, người điều khiển xe ô tô không có Giấy phép lái xe (GPLX) hoặc sử dụng Giấy phép lái xe không phù hợp với loại xe đang điều khiển sẽ bị xử phạt như sau:\n\nCăn cứ theo **Khoản 9 Điều 18 Nghị định 168/2024/NĐ-CP** quy định về xử phạt vi phạm hành chính, trừ điểm giấy phép lái xe các hành vi vi phạm quy định về điều kiện của người điều khiển xe cơ giới.\n\n### 1. Phạt..."
+  },
+  {
+    "id": "TG-10",
+    "title": "Hành vi phức hợp: Đi ngược chiều trên cao tốc + Nồng độ cồn và Xử lý cộng dồn điểm GPLX",
+    "status": "PASSED",
+    "passed": true,
+    "retrieval_ok": true,
+    "reasoning_ok": true,
+    "version_ok": true,
+    "context_length_chars": 34239,
+    "hydrated_articles": [
+      "traffic_penalty_168_2024_nd_cp:Đ6",
+      "traffic_order_36_2024_qh15:Đ9",
+      "traffic_order_36_2024_qh15:Đ58",
+      "traffic_penalty_168_2024_nd_cp:Đ50"
+    ],
+    "retrieval_time_ms": 53593,
+    "ttft_ms": 41519,
+    "gen_time_ms": 50052,
+    "total_time_ms": 103645,
+    "matched_keywords": [
+      "ngược chiều trên đường cao tốc",
+      "nồng độ cồn",
+      "30.000.000",
+      "40.000.000",
+      "18.000.000",
+      "20.000.000",
+      "Điều 6",
+      "10 điểm",
+      "Điều 50",
+      "Nghị định 168/2024",
+      "48.000.000|48 triệu",
+      "60.000.000|60 triệu"
+    ],
+    "missing_keywords": [],
+    "hit_forbidden": [],
+    "answer_preview": "Chào bạn, tôi là VietLegal AI — Trợ lý Trí tuệ Nhân tạo chuyên gia tư vấn Pháp luật Việt Nam. Dựa trên các căn cứ pháp lý được cung cấp tại Nghị định 168/2024/NĐ-CP và Luật Trật tự, an toàn giao thông đường bộ 2024, tôi xin phân tích chi tiết các lỗi vi phạm, tổng mức phạt tiền và phương án xử lý trừ điểm Giấy phép lái xe (GPLX) đối với trường hợp của tài xế như sau:\n\n---\n\n### 1. Phân tích các hàn..."
+  }
+]

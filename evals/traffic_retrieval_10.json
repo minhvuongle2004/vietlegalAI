@@ -1,0 +1,243 @@
+[
+  {
+    "id": "TG-01",
+    "category": "TRAFFIC_PENALTY",
+    "title": "Xe máy vượt đèn đỏ: Mức phạt tiền và trừ điểm GPLX",
+    "query": "Người điều khiển xe mô tô, xe gắn máy có hành vi vượt đèn đỏ (không chấp hành hiệu lệnh của đèn tín hiệu giao thông) thì bị phạt bao nhiêu tiền và có bị trừ điểm Giấy phép lái xe không?",
+    "law_as_of_date": "2026-09-01",
+    "expected_articles": [
+      {
+        "doc_id": "traffic_penalty_168_2024_nd_cp",
+        "doc_keyword": "traffic_penalty",
+        "article_number": 7
+      },
+      {
+        "doc_id": "traffic_order_36_2024_qh15",
+        "doc_keyword": "traffic_order",
+        "article_number": 11
+      }
+    ],
+    "retrieval_baseline_status": "PASSED (10/10)",
+    "target_evidence_preservation": true
+  },
+  {
+    "id": "TG-02",
+    "category": "TRAFFIC_PENALTY_CALCULATION",
+    "title": "Ô tô quá tốc độ 25 km/h: Phạt tiền và trừ điểm GPLX",
+    "query": "Người điều khiển xe ô tô chạy quá tốc độ quy định 25 km/h trên đường bộ thì bị xử phạt hành chính bao nhiêu tiền và bị trừ bao nhiêu điểm Giấy phép lái xe?",
+    "law_as_of_date": "2026-09-01",
+    "expected_articles": [
+      {
+        "doc_id": "traffic_penalty_168_2024_nd_cp",
+        "doc_keyword": "traffic_penalty",
+        "article_number": 6
+      },
+      {
+        "doc_id": "traffic_order_36_2024_qh15",
+        "doc_keyword": "traffic_order",
+        "article_number": 12
+      },
+      {
+        "doc_id": "traffic_order_36_2024_qh15",
+        "doc_keyword": "traffic_order",
+        "article_number": 58
+      }
+    ],
+    "retrieval_baseline_status": "PASSED (10/10)",
+    "target_evidence_preservation": true
+  },
+  {
+    "id": "TG-03",
+    "category": "TRAFFIC_ALCOHOL",
+    "title": "Nồng độ cồn xe máy mức 1: Quy định cấm tuyệt đối và mức phạt",
+    "query": "Người điều khiển xe mô tô tham gia giao thông mà trong máu hoặc hơi thở có nồng độ cồn chưa vượt quá 50 miligam/100 mililít máu hoặc chưa vượt quá 0,25 miligam/1 lít khí thở thì bị xử lý thế nào? Luật mới có cấm tuyệt đối nồng độ cồn không?",
+    "law_as_of_date": "2026-09-01",
+    "expected_articles": [
+      {
+        "doc_id": "traffic_order_36_2024_qh15",
+        "doc_keyword": "traffic_order",
+        "article_number": 9
+      },
+      {
+        "doc_id": "traffic_penalty_168_2024_nd_cp",
+        "doc_keyword": "traffic_penalty",
+        "article_number": 7
+      }
+    ],
+    "retrieval_baseline_status": "PASSED (10/10)",
+    "target_evidence_preservation": true
+  },
+  {
+    "id": "TG-04",
+    "category": "TRAFFIC_SAFETY",
+    "title": "Mũ bảo hiểm: Mức phạt tiền và các trường hợp ngoại lệ không phạt",
+    "query": "Người điều khiển xe máy chở người ngồi sau không đội mũ bảo hiểm cho người đi mô tô, xe máy thì bị phạt bao nhiêu tiền và trường hợp nào chở người không đội mũ bảo hiểm thì không bị xử phạt?",
+    "law_as_of_date": "2026-09-01",
+    "expected_articles": [
+      {
+        "doc_id": "traffic_penalty_168_2024_nd_cp",
+        "doc_keyword": "traffic_penalty",
+        "article_number": 7
+      },
+      {
+        "doc_id": "traffic_order_36_2024_qh15",
+        "doc_keyword": "traffic_order",
+        "article_number": 33
+      }
+    ],
+    "retrieval_baseline_status": "PASSED (10/10)",
+    "target_evidence_preservation": true
+  },
+  {
+    "id": "TG-05",
+    "category": "TRAFFIC_LICENSE",
+    "title": "Không có Giấy phép lái xe ô tô hoặc GPLX không phù hợp",
+    "query": "Người điều khiển xe ô tô không có Giấy phép lái xe hoặc sử dụng Giấy phép lái xe không phù hợp với loại xe đang điều khiển thì bị xử phạt như thế nào theo quy định hiện hành?",
+    "law_as_of_date": "2026-09-01",
+    "expected_articles": [
+      {
+        "doc_id": "traffic_penalty_168_2024_nd_cp",
+        "doc_keyword": "traffic_penalty",
+        "article_number": 18
+      },
+      {
+        "doc_id": "traffic_order_36_2024_qh15",
+        "doc_keyword": "traffic_order",
+        "article_number": [
+          56,
+          57
+        ]
+      }
+    ],
+    "retrieval_baseline_status": "PASSED (10/10)",
+    "target_evidence_preservation": true
+  },
+  {
+    "id": "TG-06",
+    "category": "TRAFFIC_LICENSE_POINTS",
+    "title": "Hệ thống điểm GPLX: Tổng số điểm và nguyên tắc trừ điểm khi vi phạm nhiều lỗi",
+    "query": "Mỗi Giấy phép lái xe có bao nhiêu điểm? Khi một người thực hiện nhiều hành vi vi phạm bị trừ điểm trong cùng một lần xử phạt thì nguyên tắc trừ điểm GPLX được tính như thế nào?",
+    "law_as_of_date": "2026-09-01",
+    "expected_articles": [
+      {
+        "doc_id": "traffic_order_36_2024_qh15",
+        "doc_keyword": "traffic_order",
+        "article_number": 58
+      },
+      {
+        "doc_id": "traffic_penalty_168_2024_nd_cp",
+        "doc_keyword": "traffic_penalty",
+        "article_number": 50
+      }
+    ],
+    "retrieval_baseline_status": "PASSED (10/10)",
+    "target_evidence_preservation": true
+  },
+  {
+    "id": "TG-07",
+    "category": "TRAFFIC_LICENSE_RECOVERY",
+    "title": "Phục hồi điểm GPLX: Điều kiện tự động phục hồi và thủ tục kiểm tra kiến thức",
+    "query": "Giấy phép lái xe bị trừ điểm thì sau bao lâu được tự động phục hồi đủ 12 điểm? Nếu bị trừ hết điểm thì người có GPLX phải làm gì để được phục hồi điểm?",
+    "law_as_of_date": "2026-09-01",
+    "expected_articles": [
+      {
+        "doc_id": "traffic_order_36_2024_qh15",
+        "doc_keyword": "traffic_order",
+        "article_number": 58
+      },
+      {
+        "doc_id": "traffic_penalty_168_2024_nd_cp",
+        "doc_keyword": "traffic_penalty",
+        "article_number": 51
+      }
+    ],
+    "retrieval_baseline_status": "PASSED (10/10)",
+    "target_evidence_preservation": true
+  },
+  {
+    "id": "TG-08",
+    "category": "TRAFFIC_CROSS_DOCUMENT",
+    "title": "Lùi xe trên đường cao tốc: Quy tắc cấm theo Luật 36 và Chế tài phạt theo NĐ 168",
+    "query": "Hành vi lùi xe trên đường cao tốc bị pháp luật cấm tại điều khoản nào của Luật Trật tự, an toàn giao thông đường bộ 2024 và người điều khiển xe ô tô lùi xe trên đường cao tốc bị phạt tiền bao nhiêu, trừ bao nhiêu điểm GPLX theo Nghị định 168/2024/NĐ-CP?",
+    "law_as_of_date": "2026-09-01",
+    "expected_articles": [
+      {
+        "doc_id": "traffic_order_36_2024_qh15",
+        "doc_keyword": "traffic_order",
+        "article_number": 16
+      },
+      {
+        "doc_id": "traffic_order_36_2024_qh15",
+        "doc_keyword": "traffic_order",
+        "article_number": 25
+      },
+      {
+        "doc_id": "traffic_penalty_168_2024_nd_cp",
+        "doc_keyword": "traffic_penalty",
+        "article_number": 6
+      }
+    ],
+    "retrieval_baseline_status": "PASSED (10/10)",
+    "target_evidence_preservation": true
+  },
+  {
+    "id": "TG-09",
+    "category": "TRAFFIC_TEMPORAL",
+    "title": "Hiệu lực văn bản và Thời điểm áp dụng: NĐ 168/2024 và mốc chuyển tiếp",
+    "query": "Quy định xử phạt vi phạm hành chính về giao thông đường bộ tại Nghị định 168/2024/NĐ-CP có hiệu lực thi hành từ thời điểm nào? Đối với các điều khoản được sửa đổi, bổ sung bởi Nghị định 238/2026/NĐ-CP có hiệu lực từ ngày 15/08/2026 thì trường hợp hành vi vi phạm xảy ra vào tháng 03/2026 sẽ áp dụng theo văn bản nào?",
+    "law_as_of_date": "2026-03-01",
+    "expected_articles": [
+      {
+        "doc_id": "traffic_penalty_168_2024_nd_cp",
+        "doc_keyword": "traffic_penalty",
+        "article_number": [
+          53,
+          54
+        ]
+      },
+      {
+        "doc_id": "traffic_order_36_2024_qh15",
+        "doc_keyword": "traffic_order",
+        "article_number": 88
+      }
+    ],
+    "retrieval_baseline_status": "PASSED (10/10)",
+    "target_evidence_preservation": true
+  },
+  {
+    "id": "TG-10",
+    "category": "TRAFFIC_COMPLEX",
+    "title": "Hành vi phức hợp: Đi ngược chiều trên cao tốc + Nồng độ cồn và Xử lý cộng dồn điểm GPLX",
+    "query": "Một tài xế lái xe ô tô con đi ngược chiều trên đường cao tốc và có nồng độ cồn trong hơi thở là 0,35 mg/1 lít khí thở. Hãy phân tích: Tài xế này đã vi phạm những lỗi gì, tổng mức phạt tiền và việc trừ điểm Giấy phép lái xe được xử lý như thế nào theo Nghị định 168/2024/NĐ-CP?",
+    "law_as_of_date": "2026-09-01",
+    "expected_articles": [
+      {
+        "doc_id": "traffic_penalty_168_2024_nd_cp",
+        "doc_keyword": "traffic_penalty",
+        "article_number": 6
+      },
+      {
+        "doc_id": "traffic_penalty_168_2024_nd_cp",
+        "doc_keyword": "traffic_penalty",
+        "article_number": 50
+      },
+      {
+        "doc_id": "traffic_order_36_2024_qh15",
+        "doc_keyword": "traffic_order",
+        "article_number": 9
+      },
+      {
+        "doc_id": "traffic_order_36_2024_qh15",
+        "doc_keyword": "traffic_order",
+        "article_number": 25
+      },
+      {
+        "doc_id": "traffic_order_36_2024_qh15",
+        "doc_keyword": "traffic_order",
+        "article_number": 58
+      }
+    ],
+    "retrieval_baseline_status": "PASSED (10/10)",
+    "target_evidence_preservation": true
+  }
+]

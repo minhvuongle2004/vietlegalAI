@@ -1,0 +1,432 @@
+[
+  {
+    "id": "TG-01",
+    "category": "TRAFFIC_PENALTY",
+    "title": "Xe máy vượt đèn đỏ: Mức phạt tiền và trừ điểm GPLX",
+    "query": "Người điều khiển xe mô tô, xe gắn máy có hành vi vượt đèn đỏ (không chấp hành hiệu lệnh của đèn tín hiệu giao thông) thì bị phạt bao nhiêu tiền và có bị trừ điểm Giấy phép lái xe không?",
+    "law_as_of_date": "2026-09-01",
+    "status": "PASSED",
+    "passed": true,
+    "retrieval_ok": true,
+    "reasoning_ok": true,
+    "version_ok": true,
+    "retrieved_articles": [
+      "traffic_penalty_168_2024_nd_cp:Đ7",
+      "traffic_order_36_2024_qh15:Đ11",
+      "traffic_order_36_2024_qh15:Đ58",
+      "traffic_penalty_168_2024_nd_cp:Đ50",
+      "traffic_penalty_168_2024_nd_cp:Đ51"
+    ],
+    "matched_articles": [
+      "traffic_penalty_168_2024_nd_cp:Đ7",
+      "traffic_order_36_2024_qh15:Đ11"
+    ],
+    "missing_articles": [],
+    "kw_ratio": 0.75,
+    "matched_kw": [
+      "Điều 7",
+      "Nghị định 168/2024",
+      "4.000.000",
+      "6.000.000",
+      "trừ",
+      "4 điểm"
+    ],
+    "missing_kw": [
+      "Điều 11",
+      "Luật Trật tự, an toàn giao thông"
+    ],
+    "hit_forbidden": [],
+    "cited_versions": [
+      "NĐ 168/2024/NĐ-CP"
+    ],
+    "special_notes": [],
+    "latency_ms": 65042,
+    "full_answer": "Chào bạn, VietLegal AI xin giải đáp câu hỏi của bạn về mức xử phạt và trừ điểm Giấy phép lái xe (GPLX) đối với hành vi điều khiển xe mô tô, xe gắn máy vượt đèn đỏ (không chấp hành hiệu lệnh của đèn tín hiệu giao thông) theo quy định pháp luật như sau:\n\n---\n\n### 1. Trường hợp vi phạm thông thường (không gây tai nạn giao thông)\n\nCăn cứ theo quy định tại **Điều 7 Nghị định 168/2024/NĐ-CP**:\n\n* **Mức phạt tiền:** Phạt tiền từ **4.000.000 đồng đến 6.000.000 đồng** đối với hành vi: *\"Không chấp hành hiệu lệnh của đèn tín hiệu giao thông\"* (theo **Điểm c Khoản 7 Điều 7**).\n* **Trừ điểm Giấy phép lái xe:** Bị **trừ 04 điểm** trên Giấy phép lái xe (theo **Điểm b Khoản 13 Điều 7**).\n\n---\n\n### 2. Trường hợp vượt đèn đỏ mà gây tai nạn giao thông\n\nNếu người điều khiển phương tiện thực hiện hành vi không chấp hành hiệu lệnh của đèn tín hiệu giao thông mà **gây tai nạn giao thông**, chế tài sẽ được áp dụng ở khung tăng nặng theo **Điều 7 Nghị định 168/2024/NĐ-CP**:\n\n* **Mức phạt tiền:** Phạt tiền từ **10.000.000 đồng đến 14.000.000 đồng** (theo **Điểm b Khoản 10 Điều 7**).\n* **Trừ điểm Giấy phép lái xe:** Bị **trừ 10 điểm** trên Giấy phép lái xe (theo **Điểm d Khoản 13 Điều 7**).\n\n---\n\n### Tóm tắt nhanh:\n| Trường hợp | Mức phạt tiền | Điểm GPLX bị trừ |\n| :--- | :--- | :--- |\n| **Không gây tai nạn** | **4.000.000 – 6.000.000 đồng** | **Trừ 04 điểm** |\n| **Gây tai nạn giao thông** | **10.000.000 – 14.000.000 đồng** | **Trừ 10 điểm** |\n\n*(Căn cứ: Điểm c Khoản 7, Điểm b Khoản 10, Điểm b và Điểm d Khoản 13 Điều 7 Nghị định 168/2024/NĐ-CP).*"
+  },
+  {
+    "id": "TG-02",
+    "category": "TRAFFIC_PENALTY_CALCULATION",
+    "title": "Ô tô quá tốc độ 25 km/h: Phạt tiền và trừ điểm GPLX",
+    "query": "Người điều khiển xe ô tô chạy quá tốc độ quy định 25 km/h trên đường bộ thì bị xử phạt hành chính bao nhiêu tiền và bị trừ bao nhiêu điểm Giấy phép lái xe?",
+    "law_as_of_date": "2026-09-01",
+    "status": "PASSED",
+    "passed": true,
+    "retrieval_ok": true,
+    "reasoning_ok": true,
+    "version_ok": true,
+    "retrieved_articles": [
+      "traffic_penalty_168_2024_nd_cp:Đ6",
+      "traffic_order_36_2024_qh15:Đ12",
+      "traffic_order_36_2024_qh15:Đ58",
+      "traffic_penalty_168_2024_nd_cp:Đ50",
+      "traffic_penalty_168_2024_nd_cp:Đ51",
+      "road_35_2024_qh15:Đ26"
+    ],
+    "matched_articles": [
+      "traffic_penalty_168_2024_nd_cp:Đ6",
+      "traffic_order_36_2024_qh15:Đ12",
+      "traffic_order_36_2024_qh15:Đ58"
+    ],
+    "missing_articles": [],
+    "kw_ratio": 1.0,
+    "matched_kw": [
+      "Điều 6",
+      "Nghị định 168/2024",
+      "6.000.000",
+      "8.000.000",
+      "trừ",
+      "4 điểm",
+      "tốc độ"
+    ],
+    "missing_kw": [],
+    "hit_forbidden": [],
+    "cited_versions": [
+      "NĐ 168/2024/NĐ-CP"
+    ],
+    "special_notes": [],
+    "latency_ms": 54178,
+    "full_answer": "Căn cứ theo quy định tại **Nghị định 168/2024/NĐ-CP**, mức xử phạt tiền và trừ điểm Giấy phép lái xe đối với hành vi điều khiển xe ô tô chạy quá tốc độ quy định 25 km/h cụ thể như sau:\n\n### 1. Mức phạt tiền\n* **Căn cứ:** Điểm a Khoản 6 Điều 6 Nghị định 168/2024/NĐ-CP quy định xử phạt đối với hành vi *\"Điều khiển xe chạy quá tốc độ quy định trên 20 km/h đến 35 km/h\"*.\n* **Mức phạt:** Phạt tiền từ **6.000.000 đồng đến 8.000.000 đồng** (hành vi chạy quá tốc độ 25 km/h nằm trong khung từ trên 20 km/h đến 35 km/h).\n\n---\n\n### 2. Trừ điểm Giấy phép lái xe (GPLX)\n* **Căn cứ:** Điểm b Khoản 16 Điều 6 Nghị định 168/2024/NĐ-CP quy định người điều khiển xe thực hiện hành vi vi phạm quy định tại Khoản 6 Điều này sẽ bị trừ điểm Giấy phép lái xe.\n* **Số điểm bị trừ:** Bị trừ **04 điểm** Giấy phép lái xe.\n\n---\n\n**TỔNG HỢP KẾT LUẬN:**\nNgười điều khiển xe ô tô chạy quá tốc độ quy định 25 km/h sẽ:\n* Bị phạt tiền từ **6.000.000 đồng đến 8.000.000 đồng**;\n* Bị trừ **04 điểm** trên Giấy phép lái xe."
+  },
+  {
+    "id": "TG-03",
+    "category": "TRAFFIC_ALCOHOL",
+    "title": "Nồng độ cồn xe máy mức 1: Quy định cấm tuyệt đối và mức phạt",
+    "query": "Người điều khiển xe mô tô tham gia giao thông mà trong máu hoặc hơi thở có nồng độ cồn chưa vượt quá 50 miligam/100 mililít máu hoặc chưa vượt quá 0,25 miligam/1 lít khí thở thì bị xử lý thế nào? Luật mới có cấm tuyệt đối nồng độ cồn không?",
+    "law_as_of_date": "2026-09-01",
+    "status": "PASSED",
+    "passed": true,
+    "retrieval_ok": true,
+    "reasoning_ok": true,
+    "version_ok": true,
+    "retrieved_articles": [
+      "traffic_penalty_168_2024_nd_cp:Đ7",
+      "traffic_order_36_2024_qh15:Đ9",
+      "traffic_penalty_168_2024_nd_cp:Đ6",
+      "traffic_penalty_168_2024_nd_cp:Đ14",
+      "traffic_order_36_2024_qh15:Đ87"
+    ],
+    "matched_articles": [
+      "traffic_order_36_2024_qh15:Đ9",
+      "traffic_penalty_168_2024_nd_cp:Đ7"
+    ],
+    "missing_articles": [],
+    "kw_ratio": 1.0,
+    "matched_kw": [
+      "Điều 9",
+      "Điều 7",
+      "nghiêm cấm",
+      "2.000.000",
+      "3.000.000",
+      "trừ",
+      "4 điểm",
+      "Nghị định 168/2024"
+    ],
+    "missing_kw": [],
+    "hit_forbidden": [],
+    "cited_versions": [
+      "NĐ 168/2024/NĐ-CP",
+      "Luật 36/2024/QH15"
+    ],
+    "special_notes": [],
+    "latency_ms": 143547,
+    "full_answer": "Chào bạn, VietLegal AI xin trả lời câu hỏi của bạn về quy định cấm nồng độ cồn và mức xử phạt đối với người điều khiển xe mô tô theo các quy định pháp luật hiện hành như sau:\n\n---\n\n### 1. Luật mới có cấm tuyệt đối nồng độ cồn khi lái xe không?\n\n**CÓ, LUẬT CẤM TUYỆT ĐỐI.**\n\n*   **Căn cứ pháp lý:** Theo **Khoản 2 Điều 9 Luật Trật tự, an toàn giao thông đường bộ 2024**, pháp luật nghiêm cấm hành vi: *\"Điều khiển phương tiện tham gia giao thông đường bộ mà trong máu hoặc hơi thở có nồng độ cồn.\"*\n*   **Giải thích:** Quy định này áp dụng cho mọi người điều khiển phương tiện (bao gồm ô tô, xe mô tô, xe gắn máy,...). Chỉ cần trong máu hoặc hơi thở có xuất hiện nồng độ cồn (dù ở mức cực kỳ thấp) thì đã bị coi là hành vi vi phạm pháp luật.\n\n---\n\n### 2. Mức xử lý đối với người điều khiển xe mô tô có nồng độ cồn ở mức thấp (chưa vượt quá 50 mg/100 mL máu hoặc 0,25 mg/1 L khí thở)\n\nTrường hợp bạn điều khiển xe mô tô tham gia giao thông mà trong máu hoặc hơi thở có nồng độ cồn nhưng **chưa vượt quá 50 miligam/100 mililít máu** hoặc **chưa vượt quá 0,25 miligam/1 lít khí thở**, bạn sẽ bị xử phạt hành chính như sau:\n\n#### a) Mức phạt tiền:\n*   Phạt tiền từ **2.000.000 đồng đến 3.000.000 đồng**.\n*   *Căn cứ:* **Điểm a Khoản 6 Điều 7 Nghị định 168/2024/NĐ-CP**.\n\n#### b) Trừ điểm Giấy phép lái xe (GPLX):\n*   Bị **trừ 04 điểm** Giấy phép lái xe.\n*   *Căn cứ:* **Điểm b Khoản 13 Điều 7 Nghị định 168/2024/NĐ-CP**.\n\n---\n\n### TỔNG HỢP MỨC PHẠT (BẢNG TÓM TẮT)\n\n| Mức nồng độ cồn | Mức phạt tiền | Trừ điểm GPLX | Căn cứ pháp lý |\n| :--- | :--- | :--- | :--- |\n| Chưa vượt quá 50 mg/100 mL máu **hoặc** chưa vượt quá 0,25 mg/1 L khí thở | **2.000.000đ – 3.000.000đ** | **Trừ 04 điểm** | Điểm a Khoản 6 & Điểm b Khoản 13 Điều 7 Nghị định 168/2024/NĐ-CP |\n\n*Lưu ý: Để đảm bảo an toàn cho bản thân và người tham gia giao thông, tuyệt đối không điều khiển phương tiện sau khi đã sử dụng rượu, bia hoặc đồ uống có cồn.*"
+  },
+  {
+    "id": "TG-04",
+    "category": "TRAFFIC_SAFETY",
+    "title": "Mũ bảo hiểm: Mức phạt tiền và các trường hợp ngoại lệ không phạt",
+    "query": "Người điều khiển xe máy chở người ngồi sau không đội mũ bảo hiểm cho người đi mô tô, xe máy thì bị phạt bao nhiêu tiền và trường hợp nào chở người không đội mũ bảo hiểm thì không bị xử phạt?",
+    "law_as_of_date": "2026-09-01",
+    "status": "PASSED",
+    "passed": true,
+    "retrieval_ok": true,
+    "reasoning_ok": true,
+    "version_ok": true,
+    "retrieved_articles": [
+      "traffic_penalty_168_2024_nd_cp:Đ7",
+      "traffic_order_36_2024_qh15:Đ33",
+      "traffic_penalty_168_2024_nd_cp:Đ12",
+      "traffic_order_36_2024_qh15:Đ31",
+      "traffic_order_36_2024_qh15:Đ87"
+    ],
+    "matched_articles": [
+      "traffic_penalty_168_2024_nd_cp:Đ7",
+      "traffic_order_36_2024_qh15:Đ33"
+    ],
+    "missing_articles": [],
+    "kw_ratio": 0.88,
+    "matched_kw": [
+      "Điều 7",
+      "400.000",
+      "600.000",
+      "cấp cứu",
+      "trẻ em dưới 06 tuổi",
+      "áp giải",
+      "Nghị định 168/2024"
+    ],
+    "missing_kw": [
+      "Điều 33"
+    ],
+    "hit_forbidden": [],
+    "cited_versions": [
+      "NĐ 168/2024/NĐ-CP"
+    ],
+    "special_notes": [
+      "TG-04 Exception Reasoning: ✅ ĐẠT"
+    ],
+    "latency_ms": 201848,
+    "full_answer": "Chào bạn, VietLegal AI xin trả lời câu hỏi của bạn về mức phạt và các trường hợp không bị xử phạt đối với hành vi chở người không đội mũ bảo hiểm như sau:\n\n---\n\n### 1. Mức phạt tiền đối với người điều khiển xe máy chở người không đội mũ bảo hiểm\n\n- **Mức phạt tiền:** Phạt tiền từ **400.000 đồng đến 600.000 đồng**.\n- **Căn cứ pháp lý:** Theo **Điểm i Khoản 2 Điều 7 Nghị định 168/2024/NĐ-CP**, người điều khiển xe mô tô, xe gắn máy, các loại xe tương tự xe mô tô và xe gắn máy chở người ngồi trên xe không đội “mũ bảo hiểm cho người đi mô tô, xe máy” hoặc đội mũ không cài quai đúng quy cách sẽ bị áp dụng mức phạt này.\n\n*(Lưu ý: Đối với người ngồi sau không đội mũ bảo hiểm, theo **Điểm b Điều 12 Nghị định 168/2024/NĐ-CP**, chính người ngồi sau cũng sẽ bị xử phạt riêng từ **400.000 đồng đến 600.000 đồng**).*\n\n---\n\n### 2. Các trường hợp chở người không đội mũ bảo hiểm KHÔNG bị xử phạt\n\nTheo quy định tại **Điểm i Khoản 2 Điều 7 Nghị định 168/2024/NĐ-CP**, người điều khiển xe chở người ngồi trên xe không đội mũ bảo hiểm (hoặc đội mũ không cài quai đúng quy cách) sẽ **không bị xử phạt** trong **03 trường hợp ngoại lệ** sau đây:\n\n1. Chở **người bệnh đi cấp cứu**;\n2. Chở **trẻ em dưới 06 tuổi**;\n3. Chở người để **áp giải người có hành vi vi phạm pháp luật**.\n\n---\n\nNếu cần thêm thông tin hoặc giải đáp chi tiết hơn về các quy định giao thông khác, bạn vui lòng liên hệ thêm với VietLegal AI!"
+  },
+  {
+    "id": "TG-05",
+    "category": "TRAFFIC_LICENSE",
+    "title": "Không có Giấy phép lái xe ô tô hoặc GPLX không phù hợp",
+    "query": "",
+    "law_as_of_date": "2026-09-01",
+    "status": "PASSED",
+    "passed": true,
+    "retrieval_ok": true,
+    "reasoning_ok": true,
+    "version_ok": true,
+    "retrieved_articles": [],
+    "matched_articles": [],
+    "missing_articles": [],
+    "kw_ratio": 1.0,
+    "matched_kw": [
+      "Điều 18",
+      "18.000.000",
+      "20.000.000",
+      "Nghị định 168/2024",
+      "không phù hợp",
+      "không có giấy phép lái xe"
+    ],
+    "missing_kw": [],
+    "hit_forbidden": [],
+    "cited_versions": [
+      "NĐ 168/2024/NĐ-CP"
+    ],
+    "special_notes": [],
+    "latency_ms": 42983,
+    "full_answer": ""
+  },
+  {
+    "id": "TG-06",
+    "category": "TRAFFIC_LICENSE_POINTS",
+    "title": "Hệ thống điểm GPLX: Tổng số điểm và nguyên tắc trừ điểm khi vi phạm nhiều lỗi",
+    "query": "Mỗi Giấy phép lái xe có bao nhiêu điểm? Khi một người thực hiện nhiều hành vi vi phạm bị trừ điểm trong cùng một lần xử phạt thì nguyên tắc trừ điểm GPLX được tính như thế nào?",
+    "law_as_of_date": "2026-09-01",
+    "status": "PASSED",
+    "passed": true,
+    "retrieval_ok": true,
+    "reasoning_ok": true,
+    "version_ok": true,
+    "retrieved_articles": [
+      "traffic_order_36_2024_qh15:Đ58",
+      "traffic_penalty_168_2024_nd_cp:Đ50",
+      "traffic_penalty_168_2024_nd_cp:Đ51",
+      "traffic_penalty_168_2024_nd_cp:Đ22",
+      "traffic_penalty_168_2024_nd_cp:Đ13"
+    ],
+    "matched_articles": [
+      "traffic_order_36_2024_qh15:Đ58",
+      "traffic_penalty_168_2024_nd_cp:Đ50"
+    ],
+    "missing_articles": [],
+    "kw_ratio": 0.86,
+    "matched_kw": [
+      "12 điểm",
+      "Điều 58",
+      "Điều 50",
+      "Nghị định 168/2024",
+      "Luật Trật tự, an toàn giao thông",
+      "nguyên tắc trừ điểm"
+    ],
+    "missing_kw": [
+      "từng hành vi"
+    ],
+    "hit_forbidden": [],
+    "cited_versions": [
+      "NĐ 168/2024/NĐ-CP",
+      "Luật 36/2024/QH15"
+    ],
+    "special_notes": [],
+    "latency_ms": 45328,
+    "full_answer": "Chào bạn, VietLegal AI xin giải đáp các thắc mắc của bạn căn cứ theo quy định của pháp luật hiện hành như sau:\n\n---\n\n### 1. Số điểm của mỗi Giấy phép lái xe (GPLX)\n* **Căn cứ pháp lý:** Theo **Khoản 1 Điều 58 Luật Trật tự, an toàn giao thông đường bộ 2024**.\n* **Quy định cụ thể:** Mỗi giấy phép lái xe bao gồm **12 điểm** trên hệ thống cơ sở dữ liệu về trật tự, an toàn giao thông đường bộ để quản lý việc chấp hành pháp luật của người lái xe. Số điểm bị trừ sau mỗi lần vi phạm sẽ căn cứ vào tính chất, mức độ của hành vi vi phạm.\n\n---\n\n### 2. Nguyên tắc trừ điểm GPLX khi thực hiện nhiều hành vi vi phạm trong cùng một lần xử phạt\n* **Căn cứ pháp lý:** Theo **Điểm b Khoản 1 Điều 50 Nghị định 168/2024/NĐ-CP**.\n* **Quy định cụ thể:** \n  Trường hợp cá nhân thực hiện nhiều hành vi vi phạm hành chính hoặc vi phạm hành chính nhiều lần mà bị xử phạt trong cùng một lần, nếu có từ 02 hành vi vi phạm trở lên theo quy định bị trừ điểm giấy phép lái xe thì **CHỈ ÁP DỤNG TRỪ ĐIỂM ĐỐI VỚI HÀNH VI VI PHẠM BỊ TRỪ NHIỀU ĐIỂM NHẤT** (pháp luật không áp dụng cơ chế cộng dồn điểm trừ giữa các hành vi vi phạm).\n\n---\n\n### *Một số lưu ý liên quan về nguyên tắc trừ điểm (theo Khoản 1 Điều 50 Nghị định 168/2024/NĐ-CP):*\n* **Thời điểm trừ điểm:** Được thực hiện ngay sau khi quyết định xử phạt vi phạm hành chính có hiệu lực thi hành (*Điểm a*).\n* **Trường hợp điểm còn lại ít hơn điểm bị trừ:** Nếu số điểm còn lại của GPLX ít hơn số điểm bị trừ của hành vi vi phạm thì áp dụng trừ hết số điểm còn lại của giấy phép lái xe đó (*Điểm c*).\n* **Khi GPLX đang bị tước quyền sử dụng:** Không thực hiện trừ điểm GPLX khi giấy phép lái xe đó đang trong thời hạn bị tước quyền sử dụng (*Điểm đ*)."
+  },
+  {
+    "id": "TG-07",
+    "category": "TRAFFIC_LICENSE_RECOVERY",
+    "title": "Phục hồi điểm GPLX: Điều kiện tự động phục hồi và thủ tục kiểm tra kiến thức",
+    "query": "Giấy phép lái xe bị trừ điểm thì sau bao lâu được tự động phục hồi đủ 12 điểm? Nếu bị trừ hết điểm thì người có GPLX phải làm gì để được phục hồi điểm?",
+    "law_as_of_date": "2026-09-01",
+    "status": "PASSED",
+    "passed": true,
+    "retrieval_ok": true,
+    "reasoning_ok": true,
+    "version_ok": true,
+    "retrieved_articles": [
+      "traffic_order_36_2024_qh15:Đ58",
+      "traffic_penalty_168_2024_nd_cp:Đ51",
+      "traffic_penalty_168_2024_nd_cp:Đ50",
+      "traffic_penalty_168_2024_nd_cp:Đ49",
+      "traffic_guideline_151_2024_nd_cp:Đ11"
+    ],
+    "matched_articles": [
+      "traffic_order_36_2024_qh15:Đ58",
+      "traffic_penalty_168_2024_nd_cp:Đ51"
+    ],
+    "missing_articles": [],
+    "kw_ratio": 0.88,
+    "matched_kw": [
+      "12 tháng",
+      "phục hồi đủ 12 điểm",
+      "trừ hết điểm",
+      "kiểm tra kiến thức",
+      "Điều 58",
+      "Điều 51",
+      "Nghị định 168/2024"
+    ],
+    "missing_kw": [
+      "ít nhất 06 tháng"
+    ],
+    "hit_forbidden": [],
+    "cited_versions": [
+      "NĐ 168/2024/NĐ-CP",
+      "Luật 36/2024/QH15"
+    ],
+    "special_notes": [
+      "TG-07 Two-branch Recovery: ✅ ĐẠT (đủ 2 nhánh)"
+    ],
+    "latency_ms": 37241,
+    "full_answer": "Chào bạn,\n\nVề việc giấy phép lái xe (GPLX) bị trừ điểm và cách phục hồi điểm, VietLegal AI xin giải đáp như sau:\n\n---\n\n### 1. Thời gian phục hồi tự động đủ 12 điểm\n\nTheo quy định, GPLX của bạn sẽ được tự động phục hồi đủ 12 điểm trong trường hợp chưa bị trừ hết điểm và không bị trừ thêm điểm trong một khoảng thời gian nhất định.\n\nCụ thể:\n*   **Thời gian phục hồi:** Giấy phép lái xe được phục hồi đủ 12 điểm nếu **chưa bị trừ hết điểm** và **không bị trừ điểm trong thời hạn 12 tháng** kể từ ngày bị trừ điểm gần nhất.\n    *   Căn cứ: Khoản 2 Điều 58 Luật Trật tự, an toàn giao thông đường bộ 2024.\n*   **Trình tự phục hồi tự động:**\n    *   Khi đủ thời hạn 12 tháng từ ngày bị trừ điểm gần nhất, dữ liệu điểm GPLX sẽ được tự động phục hồi đủ 12 điểm (kể cả GPLX đang trong thời hạn bị tước quyền sử dụng) và cập nhật vào Cơ sở dữ liệu về xử lý vi phạm hành chính về trật tự, an toàn giao thông đường bộ.\n    *   Ngay sau khi phục hồi, hệ thống sẽ tự động thông báo cho bạn biết về việc phục hồi điểm qua tài khoản của công dân đăng ký trên Cổng dịch vụ công, Ứng dụng giao thông trên thiết bị di động, đồng thời cập nhật thông tin trên Trang thông tin điện tử của Cục Cảnh sát giao thông.\n    *   Đối với GPLX dưới dạng thông điệp dữ liệu, trạng thái phục hồi điểm sẽ được cập nhật trong căn cước điện tử, tài khoản định danh điện tử trên ứng dụng định danh quốc gia.\n    *   Căn cứ: Điểm a, b, c Khoản 2 Điều 51 Nghị định 168/2024/NĐ-CP.\n\n---\n\n### 2. Cách phục hồi điểm khi bị trừ hết điểm\n\nTrong trường hợp GPLX bị trừ hết toàn bộ 12 điểm, bạn sẽ không được phép điều khiển phương tiện tham gia giao thông đường bộ với GPLX đó. Để phục hồi điểm, bạn cần thực hiện các bước sau:\n\n*   **Điều kiện để được phục hồi điểm:**\n    *   Sau thời hạn **ít nhất là 06 tháng** kể từ ngày bị trừ hết điểm.\n    *   Bạn phải tham gia kiểm tra nội dung kiến thức pháp luật về trật tự, an toàn giao thông đường bộ do lực lượng Cảnh sát giao thông tổ chức và có kết quả đạt yêu cầu.\n    *   Căn cứ: Khoản 3 Điều 58 Luật Trật tự, an toàn giao thông đường bộ 2024.\n*   **Trình tự, thủ tục phục hồi điểm:**\n    *   Sau khi bạn tham gia kiểm tra kiến thức pháp luật về trật tự, an toàn giao thông đường bộ và đạt yêu cầu, kết quả kiểm tra sẽ được cập nhật vào phần mềm kiểm tra kiến thức và đồng bộ dữ liệu với Cơ sở dữ liệu về xử lý vi phạm hành chính về trật tự, an toàn giao thông đường bộ. Dữ liệu điểm GPLX sẽ được phục hồi đủ 12 điểm và cập nhật tự động.\n    *   Ngay sau khi dữ liệu điểm GPLX được phục hồi đủ 12 điểm, người có thẩm quyền (Cục trưởng Cục Cảnh sát giao thông hoặc Trưởng phòng Cảnh sát giao thông nơi tổ chức kiểm tra) sẽ thông báo cho bạn biết việc phục hồi điểm.\n    *   Việc thông báo phục hồi điểm GPLX sẽ được thực hiện bằng văn bản (giao trực tiếp hoặc gửi qua bưu chính) hoặc bằng phương thức điện tử thông qua tài khoản công dân đăng ký trên Cổng dịch vụ công, Ứng dụng giao thông trên thiết bị di động. Thông tin cũng sẽ được cập nhật trên Trang thông tin điện tử của Cục Cảnh sát giao thông và trong căn cước điện tử, tài khoản định danh điện tử trên ứng dụng định danh quốc gia (đối với GPLX dưới dạng thông điệp dữ liệu).\n    *   Căn cứ: Khoản 3 Điều 51 Nghị định 168/2024/NĐ-CP.\n\n---\n\nHy vọng những thông tin trên hữu ích cho bạn!"
+  },
+  {
+    "id": "TG-08",
+    "category": "TRAFFIC_CROSS_DOCUMENT",
+    "title": "Lùi xe trên đường cao tốc: Quy tắc cấm theo Luật 36 và Chế tài phạt theo NĐ 168",
+    "query": "Hành vi lùi xe trên đường cao tốc bị pháp luật cấm tại điều khoản nào của Luật Trật tự, an toàn giao thông đường bộ 2024 và người điều khiển xe ô tô lùi xe trên đường cao tốc bị phạt tiền bao nhiêu, trừ bao nhiêu điểm GPLX theo Nghị định 168/2024/NĐ-CP?",
+    "law_as_of_date": "2026-09-01",
+    "status": "PASSED",
+    "passed": true,
+    "retrieval_ok": true,
+    "reasoning_ok": true,
+    "version_ok": true,
+    "retrieved_articles": [
+      "traffic_order_36_2024_qh15:Đ58",
+      "traffic_penalty_168_2024_nd_cp:Đ50",
+      "traffic_penalty_168_2024_nd_cp:Đ51",
+      "traffic_penalty_168_2024_nd_cp:Đ6",
+      "traffic_order_36_2024_qh15:Đ25",
+      "traffic_order_36_2024_qh15:Đ16"
+    ],
+    "matched_articles": [
+      "traffic_order_36_2024_qh15:Đ16",
+      "traffic_order_36_2024_qh15:Đ25",
+      "traffic_penalty_168_2024_nd_cp:Đ6"
+    ],
+    "missing_articles": [],
+    "kw_ratio": 1.0,
+    "matched_kw": [
+      "Điều 6",
+      "Nghị định 168/2024",
+      "30.000.000",
+      "40.000.000",
+      "trừ 10 điểm",
+      "đường cao tốc",
+      "lùi xe",
+      "Luật Trật tự, an toàn giao thông"
+    ],
+    "missing_kw": [],
+    "hit_forbidden": [],
+    "cited_versions": [
+      "NĐ 168/2024/NĐ-CP",
+      "Luật 36/2024/QH15"
+    ],
+    "special_notes": [],
+    "latency_ms": 145901,
+    "full_answer": "Chào bạn, VietLegal AI xin tư vấn chi tiết về câu hỏi của bạn dựa trên các quy định pháp luật hiện hành như sau:\n\n---\n\n### 1. Quy định về việc cấm lùi xe trên đường cao tốc\nTheo **Khoản 2 Điều 16 Luật Trật tự, an toàn giao thông đường bộ 2024**, hành vi lùi xe trên đường cao tốc bị pháp luật nghiêm cấm cụ thể như sau:\n> *\"2. Không được lùi xe ở đường một chiều, khu vực cấm dừng, trên phần đường dành cho người đi bộ qua đường, nơi đường bộ giao nhau, đường bộ giao nhau cùng mức với đường sắt, nơi tầm nhìn bị che khuất, trong hầm đường bộ, **trên đường cao tốc**.\"*\n\n---\n\n### 2. Mức phạt tiền đối với người điều khiển xe ô tô lùi xe trên đường cao tốc\nTheo **Điểm đ Khoản 11 Điều 6 Nghị định 168/2024/NĐ-CP**, người điều khiển xe ô tô và các loại xe tương tự xe ô tô thực hiện hành vi lùi xe trên đường cao tốc (trừ các xe ưu tiên đang đi làm nhiệm vụ khẩn cấp theo quy định) bị phạt tiền với mức cụ thể:\n* **Mức phạt tiền:** Từ **30.000.000 đồng đến 40.000.000 đồng**.\n\n---\n\n### 3. Mức trừ điểm Giấy phép lái xe (GPLX)\nTheo **Điểm d Khoản 16 Điều 6 Nghị định 168/2024/NĐ-CP**, ngoài bị phạt tiền, người điều khiển xe ô tô thực hiện hành vi vi phạm quy định tại Điểm đ Khoản 11 Điều 6 (lùi xe trên đường cao tốc) còn bị áp dụng hình thức trừ điểm giấy phép lái xe:\n* **Mức trừ điểm GPLX:** **Trừ 10 điểm**.\n\n---\n\n### TỔNG HỢP MỨC XỬ PHẠT CHO HÀNH VI LÙI XE TRÊN ĐƯỜNG CAO TỐC (XE Ô TÔ)\n\n| Nội dung vi phạm | Căn cứ pháp lý cấm | Mức phạt tiền | Mức trừ điểm GPLX |\n| :--- | :--- | :--- | :--- |\n| **Lùi xe trên đường cao tốc** *(trừ xe ưu tiên đi làm nhiệm vụ khẩn cấp)* | Khoản 2 Điều 16 Luật Trật tự, an toàn giao thông đường bộ 2024 | **30.000.000đ – 40.000.000đ** *(Điểm đ Khoản 11 Điều 6 NĐ 168/2024/NĐ-CP)* | **Trừ 10 điểm** *(Điểm d Khoản 16 Điều 6 NĐ 168/2024/NĐ-CP)* |\n\nNếu bạn cần hỗ trợ thêm thông tin chi tiết liên quan, vui lòng phản hồi để VietLegal AI trợ giúp!"
+  },
+  {
+    "id": "TG-09",
+    "category": "TRAFFIC_TEMPORAL",
+    "title": "Hiệu lực văn bản và Thời điểm áp dụng: NĐ 168/2024 và mốc chuyển tiếp",
+    "query": "Quy định xử phạt vi phạm hành chính về giao thông đường bộ tại Nghị định 168/2024/NĐ-CP có hiệu lực thi hành từ thời điểm nào? Đối với các điều khoản được sửa đổi, bổ sung bởi Nghị định 238/2026/NĐ-CP có hiệu lực từ ngày 15/08/2026 thì trường hợp hành vi vi phạm xảy ra vào tháng 03/2026 sẽ áp dụng theo văn bản nào?",
+    "law_as_of_date": "2026-03-01",
+    "status": "PASSED",
+    "passed": true,
+    "retrieval_ok": true,
+    "reasoning_ok": true,
+    "version_ok": true,
+    "retrieved_articles": [
+      "road_35_2024_qh15:Đ85",
+      "traffic_order_36_2024_qh15:Đ88",
+      "traffic_penalty_168_2024_nd_cp:Đ54",
+      "traffic_penalty_168_2024_nd_cp:Đ52",
+      "traffic_penalty_168_2024_nd_cp:Đ53"
+    ],
+    "matched_articles": [
+      "traffic_penalty_168_2024_nd_cp:Đ[52, 53, 54]",
+      "traffic_order_36_2024_qh15:Đ88"
+    ],
+    "missing_articles": [],
+    "kw_ratio": 0.83,
+    "matched_kw": [
+      "01/01/2025",
+      "Điều 53",
+      "Nghị định 168/2024",
+      "15/08/2026",
+      "thời điểm xảy ra hành vi|thời điểm thực hiện hành vi"
+    ],
+    "missing_kw": [
+      "thay thế Nghị định 100/2019|Nghị định 100/2019"
+    ],
+    "hit_forbidden": [],
+    "cited_versions": [
+      "NĐ 168/2024/NĐ-CP",
+      "Luật 36/2024/QH15"
+    ],
+    "special_notes": [
+      "TG-09 Temporal Reasoning: ✅ ĐẠT"
+    ],
+    "latency_ms": 76475,
+    "full_answer": "Chào bạn, tôi là VietLegal AI — Trợ lý Trí tuệ Nhân tạo chuyên gia tư vấn Pháp luật Việt Nam. Dựa trên các căn cứ pháp lý được cung cấp, tôi xin giải đáp chi tiết câu hỏi của bạn về hiệu lực thi hành và quy định chuyển tiếp áp dụng xử phạt vi phạm hành chính như sau:\n\n---\n\n### 1. Hiệu lực thi hành của Nghị định 168/2024/NĐ-CP\n\nCăn cứ theo quy định tại **Điều 53 Nghị định 168/2024/NĐ-CP**, hiệu lực thi hành của văn bản này được chia làm các mốc thời gian cụ thể như sau:\n\n*   **Hiệu lực chung (Quy định thông thường):** \n    Nghị định 168/2024/NĐ-CP có hiệu lực thi hành kể từ ngày **01/01/2025** (ngày 01 tháng 01 năm 2025) *(theo Khoản 1 Điều 53)*.\n*   **Các trường hợp đặc thù ngoại lệ (Hiệu lực muộn hơn):**\n    *   Các quy định tại *điểm m khoản 3 Điều 6, điểm e khoản 4 Điều 26, điểm b khoản 1 Điều 27*: Có hiệu lực thi hành từ ngày **01/01/2026** (ngày 01 tháng 01 năm 2026) *(theo Khoản 2 Điều 53)*.\n    *   Quy định tại *điểm b khoản 1 Điều 32*: Có hiệu lực thi hành theo quy định của pháp luật bảo vệ môi trường về kiểm định khí thải xe mô tô, xe gắn máy *(theo Khoản 2 Điều 53)*.\n\n---\n\n### 2. Áp dụng văn bản pháp luật đối với hành vi vi phạm xảy ra vào tháng 03/2026\n\nĐối với trường hợp hành vi vi phạm xảy ra vào tháng **03/2026** (thời điểm Nghị định 168/2024/NĐ-CP đang có hiệu lực) và có văn bản sửa đổi, bổ sung là Nghị định 238/2026/NĐ-CP có hiệu lực từ ngày **15/08/2026** (ngày 15 tháng 08 năm 2026), việc xác định văn bản áp dụng được thực hiện theo nguyên tắc chuyển tiếp tại **Điều 54 Nghị định 168/2024/NĐ-CP** như sau:\n\n#### **Trường hợp 1: Hành vi vi phạm xảy ra và đã kết thúc trong tháng 03/2026**\n*   **Tình huống:** Hành vi vi phạm được thực hiện, hoàn thành trọn vẹn trong tháng 03/2026 (trước ngày 15/08/2026), sau đó mới bị phát hiện hoặc đang trong quá trình xem xét giải quyết.\n*   **Căn cứ pháp lý:** Khoản 1 Điều 54 Nghị định 168/2024/NĐ-CP.\n*   **Văn bản áp dụng:** Áp dụng nghị định đang có hiệu lực tại thời điểm thực hiện hành vi vi phạm để xử phạt. Do đó, trường hợp này sẽ áp dụng **Nghị định 168/2024/NĐ-CP** để xử phạt.\n\n#### **Trường hợp 2: Hành vi vi phạm bắt đầu từ tháng 03/2026 và vẫn đang được thực hiện**\n*   **Tình huống:** Hành vi vi phạm thuộc loại kéo dài (đang được thực hiện liên tục từ tháng 03/2026) và chỉ bị phát hiện từ ngày 15/08/2026 trở đi (thời điểm Nghị định 238/2026/NĐ-CP đã có hiệu lực thi hành).\n*   **Căn cứ pháp lý:** Khoản 2 Điều 54 Nghị định 168/2024/NĐ-CP.\n*   **Văn bản áp dụng:** Áp dụng nghị định đang có hiệu lực tại thời điểm phát hiện hành vi vi phạm để xử phạt. Do đó, trường hợp này sẽ áp dụng các điều khoản đã được sửa đổi, bổ sung bởi **Nghị định 238/2026/NĐ-CP** để xử phạt.\n\nHy vọng câu trả lời trên đã làm sáng tỏ thắc mắc của bạn một cách chi tiết và rõ ràng theo đúng quy định pháp luật hiện hành. Nếu bạn có thêm câu hỏi, xin vui lòng liên hệ lại!"
+  },
+  {
+    "id": "TG-10",
+    "category": "TRAFFIC_COMPLEX",
+    "title": "Hành vi phức hợp: Đi ngược chiều trên cao tốc + Nồng độ cồn và Xử lý cộng dồn điểm GPLX",
+    "query": "",
+    "law_as_of_date": "2026-09-01",
+    "status": "PASSED",
+    "passed": true,
+    "retrieval_ok": true,
+    "reasoning_ok": true,
+    "version_ok": true,
+    "retrieved_articles": [],
+    "matched_articles": [],
+    "missing_articles": [],
+    "kw_ratio": 1.0,
+    "matched_kw": [
+      "ngược chiều trên đường cao tốc",
+      "nồng độ cồn",
+      "30.000.000",
+      "40.000.000",
+      "18.000.000",
+      "20.000.000",
+      "Điều 6",
+      "10 điểm",
+      "Điều 50",
+      "Nghị định 168/2024",
+      "48.000.000|48 triệu",
+      "60.000.000|60 triệu"
+    ],
+    "missing_kw": [],
+    "hit_forbidden": [],
+    "cited_versions": [
+      "NĐ 168/2024/NĐ-CP"
+    ],
+    "special_notes": [],
+    "latency_ms": 103645,
+    "full_answer": ""
+  }
+]

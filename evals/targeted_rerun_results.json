@@ -1,0 +1,43 @@
+[
+  {
+    "id": "TG-10",
+    "title": "Hành vi phức hợp: Đi ngược chiều trên cao tốc + Nồng độ cồn và Xử lý cộng dồn điểm GPLX",
+    "pure_pipeline_s": 30.21,
+    "reranker_s": 9.6,
+    "context_chars": 18330,
+    "input_tokens": 4582,
+    "retrieval_pass": true,
+    "correctness_pass": true,
+    "status": "PASSED",
+    "matched_expected": [
+      "ngược chiều trên đường cao tốc",
+      "nồng độ cồn",
+      "30.000.000",
+      "40.000.000",
+      "18.000.000",
+      "20.000.000",
+      "Điều 6",
+      "10 điểm",
+      "Điều 50",
+      "Nghị định 168/2024",
+      "48.000.000|48 triệu",
+      "60.000.000|60 triệu"
+    ],
+    "missing_expected": [],
+    "answer_preview": "Chào bạn, dựa trên các căn cứ pháp lý được cung cấp từ Nghị định 168/2024/NĐ-CP, VietLegal AI xin giải đáp các thắc mắc của bạn về trường hợp tài xế ô tô con vi phạm như sau:\n\n### 1. Phân tích các lỗi vi phạm của tài xế\nTrong cùng một lần tham gia giao thông, tài xế ô tô con đã thực hiện 02 hành vi ..."
+  },
+  {
+    "id": "TC-19",
+    "title": "Tính tiền trợ cấp thôi việc khi có thời gian lẻ tháng",
+    "pure_pipeline_s": 12.04,
+    "reranker_s": 0.45,
+    "context_chars": 13250,
+    "input_tokens": 3312,
+    "retrieval_pass": true,
+    "correctness_pass": true,
+    "status": "PASSED",
+    "matched_expected": [],
+    "missing_expected": [],
+    "answer_preview": "Chào bạn, VietLegal AI xin giải đáp thắc mắc của bạn dựa trên các quy định pháp luật được cung cấp như sau:\n\n### 1. Xác định tổng thời gian làm việc thực tế\n* Người lao động làm việc từ ngày **01/01/2018** đến ngày **30/09/2023**.\n* Tổng thời gian làm việc thực tế là: 05 năm và 09 tháng.\n\n### 2. Trừ..."
+  }
+]

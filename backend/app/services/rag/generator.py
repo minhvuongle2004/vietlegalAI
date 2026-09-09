@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import re
 from typing import List, Dict, Any, AsyncGenerator, Optional
 from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent.parent.parent
@@ -59,6 +60,9 @@ NGUYÊN TẮC PHÁP LÝ TỔNG QUÁT (ÁP DỤNG CHO MỌI NGHIỆP VỤ):
       - BẮT BUỘC trích xuất Điểm c Khoản 3 Điều 8 Nghị định 145/2020/NĐ-CP trong ngữ cảnh để làm tròn.
       - Nêu rõ: Thời gian làm việc 05 năm 09 tháng có 09 tháng lẻ (trên 06 tháng) nên theo Điểm c Khoản 3 Điều 8 Nghị định 145/2020/NĐ-CP được làm tròn thành 06 năm làm việc (tương đương 3 tháng tiền lương trợ cấp thôi việc theo Điều 46 BLLĐ 2019).
    e) Kiểm tra lại kết quả với điều khoản trước khi kết luận dứt khoát.
+10. NGUYÊN TẮC XỬ LÝ VI PHẠM NHIỀU HÀNH VI (MULTI-VIOLATION PENALTIES & POINTS):
+   a) Về phạt tiền: Khi người vi phạm thực hiện nhiều hành vi vi phạm hành chính trong cùng một lần, người có thẩm quyền xử phạt về từng hành vi và cộng các khoản tiền phạt thành tổng mức phạt tiền chung. Khi người dùng hỏi "tổng mức phạt tiền", BẮT BUỘC phải cộng dồn biên dưới và biên trên của từng hành vi để đưa ra khoảng tổng mức phạt tiền cụ thể (ví dụ: Hành vi A phạt từ 18 - 20 triệu, Hành vi B phạt từ 30 - 40 triệu -> Tổng mức phạt tiền từ 48.000.000 đồng đến 60.000.000 đồng).
+   b) Về trừ điểm GPLX: Tuân thủ nghiêm ngặt quy định tại Điểm b Khoản 1 Điều 50 Nghị định 168/2024/NĐ-CP: Trường hợp cá nhân thực hiện nhiều hành vi vi phạm mà bị xử phạt trong cùng một lần, nếu có từ 02 hành vi vi phạm trở lên theo quy định bị trừ điểm giấy phép lái xe thì CHỈ ÁP DỤNG TRỪ ĐIỂM ĐỐI VỚI HÀNH VI VI PHẠM BỊ TRỪ NHIỀU ĐIỂM NHẤT (không được cộng dồn điểm trừ giữa các hành vi).
 """
 
 
@@ -81,10 +85,12 @@ class LegalAnswerGenerator:
         for idx, chunk in enumerate(retrieved_chunks, start=1):
             art_num = chunk.get("article_number")
             art_title = chunk.get("article_title")
+            doc_title = chunk.get("doc_title") or "Văn bản Quy phạm Pháp luật"
             header = chunk.get("context_header", "")
             content = chunk.get("content", "")
             blocks.append(
                 f"--- CĂN CỨ PHÁP LÝ #{idx} ---\n"
+                f"Văn bản: {doc_title}\n"
                 f"Tiêu đề: Điều {art_num}. {art_title}\n"
                 f"Ngữ cảnh: {header}\n"
                 f"Nội dung quy định:\n{content}\n"
@@ -131,15 +137,15 @@ Hãy trả lời câu hỏi trên dựa trên các căn cứ pháp lý đã cho:
             import asyncio
 
             genai.configure(api_key=self.gemini_key)
-            preferred_model = os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite")
+            preferred_model = os.getenv("GEMINI_MODEL", "gemini-3.5-flash-lite")
             candidate_models = [
                 preferred_model,
-                "gemini-2.5-flash-lite",
-                "gemini-flash-lite-latest",
-                "gemini-3.1-flash-lite",
-                "gemini-flash-latest",
-                "gemini-2.5-flash",
                 "gemini-3.5-flash-lite",
+                "gemini-3.1-flash-lite",
+                "gemini-3.6-flash",
+                "gemini-flash-latest",
+                "gemini-pro-latest",
+                "gemini-2.5-flash",
             ]
             # Deduplicate while preserving order
             unique_models = []
@@ -156,7 +162,7 @@ Hãy trả lời câu hỏi trên dựa trên các căn cứ pháp lý đã cho:
                         model_name=model_name,
                         system_instruction=SYSTEM_PROMPT,
                     )
-                    for attempt in range(2):
+                    for attempt in range(3):
                         try:
                             response = await model.generate_content_async(user_message, stream=True)
                             async for chunk in response:
@@ -169,12 +175,19 @@ Hãy trả lời câu hỏi trên dựa trên các căn cứ pháp lý đã cho:
                             break
                         except Exception as e:
                             last_error = e
-                            if "429" in str(e) or "quota" in str(e).lower():
-                                print(f"[!] Gemini {model_name} 429 Quota, chuyển ngay sang fallback model...")
+                            e_str = str(e)
+                            if "429" in e_str or "quota" in e_str.lower():
+                                retry_match = re.search(r"retry in\s+([0-9\.]+)\s*s", e_str, re.IGNORECASE)
+                                wait_time = float(retry_match.group(1)) + 2.0 if retry_match else 8.0
+                                wait_time = min(wait_time, 35.0)
+                                print(f"[!] Gemini {model_name} 429 Quota, tự động chờ {wait_time:.1f}s để hồi phục quota (attempt {attempt+1}/3)...")
+                                await asyncio.sleep(wait_time)
+                                if attempt < 2:
+                                    continue
                                 break
-                            if attempt == 0 and ("503" in str(e) or "high demand" in str(e).lower()):
-                                print(f"[!] Gemini {model_name} spike, retrying in 1.5s: {e}")
-                                await asyncio.sleep(1.5)
+                            if attempt < 2 and ("503" in e_str or "high demand" in e_str.lower() or "overloaded" in e_str.lower()):
+                                print(f"[!] Gemini {model_name} spike (attempt {attempt+1}), retrying in 3.0s: {e}")
+                                await asyncio.sleep(3.0)
                                 continue
                             raise e
                     if success:

@@ -1,0 +1,23 @@
+{
+  "id": "TG-09",
+  "passed": true,
+  "retrieval_pass": true,
+  "title_recognized": true,
+  "reasoning_pass": true,
+  "retrieval_score": "4/4",
+  "context_length_chars": 10721,
+  "ttft_ms": 30489,
+  "gen_time_ms": 36729,
+  "total_time_ms": 76475,
+  "matched_keywords": [
+    "01/01/2025",
+    "Điều 53",
+    "Nghị định 168/2024",
+    "15/08/2026",
+    "thời điểm xảy ra hành vi|thời điểm thực hiện hành vi"
+  ],
+  "missing_keywords": [
+    "thay thế Nghị định 100/2019|Nghị định 100/2019"
+  ],
+  "answer": "Chào bạn, tôi là VietLegal AI — Trợ lý Trí tuệ Nhân tạo chuyên gia tư vấn Pháp luật Việt Nam. Dựa trên các căn cứ pháp lý được cung cấp, tôi xin giải đáp chi tiết câu hỏi của bạn về hiệu lực thi hành và quy định chuyển tiếp áp dụng xử phạt vi phạm hành chính như sau:\n\n---\n\n### 1. Hiệu lực thi hành của Nghị định 168/2024/NĐ-CP\n\nCăn cứ theo quy định tại **Điều 53 Nghị định 168/2024/NĐ-CP**, hiệu lực thi hành của văn bản này được chia làm các mốc thời gian cụ thể như sau:\n\n*   **Hiệu lực chung (Quy định thông thường):** \n    Nghị định 168/2024/NĐ-CP có hiệu lực thi hành kể từ ngày **01/01/2025** (ngày 01 tháng 01 năm 2025) *(theo Khoản 1 Điều 53)*.\n*   **Các trường hợp đặc thù ngoại lệ (Hiệu lực muộn hơn):**\n    *   Các quy định tại *điểm m khoản 3 Điều 6, điểm e khoản 4 Điều 26, điểm b khoản 1 Điều 27*: Có hiệu lực thi hành từ ngày **01/01/2026** (ngày 01 tháng 01 năm 2026) *(theo Khoản 2 Điều 53)*.\n    *   Quy định tại *điểm b khoản 1 Điều 32*: Có hiệu lực thi hành theo quy định của pháp luật bảo vệ môi trường về kiểm định khí thải xe mô tô, xe gắn máy *(theo Khoản 2 Điều 53)*.\n\n---\n\n### 2. Áp dụng văn bản pháp luật đối với hành vi vi phạm xảy ra vào tháng 03/2026\n\nĐối với trường hợp hành vi vi phạm xảy ra vào tháng **03/2026** (thời điểm Nghị định 168/2024/NĐ-CP đang có hiệu lực) và có văn bản sửa đổi, bổ sung là Nghị định 238/2026/NĐ-CP có hiệu lực từ ngày **15/08/2026** (ngày 15 tháng 08 năm 2026), việc xác định văn bản áp dụng được thực hiện theo nguyên tắc chuyển tiếp tại **Điều 54 Nghị định 168/2024/NĐ-CP** như sau:\n\n#### **Trường hợp 1: Hành vi vi phạm xảy ra và đã kết thúc trong tháng 03/2026**\n*   **Tình huống:** Hành vi vi phạm được thực hiện, hoàn thành trọn vẹn trong tháng 03/2026 (trước ngày 15/08/2026), sau đó mới bị phát hiện hoặc đang trong quá trình xem xét giải quyết.\n*   **Căn cứ pháp lý:** Khoản 1 Điều 54 Nghị định 168/2024/NĐ-CP.\n*   **Văn bản áp dụng:** Áp dụng nghị định đang có hiệu lực tại thời điểm thực hiện hành vi vi phạm để xử phạt. Do đó, trường hợp này sẽ áp dụng **Nghị định 168/2024/NĐ-CP** để xử phạt.\n\n#### **Trường hợp 2: Hành vi vi phạm bắt đầu từ tháng 03/2026 và vẫn đang được thực hiện**\n*   **Tình huống:** Hành vi vi phạm thuộc loại kéo dài (đang được thực hiện liên tục từ tháng 03/2026) và chỉ bị phát hiện từ ngày 15/08/2026 trở đi (thời điểm Nghị định 238/2026/NĐ-CP đã có hiệu lực thi hành).\n*   **Căn cứ pháp lý:** Khoản 2 Điều 54 Nghị định 168/2024/NĐ-CP.\n*   **Văn bản áp dụng:** Áp dụng nghị định đang có hiệu lực tại thời điểm phát hiện hành vi vi phạm để xử phạt. Do đó, trường hợp này sẽ áp dụng các điều khoản đã được sửa đổi, bổ sung bởi **Nghị định 238/2026/NĐ-CP** để xử phạt.\n\nHy vọng câu trả lời trên đã làm sáng tỏ thắc mắc của bạn một cách chi tiết và rõ ràng theo đúng quy định pháp luật hiện hành. Nếu bạn có thêm câu hỏi, xin vui lòng liên hệ lại!"
+}

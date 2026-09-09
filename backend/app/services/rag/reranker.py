@@ -22,7 +22,7 @@ class LegalRerankerService:
         if self.model is None:
             from sentence_transformers import CrossEncoder
             import torch
-            target_device = os.getenv("RERANKER_DEVICE", "cpu")
+            target_device = os.getenv("RERANKER_DEVICE", "cuda" if torch.cuda.is_available() else "cpu")
             if target_device == "cuda" and not torch.cuda.is_available():
                 target_device = "cpu"
             model_kwargs = {"torch_dtype": torch.float16} if target_device == "cuda" else {"low_cpu_mem_usage": True}
@@ -34,7 +34,7 @@ class LegalRerankerService:
                     device=target_device,
                     model_kwargs=model_kwargs
                 )
-                print(f"[+] Reranker '{self.model_name}' ready on {target_device}!")
+                print(f"[+] Reranker '{self.model_name}' ready on {target_device} (FP16: {target_device == 'cuda'})!")
             except Exception as e:
                 if target_device == "cuda":
                     print(f"[!] CUDA error ({e}), falling back to CPU...")
@@ -61,7 +61,8 @@ class LegalRerankerService:
             doc_text = f"{c.get('context_header', '')}\n{c.get('content', '')}"
             pairs.append((query, doc_text))
 
-        scores = self.model.predict(pairs, show_progress_bar=False)
+        batch_sz = 16 if getattr(self.model, "device", None) and "cuda" in str(self.model.device) else 8
+        scores = self.model.predict(pairs, show_progress_bar=False, batch_size=batch_sz)
 
         # Gắn rerank_score vào từng candidate
         ranked_candidates = []

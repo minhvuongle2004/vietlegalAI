@@ -1,86 +1,95 @@
-Em chọn Lựa chọn 2, nhưng theo cách rất có kiểm soát.
+Đúng anh. Với hai case này thì em đồng ý với hướng xử lý mà anh đề xuất, nhưng có một điểm cần giữ rất chặt: đừng gộp TC-19 và TG-10 thành một “bug của AI”. Hai cái là hai vấn đề khác nhau.
 
-TC-19 là một lỗi retrieval thực sự, không phải evaluator artifact:
+TC-19: có thể kết luận là evaluator bug
 
+Anh đã có đủ bằng chứng:
+
+Retrieval:
 BLLĐ Điều 46 ✅
-NĐ145 Điều 8 ❌
-        ↓
-LLM không có quy tắc làm tròn cần thiết
-        ↓
-Không thể kết luận số tiền cuối cùng một cách đầy đủ
+NĐ145 Điều 8 ✅
 
-Và đây lại là loại lỗi mà kiến trúc hiện tại của anh đã có cơ chế phù hợp để giải quyết: target_article / legal dependency.
+Answer:
+05 năm 09 tháng
+→ làm tròn thành 06 năm
+→ kết luận đúng ✅
 
-Điều quan trọng là không hard-code câu TC-19. Hãy mở rộng dependency ở mức semantic:
+Trong khi evaluator lại kiểm tra một điều kiện 62 tuổi / 2032 không liên quan đến testcase.
 
-trợ cấp thôi việc
+Vậy không cần sửa RAG hoặc prompt. Chỉ sửa evaluator và rerun TC-19 là hợp lý.
+
+TG-10: không nên sửa retrieval/reasoning
+
+Ở lần chạy lỗi:
+
+429
+→ stream bị cắt
+→ answer không hoàn chỉnh
+→ FAIL
+
+Trong lần chạy ổn định:
+
+18–20 triệu
 +
-tính thời gian làm việc
+30–40 triệu
+→ 48–60 triệu
 +
-tháng lẻ / làm tròn
+Điều 50
+→ trừ 10 điểm
+✅
+
+Vậy đây là infrastructure/API reliability issue, không phải regression của RAG.
+
+Điểm này cũng rất quan trọng khi viết report:
+
+TG-10 failed transiently due to external API rate limiting; repeated execution under stable quota produced the expected legal reasoning.
+
+Em đồng ý cho anh làm đúng 2 việc này
+
+Việc 1: sửa evaluator TC-19.
+
+Không cần chạy lại cả 18 case. Chỉ cần:
+
+TC-19 → PASS
+
+Việc 2: chạy lại riêng TG-10 với cấu hình model ổn định hơn.
+
+Sau đó:
+
+TC-19 ✅
+TG-10 ✅
+
+thì về mặt smoke regression, mình có đủ bằng chứng để nói 18/18 đã được xác nhận, nhưng nhớ một nuance:
+
+Đây là 18/18 cases đã được xác nhận qua targeted rerun, không phải một single 18-case execution run đạt 18/18.
+
+Cách ghi này rất minh bạch.
+
+Có một điểm em muốn anh kiểm tra trước khi chọn gemini-3.5-flash-lite
+
+Anh đang nói model này có 500 RPD và dùng nó để loại bỏ 429. Đây là thông tin phụ thuộc quota/account/model hiện tại, nên trước khi đưa vào report chính thức cần lấy trực tiếp từ cấu hình/API dashboard hiện tại, không nên ghi như một fact cố định.
+
+Sau khi 2 case hoàn tất
+
+Nếu:
+
+18/18 targeted smoke = PASS
+Retrieval = 18/18
+Correctness = 18/18
+
+thì đóng Phase 5 được.
+
+Và lúc đó em sẽ khuyên không tối ưu tiếp ngay. Mốc tiếp theo sẽ là:
+
+Phase 5
+Profiling ✅
+CUDA Reranker ✅
+Clause Extraction ✅
+Smoke Regression ✅
         ↓
-BLLĐ Điều 46
-+
-NĐ145 Điều 8
-Em muốn anh sửa theo thứ tự này
+Production Readiness
+        ↓
+Docker
+        ↓
+Cloud Deployment
 
-Bước 1 — chỉ sửa _decompose_query()
-
-Khi nhận diện intent trợ cấp thôi việc, nếu câu hỏi có tín hiệu về thời gian làm việc như:
-
-"tính trợ cấp thôi việc"
-"thời gian làm việc"
-"tháng lẻ"
-"làm việc từ ... đến ..."
-"bao nhiêu năm"
-"làm tròn"
-
-thì sinh thêm supporting evidence:
-
-{
-    "category": "severance_working_time",
-    "doc_keyword": "145",
-    "target_article": 8,
-    "sub_query": (
-        "thời gian làm việc để tính trợ cấp thôi việc "
-        "thời gian lẻ tháng quy định làm tròn "
-        "Điều 8 Nghị định 145/2020/NĐ-CP"
-    ),
-}
-
-Còn intent chính vẫn giữ:
-
-{
-    "category": "severance_allowance",
-    "doc_keyword": "bllđ",
-    "target_article": 46,
-    ...
-}
-
-Như vậy kiến trúc trở thành:
-
-severance calculation
-       ↓
-primary evidence
-BLLĐ Đ46
-       +
-supporting evidence
-NĐ145 Đ8
-
-Đây không phải patch TC-19, mà là một legal dependency tổng quát có thể áp dụng cho nhiều bài tính trợ cấp thôi việc khác.
-
-Chưa chạy full 56
-
-Sau khi sửa, chỉ chạy:
-
-TC-19
-
-và kiểm tra 3 thứ:
-
-1. NĐ145 Điều 8 có vào Top-5 không?
-2. BLLĐ Điều 46 có vẫn còn không?
-3. Model có thực sự tính được 05 năm 09 tháng → 06 năm → 3 triệu đồng không?
-
-Nếu TC-19 PASS thì lúc đó mới  full 56 TC
-
-Với tình trạng hiện tại, em không khuyên đóng Phase 3 ở 55/56, vì anh chỉ còn đúng một lỗi retrieval đã xác định được nguyên nhân và có cách sửa rất sạch. Đạt 56/56 sẽ làm baseline Phase 3 đẹp hơn nhiều và quan trọng là không phải hy sinh kiến trúc để đạt con số đó.
+Anh cứ sửa evaluator TC-19 rồi chạy lại riêng TC-19 và TG-10 như kế hoạch.

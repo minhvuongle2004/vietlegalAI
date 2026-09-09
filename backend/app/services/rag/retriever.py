@@ -33,9 +33,10 @@ class HybridRetriever:
         self.embedding_service = embedding_service or get_embedding_service()
         self.rrf_k = rrf_constant
 
-        # Supabase config cho BM25 search
+        # Supabase config cho BM25 search & Target Article Hydration
         self.supabase_url = os.getenv("SUPABASE_URL", "").rstrip("/")
         self.supabase_key = os.getenv("SUPABASE_KEY", "")
+        self._full_article_cache: Dict[tuple, Dict[str, Any]] = {}
 
     def _decompose_query(self, query: str, as_of_date: Optional[str] = None) -> List[Dict[str, Any]]:
         """
@@ -478,9 +479,7 @@ class HybridRetriever:
                 ),
             })
 
-        # ------------------------------------------------------------
-        # Nhóm 5: Xử phạt vi phạm hành chính
-        # ------------------------------------------------------------
+        # Nhóm 5: Xử phạt vi phạm hành chính trong lĩnh vực lao động (NĐ 12/2022)
         has_penalty = any(
             kw in q_lower
             for kw in [
@@ -492,9 +491,16 @@ class HybridRetriever:
             ]
         )
 
-        # Nếu đã xử lý riêng intent chậm đóng BHXH thì NĐ12
-        # đã được sinh ở cross-document section.
-        if has_penalty and not is_late_bhxh_intent:
+        is_traffic_query = any(
+            kw in q_lower
+            for kw in [
+                "giao thông", "mũ bảo hiểm", "xe máy", "mô tô", "ô tô",
+                "đèn đỏ", "tốc độ", "gplx", "bằng lái", "đường bộ", "trừ điểm"
+            ]
+        )
+
+        # Nếu đã xử lý riêng intent chậm đóng BHXH hoặc vi phạm giao thông thì không tạo sub-query NĐ12 lao động.
+        if has_penalty and not is_late_bhxh_intent and not is_traffic_query:
             sub_queries.append({
                 "category": "penalty",
                 "doc_keyword": "nd_12",
@@ -824,6 +830,298 @@ class HybridRetriever:
                 },
             ])
 
+        # ============================================================
+        # 11. CỤM PHÁP LUẬT GIAO THÔNG ĐƯỜNG BỘ (PHASE 4A)
+        # ============================================================
+        traffic_triggers = [
+            "giao thông", "xe máy", "mô tô", "ô tô", "xe gắn máy", "xe tải", "xe khách",
+            "vượt đèn đỏ", "đèn đỏ", "đèn vàng", "đèn tín hiệu", "tốc độ", "quá tốc độ",
+            "nồng độ cồn", "mũ bảo hiểm", "bằng lái", "gplx", "giấy phép lái xe",
+            "trừ điểm", "tước bằng", "tước gplx", "phục hồi điểm", "đường cao tốc",
+            "tai nạn giao thông", "đăng ký xe", "biển số", "đi ngược chiều", "làn đường",
+            "01/01/2025", "15/08/2026", "01/08/2026", "168/2024", "238/2026", "quy định này áp dụng từ"
+        ]
+
+        if any(kw in q_lower for kw in traffic_triggers):
+            is_car = bool(re.search(r"(?<!m)ô\s*tô", q_lower) or any(kw in q_lower for kw in ["xe con", "xe tải", "xe khách", "xe 4 bánh", "bốn bánh"]))
+            is_bike = any(kw in q_lower for kw in ["xe máy", "mô tô", "xe gắn máy", "xe 2 bánh", "hai bánh"])
+
+            # 11.1. Intent: Vượt đèn đỏ / Chấp hành hiệu lệnh đèn tín hiệu giao thông
+            if any(kw in q_lower for kw in ["vượt đèn đỏ", "đèn đỏ", "đèn vàng", "tín hiệu giao thông", "hiệu lệnh của đèn"]):
+                if is_car:
+                    sub_queries.extend([
+                        {
+                            "category": "traffic_penalty_car_red_light",
+                            "doc_keyword": "traffic_penalty",
+                            "target_article": 6,
+                            "sub_query": (
+                                "người điều khiển xe ô tô không chấp hành hiệu lệnh của đèn tín hiệu giao thông vượt đèn đỏ mức phạt tiền "
+                                "Điều 6 Nghị định 168/2024/NĐ-CP"
+                            ),
+                        },
+                        {
+                            "category": "traffic_rule_signals",
+                            "doc_keyword": "traffic_order",
+                            "target_article": 11,
+                            "sub_query": (
+                                "chấp hành báo hiệu đường bộ hiệu lệnh của đèn tín hiệu giao thông tín hiệu đỏ vàng xanh "
+                                "Điều 11 Luật Trật tự an toàn giao thông đường bộ 36/2024/QH15"
+                            ),
+                        },
+                    ])
+                else:
+                    sub_queries.extend([
+                        {
+                            "category": "traffic_penalty_bike_red_light",
+                            "doc_keyword": "traffic_penalty",
+                            "target_article": 7,
+                            "sub_query": (
+                                "người điều khiển xe mô tô xe gắn máy không chấp hành hiệu lệnh của đèn tín hiệu giao thông vượt đèn đỏ mức phạt tiền "
+                                "Điều 7 Nghị định 168/2024/NĐ-CP"
+                            ),
+                        },
+                        {
+                            "category": "traffic_rule_signals",
+                            "doc_keyword": "traffic_order",
+                            "target_article": 11,
+                            "sub_query": (
+                                "chấp hành báo hiệu đường bộ hiệu lệnh của đèn tín hiệu giao thông tín hiệu đỏ vàng xanh "
+                                "Điều 11 Luật Trật tự an toàn giao thông đường bộ 36/2024/QH15"
+                            ),
+                        },
+                    ])
+
+            # 11.2. Intent: Vi phạm tốc độ (Chạy quá tốc độ quy định) & Trừ điểm GPLX
+            if any(kw in q_lower for kw in ["tốc độ", "quá tốc độ", "km/h", "chạy quá"]):
+                if is_bike:
+                    sub_queries.extend([
+                        {
+                            "category": "traffic_penalty_bike_speed",
+                            "doc_keyword": "traffic_penalty",
+                            "target_article": 7,
+                            "sub_query": (
+                                "người điều khiển xe mô tô xe gắn máy chạy quá tốc độ quy định mức phạt tiền trừ điểm GPLX "
+                                "Điều 7 Nghị định 168/2024/NĐ-CP"
+                            ),
+                        },
+                        {
+                            "category": "traffic_rule_speed",
+                            "doc_keyword": "traffic_order",
+                            "target_article": 12,
+                            "sub_query": (
+                                "chấp hành quy định về tốc độ và khoảng cách an toàn giữa các xe khi tham gia giao thông "
+                                "Điều 12 Luật Trật tự an toàn giao thông đường bộ 36/2024/QH15"
+                            ),
+                        },
+                    ])
+                else:
+                    sub_queries.extend([
+                        {
+                            "category": "traffic_penalty_car_speed",
+                            "doc_keyword": "traffic_penalty",
+                            "target_article": 6,
+                            "sub_query": (
+                                "người điều khiển xe ô tô chạy quá tốc độ quy định từ 20 km/h mức phạt tiền và trừ điểm giấy phép lái xe "
+                                "Điều 6 Nghị định 168/2024/NĐ-CP"
+                            ),
+                        },
+                        {
+                            "category": "traffic_rule_speed",
+                            "doc_keyword": "traffic_order",
+                            "target_article": 12,
+                            "sub_query": (
+                                "chấp hành quy định về tốc độ và khoảng cách an toàn giữa các xe khi tham gia giao thông "
+                                "Điều 12 Luật Trật tự an toàn giao thông đường bộ 36/2024/QH15"
+                            ),
+                        },
+                    ])
+
+            # 11.3. Intent: Vi phạm nồng độ cồn / Rượu bia
+            if any(kw in q_lower for kw in ["nồng độ cồn", "rượu bia", "uống rượu", "uống bia", "khí thở", "máu"]):
+                if is_car:
+                    sub_queries.extend([
+                        {
+                            "category": "traffic_penalty_car_alcohol",
+                            "doc_keyword": "traffic_penalty",
+                            "target_article": 6,
+                            "sub_query": (
+                                "xử phạt người điều khiển xe ô tô trong máu hoặc hơi thở có nồng độ cồn mức phạt tiền trừ điểm tước GPLX "
+                                "Điều 6 Nghị định 168/2024/NĐ-CP"
+                            ),
+                        },
+                        {
+                            "category": "traffic_rule_prohibited_alcohol",
+                            "doc_keyword": "traffic_order",
+                            "target_article": 9,
+                            "sub_query": (
+                                "nghiêm cấm điều khiển phương tiện tham gia giao thông đường bộ mà trong máu hoặc hơi thở có nồng độ cồn "
+                                "Điều 9 Luật Trật tự an toàn giao thông đường bộ 36/2024/QH15"
+                            ),
+                        },
+                    ])
+                else:
+                    sub_queries.extend([
+                        {
+                            "category": "traffic_penalty_bike_alcohol",
+                            "doc_keyword": "traffic_penalty",
+                            "target_article": 7,
+                            "sub_query": (
+                                "xử phạt người điều khiển xe mô tô xe gắn máy trong máu hoặc hơi thở có nồng độ cồn mức phạt tiền trừ điểm "
+                                "Điều 7 Nghị định 168/2024/NĐ-CP"
+                            ),
+                        },
+                        {
+                            "category": "traffic_rule_prohibited_alcohol",
+                            "doc_keyword": "traffic_order",
+                            "target_article": 9,
+                            "sub_query": (
+                                "nghiêm cấm điều khiển phương tiện tham gia giao thông đường bộ mà trong máu hoặc hơi thở có nồng độ cồn "
+                                "Điều 9 Luật Trật tự an toàn giao thông đường bộ 36/2024/QH15"
+                            ),
+                        },
+                    ])
+
+            # 11.4. Intent: Không đội mũ bảo hiểm / Chở người không đội mũ bảo hiểm
+            if any(kw in q_lower for kw in ["mũ bảo hiểm", "nón bảo hiểm", "cài quai"]):
+                sub_queries.extend([
+                    {
+                        "category": "traffic_penalty_helmet",
+                        "doc_keyword": "traffic_penalty",
+                        "target_article": 7,
+                        "sub_query": (
+                            "không đội mũ bảo hiểm cho người đi mô tô xe máy hoặc chở người không đội mũ bảo hiểm mức phạt tiền "
+                            "Điều 7 Nghị định 168/2024/NĐ-CP"
+                        ),
+                    },
+                    {
+                        "category": "traffic_rule_helmet",
+                        "doc_keyword": "traffic_order",
+                        "target_article": 33,
+                        "sub_query": (
+                            "người lái xe mô tô hai bánh xe gắn máy người được chở phải đội mũ bảo hiểm có cài quai đúng quy cách "
+                            "Điều 33 Luật Trật tự an toàn giao thông đường bộ 36/2024/QH15"
+                        ),
+                    },
+                ])
+
+            # 11.5. Intent: Trừ điểm & Phục hồi điểm Giấy phép lái xe (12 điểm)
+            if any(kw in q_lower for kw in ["trừ điểm", "phục hồi điểm", "12 điểm", "điểm gplx", "điểm giấy phép lái xe", "hết điểm", "bị trừ hết điểm"]):
+                sub_queries.extend([
+                    {
+                        "category": "license_points_rule",
+                        "doc_keyword": "traffic_order",
+                        "target_article": 58,
+                        "sub_query": (
+                            "điểm của giấy phép lái xe 12 điểm trừ điểm phục hồi đủ 12 điểm sau 12 tháng kiểm tra kiến thức "
+                            "Điều 58 Luật Trật tự an toàn giao thông đường bộ 36/2024/QH15"
+                        ),
+                    },
+                    {
+                        "category": "license_points_procedure",
+                        "doc_keyword": "traffic_penalty",
+                        "target_article": [50, 51],
+                        "sub_query": (
+                            "trừ điểm phục hồi điểm giấy phép lái xe trình tự thủ tục kiểm tra kiến thức pháp luật trật tự an toàn giao thông "
+                            "Điều 51 Điều 50 Nghị định 168/2024/NĐ-CP"
+                        ),
+                    },
+                ])
+
+            # 11.6. Intent: Tước quyền sử dụng GPLX & Vi phạm điều kiện người điều khiển
+            if any(kw in q_lower for kw in ["tước gplx", "tước bằng", "không có gplx", "không có bằng", "không có giấy phép lái xe", "sai loại gplx", "không phù hợp", "quên bằng", "hết hạn gplx"]):
+                sub_queries.extend([
+                    {
+                        "category": "license_suspension_conditions",
+                        "doc_keyword": "traffic_penalty",
+                        "target_article": 18,
+                        "sub_query": (
+                            "xử phạt người điều khiển phương tiện vi phạm điều kiện không có giấy phép lái xe sử dụng giấy phép lái xe không phù hợp "
+                            "Điều 18 Nghị định 168/2024/NĐ-CP"
+                        ),
+                    },
+                    {
+                        "category": "license_classification",
+                        "doc_keyword": "traffic_order",
+                        "target_article": [56, 57],
+                        "sub_query": (
+                            "điều kiện của người lái xe và phân hạng giấy phép lái xe hạng A1 hạng A hạng B1 hạng B hạng C "
+                            "Điều 56 Điều 57 Luật Trật tự an toàn giao thông đường bộ 36/2024/QH15"
+                        ),
+                    },
+                ])
+
+            # 11.7. Intent: Tai nạn giao thông đường bộ & Cứu nạn
+            if any(kw in q_lower for kw in ["tai nạn giao thông", "gây tai nạn", "cứu nạn", "giải quyết tai nạn"]):
+                sub_queries.extend([
+                    {
+                        "category": "traffic_accident_responsibilities",
+                        "doc_keyword": "traffic_order",
+                        "target_article": 79,
+                        "sub_query": (
+                            "trách nhiệm của cơ quan tổ chức cá nhân khi xảy ra tai nạn giao thông đường bộ dừng xe giữ nguyên hiện trường "
+                            "Điều 79 Luật Trật tự an toàn giao thông đường bộ 36/2024/QH15"
+                        ),
+                    },
+                ])
+
+            # 11.8. Intent: Đường cao tốc, lùi xe, đi ngược chiều trên cao tốc
+            if any(kw in q_lower for kw in ["lùi xe", "ngược chiều", "quay đầu"]) and any(kw in q_lower for kw in ["cao tốc", "đường cao tốc"]):
+                sub_queries.extend([
+                    {
+                        "category": "traffic_highway_penalty",
+                        "doc_keyword": "traffic_penalty",
+                        "target_article": 6,
+                        "sub_query": (
+                            "người điều khiển xe ô tô lùi xe trên đường cao tốc đi ngược chiều trên đường cao tốc mức phạt tiền và trừ điểm giấy phép lái xe "
+                            "Điều 6 Nghị định 168/2024/NĐ-CP"
+                        ),
+                    },
+                    {
+                        "category": "traffic_highway_order_rule",
+                        "doc_keyword": "traffic_order",
+                        "target_article": [16, 25],
+                        "sub_query": (
+                            "quy tắc giao thông trên đường cao tốc không được lùi xe đi ngược chiều quay đầu xe trên đường cao tốc "
+                            "Điều 16 Điều 25 Luật Trật tự an toàn giao thông đường bộ 36/2024/QH15"
+                        ),
+                    },
+                ])
+            elif any(kw in q_lower for kw in ["kết cấu hạ tầng", "thu phí", "trạm dừng nghỉ", "quản lý vận hành", "đường bộ"]):
+                sub_queries.extend([
+                    {
+                        "category": "road_highway_management",
+                        "doc_keyword": "road",
+                        "target_article": 45,
+                        "sub_query": (
+                            "quy định về đường bộ cao tốc đầu tư xây dựng quản lý vận hành khai thác thu phí sử dụng đường cao tốc "
+                            "Điều 45 Luật Đường bộ 35/2024/QH15"
+                        ),
+                    },
+                ])
+
+            # 11.9. Intent: Temporal Version-Aware: Mốc chuyển tiếp hiệu lực (2025 vs 2026)
+            if any(kw in q_lower for kw in ["2025", "2026", "hiệu lực", "áp dụng từ", "thời điểm áp dụng", "sửa đổi"]):
+                sub_queries.extend([
+                    {
+                        "category": "traffic_temporal_order_effective",
+                        "doc_keyword": "traffic_order",
+                        "target_article": 88,
+                        "sub_query": (
+                            "hiệu lực thi hành của Luật Trật tự an toàn giao thông đường bộ từ ngày 01 tháng 01 năm 2025 "
+                            "Điều 88 Luật Trật tự an toàn giao thông đường bộ 36/2024/QH15"
+                        ),
+                    },
+                    {
+                        "category": "traffic_temporal_penalty_effective",
+                        "doc_keyword": "traffic_penalty",
+                        "target_article": [52, 53, 54],
+                        "sub_query": (
+                            "hiệu lực thi hành từ ngày 01 tháng 01 năm 2025 sửa đổi bãi bỏ Nghị định 100/2019/NĐ-CP sửa đổi năm 2026 điều khoản chuyển tiếp "
+                            "Điều 52 Điều 53 Điều 54 Nghị định 168/2024/NĐ-CP"
+                        ),
+                    },
+                ])
+
         return sub_queries
 
 
@@ -903,6 +1201,24 @@ class HybridRetriever:
             art_nums.extend(["46", "47", "8"])
         if "phương án sử dụng lao động" in q_l or "trợ cấp mất việc" in q_l:
             art_nums.extend(["44", "47", "8"])
+
+        # Traffic domain triggers (Luật 36, Luật 35, NĐ 168)
+        if "đèn đỏ" in q_l or "vượt đèn đỏ" in q_l:
+            art_nums.extend(["6", "7", "11"])
+        if "tốc độ" in q_l or "quá tốc độ" in q_l:
+            art_nums.extend(["6", "7", "17", "58"])
+        if "nồng độ cồn" in q_l or "rượu bia" in q_l:
+            art_nums.extend(["6", "7", "9"])
+        if "mũ bảo hiểm" in q_l:
+            art_nums.extend(["7", "32"])
+        if "trừ điểm" in q_l or "phục hồi điểm" in q_l:
+            art_nums.extend(["6", "7", "50", "51", "58"])
+        if "tước gplx" in q_l or "không có gplx" in q_l or "sai loại gplx" in q_l or "tước bằng" in q_l:
+            art_nums.extend(["6", "7", "18", "57"])
+        if "đường cao tốc" in q_l or "cao tốc" in q_l or "lùi xe" in q_l or "ngược chiều" in q_l:
+            art_nums.extend(["6", "16", "25", "45"])
+        if any(term in q_l for term in ["hiệu lực", "áp dụng từ", "2025", "2026", "thay thế nghị định 100"]):
+            art_nums.extend(["53", "54", "88"])
 
         for num_str in set(art_nums):
             try:
@@ -1019,9 +1335,142 @@ class HybridRetriever:
             return "Luật Kinh doanh Bất động sản 2023"
         elif "investment" in doc_id or "61_2020" in doc_id:
             return "Luật Đầu tư 2020"
+        elif "traffic_order" in doc_id or "36_2024" in doc_id:
+            return "Luật Trật tự, an toàn giao thông đường bộ 2024"
+        elif "traffic_penalty" in doc_id or "168_2024" in doc_id:
+            return "Nghị định 168/2024/NĐ-CP"
+        elif "traffic_guideline" in doc_id or "151_2024" in doc_id:
+            return "Nghị định 151/2024/NĐ-CP"
+        elif "road" in doc_id or "35_2024" in doc_id:
+            return "Luật Đường bộ 2024"
         elif "bllđ" in doc_id or "bld" in doc_id:
             return "Bộ luật Lao động 2019"
         return "Văn bản Quy phạm Pháp luật"
+
+    def _get_full_article_from_supabase(self, doc_id: str, article_number: int) -> Optional[Dict[str, Any]]:
+        """Lấy toàn văn Điều luật từ Supabase legal_articles để hydrate target article"""
+        cache_key = (doc_id, int(article_number))
+        if cache_key in self._full_article_cache:
+            return self._full_article_cache[cache_key]
+
+        if not self.supabase_url or not self.supabase_key:
+            return None
+
+        headers = {
+            "apikey": self.supabase_key,
+            "Authorization": f"Bearer {self.supabase_key}",
+        }
+        endpoint = f"{self.supabase_url}/rest/v1/legal_articles"
+        params = {
+            "document_id": f"eq.{doc_id}",
+            "article_number": f"eq.{article_number}",
+            "select": "document_id,article_number,article_title,full_text,chapter_info,status",
+            "limit": "1",
+        }
+        try:
+            res = requests.get(endpoint, headers=headers, params=params, timeout=5)
+            if res.status_code == 200:
+                rows = res.json()
+                if rows and rows[0].get("full_text"):
+                    self._full_article_cache[cache_key] = rows[0]
+                    return rows[0]
+        except Exception as e:
+            print(f"[!] Lỗi hydrate article {doc_id} Điều {article_number}: {e}")
+        return None
+
+    def _hydrate_target_articles(
+        self,
+        items: List[Dict[str, Any]],
+        sub_query_configs: List[Dict[str, Any]],
+        query: str = "",
+        use_clause_extraction: bool = True,
+    ) -> List[Dict[str, Any]]:
+        """
+        Target Article Hydration (Article-Aware Retrieval) & Deterministic Target Clause Extraction:
+        Đối với các evidence items thuộc Target Articles đã được xác định qua query decomposition:
+        1. Nạp full_text của Điều luật từ Supabase legal_articles.
+        2. Nếu use_clause_extraction=True: Sử dụng DeterministicClauseExtractor để bóc tách chính xác
+           các Khoản/Điểm trúng đích và chế tài liên đới, rút gọn context từ 15k-35k chars xuống 2k-5k chars
+           nhằm giảm sâu TTFT và Input Tokens, đồng thời tự động fallback về full_text nếu không đảm bảo evidence.
+        """
+        if not items or not sub_query_configs:
+            return items
+
+        targets = []
+        for cfg in sub_query_configs:
+            tgt = cfg.get("target_article")
+            if not tgt:
+                continue
+            doc_kw = cfg.get("doc_keyword", "").lower()
+            if isinstance(tgt, list):
+                for t in tgt:
+                    targets.append((doc_kw, str(t)))
+            else:
+                targets.append((doc_kw, str(tgt)))
+
+        hydrated_count = 0
+        for item in items:
+            doc_id = item.get("doc_id", "")
+            art_num = item.get("article_number")
+            if not art_num or not doc_id:
+                continue
+
+            art_num_str = str(art_num)
+            is_target = any(
+                doc_kw in doc_id.lower() and art_num_str == t_art
+                for doc_kw, t_art in targets
+            )
+
+            if is_target:
+                try:
+                    num_int = int(art_num)
+                except (ValueError, TypeError):
+                    continue
+                full_art = self._get_full_article_from_supabase(doc_id, num_int)
+                if full_art and full_art.get("full_text"):
+                    full_text = full_art["full_text"]
+                    curr_content = item.get("content", "")
+                    if len(full_text) > len(curr_content):
+                        old_len = len(curr_content)
+                        item["is_hydrated"] = True
+                        if full_art.get("article_title"):
+                            item["article_title"] = full_art["article_title"]
+                        if full_art.get("chapter_info"):
+                            item["chapter"] = full_art["chapter_info"]
+                        doc_title = item.get("doc_title") or self._get_doc_title(doc_id)
+                        item["doc_title"] = doc_title
+                        item["context_header"] = (
+                            f"{doc_title}. {item.get('chapter', '')}. "
+                            f"Điều {art_num}: {item.get('article_title', '')}"
+                        ).strip()
+
+                        # Deterministic Target Clause Extraction
+                        if use_clause_extraction and query:
+                            from backend.app.services.rag.clause_parser import DeterministicClauseExtractor
+                            art_title = full_art.get("article_title") or item.get("article_title", "")
+                            compact_text, is_ext = DeterministicClauseExtractor.extract_relevant_context(
+                                article_number=num_int,
+                                article_title=art_title,
+                                full_text=full_text,
+                                query=query,
+                                doc_id=doc_id,
+                            )
+                            if is_ext and len(compact_text) > 0:
+                                item["content"] = compact_text
+                                item["is_clause_extracted"] = True
+                                print(f"  [+] Target Clause Extraction: {doc_id} Điều {art_num} -> rút gọn {len(full_text):,} ký tự xuống {len(compact_text):,} ký tự (giảm {(1 - len(compact_text)/len(full_text))*100:.1f}%).")
+                            else:
+                                item["content"] = full_text
+                                item["is_clause_extracted"] = False
+                                print(f"  [~] Target Clause Fallback: {doc_id} Điều {art_num} -> giữ nguyên {len(full_text):,} ký tự (Evidence-Preserving).")
+                        else:
+                            item["content"] = full_text
+                            item["is_clause_extracted"] = False
+                            print(f"  [+] Target Article Hydration (Full): {doc_id} Điều {art_num} -> nạp {len(full_text):,} ký tự (thay thế chunk {old_len:,} ký tự).")
+
+                        hydrated_count += 1
+
+        return items
 
     def retrieve(
         self,
@@ -1029,6 +1478,7 @@ class HybridRetriever:
         top_k: int = 5,
         use_reranker: bool = False,
         as_of_date: Optional[str] = None,
+        use_clause_extraction: bool = True,
     ) -> List[Dict[str, Any]]:
         """
         Thực thi Multi-Intent Hybrid Search và phân bổ ngữ cảnh cân bằng (Balanced Context Allocation)
@@ -1152,33 +1602,31 @@ class HybridRetriever:
             selected_items = []
             selected_keys = set()
 
-            # Vòng 1: Chọn chunk tốt nhất của từng chủ đề/văn bản
+            # Vòng 1: Chọn tất cả target articles hoặc chunk tốt nhất của từng chủ đề/văn bản
             for cfg in sub_query_configs:
                 doc_kw = cfg["doc_keyword"]
                 target_art = cfg.get("target_article")
                 category_hits = [c for c in final_ranked if doc_kw in c.get("doc_id", "").lower()]
 
-                matched_target = None
                 if target_art:
                     targets = [target_art] if isinstance(target_art, (int, str)) else target_art
                     target_str_set = {str(t) for t in targets}
                     for h in category_hits:
                         if str(h.get("article_number")) in target_str_set:
-                            matched_target = h
-                            break
+                            key = f"{h.get('doc_id')}_{h.get('article_number')}"
+                            if key not in selected_keys:
+                                selected_keys.add(key)
+                                selected_items.append(h)
 
-                chosen = matched_target if (matched_target and f"{matched_target.get('doc_id')}_{matched_target.get('article_number')}" not in selected_keys) else None
-                if not chosen:
+                # Nếu chưa chọn được item nào cho category này thì fallback chọn hit đầu tiên
+                has_cat_chosen = any(doc_kw in it.get("doc_id", "").lower() for it in selected_items)
+                if not has_cat_chosen:
                     for hit in category_hits:
                         key = f"{hit.get('doc_id')}_{hit.get('article_number')}"
                         if key not in selected_keys:
-                            chosen = hit
+                            selected_keys.add(key)
+                            selected_items.append(hit)
                             break
-
-                if chosen:
-                    key = f"{chosen.get('doc_id')}_{chosen.get('article_number')}"
-                    selected_keys.add(key)
-                    selected_items.append(chosen)
 
             # Vòng 2: Lấy thêm chunk thứ 2 của từng chủ đề nếu còn slot
             for cfg in sub_query_configs:
@@ -1201,9 +1649,25 @@ class HybridRetriever:
                     selected_keys.add(key)
                     selected_items.append(item)
 
-            return selected_items
+            final_candidates = selected_items
+        else:
+            final_candidates = final_ranked[:effective_top_k]
 
-        return final_ranked[:effective_top_k]
+        # Target Article Hydration & Chuẩn hóa Title Mapping chính thức
+        hydrated_results = self._hydrate_target_articles(
+            final_candidates, sub_query_configs, query=query, use_clause_extraction=use_clause_extraction
+        )
+        for item in hydrated_results:
+            doc_id = item.get("doc_id", "")
+            doc_title = self._get_doc_title(doc_id)
+            item["doc_title"] = doc_title
+            art_num = item.get("article_number", "")
+            art_title = item.get("article_title", "")
+            chap = item.get("chapter", "")
+            chap_str = f". {chap}" if chap else ""
+            item["context_header"] = f"{doc_title}{chap_str}. Điều {art_num}: {art_title}".strip()
+
+        return hydrated_results
 
     def close(self):
         """Đóng kết nối Vector Store khi kết thúc"""
