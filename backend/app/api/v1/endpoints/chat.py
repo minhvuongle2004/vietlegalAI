@@ -83,8 +83,8 @@ def _save_message_to_db(conversation_id: str, role: str, content: str, citations
 @router.post("/chat/completions")
 @limiter.limit(f"{settings.RATE_LIMIT_PER_MINUTE}/minute")
 async def chat_completions(
-    http_request: Request,
-    request: ChatMessageRequest,
+    request: Request,
+    body: ChatMessageRequest,
     current_user: Optional[AuthenticatedUser] = Depends(get_current_user_optional),
 ):
     """
@@ -94,15 +94,15 @@ async def chat_completions(
     Áp dụng giới hạn tần suất gọi API (Rate Limiting).
     """
     start_time = time.time()
-    query = request.query.strip()
+    query = body.query.strip()
 
     if not query:
         raise HTTPException(status_code=400, detail="Câu hỏi không được để trống")
 
     # Lưu tin nhắn của user nếu có conversation_id
-    if request.conversation_id:
+    if body.conversation_id:
         _save_message_to_db(
-            conversation_id=request.conversation_id,
+            conversation_id=body.conversation_id,
             role="user",
             content=query,
         )
@@ -110,9 +110,9 @@ async def chat_completions(
     # 1. Truy xuất căn cứ pháp lý liên quan nhất bằng Hybrid Search (+ Reranker tùy chọn)
     retrieved_chunks = retriever.retrieve(
         query=query,
-        top_k=request.top_k,
-        use_reranker=request.use_reranker,
-        as_of_date=request.as_of_date,
+        top_k=body.top_k,
+        use_reranker=body.use_reranker,
+        as_of_date=body.as_of_date,
     )
 
     citations = []
@@ -139,7 +139,7 @@ async def chat_completions(
         full_text = ""
         try:
             async for token in generator.generate_answer_stream(query=query, retrieved_chunks=retrieved_chunks):
-                if await http_request.is_disconnected():
+                if await request.is_disconnected():
                     print("[!] Client disconnected from SSE stream, aborting generation.")
                     break
                 full_text += token
@@ -154,9 +154,9 @@ async def chat_completions(
         latency_ms = int((time.time() - start_time) * 1000)
 
         # Lưu tin nhắn AI vào database sau khi stream xong
-        if request.conversation_id:
+        if body.conversation_id:
             _save_message_to_db(
-                conversation_id=request.conversation_id,
+                conversation_id=body.conversation_id,
                 role="assistant",
                 content=full_text,
                 citations=citations,

@@ -42,10 +42,13 @@ app.include_router(api_router, prefix=settings.API_V1_STR)
 
 
 @app.get("/health")
-async def health_check_root():
-    """Endpoint Health Check phục vụ Cloud Load Balancers và Container Probes"""
-    from backend.app.api.v1.endpoints.health import health_check
-    return await health_check()
+async def liveness_probe():
+    """Liveness Probe: phản hồi tức thì <1ms xác nhận tiến trình backend còn sống mà không phụ thuộc dịch vụ ngoài"""
+    return {
+        "status": "alive",
+        "service": settings.PROJECT_NAME,
+        "environment": settings.ENVIRONMENT,
+    }
 
 
 @app.on_event("startup")

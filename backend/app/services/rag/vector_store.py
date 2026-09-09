@@ -216,7 +216,7 @@ class QdrantVectorStore:
                 should=should_conditions if should_conditions else None,
             )
 
-        # Hỗ trợ cả API search cũ và query_points mới của Qdrant
+        # Hỗ trợ cả API query_points mới (Qdrant >= 1.10) và search cũ
         if hasattr(self.client, "query_points"):
             results = self.client.query_points(
                 collection_name=self.collection_name,
@@ -225,7 +225,7 @@ class QdrantVectorStore:
                 query_filter=query_filter,
                 with_payload=True,
             ).points
-        else:
+        elif hasattr(self.client, "search"):
             results = self.client.search(
                 collection_name=self.collection_name,
                 query_vector=query_vector,
@@ -233,6 +233,8 @@ class QdrantVectorStore:
                 query_filter=query_filter,
                 with_payload=True,
             )
+        else:
+            raise RuntimeError("QdrantClient has neither query_points nor search method")
 
         formatted = []
         for r in results:
