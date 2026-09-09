@@ -1244,6 +1244,12 @@ body, html {
 }
 
 @media (max-width: 768px) {
+  /* Ẩn hoàn toàn nút đăng nhập Google trên giao diện điện thoại */
+  .google-login-btn,
+  .google-nav-btn {
+    display: none !important;
+  }
+
   /* Ẩn thanh navbar desktop */
   .desktop-only-navbar {
     display: none !important;

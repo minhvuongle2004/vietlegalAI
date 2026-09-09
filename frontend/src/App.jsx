@@ -683,21 +683,7 @@ export default function App() {
               </div>
             </div>
 
-            {/* Suggested Prompts */}
-            <div className="welcome-prompts">
-              {SAMPLE_QUESTIONS.map((q, idx) => (
-                <div
-                  key={idx}
-                  className="welcome-prompt-card"
-                  onClick={() => handleSend(q.query)}
-                >
-                  <div className="welcome-prompt-title">{q.title}</div>
-                  <div className="welcome-prompt-sub">{q.sub}</div>
-                </div>
-              ))}
-            </div>
-
-            <div className="input-disclaimer" style={{ marginTop: '20px' }}>
+            <div className="input-disclaimer" style={{ marginTop: '24px' }}>
               ⚠️ <strong>Khuyến cáo pháp lý:</strong> VietLegal AI là trợ lý tra cứu & suy luận quy định pháp luật tự động. Mọi câu trả lời chỉ mang tính chất tham khảo, không thay thế cho ý kiến tư vấn pháp lý chính thức từ Luật sư hoặc cơ quan Nhà nước có thẩm quyền.
             </div>
           </div>

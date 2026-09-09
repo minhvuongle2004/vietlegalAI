@@ -3,7 +3,7 @@ import { X, Sparkles, User, Mail, Shield, LogOut, ChevronRight, Sliders, Databas
 import { useAuth } from '../context/AuthContext';
 
 export default function ProfileModal({ isOpen, onClose }) {
-  const { user, signOut } = useAuth();
+  const { user, signInWithGoogle, signOut } = useAuth();
 
   if (!isOpen) return null;
 
@@ -109,8 +109,8 @@ export default function ProfileModal({ isOpen, onClose }) {
               <ChevronRight size={16} className="profile-menu-arrow" />
             </div>
 
-            {/* Nút Đăng xuất */}
-            {user && (
+            {/* Nút Đăng xuất hoặc Đăng nhập */}
+            {user ? (
               <div
                 className="profile-menu-item profile-logout-item"
                 onClick={async () => {
@@ -122,6 +122,22 @@ export default function ProfileModal({ isOpen, onClose }) {
                   <LogOut size={18} />
                 </div>
                 <div className="profile-menu-text profile-logout-text">Đăng xuất</div>
+              </div>
+            ) : (
+              <div
+                className="profile-menu-item"
+                onClick={async () => {
+                  onClose();
+                  signInWithGoogle();
+                }}
+              >
+                <div className="profile-menu-icon" style={{ color: '#4285F4' }}>
+                  <User size={18} />
+                </div>
+                <div className="profile-menu-text" style={{ color: '#ffffff', fontWeight: 600 }}>
+                  Đăng nhập bằng Google
+                </div>
+                <ChevronRight size={16} className="profile-menu-arrow" />
               </div>
             )}
           </div>
