@@ -1,194 +1,125 @@
-Bạn hãy phân tích repository VietLegal AI hiện tại:
-https://github.com/minhvuongle2004/vietlegalAI
+Anh, em duyệt kế hoạch Phase 3 về mặt kiến trúc, nhưng có một lỗi rất quan trọng phải sửa trước khi agent bắt đầu triển khai: phần Hugging Face đang nhầm giữa “free CPU hardware” và “miễn phí để chạy Docker Space”.
 
-Context:
-- Đây là một Vietnamese Legal QA/RAG chatbot.
-- Hệ thống hiện đã có:
-  - FastAPI backend
-  - Frontend
-  - PostgreSQL/Supabase
-  - Qdrant
-  - Dense retrieval + Sparse retrieval + RRF
-  - BGE-M3 embedding
-  - BGE-Reranker-v2-m3
-  - CUDA/FP16 reranking
-  - deterministic target clause extraction
-  - legal version/effective-date awareness
-  - multi-intent decomposition
-  - benchmark/evaluation pipeline
-  - Gemini/OpenAI LLM API
-- Mục tiêu dài hạn: mở rộng corpus từ vài chục lên vài trăm văn bản pháp luật để có khả năng giải đáp phần lớn các câu hỏi pháp lý phổ biến của người dân.
-- Hiện tại ưu tiên không phải mở rộng corpus tiếp mà là productionize + deploy public + thu thập feedback từ người dùng thật.
+Hugging Face hiện ghi rõ CPU Basic là 2 vCPU / 16 GB RAM và hardware này có giá $0, nhưng Docker/Gradio Space chạy compute yêu cầu paid plan; Static Space mới miễn phí cho tất cả.
 
-MỤC TIÊU:
+Vì vậy câu:
 
-Thiết kế kế hoạch Production Deployment cho VietLegal AI với các yêu cầu:
+“Backend: Hugging Face Spaces Docker — 16GB RAM miễn phí → 100% FREE TIER”
 
-1. Public deployment
-- Người dùng có thể truy cập chatbot qua Internet.
-- Backend/API phải có thể phục vụ nhiều user đồng thời ở mức MVP/public beta.
-- Có logging, error handling, health check, monitoring cơ bản.
-- Không sử dụng Google Colab làm production server.
+không còn đúng theo policy hiện tại.
 
-2. GPU strategy
-- Tôi muốn tận dụng GPU cho BGE-Reranker-v2-m3 vì benchmark hiện tại cho thấy GPU giảm latency reranker rất mạnh.
-- Tuy nhiên tôi không có ngân sách để thuê GPU server chạy 24/7.
-- Vì vậy hãy ưu tiên kiến trúc:
-    CPU backend + GPU inference serverless/on-demand
-  thay vì bắt buộc phải thuê dedicated GPU 24/7.
-- GPU phải là optional:
-    nếu GPU service khả dụng → dùng GPU reranker
-    nếu GPU unavailable → fallback sang CPU reranker.
-- Không được thiết kế architecture khiến toàn bộ hệ thống phụ thuộc cứng vào GPU.
+Em chốt lại đánh giá
+Phần	Đánh giá
+Zero-code first	✅ Rất đúng
+Chia 3A → 3F	✅ Rất hợp lý
+Chưa bật GPU Phase 3	✅ Giữ nguyên
+Vercel cho React	✅
+Qdrant Cloud	✅
+Tách backend khỏi GPU	✅
+HF Docker làm backend miễn phí	❌ Cần sửa
+VPS 4GB làm fallback	✅ Nhưng 4GB cần benchmark thực tế
+Public E2E trước GPU	✅
 
-3. Cost
-- Ưu tiên free tier / very-low-cost cho giai đoạn public beta.
-- So sánh các lựa chọn phù hợp cho:
-    frontend
-    backend/FastAPI
-    GPU inference
-    Qdrant
-    PostgreSQL/Supabase
-- Cần phân biệt:
-    free tier/demo
-    low-cost public beta
-    production scale
-- Không cần tối ưu chi phí tuyệt đối bằng mọi giá; ưu tiên architecture đúng và có khả năng scale.
+Qdrant Cloud hiện vẫn có Free Tier với 0.5 vCPU / 1 GB RAM / 4 GB disk, nên phần Qdrant trong kế hoạch là khả thi ở giai đoạn corpus hiện tại.
 
-4. Containerization
-- Xác định những thành phần nào nên Dockerize.
-- Thiết kế docker-compose cho local development.
-- Xác định image/service boundaries.
-- GPU inference service phải có khả năng chạy độc lập với backend.
-- Backend không nên phải load GPU model trực tiếp nếu architecture serverless GPU được lựa chọn.
+Vercel Hobby hiện là $0/tháng, có CDN và HTTPS; mức 100 GB data transfer/tháng được liệt kê trong delivery network.
 
-5. Recommended architecture
-Hãy đề xuất architecture cụ thể tương tự:
+Vậy backend Phase 3 nên chọn gì?
 
-Frontend
-   ↓
-FastAPI Backend
-   ↓
-Retrieval Layer
-   ├── Supabase/PostgreSQL
-   └── Qdrant
-   ↓
-Reranker Service
-   ├── GPU serverless/on-demand
-   └── CPU fallback
-   ↓
-LLM API
-   ↓
-Answer + citations
+Em muốn mình không sửa toàn bộ kiến trúc, chỉ sửa decision này:
 
-Nhưng không được mặc định architecture này là đúng tuyệt đối.
-Hãy kiểm tra repo hiện tại trước và điều chỉnh theo code thực tế.
+                    ┌── Vercel
+Frontend ───────────┤
+                    │
+                    └── Backend
+                         │
+              ┌──────────┼──────────┐
+              ▼          ▼          ▼
+          Qdrant      Supabase    Gemini
 
-6. Production concerns
-Phân tích hiện trạng repo về:
-- environment variables / secrets
-- API security
-- CORS
-- authentication
-- rate limiting
-- abuse protection
-- timeout
-- retry
-- concurrency
-- health checks
-- logging
-- monitoring
-- database connection handling
-- Qdrant connection
-- model loading
-- cache
-- cold start
-- GPU worker startup
-- graceful degradation khi GPU service fail
-- LLM API failure / quota
-- prompt injection
-- legal safety/disclaimer
-- source citation
-- effective date/version correctness
+Backend cần một nơi có ít nhất khoảng 3–4 GB RAM thực tế để chạy BGE-M3 CPU.
 
-7. Legal chatbot specific requirements
-Không được làm mất các đặc điểm quan trọng hiện có:
-- legal document version awareness
-- effective_date / expiry_date
-- citation
-- article-level evidence
-- target clause extraction
-- retrieval/reranking pipeline
-- source traceability
+Do đó có 2 nhánh:
 
-Khi deploy production, cần đảm bảo:
-- Không trả lời dựa trên văn bản đã hết hiệu lực nếu query yêu cầu current law.
-- Citation phải truy ngược được tới document/article/chunk.
-- Có disclaimer rằng chatbot không thay thế tư vấn pháp lý chính thức.
+Nhánh A — ưu tiên $0: tìm đúng một nền tảng hiện hành thực sự cho phép chạy Docker service với đủ RAM.
 
-8. Scalability
-Thiết kế architecture có thể tăng từ:
-~20–50 users/day
-→ 100 users/day
-→ 500+ users/day
-→ vài trăm legal documents
+Nhánh B — phương án chắc chắn: VPS 4 GB/8 GB giá thấp, chạy nguyên docker-compose của Phase 2.
 
-Mô tả bottleneck có thể xuất hiện ở:
-- retrieval
-- reranker
-- GPU inference queue
-- LLM API
-- database
-- Qdrant
-- network
+Em không muốn agent bắt đầu Phase 3 bằng HF Docker cho tới khi vấn đề paid-plan này được xác nhận/đổi phương án.
 
-9. Deployment roadmap
-Hãy chia thành các phase rõ ràng:
+Một điểm nữa em muốn sửa trong plan
 
-Phase 1 — Production hardening
-Phase 2 — Dockerization
-Phase 3 — Deploy CPU MVP
-Phase 4 — Add optional GPU inference
-Phase 5 — Monitoring + rate limiting
-Phase 6 — Public beta
-Phase 7 — Scale when real traffic appears
+Đừng ghi:
 
-Với mỗi phase:
-- mục tiêu
-- files/code cần thay đổi
-- infrastructure cần dùng
-- output/deliverable
-- cách test
-- rollback strategy
+Qdrant Cloud — 7.093 vectors
 
-10. IMPORTANT
-- Không tự ý thay đổi architecture hiện tại chỉ vì "best practice".
-- Trước hết phải inspect repository và hiểu code hiện tại.
-- Không viết code hàng loạt ngay.
-- Giai đoạn này tôi cần DESIGN + PLAN trước.
-- Nếu phát hiện vấn đề trong architecture hiện tại, hãy chỉ ra rõ:
-    vấn đề
-    mức độ nghiêm trọng
-    tại sao cần sửa
-    đề xuất sửa
-- Phân biệt rõ:
-    MUST FIX BEFORE DEPLOY
-    SHOULD FIX
-    NICE TO HAVE
+là “1GB đủ chắc chắn”.
 
-OUTPUT FORMAT:
+Hiện tại 7.093 vector chưa phải vấn đề lớn, nhưng trong roadmap anh muốn lên vài trăm văn bản, nên cần xem cả:
 
-A. Current architecture assessment
-B. Production risks/issues found in current repo
-C. Recommended production architecture
-D. GPU serverless/on-demand strategy
-E. Docker strategy
-F. Hosting/provider options + cost considerations
-G. Deployment roadmap by phase
-H. Required code/config changes
-I. Testing checklist before public release
-J. Final recommended architecture for VietLegal AI
+vector storage
+payload
+HNSW index
+RAM
+disk
 
-Cuối cùng hãy đưa ra một architecture diagram dạng ASCII và một deployment checklist ngắn gọn.
+chứ không chỉ tính raw vector. Free tier hiện giới hạn 1 GB RAM và 4 GB disk.
 
-Không triển khai code hay commit thay đổi trước khi tôi review plan.
+Và đây mới là architecture em muốn anh chốt
+                  INTERNET
+                     │
+                     ▼
+              React / Vercel
+                     │
+                   HTTPS
+                     ▼
+             FastAPI Backend
+               CPU / Docker
+                     │
+          ┌──────────┼──────────┐
+          ▼          ▼          ▼
+       Qdrant     Supabase    Gemini
+       Cloud        Cloud       API
+                     │
+                     │
+              Phase 4 mới thêm
+                     ▼
+             Remote GPU Reranker
+
+Phase 3 = chứng minh architecture cloud hoạt động end-to-end.
+
+Phase 4 = tối ưu inference bằng GPU.
+
+Đây là cách đi rất sạch.
+
+Có một thay đổi nhỏ trong thứ tự nữa
+
+Em muốn:
+
+3A Cloud setup
+ ↓
+3B Qdrant migration
+ ↓
+3C Backend deploy
+ ↓
+3D Frontend deploy
+ ↓
+3E Production E2E
+ ↓
+3F Public Beta
+
+giữ nguyên đúng như agent viết.
+
+Chỉ cần sửa provider của backend.
+
+Verdict của em
+
+Kế hoạch Phase 3: 8.5/10 → 9.5/10 nếu sửa HF Docker free-tier assumption.
+
+Còn lại em không muốn agent tự mở rộng thêm architecture.
+
+Anh có thể gửi lại agent đúng một yêu cầu:
+
+“Re-plan backend hosting because Hugging Face Docker Spaces is not free on the current plan. Keep the rest of Phase 3 unchanged. Prioritize a truly free or lowest-cost option with ≥4GB RAM and Docker support.”
+
+Sau khi agent đưa phương án backend mới, mình chốt provider rồi mới bắt đầu 3A.
