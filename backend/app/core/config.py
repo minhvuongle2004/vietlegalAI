@@ -21,6 +21,7 @@ class Settings(BaseSettings):
         "http://localhost:5173",
         "http://127.0.0.1:5173",
         "https://vietlegal-ai-orcin.vercel.app",
+        "https://sylphlike-rufus-malonyl.ngrok-free.dev",
     ]
 
     @field_validator("BACKEND_CORS_ORIGINS", mode="before")
