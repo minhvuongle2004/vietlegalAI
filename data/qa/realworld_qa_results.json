@@ -1,0 +1,789 @@
+[
+  {
+    "id": "RW-QA-01",
+    "type": "CÂU HỎI NGẮN / TỪ KHÓA",
+    "query": "lương tối thiểu vùng 1",
+    "notes": "Người dùng chỉ gõ cụm từ khóa ngắn không thành câu.",
+    "retrieved_context": [
+      {
+        "doc_title": "Văn bản Quy phạm Pháp luật",
+        "article_number": 3,
+        "article_title": "Điều 3: Mức lương tối thiểu",
+        "score": 0.9093
+      },
+      {
+        "doc_title": "Văn bản Quy phạm Pháp luật",
+        "article_number": 1,
+        "article_title": "Điều 1: Phạm vi điều chỉnh",
+        "score": 0.8838
+      },
+      {
+        "doc_title": "Văn bản Quy phạm Pháp luật",
+        "article_number": 6,
+        "article_title": "Phụ lục: Danh mục địa bàn áp dụng mức lương tối thiểu vùng I, II, III, IV từ 01/07/2024",
+        "score": 0.8434
+      },
+      {
+        "doc_title": "Văn bản Quy phạm Pháp luật",
+        "article_number": 2,
+        "article_title": "Điều 2: Đối tượng áp dụng",
+        "score": 0.7353
+      },
+      {
+        "doc_title": "Văn bản Quy phạm Pháp luật",
+        "article_number": 5,
+        "article_title": "Điều 5: Hiệu lực",
+        "score": 0.7047
+      }
+    ],
+    "final_answer": "Chào bạn, VietLegal AI xin hỗ trợ thông tin về mức lương tối thiểu vùng theo các quy định hiện hành được cung cấp như sau:\n\n### 1. Phạm vi và Đối tượng áp dụng\n* **Phạm vi điều chỉnh:** Quy định mức lương tối thiểu tháng và mức lương tối thiểu giờ áp dụng đối với người lao động làm việc theo hợp đồng lao động *(Căn cứ Điều 1)*.\n* **Đối tượng áp dụng:** Người lao động làm việc theo hợp đồng lao động; người sử dụng lao động (doanh nghiệp, cơ quan, tổ chức, hợp tác xã, hộ gia đình, cá nhân có thuê mướn lao động) và các cơ quan, tổ chức, cá nhân có liên quan *(Căn cứ Điều 2)*.\n\n### 2. Nguyên tắc xác định địa bàn áp dụng\nViệc áp dụng địa bàn vùng được xác định theo nơi hoạt động của người sử dụng lao động *(Căn cứ Khoản 3 Điều 3)*:\n* Người sử dụng lao động hoạt động trên địa bàn nào thì áp dụng mức lương tối thiểu quy định đối với địa bàn đó.\n* Người sử dụng lao động có đơn vị, chi nhánh hoạt động ở các địa bàn khác nhau thì đơn vị, chi nhánh hoạt động ở địa bàn nào áp dụng mức lương tối thiểu của địa bàn đó.\n* Hoạt động trong khu công nghiệp, khu chế xuất nằm trên các địa bàn có mức lương tối thiểu khác nhau thì áp dụng theo địa bàn có mức lương tối thiểu cao nhất.\n* Địa bàn thành lập mới từ một hoặc nhiều địa bàn có mức lương tối thiểu khác nhau thì áp dụng mức lương tối thiểu theo địa bàn có mức lương tối thiểu cao nhất.\n\n### 3. Lưu ý về việc rà soát và thực hiện chế độ lương\nKhi thực hiện mức lương tối thiểu, người sử dụng lao động có trách nhiệm rà soát lại hợp đồng lao động, thỏa ước lao động tập thể và các quy chế của đơn vị để điều chỉnh, bổ sung cho phù hợp *(Căn cứ Khoản 3 Điều 5)*:\n* Các thỏa thuận, cam kết có lợi hơn cho người lao động tiếp tục được thực hiện (như chế độ trả lương cho người lao động qua học tập, đào tạo nghề cao hơn ít nhất 7% so với mức lương tối thiểu; công việc nặng nhọc, độc hại, nguy hiểm cao hơn ít nhất 5% hoặc đặc biệt nặng nhọc, độc hại, nguy hiểm cao hơn ít nhất 7%...).\n* Không được xóa bỏ hoặc cắt giảm các chế độ tiền lương khi làm thêm giờ, làm việc vào ban đêm, bồi dưỡng bằng hiện vật và các chế độ khác theo quy định pháp luật lao động.\n\n---\n*Lưu ý: Do cơ sở dữ liệu hiện tại trong phạm vi cung cấp chưa hiển thị cụ thể con số tiền cụ thể của \"Vùng 1\" (chỉ liệt kê chi tiết danh mục của Vùng 3), VietLegal AI xin cung cấp các nguyên tắc pháp lý cốt lõi nêu trên. Bạn vui lòng tham khảo thêm văn bản toàn văn của Nghị định về lương tối thiểu vùng hoặc liên hệ cơ quan quản lý lao động địa phương để biết con số chính xác theo từng thời kỳ.*",
+    "citations": [],
+    "is_refusal": false,
+    "latency": {
+      "retrieval_ms": 4091.92,
+      "reranker_ms": 733.11,
+      "generation_ms": 12702.77,
+      "total_ms": 17527.79
+    }
+  },
+  {
+    "id": "RW-QA-02",
+    "type": "CÂU HỎI NGẮN / TỪ KHÓA",
+    "query": "vượt đèn vàng",
+    "notes": "Hỏi vắn tắt về lỗi vượt đèn vàng.",
+    "retrieved_context": [
+      {
+        "doc_title": "Luật Trật tự, an toàn giao thông đường bộ 2024",
+        "article_number": 11,
+        "article_title": "Chấp hành báo hiệu",
+        "score": 0.4603
+      },
+      {
+        "doc_title": "Luật Bảo hiểm y tế sửa đổi 2024",
+        "article_number": "QCVN 41:2024/BGTVT Mục 6",
+        "article_title": "Tín hiệu đèn giao thông",
+        "score": 0.4015
+      },
+      {
+        "doc_title": "Luật Trật tự, an toàn giao thông đường bộ 2024",
+        "article_number": 14,
+        "article_title": "Vượt xe và nhường",
+        "score": 0.0471
+      },
+      {
+        "doc_title": "Nghị định 168/2024/NĐ-CP",
+        "article_number": 7,
+        "article_title": "Xử phạt, trừ điểm giấy phép lái của người điều khiển",
+        "score": 0.0462
+      },
+      {
+        "doc_title": "Nghị định 168/2024/NĐ-CP",
+        "article_number": 6,
+        "article_title": "Xử phạt, trừ điểm giấy phép lái xe của người điều",
+        "score": 0.036
+      }
+    ],
+    "final_answer": "Chào bạn, VietLegal AI xin giải đáp thắc mắc của bạn về quy tắc pháp lý khi gặp **đèn vàng** và mức xử phạt khi vi phạm như sau:\n\n---\n\n### I. QUY ĐỊNH PHÁP LUẬT VỀ TÍN HIỆU ĐÈN VÀNG\n\nTheo quy định pháp luật giao thông đường bộ, khi gặp tín hiệu đèn màu vàng, người điều khiển phương tiện phải tuân thủ nguyên tắc sau:\n\n1. **Quy tắc chung khi gặp đèn vàng:**\n   - **Phải dừng lại trước vạch dừng.**\n   - **Trường hợp ngoại lệ được đi tiếp:** Người điều khiển phương tiện đang đi trên vạch dừng hoặc đã đi qua vạch dừng mà tín hiệu đèn chuyển sang màu vàng thì được phép đi tiếp.\n   *(Căn cứ: Điểm b Khoản 1 Điều 11 Luật Trật tự, an toàn giao thông đường bộ 2024; Khoản 3 Mục 6 QCVN 41:2024/BGTVT).*\n\n2. **Trường hợp đèn vàng nhấp nháy:** \n   - Người điều khiển phương tiện được đi nhưng phải quan sát, giảm tốc độ hoặc dừng lại nhường đường cho người đi bộ, xe lăn của người khuyết tật qua đường hoặc các phương tiện khác.\n   *(Căn cứ: Điểm b Khoản 1 Điều 11 Luật Trật tự, an toàn giao thông đường bộ 2024; Khoản 4 Mục 6 QCVN 41:2024/BGTVT).*\n\n---\n\n### II. MỨC XỬ PHẠT KHI KHÔNG CHẤP HÀNH HIỆU LỆNH ĐÈN VÀNG (VƯỢT ĐÈN VÀNG TRÁI QUY ĐỊNH)\n\nHành vi cố tình vượt đèn vàng khi không đủ điều kiện được đi tiếp (chưa qua vạch dừng khi đèn vàng bật sáng) được xem là hành vi **\"Không chấp hành hiệu lệnh của đèn tín hiệu giao thông\"**. Mức xử phạt cụ thể được phân định theo loại phương tiện như sau:\n\n#### 1. Đối với người điều khiển xe mô tô, xe gắn máy và các loại xe tương tự:\n* **Phạt tiền:** Từ **4.000.000 đồng đến 6.000.000 đồng**.\n*(Căn cứ: Điểm c Khoản 7 Điều 7 Nghị định 168/2024/NĐ-CP)*\n* **Hình thức xử phạt bổ sung (Trừ điểm Giấy phép lái xe):** Bị trừ **04 điểm** Giấy phép lái xe.\n*(Căn cứ: Điểm b Khoản 13 Điều 7 Nghị định 168/2024/NĐ-CP)*\n\n#### 2. Đối với người điều khiển xe ô tô, xe chở người/hàng hóa bốn bánh có gắn động cơ và các loại xe tương tự:\n* **Phạt tiền:** Từ **18.000.000 đồng đến 20.000.000 đồng**.\n*(Căn cứ: Điểm b Khoản 9 Điều 6 Nghị định 168/2024/NĐ-CP)*\n* **Hình thức xử phạt bổ sung (Trừ điểm Giấy phép lái xe):** Bị trừ **04 điểm** Giấy phép lái xe.\n*(Căn cứ: Điểm b Khoản 16 Điều 6 Nghị định 168/2024/NĐ-CP)*\n\n---\n\n*<u>Miễn trừ trách nhiệm:</u> Thông tin trên mang tính chất tham khảo dựa trên các văn bản pháp luật được cung cấp. Nếu bạn cần giải quyết vụ việc cụ thể hoặc khiếu nại quyết định xử phạt, vui lòng liên hệ cơ quan có thẩm quyền hoặc luật sư để được hỗ trợ theo hồ sơ thực tế.*",
+    "citations": [
+      "Nghị định 168/2024/",
+      "Điều 11 Luật Trật tự",
+      "Điều 6 Nghị định 168/2024/NĐ-CP",
+      "Điều 7 Nghị định 168/2024/NĐ-CP"
+    ],
+    "is_refusal": false,
+    "latency": {
+      "retrieval_ms": 3206.15,
+      "reranker_ms": 925.54,
+      "generation_ms": 4456.82,
+      "total_ms": 8588.5
+    }
+  },
+  {
+    "id": "RW-QA-03",
+    "type": "THIẾU CHỦ NGỮ",
+    "query": "nghỉ việc có được lấy tiền luôn không?",
+    "notes": "Không nêu rõ là ai nghỉ việc, hình thức nghỉ việc thế nào.",
+    "retrieved_context": [
+      {
+        "doc_title": "Bộ luật Lao động 2019",
+        "article_number": 101,
+        "article_title": "Tạm ứng tiền lương",
+        "score": 0.1624
+      },
+      {
+        "doc_title": "Bộ luật Lao động 2019",
+        "article_number": 115,
+        "article_title": "Nghỉ việc riêng, nghỉ không hưởng lương",
+        "score": 0.0586
+      },
+      {
+        "doc_title": "Bộ luật Lao động 2019",
+        "article_number": 99,
+        "article_title": "Tiền lương ngừng việc",
+        "score": 0.0309
+      },
+      {
+        "doc_title": "Bộ luật Lao động 2019",
+        "article_number": 113,
+        "article_title": "Nghỉ hằng năm",
+        "score": 0.0276
+      },
+      {
+        "doc_title": "Bộ luật Lao động 2019",
+        "article_number": 46,
+        "article_title": "Trợ cấp thôi việc",
+        "score": 0.0195
+      }
+    ],
+    "final_answer": "Chào bạn, VietLegal AI xin giải đáp câu hỏi của bạn về việc \"nghỉ việc có được lấy tiền luôn không\" dựa trên các căn cứ pháp lý được cung cấp như sau:\n\nHiện tại, trong các căn cứ pháp lý được cung cấp, cơ sở dữ liệu chưa có quy định trực tiếp về thời hạn thanh toán các khoản tiền (như tiền lương chưa thanh toán, trợ cấp thôi việc,...) ngay tại thời điểm người lao động nghỉ việc. \n\nTuy nhiên, văn bản pháp luật hiện có quy định về các chế độ tài chính liên quan khi người lao động nghỉ việc hoặc tạm nghỉ, cụ thể như sau:\n\n* **Về trợ cấp thôi việc:** Theo **Điều 46 Bộ luật Lao động 2019**, khi hợp đồng lao động chấm dứt theo các trường hợp luật định, người sử dụng lao động có trách nhiệm trả trợ cấp thôi việc cho người lao động đã làm việc thường xuyên từ đủ 12 tháng trở lên. Mỗi năm làm việc được trợ cấp một nửa tháng tiền lương (tính theo tiền lương bình quân của 06 tháng liền kề theo hợp đồng lao động trước khi thôi việc), trừ trường hợp đủ điều kiện hưởng lương hưu hoặc bị sa thải theo điểm e khoản 1 Điều 36.\n* **Về việc tạm ứng tiền lương khi nghỉ ngơi/nghỉ việc tạm thời:** \n  * Theo **Khoản 3 Điều 101 Bộ luật Lao động 2019**, khi nghỉ hằng năm, người lao động được tạm ứng một khoản tiền ít nhất bằng tiền lương của những ngày nghỉ.\n  * Theo **Khoản 2 Điều 101 Bộ luật Lao động 2019**, người sử dụng lao động phải cho người lao động tạm ứng tiền lương tương ứng với số ngày người lao động tạm thời nghỉ việc để thực hiện nghĩa vụ công dân từ 01 tuần trở lên (tối đa không quá 01 tháng tiền lương theo hợp đồng).\n\n*Lưu ý:* Vì cơ sở dữ liệu hiện tại chưa chứa đựng đầy đủ các quy định chi tiết về thời điểm thanh toán tiền lương và các quyền lợi khác khi chấm dứt hợp đồng lao động, bạn vui lòng tham khảo thêm ý kiến của luật sư hoặc cơ quan quản lý nhà nước về lao động để được tư vấn chính xác theo hồ sơ thực tế của mình.",
+    "citations": [
+      "Điều 101 Bộ luật Lao động 2019**",
+      "Điều 46 Bộ luật Lao động 2019**"
+    ],
+    "is_refusal": true,
+    "latency": {
+      "retrieval_ms": 3017.14,
+      "reranker_ms": 929.89,
+      "generation_ms": 2926.4,
+      "total_ms": 6873.43
+    }
+  },
+  {
+    "id": "RW-QA-04",
+    "type": "THIẾU CHỦ NGỮ",
+    "query": "bị giữ xe thì bao nhiêu ngày được lấy lại?",
+    "notes": "Câu hỏi đời sống tự nhiên của người vi phạm giao thông.",
+    "retrieved_context": [
+      {
+        "doc_title": "Văn bản Quy phạm Pháp luật",
+        "article_number": "Điều 22",
+        "article_title": "Cấp lại giấy phép lái xe",
+        "score": 0.1002
+      },
+      {
+        "doc_title": "Thông tư 65/2024/TT-BCA",
+        "article_number": "Điều 7",
+        "article_title": "Phục hồi điểm giấy phép lái xe",
+        "score": 0.0568
+      },
+      {
+        "doc_title": "Nghị định 94/2026/NĐ-CP",
+        "article_number": "Điều 28",
+        "article_title": "Thu hồi Giấy phép sát hạch lái xe",
+        "score": 0.0418
+      },
+      {
+        "doc_title": "Nghị định 94/2026/NĐ-CP",
+        "article_number": "Điều 27",
+        "article_title": "Trình tự, thủ tục cấp, cấp lại Giấy phép sát hạch lái xe",
+        "score": 0.0218
+      },
+      {
+        "doc_title": "Luật Trật tự, an toàn giao thông đường bộ 2024",
+        "article_number": 58,
+        "article_title": "Điều 58",
+        "score": 0.0124
+      }
+    ],
+    "final_answer": "Hiện tại, các căn cứ pháp lý được cung cấp ở trên chỉ bao gồm các quy định liên quan đến việc cấp lại giấy phép lái xe, phục hồi điểm giấy phép lái xe, thu hồi Giấy phép sát hạch lái xe và quy định về điểm của giấy phép lái xe, **chưa có quy định trực tiếp** về thời hạn bao nhiêu ngày được lấy lại phương tiện (xe) khi bị tạm giữ. \n\nDo đó, căn cứ theo nguyên tắc minh bạch, cơ sở dữ liệu hiện tại chưa chứa đủ thông tin để trả lời câu hỏi của bạn. \n\nBạn vui lòng tham khảo thêm các quy định pháp luật về xử lý vi phạm hành chính (như Luật Xử lý vi phạm hành chính) hoặc liên hệ trực tiếp với cơ quan chức năng có thẩm quyền (như lực lượng Cảnh sát giao thông đang thụ lý vụ việc) để được hướng dẫn cụ thể về thời hạn giải quyết tạm giữ phương tiện theo hồ sơ thực tế.\n\n---\n*Miễn trừ trách nhiệm: Thông tin trên nhằm mục đích hỗ trợ tra cứu. Đối với các vụ việc phát sinh thực tế, bạn nên liên hệ cơ quan có thẩm quyền để có câu trả lời chính xác nhất theo từng trường hợp cụ thể.*",
+    "citations": [],
+    "is_refusal": true,
+    "latency": {
+      "retrieval_ms": 2847.92,
+      "reranker_ms": 1565.8,
+      "generation_ms": 2401.95,
+      "total_ms": 6815.67
+    }
+  },
+  {
+    "id": "RW-QA-05",
+    "type": "VIẾT KHÔNG DẤU",
+    "query": "uong ruou lai xe may bi phat bao nhieu",
+    "notes": "Người dùng gõ nhanh trên điện thoại không dấu tiếng Việt.",
+    "retrieved_context": [
+      {
+        "doc_title": "Văn bản Quy phạm Pháp luật",
+        "article_number": "Điều 6",
+        "article_title": "Tổng trọng lượng cho phép của xe thân liền",
+        "score": 0.0008
+      },
+      {
+        "doc_title": "Văn bản Quy phạm Pháp luật",
+        "article_number": "Điều 6",
+        "article_title": "Tổng trọng lượng cho phép của xe thân liền",
+        "score": 0.0007
+      },
+      {
+        "doc_title": "Luật Bảo hiểm y tế sửa đổi 2024",
+        "article_number": 31,
+        "article_title": "Hỗ trợ lái xe, cảnh",
+        "score": 0.0004
+      },
+      {
+        "doc_title": "Văn bản Quy phạm Pháp luật",
+        "article_number": "Điều 19",
+        "article_title": "Bố trí xe hỗ trợ dẫn đường, hộ tống",
+        "score": 0.0003
+      },
+      {
+        "doc_title": "Văn bản Quy phạm Pháp luật",
+        "article_number": "Điều 15",
+        "article_title": "Hồ sơ đề nghị cấp Giấy phép lưu hành xe",
+        "score": 0.0003
+      }
+    ],
+    "final_answer": "Chào bạn, \n\nTheo các quy định pháp luật được cung cấp trong hệ thống dữ liệu hiện tại, chưa có nội dung quy định trực tiếp về mức xử phạt khi điều khiển xe máy trong tình trạng có nồng độ cồn (uống rượu bia). \n\nDo đó, VietLegal AI xin thông báo: Hiện tại cơ sở dữ liệu chưa có quy định trực tiếp về vấn đề này. Bạn vui lòng tham khảo thêm ý kiến của luật sư hoặc cơ quan có thẩm quyền để được giải đáp chính xác theo các quy định mới nhất hiện hành.\n\n*Miễn trừ trách nhiệm: Thông tin trên nhằm mục đích hỗ trợ tra cứu. Đối với các vụ việc cụ thể, bạn nên liên hệ cơ quan chức năng để có thông tin chính thống nhất.*",
+    "citations": [],
+    "is_refusal": true,
+    "latency": {
+      "retrieval_ms": 4419.88,
+      "reranker_ms": 437.05,
+      "generation_ms": 1923.41,
+      "total_ms": 6780.34
+    }
+  },
+  {
+    "id": "RW-QA-06",
+    "type": "VIẾT KHÔNG DẤU",
+    "query": "thoi gian thu viec toi da la bao lau",
+    "notes": "Tra cứu thời gian thử việc không dấu.",
+    "retrieved_context": [
+      {
+        "doc_title": "Luật Doanh nghiệp 2020",
+        "article_number": 163,
+        "article_title": "Điều 163. Tiền lương, thù lao, thưởng và lợi ích khác của thành viên Hội đồng quản trị, Giám đốc, Tổng Giám đốc",
+        "score": 0.0021
+      },
+      {
+        "doc_title": "Bộ luật Lao động 2019",
+        "article_number": 190,
+        "article_title": "Thời hiệu yêu cầu giải quyết tranh chấp lao động cá nhân",
+        "score": 0.0015
+      },
+      {
+        "doc_title": "Bộ luật Lao động 2019",
+        "article_number": 76,
+        "article_title": "Lấy ý kiến và ký kết thỏa ước lao động tập thể",
+        "score": 0.0005
+      },
+      {
+        "doc_title": "Bộ luật Lao động 2019",
+        "article_number": 100,
+        "article_title": "Trả lương thông qua người cai thầu",
+        "score": 0.0005
+      },
+      {
+        "doc_title": "Bộ luật Lao động 2019",
+        "article_number": 93,
+        "article_title": "Xây dựng thang lương, bảng lương và định mức lao động",
+        "score": 0.0004
+      }
+    ],
+    "final_answer": "Chào bạn, \n\nVietLegal AI xin phép được hỗ trợ giải đáp thắc mắc của bạn như sau:\n\nDựa trên các căn cứ pháp lý được cung cấp trong hệ thống hiện tại, các văn bản này chưa chứa quy định trực tiếp về thời gian thử việc tối đa. \n\nDo đó, hiện tại cơ sở dữ liệu chưa có quy định trực tiếp về vấn đề này. Bạn vui lòng tham khảo thêm ý kiến của luật sư hoặc cơ quan có thẩm quyền để được giải đáp chính xác nhất theo quy định hiện hành của pháp luật lao động.\n\n---\n*Miễn trừ trách nhiệm: Thông tin tư vấn trên nhằm mục đích hỗ trợ tra cứu. Đối với các vụ việc cụ thể, bạn vui lòng liên hệ cơ quan có thẩm quyền để được hướng dẫn chi tiết.*",
+    "citations": [],
+    "is_refusal": true,
+    "latency": {
+      "retrieval_ms": 2484.27,
+      "reranker_ms": 487.55,
+      "generation_ms": 1891.48,
+      "total_ms": 4863.31
+    }
+  },
+  {
+    "id": "RW-QA-07",
+    "type": "CÂU HỎI GHÉP NHIỀU Ý",
+    "query": "Đi làm thêm giờ vào ngày chủ nhật thì tính lương thế nào và khoản tiền này có phải đóng thuế thu nhập cá nhân không?",
+    "notes": "Kết hợp Bộ luật Lao động 2019 (tiền lương làm thêm) và Luật Thuế TNCN (thu nhập miễn thuế/chịu thuế).",
+    "retrieved_context": [
+      {
+        "doc_title": "Nghị định 145/2020/NĐ-CP",
+        "article_number": 55,
+        "article_title": "Tiền lương làm thêm giờ",
+        "score": 0.8745
+      },
+      {
+        "doc_title": "Nghị định 145/2020/NĐ-CP",
+        "article_number": 57,
+        "article_title": "Tiền lương làm thêm giờ vào ban đêm",
+        "score": 0.7909
+      },
+      {
+        "doc_title": "Bộ luật Lao động 2019",
+        "article_number": 98,
+        "article_title": "Tiền lương làm thêm giờ, làm việc vào ban đêm",
+        "score": 0.6843
+      },
+      {
+        "doc_title": "Luật Thuế thu nhập cá nhân 2025",
+        "article_number": 8,
+        "article_title": "Thuế thu nhập cá nhân đối với thu nhập từ tiền lương, tiền công",
+        "score": 0.2444
+      },
+      {
+        "doc_title": "Nghị định 145/2020/NĐ-CP",
+        "article_number": 56,
+        "article_title": "Tiền lương làm việc vào ban đêm",
+        "score": 0.2438
+      }
+    ],
+    "final_answer": "Chào bạn, VietLegal AI xin giải đáp thắc mắc của bạn về chế độ tiền lương khi làm thêm giờ vào ngày Chủ nhật (ngày nghỉ hằng tuần) và vấn đề đóng thuế thu nhập cá nhân đối với khoản tiền này như sau:\n\n### 1. Cách tính tiền lương làm thêm giờ vào ngày Chủ nhật\nNgày Chủ nhật được xem là **ngày nghỉ hằng tuần** (trừ trường hợp doanh nghiệp có bố trí lịch nghỉ hằng tuần vào ngày khác). Theo quy định pháp luật, tiền lương làm thêm giờ vào ngày nghỉ hằng tuần được tính như sau:\n\n*   **Đối với người lao động hưởng lương theo thời gian:**\n    *   Theo Điểm b Khoản 1 Điều 98 Bộ luật Lao động 2019 và Điểm b Khoản 1 Điều 55 Nghị định 145/2020/NĐ-CP, mức tiền lương làm thêm giờ vào ngày nghỉ hằng tuần ít nhất bằng **200%** so với tiền lương giờ thực trả của công việc đang làm vào ngày làm việc bình thường.\n    *   *Trường hợp làm thêm giờ vào ban đêm (vào ngày Chủ nhật):* Ngoài tiền lương làm thêm giờ ban ngày, người lao động còn được trả thêm tiền lương làm việc vào ban đêm và tiền lương làm thêm giờ vào ban đêm theo quy định tại Khoản 2 và Khoản 3 Điều 98 Bộ luật Lao động 2019, cùng hướng dẫn chi tiết tại Điều 56 và Điều 57 Nghị định 145/2020/NĐ-CP.\n\n---\n\n### 2. Khoản tiền làm thêm giờ này có phải đóng thuế thu nhập cá nhân không?\n*Dựa trên các căn cứ pháp lý được cung cấp (trong đó có Luật Thuế thu nhập cá nhân 2025), hiện tại ngữ cảnh chưa chứa đựng đầy đủ thông tin hoặc quy định trực tiếp về việc phần tiền lương trả cao hơn do làm thêm giờ (phần vượt trội so với làm việc bình thường) có được miễn thuế thu nhập cá nhân hay không.* \n\nVì vậy, đối với vấn đề quyết định khoản tiền này có chịu thuế thu nhập cá nhân hay không theo các văn bản chi tiết về thuế, **hiện tại cơ sở dữ liệu chưa có quy định trực tiếp về vấn đề này**. Bạn vui lòng tham khảo thêm ý kiến của cơ quan thuế, cơ quan có thẩm quyền hoặc luật sư để được giải đáp chính xác theo các quy định chuyên ngành thuế hiện hành.\n\n---\n*Miễn trừ trách nhiệm: Thông tin tư vấn trên đây dựa trên các văn bản pháp luật được cung cấp nhằm mục đích tham khảo. Đối với các vụ việc hoặc thủ tục cụ thể, bạn nên liên hệ trực tiếp với cơ quan quản lý nhà nước hoặc luật sư để được hỗ trợ phù hợp với hồ sơ thực tế của mình.*",
+    "citations": [
+      "Nghị định 145/2020/",
+      "Điều 56 và Điều 57 Nghị định 145/2020/NĐ-CP",
+      "Điều 98 Bộ luật Lao động 2019",
+      "Điều 98 Bộ luật Lao động 2019 và Điểm b Khoản 1 Điều 55 Nghị định 145/2020/NĐ-CP"
+    ],
+    "is_refusal": true,
+    "latency": {
+      "retrieval_ms": 2271.96,
+      "reranker_ms": 882.84,
+      "generation_ms": 4100.67,
+      "total_ms": 7255.47
+    }
+  },
+  {
+    "id": "RW-QA-08",
+    "type": "CÂU HỎI GHÉP NHIỀU Ý",
+    "query": "Người lao động đơn phương chấm dứt hợp đồng lao động đúng luật thì được hưởng những quyền lợi gì và công ty phải thanh toán trong bao lâu?",
+    "notes": "Kết hợp trợ cấp thôi việc, tiền phép năm và thời hạn thanh toán 14 ngày theo BLLĐ.",
+    "retrieved_context": [
+      {
+        "doc_title": "Bộ luật Lao động 2019",
+        "article_number": 48,
+        "article_title": "Trách nhiệm khi chấm dứt hợp đồng lao động",
+        "score": 0.9585
+      },
+      {
+        "doc_title": "Bộ luật Lao động 2019",
+        "article_number": 40,
+        "article_title": "Nghĩa vụ của người lao động khi đơn phương chấm dứt hợp đồng lao động trái pháp luật",
+        "score": 0.934
+      },
+      {
+        "doc_title": "Bộ luật Lao động 2019",
+        "article_number": 36,
+        "article_title": "Quyền đơn phương chấm dứt hợp đồng lao động của người sử",
+        "score": 0.9121
+      },
+      {
+        "doc_title": "Bộ luật Lao động 2019",
+        "article_number": 41,
+        "article_title": "Nghĩa vụ của người sử dụng lao động khi đơn phương chấm dứt hợp đồng lao động trái pháp luật",
+        "score": 0.8696
+      },
+      {
+        "doc_title": "Bộ luật Lao động 2019",
+        "article_number": 35,
+        "article_title": "Quyền đơn phương chấm dứt hợp đồng lao động của người",
+        "score": 0.8444
+      }
+    ],
+    "final_answer": "Chào bạn, VietLegal AI xin giải đáp thắc mắc của bạn về quyền lợi và thời hạn thanh toán khi người lao động đơn phương chấm dứt hợp đồng lao động đúng luật dựa trên các quy định của Bộ luật Lao động 2019 như sau:\n\n### 1. Quyền lợi của người lao động khi đơn phương chấm dứt hợp đồng lao động đúng luật\nCăn cứ theo các quy định pháp luật được cung cấp, khi người lao động chấm dứt hợp đồng lao động đúng luật, các quyền lợi và trách nhiệm của các bên liên quan được thực hiện như sau:\n\n* **Thanh toán đầy đủ các khoản tiền:** Hai bên có trách nhiệm thanh toán đầy đủ các khoản tiền có liên quan đến quyền lợi của mỗi bên (như tiền lương, các chế độ khác theo thỏa ước lao động tập thể hoặc hợp đồng lao động) (Theo Khoản 1 và Khoản 2 Điều 48 Bộ luật Lao động 2019).\n* **Trách nhiệm của người sử dụng lao động:**\n  - Hoàn thành thủ tục xác nhận thời gian đóng bảo hiểm xã hội, bảo hiểm thất nghiệp và trả lại cùng với bản chính giấy tờ khác nếu người sử dụng lao động đã giữ của người lao động (Theo Điểm a Khoản 3 Điều 48 Bộ luật Lao động 2019).\n  - Cung cấp bản sao các tài liệu liên quan đến quá trình làm việc của người lao động nếu người lao động có yêu cầu (chi phí sao, gửi tài liệu do người sử dụng lao động trả) (Theo Điểm b Khoản 3 Điều 48 Bộ luật Lao động 2019).\n\n*(Lưu ý: Các căn cứ pháp lý được cung cấp không đề cập chi tiết đến chế độ trợ cấp thôi việc trong trường hợp chấm dứt đúng luật, do đó câu trả lời tập trung vào các nghĩa vụ thanh toán và thủ tục chung theo Điều 48).*\n\n---\n\n### 2. Thời hạn công ty phải thanh toán các quyền lợi\nCăn cứ theo **Khoản 1 Điều 48 Bộ luật Lao động 2019**, thời hạn thanh toán được quy định cụ thể:\n\n* **Thời hạn thông thường:** Trong thời hạn **14 ngày làm việc** kể từ ngày chấm dứt hợp đồng lao động, hai bên có trách nhiệm thanh toán đầy đủ các khoản tiền có liên quan đến quyền lợi.\n* **Thời hạn được kéo dài (nhưng không quá 30 ngày):** Thời gian thanh toán có thể kéo dài nhưng **không được quá 30 ngày** nếu thuộc một trong các trường hợp sau đây:\n  a) Người sử dụng lao động không phải là cá nhân chấm dứt hoạt động;\n  b) Người sử dụng lao động thay đổi cơ cấu, công nghệ hoặc vì lý do kinh tế;\n  c) Chia, tách, hợp nhất, sáp nhập; bán, cho thuê, chuyển đổi loại hình doanh nghiệp; chuyển nhượng quyền sở hữu, quyền sử dụng tài sản của doanh nghiệp, hợp tác xã;\n  d) Do thiên tai, hỏa hoạn, địch họa hoặc dịch bệnh nguy hiểm.\n\n---\n*Miễn trừ trách nhiệm: Thông tin tư vấn trên dựa trên các quy định pháp luật được cung cấp nhằm mục đích tham khảo. Nếu có tranh chấp phát sinh hoặc các vấn đề thực tế phức tạp, bạn nên liên hệ cơ quan có thẩm quyền hoặc luật sư để được hỗ trợ chi tiết theo hồ sơ cụ thể.*",
+    "citations": [
+      "Điều 48 Bộ luật Lao động 2019",
+      "Điều 48 Bộ luật Lao động 2019**"
+    ],
+    "is_refusal": false,
+    "latency": {
+      "retrieval_ms": 1846.6,
+      "reranker_ms": 867.27,
+      "generation_ms": 4872.52,
+      "total_ms": 7586.4
+    }
+  },
+  {
+    "id": "RW-QA-09",
+    "type": "CÂU HỎI CÓ SỐ LIỆU TÌNH HUỐNG",
+    "query": "Tôi làm việc ở công ty được 4 năm 8 tháng với mức lương bình quân 6 tháng liền kề là 12 triệu đồng/tháng. Nếu công ty thu hẹp sản xuất và cho tôi nghỉ việc thì tôi nhận được bao nhiêu tiền trợ cấp mất việc làm?",
+    "notes": "Yêu cầu tính toán cụ thể: làm tròn tháng lẻ, mức tối thiểu 2 tháng lương (Điều 47 BLLĐ).",
+    "retrieved_context": [
+      {
+        "doc_title": "Bộ luật Lao động 2019",
+        "article_number": 46,
+        "article_title": "Trợ cấp thôi việc",
+        "score": 0.6373
+      },
+      {
+        "doc_title": "Bộ luật Lao động 2019",
+        "article_number": 47,
+        "article_title": "Trợ cấp mất việc làm",
+        "score": 0.6345
+      },
+      {
+        "doc_title": "Luật Việc làm 2013",
+        "article_number": 50,
+        "article_title": "Mức, thời gian, thời điểm hưởng trợ cấp thất nghiệp",
+        "score": 0.242
+      },
+      {
+        "doc_title": "Nghị định 145/2020/NĐ-CP",
+        "article_number": 8,
+        "article_title": "Trợ cấp thôi việc, trợ cấp mất việc làm",
+        "score": 0.1537
+      },
+      {
+        "doc_title": "Luật Việc làm 2013",
+        "article_number": 46,
+        "article_title": "Hưởng trợ cấp thất nghiệp",
+        "score": 0.0192
+      }
+    ],
+    "final_answer": "Chào bạn, VietLegal AI xin giải đáp thắc mắc của bạn về khoản tiền trợ cấp mất việc làm khi công ty thu hẹp sản xuất như sau:\n\n### 1. Căn cứ pháp lý về Trợ cấp mất việc làm\nTheo **Khoản 1 Điều 47 Bộ luật Lao động 2019**, người sử dụng lao động có trách nhiệm trả trợ cấp mất việc làm cho người lao động đã làm việc thường xuyên cho mình từ đủ 12 tháng trở lên mà bị mất việc làm (do thay đổi cơ cấu, технологіία hoặc vì lý do kinh tế, thu hẹp sản xuất,...):\n* Mỗi năm làm việc trả **01 tháng tiền lương** nhưng ít nhất bằng **02 tháng tiền lương**.\n\nTheo **Khoản 3 Điều 47 Bộ luật Lao động 2019**, tiền lương để tính trợ cấp mất việc làm là **tiền lương bình quân của 06 tháng liền kề** theo hợp đồng lao động trước khi người lao động mất việc làm.\n\n*(Lưu ý: Thời gian làm việc để tính trợ cấp mất việc làm là tổng thời gian làm việc thực tế trừ đi thời gian đã tham gia bảo hiểm thất nghiệp và thời gian đã được chi trả trợ cấp thôi việc/mất việc làm theo Khoản 2 Điều 47 Bộ luật Lao động 2019).*\n\n---\n\n### 2. Tư vấn giải đáp cho trường hợp của bạn\nTheo thông tin bạn cung cấp:\n* Thời gian bạn làm việc tại công ty: **4 năm 8 tháng**.\n* Tiền lương bình quân 6 tháng liền kề: **12 triệu đồng/tháng**.\n\nTuy nhiên, do các căn cứ pháp lý được cung cấp **chưa có đủ thông tin chi tiết** về việc trong tổng thời gian 4 năm 8 tháng đó:\n1. Bạn đã tham gia bảo hiểm thất nghiệp trong bao nhiêu lâu?\n2. Bạn đã từng được chi trả trợ cấp thôi việc hay trợ cấp mất việc làm trước đó hay chưa?\n\nDo đó, VietLegal AI tạm tính dựa trên tổng thời gian làm việc thực tế của bạn (chưa trừ thời gian đóng bảo hiểm thất nghiệp):\n* **Mức tối thiểu:** Bạn sẽ nhận được ít nhất bằng **02 tháng tiền lương**, tương đương: \n  $$\\text{2 tháng} \\times 12\\text{ triệu đồng/tháng} = 24\\text{ triệu đồng}.$$\n* **Mức tính theo số năm làm việc:** Nếu chiếu theo thời gian làm việc (cứ mỗi năm làm việc trả 01 tháng tiền lương), với thời gian gần 5 năm, số tiền trợ cấp lý thuyết sẽ dao động khoảng **4 đến 5 tháng tiền lương** (tương đương khoảng 48 triệu đến 60 triệu đồng), **với điều kiện** toàn bộ thời gian này chưa bị trừ đi thời gian đóng bảo hiểm thất nghiệp theo quy định tại Khoản 2 Điều 47 Bộ luật Lao động 2019.\n\n---\n\n### 💡 Khuyến nghị\nVì pháp luật quy định thời gian tính trợ cấp mất việc làm phải **trừ đi thời gian đã tham gia bảo hiểm thất nghiệp**, thực tế số tiền bạn nhận được từ công ty sẽ phụ thuộc vào quá trình đóng BHTH của bạn. \n\n*Hiện tại cơ sở dữ liệu cung cấp chưa bao gồm dữ liệu chi tiết về thời gian đóng bảo hiểm thất nghiệp của bạn để trừ ra. Bạn vui lòng đối chiếu lại quá trình đóng bảo hiểm thất nghiệp của mình hoặc liên hệ bộ phận nhân sự/kế toán của công ty để có con số chính xác nhất theo đúng Khoản 2 Điều 47 Bộ luật Lao động 2019.*",
+    "citations": [
+      "Điều 47 Bộ luật Lao động 2019",
+      "Điều 47 Bộ luật Lao động 2019**"
+    ],
+    "is_refusal": false,
+    "latency": {
+      "retrieval_ms": 2213.36,
+      "reranker_ms": 628.9,
+      "generation_ms": 4349.08,
+      "total_ms": 7191.34
+    }
+  },
+  {
+    "id": "RW-QA-10",
+    "type": "CÂU HỎI CÓ SỐ LIỆU TÌNH HUỐNG",
+    "query": "Lái xe ô tô con chạy quá tốc độ 18 km/h trên đường cao tốc thì bị phạt bao nhiêu tiền và có bị trừ điểm bằng lái không?",
+    "notes": "Xử phạt vi phạm hành chính TTATGT theo Nghị định 168/2024/NĐ-CP.",
+    "retrieved_context": [
+      {
+        "doc_title": "Nghị định 168/2024/NĐ-CP",
+        "article_number": 6,
+        "article_title": "Xử phạt, trừ điểm giấy phép lái xe của người điều",
+        "score": 0.9582
+      },
+      {
+        "doc_title": "Nghị định 168/2024/NĐ-CP",
+        "article_number": 20,
+        "article_title": "Xử phạt, trừ điểm giấy phép lái xe của người điều",
+        "score": 0.8597
+      },
+      {
+        "doc_title": "Nghị định 168/2024/NĐ-CP",
+        "article_number": 7,
+        "article_title": "Xử phạt, trừ điểm giấy phép lái của người điều khiển",
+        "score": 0.7807
+      },
+      {
+        "doc_title": "Nghị định 168/2024/NĐ-CP",
+        "article_number": 8,
+        "article_title": "Xử phạt người điều khiển xe máy chuyên dùng vi phạm",
+        "score": 0.7349
+      },
+      {
+        "doc_title": "Nghị định 168/2024/NĐ-CP",
+        "article_number": 18,
+        "article_title": "Xử phạt, trừ điểm giấy phép lái xe các hành vi vi",
+        "score": 0.7215
+      }
+    ],
+    "final_answer": "Chào bạn, đối với câu hỏi của bạn về việc lái xe ô tô con chạy quá tốc độ 18 km/h trên đường cao tốc, căn cứ vào các văn bản pháp luật hiện hành được cung cấp, kết quả xử lý như sau:\n\n### 1. Về mức xử phạt\n*Hiện tại các căn cứ pháp lý được cung cấp từ Nghị định 168/2024/NĐ-CP chưa chứa đựng đầy đủ chi tiết về mức xử phạt cụ thể đối với hành vi điều khiển xe ô tô chạy quá tốc độ 18 km/h (mặc dù có quy định chung về hành vi điều khiển xe chạy quá tốc độ tại Điểm đ Khoản Điều 6, nhưng nội dung chi tiết về mức tiền phạt cho mức vượt 18 km/h chưa được thuyết minh đầy đủ trong ngữ cảnh).* \n\n### 2. Về việc trừ điểm giấy phép lái xe\n*Cơ sở dữ liệu hiện tại chưa cung cấp quy định trực tiếp về việc trừ điểm giấy phép lái xe đối với hành vi chạy quá tốc độ 18 km/h.*\n\n---\n**Khuyến cáo:** Do cơ sở dữ liệu cung cấp chưa có đủ thông tin chi tiết về mức phạt tiền và quy định trừ điểm đối với mức quá tốc độ 18 km/h trên đường cao tốc, bạn vui lòng tham khảo thêm văn bản gốc của Nghị định 168/2024/NĐ-CP, ý kiến của luật sư hoặc cơ quan công an giao thông có thẩm quyền để được giải đáp chính xác theo hồ sơ xử phạt thực tế.",
+    "citations": [
+      "Nghị định 168/2024/"
+    ],
+    "is_refusal": false,
+    "latency": {
+      "retrieval_ms": 1599.14,
+      "reranker_ms": 597.28,
+      "generation_ms": 2707.72,
+      "total_ms": 4904.13
+    }
+  },
+  {
+    "id": "RW-QA-11",
+    "type": "CÂU HỎI NGOẠI LỆ / ĐIỀU KIỆN",
+    "query": "Uống rượu bia điều khiển phương tiện tham gia giao thông có trường hợp ngoại lệ nào không bị xử phạt tiền không?",
+    "notes": "Kiểm tra xem mô hình có khẳng định tuyệt đối cấm nồng độ cồn hay bịa ra ngoại lệ.",
+    "retrieved_context": [
+      {
+        "doc_title": "Thông tư 73/2024/TT-BCA",
+        "article_number": "Điều 15",
+        "article_title": "Kiểm soát việc chấp hành quy định về nồng độ cồn và chất ma túy",
+        "score": 0.3503
+      },
+      {
+        "doc_title": "Nghị định 168/2024/NĐ-CP",
+        "article_number": 7,
+        "article_title": "Xử phạt, trừ điểm giấy phép lái của người điều khiển",
+        "score": 0.325
+      },
+      {
+        "doc_title": "Luật Trật tự, an toàn giao thông đường bộ 2024",
+        "article_number": 9,
+        "article_title": "Các hành vi bị",
+        "score": 0.2388
+      },
+      {
+        "doc_title": "Nghị định 168/2024/NĐ-CP",
+        "article_number": 9,
+        "article_title": "Xử phạt người điều khiển xe đạp, xe đạp máy, người",
+        "score": 0.2021
+      },
+      {
+        "doc_title": "Nghị định 168/2024/NĐ-CP",
+        "article_number": 16,
+        "article_title": "Xử phạt người điều khiển xe máy chuyên dùng (kể cả",
+        "score": 0.1186
+      }
+    ],
+    "final_answer": "Chào bạn, VietLegal AI xin giải đáp thắc mắc của bạn dựa trên các quy định pháp luật hiện hành như sau:\n\n### 1. Quy định pháp luật về việc điều khiển phương tiện khi có nồng độ cồn\n* **Luật Trật tự, an toàn giao thông đường bộ 2024 (Khoản 2 Điều 9)** quy định nghiêm cấm hành vi: *\"Điều khiển phương tiện tham gia giao thông đường bộ mà trong máu hoặc hơi thở có nồng độ cồn.\"*\n* **Thông tư 73/2024/TT-BCA (Khoản 3 Điều 15)** nêu rõ nguyên tắc xử lý: *\"Mọi trường hợp có nồng độ cồn hoặc dương tính với ma túy đều bị đình chỉ ngay việc điều khiển phương tiện và lập biên bản xử lý nghiêm theo quy định pháp luật.\"*\n\n### 2. Có trường hợp ngoại lệ nào không bị xử phạt tiền không?\nCăn cứ vào các văn bản pháp luật được cung cấp, **không có bất kỳ trường hợp ngoại lệ nào** cho phép người điều khiển phương tiện tham gia giao thông mà trong máu hoặc hơi thở có nồng độ cồn mà được miễn xử phạt tiền. Mọi trường hợp vi phạm đều bị đình chỉ điều khiển phương tiện và xử lý nghiêm theo quy định.\n\n---\n*Disclaimer: Câu trả lời trên nhằm mục đích hỗ trợ tra cứu và tham khảo quy định pháp luật. Nếu bạn cần giải quyết vụ việc cụ thể, vui lòng liên hệ cơ quan có thẩm quyền hoặc Luật sư để được tư vấn chính xác theo hồ sơ thực tế.*",
+    "citations": [
+      "Thông tư 73/2024/"
+    ],
+    "is_refusal": false,
+    "latency": {
+      "retrieval_ms": 2744.97,
+      "reranker_ms": 565.02,
+      "generation_ms": 2700.22,
+      "total_ms": 6010.21
+    }
+  },
+  {
+    "id": "RW-QA-12",
+    "type": "CÂU HỎI PHÂN BIỆT KHÁI NIỆM",
+    "query": "Đặt cọc mua bán nhà đất khác gì so với việc trả tiền trước hoặc thanh toán đợt 1?",
+    "notes": "Dựa trên Điều 328 Bộ luật Dân sự 2015 và Luật Kinh doanh Bất động sản 2023.",
+    "retrieved_context": [
+      {
+        "doc_title": "Bộ luật Dân sự 2015",
+        "article_number": 328,
+        "article_title": "Đặt cọc",
+        "score": 0.278
+      },
+      {
+        "doc_title": "Luật Kinh doanh Bất động sản 2023",
+        "article_number": 25,
+        "article_title": "Điều 25",
+        "score": 0.1424
+      },
+      {
+        "doc_title": "Luật Kinh doanh Bất động sản 2023",
+        "article_number": 23,
+        "article_title": "Điều 23",
+        "score": 0.0299
+      },
+      {
+        "doc_title": "Luật Nhà ở 2023",
+        "article_number": 169,
+        "article_title": "Điều 169",
+        "score": 0.0088
+      },
+      {
+        "doc_title": "Luật Kinh doanh Bất động sản 2023",
+        "article_number": 3,
+        "article_title": "Giải",
+        "score": 0.0079
+      }
+    ],
+    "final_answer": "Chào bạn, VietLegal AI xin giải đáp câu hỏi của bạn về sự khác biệt giữa **đặt cọc** và **trả tiền trước / thanh toán đợt 1** dựa trên các quy định pháp luật hiện hành như sau:\n\n---\n\n### 1. Bản chất và Mục đích pháp lý\n\n*   **Đặt cọc:** \n    *   *Căn cứ:* Theo Khoản 1 Điều 328 Bộ luật Dân sự 2015, đặt cọc là việc một bên giao cho bên kia một khoản tiền (hoặc tài sản có giá trị khác) trong một thời hạn **nhằm mục đích bảo đảm giao kết hoặc thực hiện hợp đồng**.\n*   **Trả tiền trước / Thanh toán đợt 1 (trong mua bán nhà ở, công trình xây dựng hình thành trong tương lai):** \n    *   *Căn cứ:* Theo Khoản 1 Điều 25 Luật Kinh doanh Bất động sản 2023, việc thanh toán lần đầu (trong đó đã bao gồm cả tiền đặt cọc) là một phần của quá trình **thực hiện nghĩa vụ trả tiền theo giá trị hợp đồng** đã được giao kết giữa các bên, thường gắn liền với tiến độ thực hiện dự án/xây dựng.\n\n---\n\n### 2. Hậu quả pháp lý khi có vi phạm (Mất tiền hoặc Phạt cọc)\n\n*   **Đối với tiền đặt cọc:** \n    *   *Căn cứ:* Theo Khoản 2 Điều 328 Bộ luật Dân sự 2015:\n        *   Nếu hợp đồng được giao kết và thực hiện: Tài sản đặt cọc được trả lại cho bên đặt cọc hoặc được trừ để thực hiện nghĩa vụ trả tiền.\n        *   Nếu bên đặt cọc từ chối việc giao kết, thực hiện hợp đồng: Tài sản đặt cọc sẽ **thuộc về bên nhận đặt cọc** (mất tiền đặt cọc).\n        *   Nếu bên nhận đặt cọc từ chối việc giao kết, thực hiện hợp đồng: Phải trả lại tài sản đặt cọc **và một khoản tiền tương đương giá trị tài sản đặt cọc** (phạt cọc), trừ trường hợp có thỏa thuận khác.\n*   **Đối với tiền trả trước / thanh toán đợt 1:** \n    *   Đây là khoản tiền thanh toán cấu thành một phần giá trị hợp đồng đã ký kết. Khi có tranh chấp hoặc vi phạm hợp đồng, việc xử lý số tiền này sẽ tuân theo thỏa thuận trong hợp đồng mua bán hoặc theo các quy định chung của pháp luật về bồi thường thiệt hại và chế tài xử lý vi phạm hợp đồng, không áp dụng cơ chế \"phạt cọc\" hay \"mất cọc\" đặc thù của giao dịch đặt cọc trừ khi các bên có thỏa thuận riêng hợp pháp.\n\n---\n\n### 3. Giới hạn tỷ lệ tiền (Đối với bất động sản hình thành trong tương lai)\n\nKhi giao dịch bất động sản hình thành trong tương lai, pháp luật có những quy định khắt khe về tỷ lệ thu tiền:\n*   **Giới hạn tiền đặt cọc (Dự án bất động sản):** \n    *   *Căn cứ:* Theo Khoản 5 Điều 23 Luật Kinh doanh Bất động sản 2023, chủ đầu tư dự án bất động sản chỉ được thu tiền đặt cọc **không quá 5% giá bán, cho thuê mua** nhà ở, công trình xây dựng khi tài sản đã có đủ các điều kiện đưa vào kinh doanh. Thỏa thuận đặt cọc bắt buộc phải ghi rõ giá bán, cho thuê mua.\n*   **Giới hạn thanh toán lần đầu:** \n    *   *Căn cứ:* Theo Khoản 1 Điều 25 Luật Kinh doanh Bất động sản 2023, việc thanh toán lần đầu trong mua bán nhà ở, công trình xây dựng hình thành trong tương lai (**đã bao gồm cả tiền đặt cọc**) quy định:\n        *   **Không quá 30%** giá trị hợp đồng cho lần thanh toán đầu tiên.\n        *   Những lần tiếp theo phải phù hợp với tiến độ xây dựng nhưng tổng số tiền chưa bàn giao nhà không quá 70% giá trị hợp đồng (hoặc không quá 50% nếu bên bán là tổ chức kinh tế có vốn đầu tư nước ngoài).\n\n---\n\n### Tóm tắt bảng so sánh nhanh:\n\n| Tiêu chí | Đặt cọc | Trả tiền trước / Thanh toán đợt 1 |\n| :--- | :--- | :--- |\n| **Mục đích** | Bảo đảm giao kết hoặc thực hiện hợp đồng (Điều 328 BLDS 2015). | Thực hiện nghĩa vụ trả tiền theo hợp đồng đã ký kết (Điều 25 Luật KDBĐS 2023). |\n| **Chế tài vi phạm** | Mất tiền cọc hoặc bị phạt cọc gấp đôi nếu từ chối giao kết/thực hiện hợp đồng (Điều 328 BLDS 2015). | Giải quyết theo thỏa thuận hợp đồng và quy định pháp luật về vi phạm hợp đồng/bồi thường thiệt hại. |\n| **Giới hạn tỷ lệ (BĐS hình thành trong tương lai)** | Không quá **5%** giá bán/cho thuê mua (Khoản 5 Điều 23 Luật KDBĐS 2023). | Lần đầu **không quá 30%** giá trị hợp đồng (bao gồm cả tiền đặt cọc) (Khoản 1 Điều 25 Luật KDBĐS 2023). |\n\n---\n*Lưu ý: Thông tin trên mang tính chất tham khảo dựa trên các văn bản pháp luật hiện hành. Đối với các giao dịch nhà đất có giá trị lớn hoặc có tranh chấp phát sinh, bạn nên liên hệ trực tiếp với cơ quan có thẩm quyền hoặc luật sư chuyên sâu để được tư vấn sát theo hồ sơ thực tế.*",
+    "citations": [
+      "Điều 23 Luật KDBĐS 2023",
+      "Điều 23 Luật Kinh doanh Bất động sản 2023",
+      "Điều 25 Luật KDBĐS 2023",
+      "Điều 25 Luật Kinh doanh Bất động sản 2023",
+      "Điều 328 Bộ luật Dân sự 2015",
+      "Điều 328 Bộ luật Dân sự 2015:"
+    ],
+    "is_refusal": false,
+    "latency": {
+      "retrieval_ms": 3060.92,
+      "reranker_ms": 446.58,
+      "generation_ms": 6355.63,
+      "total_ms": 9863.12
+    }
+  },
+  {
+    "id": "RW-QA-13",
+    "type": "CÂU HỎI DỰA TRÊN THỰC TIỄN",
+    "query": "Bị mất Giấy phép lái xe máy thì phải thi lại hay chỉ cần làm thủ tục xin cấp lại?",
+    "notes": "Hỏi về thủ tục cấp lại bằng lái xe bị mất theo quy định giao thông.",
+    "retrieved_context": [
+      {
+        "doc_title": "Văn bản Quy phạm Pháp luật",
+        "article_number": "Điều 22",
+        "article_title": "Cấp lại giấy phép lái xe",
+        "score": 0.54
+      },
+      {
+        "doc_title": "Luật Trật tự, an toàn giao thông đường bộ 2024",
+        "article_number": 62,
+        "article_title": "Cấp,",
+        "score": 0.3046
+      },
+      {
+        "doc_title": "Nghị định 94/2026/NĐ-CP",
+        "article_number": "Điều 27",
+        "article_title": "Trình tự, thủ tục cấp, cấp lại Giấy phép sát hạch lái xe",
+        "score": 0.2323
+      },
+      {
+        "doc_title": "Nghị định 94/2026/NĐ-CP",
+        "article_number": "Điều 22",
+        "article_title": "Cấp lại Giấy phép đào tạo lái xe ô tô",
+        "score": 0.0834
+      },
+      {
+        "doc_title": "Thông tư 65/2024/TT-BCA",
+        "article_number": "Điều 2",
+        "article_title": "Đối tượng áp dụng",
+        "score": 0.0742
+      }
+    ],
+    "final_answer": "Chào bạn, VietLegal AI xin giải đáp thắc mắc của bạn về việc bị mất Giấy phép lái xe máy như sau:\n\nKhi bị mất Giấy phép lái xe (bao gồm cả giấy phép lái xe máy), bạn **chỉ cần làm thủ tục xin cấp lại** mà không thuộc diện phải thi lại sát hạch mới, cụ thể:\n\n* **Căn cứ pháp lý:** Theo Điểm a Khoản 2 Điều 62 của **Luật Trật tự, an toàn giao thông đường bộ 2024**, người có giấy phép lái xe bị mất được quyền làm thủ tục cấp lại giấy phép lái xe.\n\n---\n### 💡 Khuyến cáo miễn trừ trách nhiệm\n*Nội dung giải đáp trên nhằm mục đích hỗ trợ tra cứu và hiểu rõ quy định pháp luật dựa trên cơ sở dữ liệu hiện có. Đối với việc thực hiện thủ tục hành chính cụ thể, bạn vui lòng liên hệ trực tiếp với cơ quan có thẩm quyền (như Phòng Cảnh sát giao thông hoặc Sở Giao thông vận tải tại địa phương) để được hướng dẫn chi tiết về hồ sơ và biểu mẫu mới nhất.*",
+    "citations": [],
+    "is_refusal": false,
+    "latency": {
+      "retrieval_ms": 2360.23,
+      "reranker_ms": 508.0,
+      "generation_ms": 2369.6,
+      "total_ms": 5237.83
+    }
+  },
+  {
+    "id": "RW-QA-14",
+    "type": "CÂU HỎI NGOÀI PHẠM VI (OUT OF CORPUS)",
+    "query": "Thủ tục đăng ký kết hôn với người nước ngoài tại cơ quan đại diện ngoại giao Việt Nam ở nước ngoài cần những giấy tờ gì?",
+    "notes": "Luật Hôn nhân & Gia đình / Hộ tịch — ngoài cơ sở dữ liệu hiện có.",
+    "retrieved_context": [
+      {
+        "doc_title": "Nghị định 01/2021/NĐ-CP",
+        "article_number": 11,
+        "article_title": "Điều 11. Giấy tờ pháp lý của cá nhân trong hồ sơ đăng ký doanh nghiệp",
+        "score": 0.0753
+      },
+      {
+        "doc_title": "Luật Bảo hiểm xã hội 2024",
+        "article_number": 106,
+        "article_title": "Hồ sơ đề nghị hưởng bảo hiểm xã hội một lần",
+        "score": 0.0472
+      },
+      {
+        "doc_title": "Luật Bảo hiểm xã hội 2024",
+        "article_number": 78,
+        "article_title": "Hồ sơ đề nghị hưởng bảo hiểm xã hội một lần",
+        "score": 0.0442
+      },
+      {
+        "doc_title": "Luật Nhà ở 2023",
+        "article_number": 18,
+        "article_title": "Điều kiện tổ chức, cá nhân nước ngoài được sở hữu nhà ở tại Việt Nam",
+        "score": 0.0225
+      },
+      {
+        "doc_title": "Luật Bảo hiểm xã hội 2024",
+        "article_number": 61,
+        "article_title": "Hồ sơ đề nghị hưởng chế độ thai sản",
+        "score": 0.0155
+      }
+    ],
+    "final_answer": "Chào bạn, với tư cách là trợ lý VietLegal AI, tôi xin giải đáp câu hỏi của bạn như sau:\n\nHiện tại, các Căn cứ Pháp lý được cung cấp ở trên chỉ chứa các quy định liên quan đến giấy tờ pháp lý trong đăng ký doanh nghiệp (Nghị định 01/2021/NĐ-CP), hồ sơ hưởng bảo hiểm xã hội và chế độ thai sản (Luật Bảo hiểm xã hội 2024), cũng như điều kiện sở hữu nhà ở của cá nhân, tổ chức nước ngoài (Luật Nhà ở 2023). Các tài liệu này **không chứa thông tin** về thủ tục hoặc các giấy tờ cần thiết để đăng ký kết hôn với người nước ngoài tại cơ quan đại diện ngoại giao Việt Nam ở nước ngoài.\n\nDo đó, theo nguyên tắc minh bạch và chính xác, hiện tại cơ sở dữ liệu chưa có quy định trực tiếp về vấn đề này. Bạn vui lòng tham khảo thêm ý kiến của luật sư, cơ quan đại diện ngoại giao Việt Nam ở nước ngoài hoặc các văn bản pháp luật chuyên ngành về hộ tịch để được hướng dẫn chi tiết theo hồ sơ thực tế. \n\n*Khuyến cáo miễn trừ trách nhiệm:* Thông tin trên mang tính chất hỗ trợ tra cứu dựa trên dữ liệu giới hạn được cung cấp, không thay thế cho tư vấn pháp lý trực tiếp từ cơ quan có thẩm quyền.",
+    "citations": [
+      "Nghị định 01/2021/"
+    ],
+    "is_refusal": true,
+    "latency": {
+      "retrieval_ms": 2062.73,
+      "reranker_ms": 305.45,
+      "generation_ms": 2328.77,
+      "total_ms": 4696.95
+    }
+  },
+  {
+    "id": "RW-QA-15",
+    "type": "CÂU HỎI NGOÀI PHẠM VI (OUT OF CORPUS)",
+    "query": "Quy định về việc nuôi chó mèo và cấm nuôi chó Pitbull trong các khu chung cư hiện nay như thế nào?",
+    "notes": "Nghị định thú y / quy chế quản lý nhà chung cư — ngoài cơ sở dữ liệu.",
+    "retrieved_context": [
+      {
+        "doc_title": "Luật Nhà ở 2023",
+        "article_number": 3,
+        "article_title": "Các hành vi bị nghiêm cấm",
+        "score": 0.0484
+      },
+      {
+        "doc_title": "Luật Nhà ở 2023",
+        "article_number": 142,
+        "article_title": "Phần sở hữu riêng và phần sở hữu chung trong nhà chung cư",
+        "score": 0.0196
+      },
+      {
+        "doc_title": "Luật Đất đai 2024",
+        "article_number": 79,
+        "article_title": "Điều 79",
+        "score": 0.0061
+      },
+      {
+        "doc_title": "Luật Nhà ở 2023",
+        "article_number": 148,
+        "article_title": "Trách nhiệm của Ban quản trị nhà chung cư",
+        "score": 0.0057
+      },
+      {
+        "doc_title": "Luật Nhà ở 2023",
+        "article_number": 67,
+        "article_title": "Quyết định chủ trương đầu tư, chấp thuận chủ trương đầu tư",
+        "score": 0.0037
+      }
+    ],
+    "final_answer": "Chào bạn, VietLegal AI xin giải đáp thắc mắc của bạn về quy định nuôi chó mèo và các hành vi bị cấm trong khu vực nhà chung cư như sau:\n\nCăn cứ theo quy định tại **Điểm b Khoản 8 Điều 3 Luật Nhà ở 2023**, pháp luật nghiêm cấm các hành vi trong quản lý, sử dụng nhà chung cư bao gồm:\n* **Chăn, thả gia súc, gia cầm** trong khu vực nhà chung cư.\n* **Giết mổ gia súc** trong khu vực nhà chung cư.\n\nNgoài ra, các vấn đề cụ thể liên quan đến việc nuôi chó, mèo và chó Pitbull trong chung cư được quy định như sau:\n\n### 1. Về việc nuôi chó, mèo nói chung trong khu chung cư\n* Luật Nhà ở 2023 nghiêm cấm hành vi chăn, thả gia súc, gia cầm và giết mổ gia súc trong khu vực nhà chung cư. \n* Bên cạnh đó, việc nuôi thú cưng (như chó, mèo) tại mỗi tòa nhà chung cư thường sẽ chịu sự điều chỉnh trực tiếp bởi **Nội quy quản lý, sử dụng nhà chung cư** được thông qua tại Hội nghị nhà chung cư và thỏa thuận quản lý vận hành. Ban quản trị nhà chung cư có trách nhiệm đôn đốc, nhắc nhở người sử dụng nhà chung cư chấp hành nội quy này (theo Điểm đ Khoản 1 Điều 148 Luật Nhà ở 2023). Do đó, bạn cần kiểm tra lại bản Nội quy của tòa nhà chung cư mình đang sinh sống để biết cụ thể ban quản lý có cho phép nuôi hay không và các điều kiện đi kèm (như tiêm phòng, rọ mõm, giữ vệ sinh chung, tiếng ồn...).\n\n### 2. Về việc cấm nuôi chó Pitbull\n* **Căn cứ theo các văn bản pháp luật được cung cấp trong cơ sở dữ liệu hiện tại**, các điều luật của Luật Nhà ở 2023 và Luật Đất đai 2024 chỉ quy định chung về việc cấm chăn, thả, giết mổ gia súc và các hành vi vi phạm trong quản lý, sử dụng nhà chung cư, **chưa có quy định trực tiếp** nhắc đến tên riêng của giống chó Pitbull hay danh mục các loài chó dữ bị cấm nuôi cụ thể trong chung cư.\n\n---\n*Lưu ý: Nội dung trên nhằm mục đích hỗ trợ tra cứu các quy định pháp luật được cung cấp. Nếu bạn cần biết chi tiết liệu tòa nhà cụ thể có cấm hoàn toàn chó mèo hoặc giống chó Pitbull hay không, vui lòng tham khảo trực tiếp bản Nội quy quản lý, sử dụng nhà chung cư của tòa nhà đó hoặc liên hệ với Ban quản trị/Ban quản lý tòa nhà để được giải đáp theo thực tế.*",
+    "citations": [
+      "Điều 148 Luật Nhà ở 2023",
+      "Điều 3 Luật Nhà ở 2023**"
+    ],
+    "is_refusal": true,
+    "latency": {
+      "retrieval_ms": 2444.41,
+      "reranker_ms": 492.22,
+      "generation_ms": 3521.66,
+      "total_ms": 6458.29
+    }
+  },
+  {
+    "id": "RW-QA-16",
+    "type": "CÂU HỎI MẸO / PHÁP LÝ ĐỜI SỐNG",
+    "query": "Tôi đi xe máy mượn của bạn bị cảnh sát giao thông dừng xe thì có bị phạt lỗi xe không chính chủ không?",
+    "notes": "Làm rõ khái niệm đăng ký sang tên xe vs mượn xe hợp pháp tham gia giao thông.",
+    "retrieved_context": [
+      {
+        "doc_title": "Nghị định 168/2024/NĐ-CP",
+        "article_number": 16,
+        "article_title": "Xử phạt người điều khiển xe máy chuyên dùng (kể cả",
+        "score": 0.043
+      },
+      {
+        "doc_title": "Nghị định 168/2024/NĐ-CP",
+        "article_number": 8,
+        "article_title": "Xử phạt người điều khiển xe máy chuyên dùng vi phạm",
+        "score": 0.0408
+      },
+      {
+        "doc_title": "Nghị định 168/2024/NĐ-CP",
+        "article_number": 19,
+        "article_title": "Xử phạt các hành vi vi phạm quy định về điều kiện",
+        "score": 0.029
+      },
+      {
+        "doc_title": "Nghị định 168/2024/NĐ-CP",
+        "article_number": 47,
+        "article_title": "Thủ tục xử phạt, nguyên tắc xử phạt đối với chủ",
+        "score": 0.0134
+      },
+      {
+        "doc_title": "Nghị định 168/2024/NĐ-CP",
+        "article_number": 18,
+        "article_title": "Xử phạt, trừ điểm giấy phép lái xe các hành vi vi",
+        "score": 0.0129
+      }
+    ],
+    "final_answer": "Chào bạn, VietLegal AI xin giải đáp thắc mắc của bạn dựa trên các căn cứ pháp lý được cung cấp như sau:\n\nHiện tại, các văn bản pháp luật và căn cứ được cung cấp trong hệ thống dữ liệu chưa chứa các quy định trực tiếp về việc xử phạt lỗi \"xe không chính chủ\" đối với người điều khiển xe mô tô, xe gắn máy khi mượn xe của người khác tham gia giao thông. \n\nDo đó, đối với câu hỏi cụ thể của bạn, cơ sở dữ liệu hiện tại chưa có quy định trực tiếp để trả lời. Bạn vui lòng tham khảo thêm ý kiến của luật sư hoặc cơ quan có thẩm quyền để được giải đáp chính xác theo các quy định pháp luật hiện hành khác ngoài phạm vi dữ liệu này.\n\n*Lưu ý: Thông tin trên nhằm mục đích hỗ trợ tra cứu theo các căn cứ được cung cấp. Trong trường hợp cần thiết, bạn nên liên hệ trực tiếp với cơ quan cảnh sát giao thông hoặc cơ quan pháp luật có thẩm quyền để nắm bắt đầy đủ quy định về thủ tục đăng ký sang tên xe và các lỗi liên quan.*",
+    "citations": [],
+    "is_refusal": true,
+    "latency": {
+      "retrieval_ms": 1733.09,
+      "reranker_ms": 540.38,
+      "generation_ms": 2206.47,
+      "total_ms": 4479.94
+    }
+  }
+]

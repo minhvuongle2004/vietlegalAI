@@ -147,7 +147,18 @@ async def chat_completions(
                     "event": "token",
                     "data": json.dumps({"token": token}, ensure_ascii=False),
                 }
-        except Exception:
+        except Exception as e:
+            print(f"[!] Lỗi khi stream phản hồi từ LLM: {e}")
+            error_notice = "\n\n⚠️ *Đã xảy ra sự cố gián đoạn khi kết nối tới mô hình AI. Vui lòng thử lại câu hỏi của bạn.*"
+            full_text += error_notice
+            yield {
+                "event": "token",
+                "data": json.dumps({"token": error_notice}, ensure_ascii=False),
+            }
+            yield {
+                "event": "done",
+                "data": json.dumps({"status": "error", "error": str(e), "latency_ms": int((time.time() - start_time) * 1000)}, ensure_ascii=False),
+            }
             return
 
         # Gửi sự kiện kết thúc kèm thông tin độ trễ

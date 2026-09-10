@@ -1,0 +1,753 @@
+[
+  {
+    "case_num": 1,
+    "test_case_id": "GOLD-DIR-01",
+    "category": "DIRECT_RULE",
+    "query": "Người tham gia giao thông đường bộ phải đi bên nào theo quy định của Luật Trật tự an toàn giao thông đường bộ?",
+    "as_of_date": "2025-01-01",
+    "searchable_index_used": "Supabase legal_articles (filter: article_number eq & title ilike; NO tsvector BM25)",
+    "hardcoded_triggers": [
+      "No trigger matched -> Empty query unless regex matched"
+    ],
+    "regex_extracted_articles": "None",
+    "returned_count": 0,
+    "expected_evidence": "36/2024/QH15 (traffic_order_36_2024_qh15) Điều 10",
+    "expected_appeared": false,
+    "expected_rank": null,
+    "top5_results": []
+  },
+  {
+    "case_num": 2,
+    "test_case_id": "GOLD-DIR-02",
+    "category": "DIRECT_RULE",
+    "query": "Khi có người điều khiển giao thông thì người tham gia giao thông phải chấp hành hiệu lệnh của ai trước tiên?",
+    "as_of_date": "2025-01-01",
+    "searchable_index_used": "Supabase legal_articles (filter: article_number eq & title ilike; NO tsvector BM25)",
+    "hardcoded_triggers": [
+      "No trigger matched -> Empty query unless regex matched"
+    ],
+    "regex_extracted_articles": "None",
+    "returned_count": 0,
+    "expected_evidence": "36/2024/QH15 (traffic_order_36_2024_qh15) Điều 11",
+    "expected_appeared": false,
+    "expected_rank": null,
+    "top5_results": []
+  },
+  {
+    "case_num": 3,
+    "test_case_id": "GOLD-DIR-03",
+    "category": "DIRECT_RULE",
+    "query": "Người lái xe ô tô có được sử dụng điện thoại bằng tay khi xe đang chạy trên đường không?",
+    "as_of_date": "2025-01-01",
+    "searchable_index_used": "Supabase legal_articles (filter: article_number eq & title ilike; NO tsvector BM25)",
+    "hardcoded_triggers": [
+      "No trigger matched -> Empty query unless regex matched"
+    ],
+    "regex_extracted_articles": "None",
+    "returned_count": 0,
+    "expected_evidence": "36/2024/QH15 (traffic_order_36_2024_qh15) Điều 10",
+    "expected_appeared": false,
+    "expected_rank": null,
+    "top5_results": []
+  },
+  {
+    "case_num": 4,
+    "test_case_id": "GOLD-DIR-04",
+    "category": "DIRECT_RULE",
+    "query": "Tốc độ tối đa cho phép xe con chạy trong khu vực đông dân cư trên đường đôi là bao nhiêu km/h?",
+    "as_of_date": "2025-01-01",
+    "searchable_index_used": "Supabase legal_articles (filter: article_number eq & title ilike; NO tsvector BM25)",
+    "hardcoded_triggers": [
+      "tốc độ -> Điều 6, 7, 17, 58"
+    ],
+    "regex_extracted_articles": "None",
+    "returned_count": 5,
+    "expected_evidence": "38/2024/TT-BGTVT (traffic_speed_distance_38_2024_tt_bgtvt) Điều 6",
+    "expected_appeared": false,
+    "expected_rank": null,
+    "top5_results": [
+      {
+        "rank": 1,
+        "doc_id": "bhxh_58_2014_qh13",
+        "official_number": "N/A",
+        "article_number": 6,
+        "article_title": "Chính sách của Nhà nước đối với bảo hiểm xã hội",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 2,
+        "doc_id": "blds_91_2015_qh13",
+        "official_number": "N/A",
+        "article_number": 6,
+        "article_title": "Áp dụng tương tự pháp luật",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 3,
+        "doc_id": "bllđ_45_2019_qh14",
+        "official_number": "N/A",
+        "article_number": 6,
+        "article_title": "Quyền và nghĩa vụ của người sử dụng lao động",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 4,
+        "doc_id": "housing_27_2023_qh15",
+        "official_number": "N/A",
+        "article_number": 6,
+        "article_title": "Quyền có chỗ ở và quyền sở hữu nhà ở",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 5,
+        "doc_id": "investment_61_2020_qh14",
+        "official_number": "N/A",
+        "article_number": 6,
+        "article_title": "Ngành, nghề cấm đầu tư",
+        "score": "N/A (unranked SQL fetch)"
+      }
+    ]
+  },
+  {
+    "case_num": 5,
+    "test_case_id": "GOLD-DIR-05",
+    "category": "DIRECT_RULE",
+    "query": "Tốc độ tối đa cho phép xe máy chạy trong khu vực đông dân cư trên đường hai chiều không có dải phân cách giữa là bao nhiêu?",
+    "as_of_date": "2025-01-01",
+    "searchable_index_used": "Supabase legal_articles (filter: article_number eq & title ilike; NO tsvector BM25)",
+    "hardcoded_triggers": [
+      "tốc độ -> Điều 6, 7, 17, 58"
+    ],
+    "regex_extracted_articles": "None",
+    "returned_count": 5,
+    "expected_evidence": "38/2024/TT-BGTVT (traffic_speed_distance_38_2024_tt_bgtvt) Điều 6",
+    "expected_appeared": false,
+    "expected_rank": null,
+    "top5_results": [
+      {
+        "rank": 1,
+        "doc_id": "bhxh_58_2014_qh13",
+        "official_number": "N/A",
+        "article_number": 6,
+        "article_title": "Chính sách của Nhà nước đối với bảo hiểm xã hội",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 2,
+        "doc_id": "blds_91_2015_qh13",
+        "official_number": "N/A",
+        "article_number": 6,
+        "article_title": "Áp dụng tương tự pháp luật",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 3,
+        "doc_id": "bllđ_45_2019_qh14",
+        "official_number": "N/A",
+        "article_number": 6,
+        "article_title": "Quyền và nghĩa vụ của người sử dụng lao động",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 4,
+        "doc_id": "housing_27_2023_qh15",
+        "official_number": "N/A",
+        "article_number": 6,
+        "article_title": "Quyền có chỗ ở và quyền sở hữu nhà ở",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 5,
+        "doc_id": "investment_61_2020_qh14",
+        "official_number": "N/A",
+        "article_number": 6,
+        "article_title": "Ngành, nghề cấm đầu tư",
+        "score": "N/A (unranked SQL fetch)"
+      }
+    ]
+  },
+  {
+    "case_num": 6,
+    "test_case_id": "GOLD-ART-01",
+    "category": "ARTICLE_RETRIEVAL",
+    "query": "Điều nào trong Luật Trật tự, an toàn giao thông đường bộ 2024 quy định về việc chuyển hướng xe?",
+    "as_of_date": "2025-01-01",
+    "searchable_index_used": "Supabase legal_articles (filter: article_number eq & title ilike; NO tsvector BM25)",
+    "hardcoded_triggers": [
+      "No trigger matched -> Empty query unless regex matched"
+    ],
+    "regex_extracted_articles": "None",
+    "returned_count": 0,
+    "expected_evidence": "36/2024/QH15 (traffic_order_36_2024_qh15) Điều 15",
+    "expected_appeared": false,
+    "expected_rank": null,
+    "top5_results": []
+  },
+  {
+    "case_num": 7,
+    "test_case_id": "GOLD-ART-02",
+    "category": "ARTICLE_RETRIEVAL",
+    "query": "Quy định về việc vượt xe và nhường đường cho xe xin vượt nằm ở Điều mấy của Luật 36/2024/QH15?",
+    "as_of_date": "2025-01-01",
+    "searchable_index_used": "Supabase legal_articles (filter: article_number eq & title ilike; NO tsvector BM25)",
+    "hardcoded_triggers": [
+      "No trigger matched -> Empty query unless regex matched"
+    ],
+    "regex_extracted_articles": "None",
+    "returned_count": 0,
+    "expected_evidence": "36/2024/QH15 (traffic_order_36_2024_qh15) Điều 14",
+    "expected_appeared": false,
+    "expected_rank": null,
+    "top5_results": []
+  },
+  {
+    "case_num": 8,
+    "test_case_id": "GOLD-ART-03",
+    "category": "ARTICLE_RETRIEVAL",
+    "query": "Điều bao nhiêu của Luật Trật tự, an toàn giao thông đường bộ quy định về dừng xe, đỗ xe trên đường?",
+    "as_of_date": "2025-01-01",
+    "searchable_index_used": "Supabase legal_articles (filter: article_number eq & title ilike; NO tsvector BM25)",
+    "hardcoded_triggers": [
+      "No trigger matched -> Empty query unless regex matched"
+    ],
+    "regex_extracted_articles": "None",
+    "returned_count": 0,
+    "expected_evidence": "36/2024/QH15 (traffic_order_36_2024_qh15) Điều 18",
+    "expected_appeared": false,
+    "expected_rank": null,
+    "top5_results": []
+  },
+  {
+    "case_num": 9,
+    "test_case_id": "GOLD-ART-04",
+    "category": "ARTICLE_RETRIEVAL",
+    "query": "Điều nào của Luật 36/2024/QH15 quy định quy tắc giao thông đối với xe ưu tiên?",
+    "as_of_date": "2025-01-01",
+    "searchable_index_used": "Supabase legal_articles (filter: article_number eq & title ilike; NO tsvector BM25)",
+    "hardcoded_triggers": [
+      "No trigger matched -> Empty query unless regex matched"
+    ],
+    "regex_extracted_articles": "None",
+    "returned_count": 0,
+    "expected_evidence": "36/2024/QH15 (traffic_order_36_2024_qh15) Điều 27",
+    "expected_appeared": false,
+    "expected_rank": null,
+    "top5_results": []
+  },
+  {
+    "case_num": 10,
+    "test_case_id": "GOLD-ART-05",
+    "category": "ARTICLE_RETRIEVAL",
+    "query": "Quy định về phân hạng giấy phép lái xe A1, A, B, C1, C, D nằm ở Điều nào trong Luật TTATGTĐB 2024?",
+    "as_of_date": "2025-01-01",
+    "searchable_index_used": "Supabase legal_articles (filter: article_number eq & title ilike; NO tsvector BM25)",
+    "hardcoded_triggers": [
+      "No trigger matched -> Empty query unless regex matched"
+    ],
+    "regex_extracted_articles": "None",
+    "returned_count": 0,
+    "expected_evidence": "36/2024/QH15 (traffic_order_36_2024_qh15) Điều 58",
+    "expected_appeared": false,
+    "expected_rank": null,
+    "top5_results": []
+  },
+  {
+    "case_num": 11,
+    "test_case_id": "GOLD-TEM-01",
+    "category": "TEMPORAL_QUERY",
+    "query": "Vào ngày 15/05/2025, người đi thi sát hạch lái xe ô tô hạng B2 phải thi những bài sát hạch nào?",
+    "as_of_date": "2025-05-15",
+    "searchable_index_used": "Supabase legal_articles (filter: article_number eq & title ilike; NO tsvector BM25)",
+    "hardcoded_triggers": [
+      "temporal trigger -> Điều 53, 54, 88"
+    ],
+    "regex_extracted_articles": "None",
+    "returned_count": 5,
+    "expected_evidence": "12/2025/TT-BCA (traffic_driving_license_12_2025_tt_bca) Điều 14",
+    "expected_appeared": false,
+    "expected_rank": null,
+    "top5_results": [
+      {
+        "rank": 1,
+        "doc_id": "bhxh_58_2014_qh13",
+        "official_number": "N/A",
+        "article_number": 54,
+        "article_title": "Điều kiện hưởng lương hưu",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 2,
+        "doc_id": "blds_91_2015_qh13",
+        "official_number": "N/A",
+        "article_number": 54,
+        "article_title": "Cử, chỉ định người giám hộ",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 3,
+        "doc_id": "bllđ_45_2019_qh14",
+        "official_number": "N/A",
+        "article_number": 54,
+        "article_title": "Doanh nghiệp cho thuê lại lao động",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 4,
+        "doc_id": "housing_27_2023_qh15",
+        "official_number": "N/A",
+        "article_number": 54,
+        "article_title": "Yêu cầu về phát triển nhà ở của cá nhân",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 5,
+        "doc_id": "investment_61_2020_qh14",
+        "official_number": "N/A",
+        "article_number": 54,
+        "article_title": "Ngành, nghề đầu tư ra",
+        "score": "N/A (unranked SQL fetch)"
+      }
+    ]
+  },
+  {
+    "case_num": 12,
+    "test_case_id": "GOLD-TEM-02",
+    "category": "TEMPORAL_QUERY",
+    "query": "Ngày 15/08/2026, thí sinh sát hạch bằng lái xe ô tô có còn phải thi bài mô phỏng tình huống giao thông không?",
+    "as_of_date": "2026-08-15",
+    "searchable_index_used": "Supabase legal_articles (filter: article_number eq & title ilike; NO tsvector BM25)",
+    "hardcoded_triggers": [
+      "temporal trigger -> Điều 53, 54, 88"
+    ],
+    "regex_extracted_articles": "None",
+    "returned_count": 5,
+    "expected_evidence": "108/2026/TT-BCA (traffic_driving_license_108_2026_tt_bca) Điều 15",
+    "expected_appeared": false,
+    "expected_rank": null,
+    "top5_results": [
+      {
+        "rank": 1,
+        "doc_id": "bhxh_41_2024_qh15",
+        "official_number": "N/A",
+        "article_number": 54,
+        "article_title": "Chế độ thai sản của lao động nữ mang thai hộ",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 2,
+        "doc_id": "blds_91_2015_qh13",
+        "official_number": "N/A",
+        "article_number": 54,
+        "article_title": "Cử, chỉ định người giám hộ",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 3,
+        "doc_id": "bllđ_45_2019_qh14",
+        "official_number": "N/A",
+        "article_number": 54,
+        "article_title": "Doanh nghiệp cho thuê lại lao động",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 4,
+        "doc_id": "housing_27_2023_qh15",
+        "official_number": "N/A",
+        "article_number": 54,
+        "article_title": "Yêu cầu về phát triển nhà ở của cá nhân",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 5,
+        "doc_id": "investment_61_2020_qh14",
+        "official_number": "N/A",
+        "article_number": 54,
+        "article_title": "Ngành, nghề đầu tư ra",
+        "score": "N/A (unranked SQL fetch)"
+      }
+    ]
+  },
+  {
+    "case_num": 13,
+    "test_case_id": "GOLD-TEM-03",
+    "category": "TEMPORAL_QUERY",
+    "query": "Vào ngày 01/02/2025, việc phân hạng giấy phép lái xe được áp dụng theo Luật nào?",
+    "as_of_date": "2025-02-01",
+    "searchable_index_used": "Supabase legal_articles (filter: article_number eq & title ilike; NO tsvector BM25)",
+    "hardcoded_triggers": [
+      "temporal trigger -> Điều 53, 54, 88"
+    ],
+    "regex_extracted_articles": "None",
+    "returned_count": 5,
+    "expected_evidence": "36/2024/QH15 (traffic_order_36_2024_qh15) Điều 58",
+    "expected_appeared": false,
+    "expected_rank": null,
+    "top5_results": [
+      {
+        "rank": 1,
+        "doc_id": "bhxh_58_2014_qh13",
+        "official_number": "N/A",
+        "article_number": 54,
+        "article_title": "Điều kiện hưởng lương hưu",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 2,
+        "doc_id": "blds_91_2015_qh13",
+        "official_number": "N/A",
+        "article_number": 54,
+        "article_title": "Cử, chỉ định người giám hộ",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 3,
+        "doc_id": "bllđ_45_2019_qh14",
+        "official_number": "N/A",
+        "article_number": 54,
+        "article_title": "Doanh nghiệp cho thuê lại lao động",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 4,
+        "doc_id": "housing_27_2023_qh15",
+        "official_number": "N/A",
+        "article_number": 54,
+        "article_title": "Yêu cầu về phát triển nhà ở của cá nhân",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 5,
+        "doc_id": "investment_61_2020_qh14",
+        "official_number": "N/A",
+        "article_number": 54,
+        "article_title": "Ngành, nghề đầu tư ra",
+        "score": "N/A (unranked SQL fetch)"
+      }
+    ]
+  },
+  {
+    "case_num": 14,
+    "test_case_id": "GOLD-TEM-04",
+    "category": "TEMPORAL_QUERY",
+    "query": "Tính đến ngày 20/07/2026, hồ sơ đề nghị phục hồi điểm giấy phép lái xe có thể nộp trực tuyến qua đâu?",
+    "as_of_date": "2026-07-20",
+    "searchable_index_used": "Supabase legal_articles (filter: article_number eq & title ilike; NO tsvector BM25)",
+    "hardcoded_triggers": [
+      "temporal trigger -> Điều 53, 54, 88",
+      "trừ điểm -> Điều 6, 7, 50, 51, 58"
+    ],
+    "regex_extracted_articles": "None",
+    "returned_count": 5,
+    "expected_evidence": "105/2026/TT-BCA (traffic_points_recovery_105_2026_tt_bca) Điều 1",
+    "expected_appeared": false,
+    "expected_rank": null,
+    "top5_results": [
+      {
+        "rank": 1,
+        "doc_id": "bhxh_41_2024_qh15",
+        "official_number": "N/A",
+        "article_number": 88,
+        "article_title": "Các trường hợp hưởng trợ cấp tuất một lần",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 2,
+        "doc_id": "blds_91_2015_qh13",
+        "official_number": "N/A",
+        "article_number": 88,
+        "article_title": "Hợp nhất pháp nhân",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 3,
+        "doc_id": "bllđ_45_2019_qh14",
+        "official_number": "N/A",
+        "article_number": 88,
+        "article_title": "Xử lý thỏa ước lao động tập thể vô hiệu",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 4,
+        "doc_id": "housing_27_2023_qh15",
+        "official_number": "N/A",
+        "article_number": 88,
+        "article_title": "Nguyên tắc bán, cho thuê mua, cho thuê nhà ở xã hội",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 5,
+        "doc_id": "land_31_2024_qh15",
+        "official_number": "N/A",
+        "article_number": 88,
+        "article_title": "Cưỡng chế thực hiện quyết định kiểm đếm bắt buộc",
+        "score": "N/A (unranked SQL fetch)"
+      }
+    ]
+  },
+  {
+    "case_num": 15,
+    "test_case_id": "GOLD-TEM-05",
+    "category": "TEMPORAL_QUERY",
+    "query": "Ngày 05/08/2026, xe khách hợp đồng có được phép đón trả khách tại văn phòng đại diện không?",
+    "as_of_date": "2026-08-05",
+    "searchable_index_used": "Supabase legal_articles (filter: article_number eq & title ilike; NO tsvector BM25)",
+    "hardcoded_triggers": [
+      "temporal trigger -> Điều 53, 54, 88"
+    ],
+    "regex_extracted_articles": "None",
+    "returned_count": 5,
+    "expected_evidence": "158/2024/NĐ-CP (traffic_transport_158_2024_nd_cp) Điều 7",
+    "expected_appeared": false,
+    "expected_rank": null,
+    "top5_results": [
+      {
+        "rank": 1,
+        "doc_id": "bhxh_41_2024_qh15",
+        "official_number": "N/A",
+        "article_number": 54,
+        "article_title": "Chế độ thai sản của lao động nữ mang thai hộ",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 2,
+        "doc_id": "blds_91_2015_qh13",
+        "official_number": "N/A",
+        "article_number": 54,
+        "article_title": "Cử, chỉ định người giám hộ",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 3,
+        "doc_id": "bllđ_45_2019_qh14",
+        "official_number": "N/A",
+        "article_number": 54,
+        "article_title": "Doanh nghiệp cho thuê lại lao động",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 4,
+        "doc_id": "housing_27_2023_qh15",
+        "official_number": "N/A",
+        "article_number": 54,
+        "article_title": "Yêu cầu về phát triển nhà ở của cá nhân",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 5,
+        "doc_id": "investment_61_2020_qh14",
+        "official_number": "N/A",
+        "article_number": 54,
+        "article_title": "Ngành, nghề đầu tư ra",
+        "score": "N/A (unranked SQL fetch)"
+      }
+    ]
+  },
+  {
+    "case_num": 16,
+    "test_case_id": "GOLD-DIR-04",
+    "category": "DIRECT_RULE",
+    "query": "Tốc độ tối đa cho phép xe con chạy trong khu vực đông dân cư trên đường đôi là bao nhiêu km/h?",
+    "as_of_date": "2025-01-01",
+    "searchable_index_used": "Supabase legal_articles (filter: article_number eq & title ilike; NO tsvector BM25)",
+    "hardcoded_triggers": [
+      "tốc độ -> Điều 6, 7, 17, 58"
+    ],
+    "regex_extracted_articles": "None",
+    "returned_count": 5,
+    "expected_evidence": "38/2024/TT-BGTVT (traffic_speed_distance_38_2024_tt_bgtvt) Điều 6",
+    "expected_appeared": false,
+    "expected_rank": null,
+    "top5_results": [
+      {
+        "rank": 1,
+        "doc_id": "bhxh_58_2014_qh13",
+        "official_number": "N/A",
+        "article_number": 6,
+        "article_title": "Chính sách của Nhà nước đối với bảo hiểm xã hội",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 2,
+        "doc_id": "blds_91_2015_qh13",
+        "official_number": "N/A",
+        "article_number": 6,
+        "article_title": "Áp dụng tương tự pháp luật",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 3,
+        "doc_id": "bllđ_45_2019_qh14",
+        "official_number": "N/A",
+        "article_number": 6,
+        "article_title": "Quyền và nghĩa vụ của người sử dụng lao động",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 4,
+        "doc_id": "housing_27_2023_qh15",
+        "official_number": "N/A",
+        "article_number": 6,
+        "article_title": "Quyền có chỗ ở và quyền sở hữu nhà ở",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 5,
+        "doc_id": "investment_61_2020_qh14",
+        "official_number": "N/A",
+        "article_number": 6,
+        "article_title": "Ngành, nghề cấm đầu tư",
+        "score": "N/A (unranked SQL fetch)"
+      }
+    ]
+  },
+  {
+    "case_num": 17,
+    "test_case_id": "GOLD-DIR-05",
+    "category": "DIRECT_RULE",
+    "query": "Tốc độ tối đa cho phép xe máy chạy trong khu vực đông dân cư trên đường hai chiều không có dải phân cách giữa là bao nhiêu?",
+    "as_of_date": "2025-01-01",
+    "searchable_index_used": "Supabase legal_articles (filter: article_number eq & title ilike; NO tsvector BM25)",
+    "hardcoded_triggers": [
+      "tốc độ -> Điều 6, 7, 17, 58"
+    ],
+    "regex_extracted_articles": "None",
+    "returned_count": 5,
+    "expected_evidence": "38/2024/TT-BGTVT (traffic_speed_distance_38_2024_tt_bgtvt) Điều 6",
+    "expected_appeared": false,
+    "expected_rank": null,
+    "top5_results": [
+      {
+        "rank": 1,
+        "doc_id": "bhxh_58_2014_qh13",
+        "official_number": "N/A",
+        "article_number": 6,
+        "article_title": "Chính sách của Nhà nước đối với bảo hiểm xã hội",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 2,
+        "doc_id": "blds_91_2015_qh13",
+        "official_number": "N/A",
+        "article_number": 6,
+        "article_title": "Áp dụng tương tự pháp luật",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 3,
+        "doc_id": "bllđ_45_2019_qh14",
+        "official_number": "N/A",
+        "article_number": 6,
+        "article_title": "Quyền và nghĩa vụ của người sử dụng lao động",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 4,
+        "doc_id": "housing_27_2023_qh15",
+        "official_number": "N/A",
+        "article_number": 6,
+        "article_title": "Quyền có chỗ ở và quyền sở hữu nhà ở",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 5,
+        "doc_id": "investment_61_2020_qh14",
+        "official_number": "N/A",
+        "article_number": 6,
+        "article_title": "Ngành, nghề cấm đầu tư",
+        "score": "N/A (unranked SQL fetch)"
+      }
+    ]
+  },
+  {
+    "case_num": 18,
+    "test_case_id": "GOLD-DIR-06",
+    "category": "DIRECT_RULE",
+    "query": "Khi chạy xe với tốc độ 80 km/h trong điều kiện mặt đường khô ráo thì khoảng cách an toàn tối thiểu giữa hai xe là bao nhiêu mét?",
+    "as_of_date": "2025-01-01",
+    "searchable_index_used": "Supabase legal_articles (filter: article_number eq & title ilike; NO tsvector BM25)",
+    "hardcoded_triggers": [
+      "tốc độ -> Điều 6, 7, 17, 58"
+    ],
+    "regex_extracted_articles": "None",
+    "returned_count": 5,
+    "expected_evidence": "38/2024/TT-BGTVT (traffic_speed_distance_38_2024_tt_bgtvt) Điều 11",
+    "expected_appeared": false,
+    "expected_rank": null,
+    "top5_results": [
+      {
+        "rank": 1,
+        "doc_id": "bhxh_58_2014_qh13",
+        "official_number": "N/A",
+        "article_number": 6,
+        "article_title": "Chính sách của Nhà nước đối với bảo hiểm xã hội",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 2,
+        "doc_id": "blds_91_2015_qh13",
+        "official_number": "N/A",
+        "article_number": 6,
+        "article_title": "Áp dụng tương tự pháp luật",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 3,
+        "doc_id": "bllđ_45_2019_qh14",
+        "official_number": "N/A",
+        "article_number": 6,
+        "article_title": "Quyền và nghĩa vụ của người sử dụng lao động",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 4,
+        "doc_id": "housing_27_2023_qh15",
+        "official_number": "N/A",
+        "article_number": 6,
+        "article_title": "Quyền có chỗ ở và quyền sở hữu nhà ở",
+        "score": "N/A (unranked SQL fetch)"
+      },
+      {
+        "rank": 5,
+        "doc_id": "investment_61_2020_qh14",
+        "official_number": "N/A",
+        "article_number": 6,
+        "article_title": "Ngành, nghề cấm đầu tư",
+        "score": "N/A (unranked SQL fetch)"
+      }
+    ]
+  },
+  {
+    "case_num": 19,
+    "test_case_id": "GOLD-DIR-08",
+    "category": "DIRECT_RULE",
+    "query": "Độ tuổi tối thiểu để được cấp Giấy phép lái xe hạng A1 theo Luật 36/2024/QH15 là bao nhiêu?",
+    "as_of_date": "2025-01-01",
+    "searchable_index_used": "Supabase legal_articles (filter: article_number eq & title ilike; NO tsvector BM25)",
+    "hardcoded_triggers": [
+      "No trigger matched -> Empty query unless regex matched"
+    ],
+    "regex_extracted_articles": "None",
+    "returned_count": 0,
+    "expected_evidence": "36/2024/QH15 (traffic_order_36_2024_qh15) Điều 59",
+    "expected_appeared": false,
+    "expected_rank": null,
+    "top5_results": []
+  },
+  {
+    "case_num": 20,
+    "test_case_id": "GOLD-DIR-09",
+    "category": "DIRECT_RULE",
+    "query": "Thời hạn của Giấy phép lái xe ô tô hạng B theo Luật Trật tự, an toàn giao thông đường bộ là bao nhiêu năm?",
+    "as_of_date": "2025-01-01",
+    "searchable_index_used": "Supabase legal_articles (filter: article_number eq & title ilike; NO tsvector BM25)",
+    "hardcoded_triggers": [
+      "No trigger matched -> Empty query unless regex matched"
+    ],
+    "regex_extracted_articles": "None",
+    "returned_count": 0,
+    "expected_evidence": "36/2024/QH15 (traffic_order_36_2024_qh15) Điều 60",
+    "expected_appeared": false,
+    "expected_rank": null,
+    "top5_results": []
+  }
+]

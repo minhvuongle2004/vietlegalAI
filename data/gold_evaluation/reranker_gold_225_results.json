@@ -1,0 +1,464 @@
+{
+  "experiment": "Step 2.2 — Cross-Encoder Reranker Evaluation",
+  "timestamp": "2026-09-11T02:08:57.759234",
+  "reranker_model": "BAAI/bge-reranker-v2-m3",
+  "device": "cuda:0",
+  "precision": "FP16",
+  "candidate_pool_size": 10,
+  "summary_gold_v2_225": {
+    "dense_only": {
+      "hit1": 86,
+      "hit1_pct": 38.22,
+      "hit3": 115,
+      "hit3_pct": 51.11,
+      "hit5": 123,
+      "hit5_pct": 54.67
+    },
+    "clean_hybrid": {
+      "hit1": 73,
+      "hit1_pct": 32.44,
+      "hit3": 114,
+      "hit3_pct": 50.67,
+      "hit5": 132,
+      "hit5_pct": 58.67
+    },
+    "dense_plus_reranker": {
+      "hit1": 92,
+      "hit1_pct": 40.89,
+      "hit3": 117,
+      "hit3_pct": 52.0,
+      "hit5": 126,
+      "hit5_pct": 56.0
+    },
+    "clean_hybrid_plus_reranker": {
+      "hit1": 89,
+      "hit1_pct": 39.56,
+      "hit3": 116,
+      "hit3_pct": 51.56,
+      "hit5": 131,
+      "hit5_pct": 58.22
+    },
+    "transition_dense_vs_hybrid_reranker": {
+      "dense_pass_reranker_pass": 118,
+      "dense_pass_reranker_fail": 5,
+      "dense_fail_reranker_pass": 13,
+      "dense_fail_reranker_fail": 89,
+      "hit1_promoted_count": 18,
+      "hit1_demoted_count": 15
+    },
+    "rescued_cases": [
+      {
+        "test_case_id": "GOLD-DIR-12",
+        "query": "Niên hạn sử dụng của xe ô tô chở người từ 10 chỗ ngồi trở lên tối đa l",
+        "dense_rank": null,
+        "hybrid_rerank_rank": 4
+      },
+      {
+        "test_case_id": "GOLD-DIR-13",
+        "query": "Biển số xe cơ giới được cấp và quản lý theo mã định danh của ai?",
+        "dense_rank": null,
+        "hybrid_rerank_rank": 2
+      },
+      {
+        "test_case_id": "GOLD-DIR-27",
+        "query": "Việc lắp thêm phụ kiện như bậc lên xuống, giá nóc dưới 20cm có bị coi ",
+        "dense_rank": null,
+        "hybrid_rerank_rank": 4
+      },
+      {
+        "test_case_id": "GOLD-ART-05",
+        "query": "Quy định về phân hạng giấy phép lái xe A1, A, B, C1, C, D nằm ở Điều n",
+        "dense_rank": null,
+        "hybrid_rerank_rank": 5
+      },
+      {
+        "test_case_id": "GOLD-ART-19",
+        "query": "Quy định về hồ sơ, thủ tục đổi, cấp lại giấy phép lái xe nằm ở Điều mấ",
+        "dense_rank": null,
+        "hybrid_rerank_rank": 1
+      },
+      {
+        "test_case_id": "GOLD-ART-28",
+        "query": "Điều nào của Thông tư 12/2025/TT-BXD quy định về giới hạn tải trọng tr",
+        "dense_rank": null,
+        "hybrid_rerank_rank": 3
+      },
+      {
+        "test_case_id": "GOLD-EXC-26",
+        "query": "Trong trường hợp nào xe chở chất nổ, chất cháy được phép đi qua hầm đư",
+        "dense_rank": null,
+        "hybrid_rerank_rank": 2
+      },
+      {
+        "test_case_id": "GOLD-MUL-03",
+        "query": "Quy định về cấp biển số định danh theo Luật 36 và thủ tục cấp thu hồi ",
+        "dense_rank": null,
+        "hybrid_rerank_rank": 1
+      },
+      {
+        "test_case_id": "GOLD-MUL-26",
+        "query": "Quy chuẩn kỹ thuật cabin học lái xe ô tô theo Nghị định 94 và chương t",
+        "dense_rank": null,
+        "hybrid_rerank_rank": 1
+      },
+      {
+        "test_case_id": "GOLD-AMD-03",
+        "query": "Nghị định 241/2026/NĐ-CP sửa đổi, bổ sung các quy định nào của Nghị đị",
+        "dense_rank": null,
+        "hybrid_rerank_rank": 1
+      },
+      {
+        "test_case_id": "GOLD-AMD-09",
+        "query": "Văn bản hợp nhất số 26/VBHN-BXD năm 2026 hợp nhất các văn bản nào về t",
+        "dense_rank": null,
+        "hybrid_rerank_rank": 5
+      },
+      {
+        "test_case_id": "GOLD-AMD-23",
+        "query": "Quy định sửa đổi thủ tục cấp biển số tạm thời được cập nhật trong Thôn",
+        "dense_rank": null,
+        "hybrid_rerank_rank": 5
+      },
+      {
+        "test_case_id": "GOLD-HRD-06",
+        "query": "Hành vi sử dụng Giấy phép lái xe giả khác gì về chế tài so với hành vi",
+        "dense_rank": null,
+        "hybrid_rerank_rank": 5
+      }
+    ],
+    "regression_cases": [
+      {
+        "test_case_id": "GOLD-DIR-21",
+        "query": "Mức phạt tiền đối với người lái ô tô chạy quá tốc độ từ 05 đến dưới 10",
+        "dense_rank": 3,
+        "hybrid_rerank_rank": null
+      },
+      {
+        "test_case_id": "GOLD-ART-08",
+        "query": "Quy định xử phạt người điểu khiển xe ô tô vi phạm quy tắc giao thông đ",
+        "dense_rank": 2,
+        "hybrid_rerank_rank": null
+      },
+      {
+        "test_case_id": "GOLD-ART-26",
+        "query": "Điều nào của Nghị định 89/2026/NĐ-CP quy định về niên hạn sử dụng của ",
+        "dense_rank": 2,
+        "hybrid_rerank_rank": null
+      },
+      {
+        "test_case_id": "GOLD-TEM-22",
+        "query": "Vào ngày 10/02/2025, hành vi lạng lách đánh võng đối với xe máy bị xử ",
+        "dense_rank": 4,
+        "hybrid_rerank_rank": null
+      },
+      {
+        "test_case_id": "GOLD-CTR-04A",
+        "query": "Trước ngày 01/07/2025, thẩm quyền cấp phép vận chuyển hàng nguy hiểm l",
+        "dense_rank": 2,
+        "hybrid_rerank_rank": null
+      }
+    ]
+  },
+  "summary_frozen_regression_25": {
+    "dense_only": {
+      "hit1": 24,
+      "hit1_pct": 96.0,
+      "hit2": 25,
+      "hit2_pct": 100.0,
+      "hit3": 25,
+      "hit3_pct": 100.0,
+      "hit5": 25,
+      "hit5_pct": 100.0
+    },
+    "clean_hybrid": {
+      "hit1": 12,
+      "hit1_pct": 48.0,
+      "hit2": 19,
+      "hit2_pct": 76.0,
+      "hit3": 22,
+      "hit3_pct": 88.0,
+      "hit5": 25,
+      "hit5_pct": 100.0
+    },
+    "dense_plus_reranker": {
+      "hit1": 19,
+      "hit1_pct": 76.0,
+      "hit2": 22,
+      "hit2_pct": 88.0,
+      "hit3": 25,
+      "hit3_pct": 100.0,
+      "hit5": 25,
+      "hit5_pct": 100.0
+    },
+    "clean_hybrid_plus_reranker": {
+      "hit1": 19,
+      "hit1_pct": 76.0,
+      "hit2": 23,
+      "hit2_pct": 92.0,
+      "hit3": 25,
+      "hit3_pct": 100.0,
+      "hit5": 25,
+      "hit5_pct": 100.0
+    },
+    "details_25_cases": [
+      {
+        "test_case_id": "TC-DOM-GPLX-01",
+        "dimension": "GPLX",
+        "category": "GPLX - Temporal Pre-Amendment",
+        "query": "Người học lái xe ô tô thi sát hạch vào ngày 15/05/2026 có phải thi nội dung sát hạch lái xe mô phỏng trên máy tính không?",
+        "dense_rank": 1,
+        "hybrid_rank": 1,
+        "dense_rerank_rank": 3,
+        "hybrid_rerank_rank": 3
+      },
+      {
+        "test_case_id": "TC-DOM-GPLX-02",
+        "dimension": "GPLX",
+        "category": "GPLX - Temporal Post-Amendment",
+        "query": "Thí sinh đăng ký khóa học lái xe ô tô mới vào tháng 08/2026 khi dự thi sát hạch có phải thi phần mềm mô phỏng tình huống giao thông không và trình tự thi như thế nào?",
+        "dense_rank": 1,
+        "hybrid_rank": 2,
+        "dense_rerank_rank": 1,
+        "hybrid_rerank_rank": 1
+      },
+      {
+        "test_case_id": "TC-DOM-GPLX-03",
+        "dimension": "GPLX",
+        "category": "GPLX - Transition Rule",
+        "query": "Học viên tham gia khóa đào tạo lái xe ô tô đã khai giảng từ ngày 15/04/2026 nhưng đến tháng 09/2026 mới dự thi sát hạch thì áp dụng quy chế sát hạch theo Thông tư 12 hay Thông tư 108?",
+        "dense_rank": 1,
+        "hybrid_rank": 1,
+        "dense_rerank_rank": 1,
+        "hybrid_rerank_rank": 1
+      },
+      {
+        "test_case_id": "TC-DOM-GPLX-04",
+        "dimension": "GPLX",
+        "category": "GPLX - Renewal / Expired License",
+        "query": "Giấy phép lái xe ô tô bị quá hạn sử dụng dưới 30 ngày thì khi làm thủ tục đổi cấp lại có phải thi lại lý thuyết hoặc thực hành lái xe không?",
+        "dense_rank": 1,
+        "hybrid_rank": 4,
+        "dense_rerank_rank": 1,
+        "hybrid_rerank_rank": 1
+      },
+      {
+        "test_case_id": "TC-DOM-GPLX-05",
+        "dimension": "GPLX",
+        "category": "GPLX - Points Recovery Procedure",
+        "query": "Người lái xe bị trừ hết 12 điểm giấy phép lái xe thì sau bao lâu được đăng ký kiểm tra kiến thức pháp luật để phục hồi điểm và nộp hồ sơ qua đâu?",
+        "dense_rank": 1,
+        "hybrid_rank": 1,
+        "dense_rerank_rank": 2,
+        "hybrid_rerank_rank": 2
+      },
+      {
+        "test_case_id": "TC-DOM-GPLX-06",
+        "dimension": "GPLX",
+        "category": "GPLX - Exemption from Theory Exam",
+        "query": "Người đã có giấy phép lái xe ô tô còn thời hạn sử dụng khi đăng ký thi sát hạch lấy bằng lái xe mô tô hai bánh hạng A1 có được miễn phần thi lý thuyết không?",
+        "dense_rank": 1,
+        "hybrid_rank": 3,
+        "dense_rerank_rank": 1,
+        "hybrid_rerank_rank": 1
+      },
+      {
+        "test_case_id": "TC-DOM-GPLX-07",
+        "dimension": "GPLX",
+        "category": "GPLX - Long Expired License Retest",
+        "query": "Giấy phép lái xe ô tô đã quá thời hạn sử dụng từ 01 năm trở lên thì người lái xe muốn cấp lại phải dự sát hạch lại những nội dung gì?",
+        "dense_rank": 1,
+        "hybrid_rank": 3,
+        "dense_rerank_rank": 1,
+        "hybrid_rerank_rank": 1
+      },
+      {
+        "test_case_id": "TC-DOM-DANGKY-01",
+        "dimension": "DANG_KY_XE",
+        "category": "Đăng ký xe - Place / Jurisdiction",
+        "query": "Từ sau ngày 01/07/2025, người dân có hộ khẩu thường trú tại huyện A khi mua xe máy mới có bắt buộc phải về đúng Công an xã nơi mình thường trú để đăng ký bấm biển không?",
+        "dense_rank": 1,
+        "hybrid_rank": 1,
+        "dense_rerank_rank": 1,
+        "hybrid_rerank_rank": 1
+      },
+      {
+        "test_case_id": "TC-DOM-DANGKY-02",
+        "dimension": "DANG_KY_XE",
+        "category": "Đăng ký xe - Online VNeID Procedure",
+        "query": "Thủ tục đăng ký xe lần đầu toàn trình trên Cổng dịch vụ công Bộ Công an hoặc VNeID được triển khai như thế nào từ tháng 03/2025?",
+        "dense_rank": 1,
+        "hybrid_rank": 2,
+        "dense_rerank_rank": 1,
+        "hybrid_rerank_rank": 1
+      },
+      {
+        "test_case_id": "TC-DOM-DANGKY-03",
+        "dimension": "DANG_KY_XE",
+        "category": "Đăng ký xe - Identification License Plate Retention",
+        "query": "Khi chuyển quyền sở hữu xe (bán xe), chủ xe có được bán kèm biển số định danh của mình không và cơ quan công an sẽ thu hồi biển số ra sao?",
+        "dense_rank": 1,
+        "hybrid_rank": 1,
+        "dense_rerank_rank": 1,
+        "hybrid_rerank_rank": 1
+      },
+      {
+        "test_case_id": "TC-DOM-DANGKY-04",
+        "dimension": "DANG_KY_XE",
+        "category": "Đăng ký xe - Auction Plate Procedure",
+        "query": "Chủ xe trúng đấu giá biển số xe ô tô được quyền lựa chọn đăng ký xe tại cơ quan công an nào theo quy định pháp luật?",
+        "dense_rank": 1,
+        "hybrid_rank": 2,
+        "dense_rerank_rank": 3,
+        "hybrid_rerank_rank": 2
+      },
+      {
+        "test_case_id": "TC-DOM-DANGKY-05",
+        "dimension": "DANG_KY_XE",
+        "category": "Đăng ký xe - Plate Obscuration Penalty",
+        "query": "Hành vi sơn dán che lấp, bẻ cong hoặc làm sai lệch chữ số trên biển số xe ô tô để đối phó camera giám sát giao thông bị xử phạt mức tiền bao nhiêu theo quy định mới 2026?",
+        "dense_rank": 1,
+        "hybrid_rank": 1,
+        "dense_rerank_rank": 1,
+        "hybrid_rerank_rank": 1
+      },
+      {
+        "test_case_id": "TC-DOM-TOCDO-01",
+        "dimension": "TOC_DO_KHOANG_CACH",
+        "category": "Tốc độ - Urban Area",
+        "query": "Tốc độ tối đa cho phép đối với xe cơ giới tham gia giao thông trong khu vực đông dân cư trên đường đôi có dải phân cách giữa là bao nhiêu km/h?",
+        "dense_rank": 1,
+        "hybrid_rank": 4,
+        "dense_rerank_rank": 1,
+        "hybrid_rerank_rank": 1
+      },
+      {
+        "test_case_id": "TC-DOM-TOCDO-02",
+        "dimension": "TOC_DO_KHOANG_CACH",
+        "category": "Tốc độ - Outside Urban Area",
+        "query": "Xe ô tô con lưu thông ngoài khu vực đông dân cư trên đường đôi có dải phân cách giữa được chạy với tốc độ tối đa cho phép là bao nhiêu km/h?",
+        "dense_rank": 1,
+        "hybrid_rank": 1,
+        "dense_rerank_rank": 1,
+        "hybrid_rerank_rank": 1
+      },
+      {
+        "test_case_id": "TC-DOM-TOCDO-03",
+        "dimension": "TOC_DO_KHOANG_CACH",
+        "category": "Tốc độ - Multi-Evidence Speed & Safe Distance",
+        "query": "Xe ô tô con lưu thông trong khu vực đông dân cư trên đường đôi có dải phân cách giữa được chạy tốc độ tối đa bao nhiêu km/h và nếu chạy 70 km/h thì khoảng cách an toàn tối thiểu là bao nhiêu mét?",
+        "dense_rank": 1,
+        "hybrid_rank": 1,
+        "dense_rerank_rank": 1,
+        "hybrid_rerank_rank": 1
+      },
+      {
+        "test_case_id": "TC-DOM-TOCDO-04",
+        "dimension": "TOC_DO_KHOANG_CACH",
+        "category": "Tốc độ - Urban 2-Way Non-Separated",
+        "query": "Xe ô tô tham gia giao thông trong khu vực đông dân cư trên đường hai chiều không có dải phân cách giữa thì tốc độ tối đa cho phép là bao nhiêu km/h?",
+        "dense_rank": 1,
+        "hybrid_rank": 1,
+        "dense_rerank_rank": 1,
+        "hybrid_rerank_rank": 1
+      },
+      {
+        "test_case_id": "TC-DOM-TOCDO-05",
+        "dimension": "TOC_DO_KHOANG_CACH",
+        "category": "Tốc độ & Khoảng cách - Highway & Weather Condition",
+        "query": "Xe ô tô chạy trên đường với vận tốc từ trên 100 km/h đến 120 km/h khi mặt đường khô ráo thì khoảng cách an toàn tối thiểu là bao nhiêu mét, và khi trời mưa có sương mù người lái xe phải điều chỉnh khoảng cách ra sao?",
+        "dense_rank": 1,
+        "hybrid_rank": 2,
+        "dense_rerank_rank": 1,
+        "hybrid_rerank_rank": 1
+      },
+      {
+        "test_case_id": "TC-DOM-CONTRAST-01A",
+        "dimension": "CONTRASTIVE_PAIRS",
+        "category": "Contrastive Pair 1 - Exactly 2026-06-30 (Pre-TT 108)",
+        "query": "Thí sinh thi sát hạch lái xe ô tô vào ngày 30/06/2026 có phải thực hiện bài thi mô phỏng tình huống giao thông không?",
+        "dense_rank": 2,
+        "hybrid_rank": 3,
+        "dense_rerank_rank": 3,
+        "hybrid_rerank_rank": 3
+      },
+      {
+        "test_case_id": "TC-DOM-CONTRAST-01B",
+        "dimension": "CONTRASTIVE_PAIRS",
+        "category": "Contrastive Pair 1 - Exactly 2026-07-01 (Post-TT 108)",
+        "query": "Thí sinh thi sát hạch lái xe ô tô vào ngày 01/07/2026 thuộc khóa đào tạo mới có phải thực hiện bài thi mô phỏng tình huống giao thông không?",
+        "dense_rank": 1,
+        "hybrid_rank": 2,
+        "dense_rerank_rank": 1,
+        "hybrid_rerank_rank": 1
+      },
+      {
+        "test_case_id": "TC-DOM-CONTRAST-02A",
+        "dimension": "CONTRASTIVE_PAIRS",
+        "category": "Contrastive Pair 2 - Exam 2026-09-10 + Old Course (Transition)",
+        "query": "Học viên dự thi sát hạch lái xe ngày 10/09/2026 của khóa đào tạo đã khai giảng ngày 15/05/2026 thì có phải thi mô phỏng tình huống giao thông không?",
+        "dense_rank": 1,
+        "hybrid_rank": 1,
+        "dense_rerank_rank": 2,
+        "hybrid_rerank_rank": 2
+      },
+      {
+        "test_case_id": "TC-DOM-CONTRAST-02B",
+        "dimension": "CONTRASTIVE_PAIRS",
+        "category": "Contrastive Pair 2 - Exam 2026-09-10 + New Course (New Law)",
+        "query": "Học viên dự thi sát hạch lái xe ngày 10/09/2026 của khóa đào tạo khai giảng ngày 15/07/2026 thì có phải thi mô phỏng tình huống giao thông không?",
+        "dense_rank": 1,
+        "hybrid_rank": 2,
+        "dense_rerank_rank": 2,
+        "hybrid_rerank_rank": 2
+      },
+      {
+        "test_case_id": "TC-DOM-CONTRAST-03A",
+        "dimension": "CONTRASTIVE_PAIRS",
+        "category": "Contrastive Pair 3 - Expired 20 Days (Exempt)",
+        "query": "Giấy phép lái xe ô tô của tôi đã quá hạn sử dụng 20 ngày thì khi đổi sang giấy phép lái xe mới có phải sát hạch lại lý thuyết không?",
+        "dense_rank": 1,
+        "hybrid_rank": 2,
+        "dense_rerank_rank": 1,
+        "hybrid_rerank_rank": 1
+      },
+      {
+        "test_case_id": "TC-DOM-CONTRAST-03B",
+        "dimension": "CONTRASTIVE_PAIRS",
+        "category": "Contrastive Pair 3 - Expired 45 Days (Retest Theory)",
+        "query": "Giấy phép lái xe ô tô của tôi đã quá hạn sử dụng 45 ngày thì khi xin cấp lại giấy phép lái xe có phải sát hạch lại lý thuyết không?",
+        "dense_rank": 1,
+        "hybrid_rank": 4,
+        "dense_rerank_rank": 1,
+        "hybrid_rerank_rank": 1
+      },
+      {
+        "test_case_id": "TC-DOM-CONTRAST-04A",
+        "dimension": "CONTRASTIVE_PAIRS",
+        "category": "Contrastive Pair 4 - Registration Date 2025-05-15 (Pre-TT 51)",
+        "query": "Vào ngày 15/05/2025, người dân thường trú tại xã X huyện A khi đăng ký xe máy có được sang Công an xã Y huyện B cùng tỉnh để làm thủ tục bấm biển không?",
+        "dense_rank": 1,
+        "hybrid_rank": 1,
+        "dense_rerank_rank": 1,
+        "hybrid_rerank_rank": 1
+      },
+      {
+        "test_case_id": "TC-DOM-CONTRAST-04B",
+        "dimension": "CONTRASTIVE_PAIRS",
+        "category": "Contrastive Pair 4 - Registration Date 2025-08-15 (Post-TT 51)",
+        "query": "Vào ngày 15/08/2025, người dân thường trú tại xã X huyện A khi đăng ký xe máy có được sang Công an xã Y huyện B cùng tỉnh để làm thủ tục bấm biển không?",
+        "dense_rank": 1,
+        "hybrid_rank": 1,
+        "dense_rerank_rank": 1,
+        "hybrid_rerank_rank": 1
+      }
+    ]
+  },
+  "latency_benchmark": {
+    "sample_size": 5,
+    "cuda_fp16_avg_ms": 569.71,
+    "cpu_avg_ms": 10061.57,
+    "gpu_speedup": 17.66,
+    "full_eval_avg_rerank_ms": 263.43
+  },
+  "final_verdict": "RERANKER PASS"
+}

@@ -1,0 +1,701 @@
+{
+  "metadata": {
+    "source_document": {
+      "official_number": "241/2026/NĐ-CP",
+      "issuing_body": "Chính phủ",
+      "issue_date": "2026-06-26",
+      "effective_date": "2026-07-01",
+      "congbao_number": "392",
+      "congbao_date": "2026-07-13",
+      "signed_file": "241-ndcp.signed.pdf",
+      "raw_sha256": "c08a9f4e3c988b0a996f5b9d2b2742918e7e1f13b190eb82110c7104b2075b6a",
+      "title": "Nghị định sửa đổi, bổ sung một số điều của Nghị định số 165/2024/NĐ-CP ngày 26 tháng 12 năm 2024 của Chính phủ quy định chi tiết một số điều của Luật Đường bộ và Điều 77 Luật Trật tự, an toàn giao thông đường bộ"
+    },
+    "target_document": {
+      "official_number": "165/2024/NĐ-CP",
+      "issuing_body": "Chính phủ",
+      "issue_date": "2024-12-26",
+      "effective_date": "2025-01-01",
+      "title": "Nghị định quy định chi tiết, hướng dẫn thi hành một số điều của Luật Đường bộ và Điều 77 Luật Trật tự, an toàn giao thông đường bộ"
+    },
+    "temporal_convention": "[valid_from, valid_to)",
+    "mapping_architecture": "142 Qdrant P2 points do not map 1:1 to 70 legal_articles due to multi-versioning (23 amended article snapshots + 1 added Điều 52a + 1 repealed point 17(1)(d) + 41 form units + 6 annex technical units)."
+  },
+  "target_mappings_exact": [
+    {
+      "amendment_document": "241/2026/NĐ-CP",
+      "amendment_article": "Điều 1",
+      "target_document": "165/2024/NĐ-CP",
+      "target_article": "Điều 4",
+      "changes": [
+        {
+          "target": "Khoản 1 đến Khoản 8 (K1-K8)",
+          "operation": "MODIFY"
+        }
+      ],
+      "effective_date": "2026-07-01",
+      "valid_interval": "[2026-07-01, null)",
+      "source_locator": "NĐ 241 Điều 1; Công báo 392 (2026-07-13)"
+    },
+    {
+      "amendment_document": "241/2026/NĐ-CP",
+      "amendment_article": "Điều 2",
+      "target_document": "165/2024/NĐ-CP",
+      "target_article": "Điều 5",
+      "changes": [
+        {
+          "target": "Khoản 1 đến Khoản 7 (K1-K7)",
+          "operation": "MODIFY"
+        }
+      ],
+      "effective_date": "2026-07-01",
+      "valid_interval": "[2026-07-01, null)",
+      "source_locator": "NĐ 241 Điều 2; Công báo 392 (2026-07-13)"
+    },
+    {
+      "amendment_document": "241/2026/NĐ-CP",
+      "amendment_article": "Điều 3",
+      "target_document": "165/2024/NĐ-CP",
+      "target_article": "Điều 7",
+      "changes": [
+        {
+          "target": "Khoản 1 đến Khoản 5 (K1-K5)",
+          "operation": "MODIFY"
+        }
+      ],
+      "effective_date": "2026-07-01",
+      "valid_interval": "[2026-07-01, null)",
+      "source_locator": "NĐ 241 Điều 3; Công báo 392 (2026-07-13)"
+    },
+    {
+      "amendment_document": "241/2026/NĐ-CP",
+      "amendment_article": "Điều 4",
+      "target_document": "165/2024/NĐ-CP",
+      "target_article": "Điều 8",
+      "changes": [
+        {
+          "target": "Khoản 2, Khoản 5, Khoản 9, Khoản 10",
+          "operation": "MODIFY"
+        }
+      ],
+      "effective_date": "2026-07-01",
+      "valid_interval": "[2026-07-01, null)",
+      "source_locator": "NĐ 241 Điều 4; Công báo 392 (2026-07-13)"
+    },
+    {
+      "amendment_document": "241/2026/NĐ-CP",
+      "amendment_article": "Điều 5",
+      "target_document": "165/2024/NĐ-CP",
+      "target_article": "Điều 10",
+      "changes": [
+        {
+          "target": "Khoản 2",
+          "operation": "MODIFY"
+        },
+        {
+          "target": "Khoản 7",
+          "operation": "ADD"
+        }
+      ],
+      "effective_date": "2026-07-01",
+      "valid_interval": "[2026-07-01, null)",
+      "source_locator": "NĐ 241 Điều 5; Công báo 392 (2026-07-13)"
+    },
+    {
+      "amendment_document": "241/2026/NĐ-CP",
+      "amendment_article": "Điều 6",
+      "target_document": "165/2024/NĐ-CP",
+      "target_article": "Điều 11",
+      "changes": [
+        {
+          "target": "Khoản 2 Điểm a",
+          "operation": "MODIFY"
+        },
+        {
+          "target": "Khoản 7",
+          "operation": "ADD"
+        }
+      ],
+      "effective_date": "2026-07-01",
+      "valid_interval": "[2026-07-01, null)",
+      "source_locator": "NĐ 241 Điều 6; Công báo 392 (2026-07-13)"
+    },
+    {
+      "amendment_document": "241/2026/NĐ-CP",
+      "amendment_article": "Điều 7",
+      "target_document": "165/2024/NĐ-CP",
+      "target_article": "Điều 17",
+      "changes": [
+        {
+          "target": "Khoản 1 Điểm a, c, e",
+          "operation": "MODIFY"
+        },
+        {
+          "target": "Khoản 2",
+          "operation": "MODIFY"
+        }
+      ],
+      "effective_date": "2026-07-01",
+      "valid_interval": "[2026-07-01, null)",
+      "source_locator": "NĐ 241 Điều 7; Công báo 392 (2026-07-13)"
+    },
+    {
+      "amendment_document": "241/2026/NĐ-CP",
+      "amendment_article": "Điều 8",
+      "target_document": "165/2024/NĐ-CP",
+      "target_article": "Điều 18",
+      "changes": [
+        {
+          "target": "Khoản 2",
+          "operation": "MODIFY"
+        },
+        {
+          "target": "Khoản 3 Điểm c",
+          "operation": "MODIFY"
+        },
+        {
+          "target": "Khoản 3 Điểm d",
+          "operation": "ADD"
+        }
+      ],
+      "effective_date": "2026-07-01",
+      "valid_interval": "[2026-07-01, null)",
+      "source_locator": "NĐ 241 Điều 8; Công báo 392 (2026-07-13)"
+    },
+    {
+      "amendment_document": "241/2026/NĐ-CP",
+      "amendment_article": "Điều 9",
+      "target_document": "165/2024/NĐ-CP",
+      "target_article": "Điều 20",
+      "changes": [
+        {
+          "target": "Khoản 2",
+          "operation": "MODIFY"
+        },
+        {
+          "target": "Khoản 7",
+          "operation": "MODIFY"
+        }
+      ],
+      "effective_date": "2026-07-01",
+      "valid_interval": "[2026-07-01, null)",
+      "source_locator": "NĐ 241 Điều 9; Công báo 392 (2026-07-13)"
+    },
+    {
+      "amendment_document": "241/2026/NĐ-CP",
+      "amendment_article": "Điều 10",
+      "target_document": "165/2024/NĐ-CP",
+      "target_article": "Điều 21",
+      "changes": [
+        {
+          "target": "Khoản 1",
+          "operation": "MODIFY"
+        },
+        {
+          "target": "Khoản 1a",
+          "operation": "ADD"
+        },
+        {
+          "target": "Khoản 2",
+          "operation": "MODIFY"
+        },
+        {
+          "target": "Khoản 3",
+          "operation": "MODIFY"
+        },
+        {
+          "target": "Khoản 5",
+          "operation": "MODIFY"
+        },
+        {
+          "target": "Khoản 6 Điểm c",
+          "operation": "MODIFY"
+        },
+        {
+          "target": "Khoản 6 Điểm d",
+          "operation": "ADD"
+        },
+        {
+          "target": "Khoản 7 Điểm c",
+          "operation": "MODIFY"
+        },
+        {
+          "target": "Khoản 10",
+          "operation": "ADD"
+        },
+        {
+          "target": "Khoản 11",
+          "operation": "ADD"
+        }
+      ],
+      "effective_date": "2026-07-01",
+      "valid_interval": "[2026-07-01, null)",
+      "source_locator": "NĐ 241 Điều 10; Công báo 392 (2026-07-13)"
+    },
+    {
+      "amendment_document": "241/2026/NĐ-CP",
+      "amendment_article": "Điều 11",
+      "target_document": "165/2024/NĐ-CP",
+      "target_article": "Điều 24",
+      "changes": [
+        {
+          "target": "Khoản 2",
+          "operation": "MODIFY"
+        },
+        {
+          "target": "Khoản 3",
+          "operation": "MODIFY"
+        }
+      ],
+      "effective_date": "2026-07-01",
+      "valid_interval": "[2026-07-01, null)",
+      "source_locator": "NĐ 241 Điều 11; Công báo 392 (2026-07-13)"
+    },
+    {
+      "amendment_document": "241/2026/NĐ-CP",
+      "amendment_article": "Điều 12",
+      "target_document": "165/2024/NĐ-CP",
+      "target_article": "Điều 26",
+      "changes": [
+        {
+          "target": "Khoản 2 Điểm b",
+          "operation": "MODIFY"
+        },
+        {
+          "target": "Khoản 3",
+          "operation": "MODIFY"
+        },
+        {
+          "target": "Khoản 4 Điểm c",
+          "operation": "MODIFY"
+        },
+        {
+          "target": "Khoản 4 Điểm d",
+          "operation": "ADD"
+        }
+      ],
+      "effective_date": "2026-07-01",
+      "valid_interval": "[2026-07-01, null)",
+      "source_locator": "NĐ 241 Điều 12; Công báo 392 (2026-07-13)"
+    },
+    {
+      "amendment_document": "241/2026/NĐ-CP",
+      "amendment_article": "Điều 13",
+      "target_document": "165/2024/NĐ-CP",
+      "target_article": "Điều 27",
+      "changes": [
+        {
+          "target": "Khoản 1",
+          "operation": "MODIFY"
+        },
+        {
+          "target": "Khoản 5 Điểm b, c",
+          "operation": "MODIFY"
+        },
+        {
+          "target": "Khoản 6",
+          "operation": "MODIFY"
+        },
+        {
+          "target": "Khoản 7",
+          "operation": "MODIFY"
+        }
+      ],
+      "effective_date": "2026-07-01",
+      "valid_interval": "[2026-07-01, null)",
+      "source_locator": "NĐ 241 Điều 13; Công báo 392 (2026-07-13)"
+    },
+    {
+      "amendment_document": "241/2026/NĐ-CP",
+      "amendment_article": "Điều 14",
+      "target_document": "165/2024/NĐ-CP",
+      "target_article": "Điều 28",
+      "changes": [
+        {
+          "target": "Khoản 4",
+          "operation": "MODIFY"
+        },
+        {
+          "target": "Khoản 5 Điểm d",
+          "operation": "MODIFY"
+        },
+        {
+          "target": "Khoản 5 Điểm đ",
+          "operation": "ADD"
+        }
+      ],
+      "effective_date": "2026-07-01",
+      "valid_interval": "[2026-07-01, null)",
+      "source_locator": "NĐ 241 Điều 14; Công báo 392 (2026-07-13)"
+    },
+    {
+      "amendment_document": "241/2026/NĐ-CP",
+      "amendment_article": "Điều 15",
+      "target_document": "165/2024/NĐ-CP",
+      "target_article": "Điều 29",
+      "changes": [
+        {
+          "target": "Khoản 1",
+          "operation": "MODIFY"
+        },
+        {
+          "target": "Khoản 5 Điểm a",
+          "operation": "MODIFY"
+        },
+        {
+          "target": "Khoản 6",
+          "operation": "MODIFY"
+        },
+        {
+          "target": "Khoản 8",
+          "operation": "MODIFY"
+        },
+        {
+          "target": "Khoản 9",
+          "operation": "ADD"
+        }
+      ],
+      "effective_date": "2026-07-01",
+      "valid_interval": "[2026-07-01, null)",
+      "source_locator": "NĐ 241 Điều 15; Công báo 392 (2026-07-13)"
+    },
+    {
+      "amendment_document": "241/2026/NĐ-CP",
+      "amendment_article": "Điều 16",
+      "target_document": "165/2024/NĐ-CP",
+      "target_article": "Điều 30",
+      "changes": [
+        {
+          "target": "Khoản 3 Điểm c",
+          "operation": "MODIFY"
+        }
+      ],
+      "effective_date": "2026-07-01",
+      "valid_interval": "[2026-07-01, null)",
+      "source_locator": "NĐ 241 Điều 16; Công báo 392 (2026-07-13)"
+    },
+    {
+      "amendment_document": "241/2026/NĐ-CP",
+      "amendment_article": "Điều 17",
+      "target_document": "165/2024/NĐ-CP",
+      "target_article": "Điều 31",
+      "changes": [
+        {
+          "target": "Khoản 3 Điểm b, c",
+          "operation": "MODIFY"
+        },
+        {
+          "target": "Khoản 4 Điểm b, đ",
+          "operation": "MODIFY"
+        },
+        {
+          "target": "Khoản 5 Điểm c",
+          "operation": "MODIFY"
+        },
+        {
+          "target": "Khoản 5 Điểm d",
+          "operation": "ADD"
+        }
+      ],
+      "effective_date": "2026-07-01",
+      "valid_interval": "[2026-07-01, null)",
+      "source_locator": "NĐ 241 Điều 17; Công báo 392 (2026-07-13)"
+    },
+    {
+      "amendment_document": "241/2026/NĐ-CP",
+      "amendment_article": "Điều 18",
+      "target_document": "165/2024/NĐ-CP",
+      "target_article": "Điều 32",
+      "changes": [
+        {
+          "target": "Khoản 1 Điểm b",
+          "operation": "MODIFY"
+        },
+        {
+          "target": "Khoản 3",
+          "operation": "MODIFY"
+        }
+      ],
+      "effective_date": "2026-07-01",
+      "valid_interval": "[2026-07-01, null)",
+      "source_locator": "NĐ 241 Điều 18; Công báo 392 (2026-07-13)"
+    },
+    {
+      "amendment_document": "241/2026/NĐ-CP",
+      "amendment_article": "Điều 19",
+      "target_document": "165/2024/NĐ-CP",
+      "target_article": "Điều 46",
+      "changes": [
+        {
+          "target": "Khoản 1 đến Khoản 6 (K1-K6)",
+          "operation": "MODIFY"
+        }
+      ],
+      "effective_date": "2026-07-01",
+      "valid_interval": "[2026-07-01, null)",
+      "source_locator": "NĐ 241 Điều 19; Công báo 392 (2026-07-13)"
+    },
+    {
+      "amendment_document": "241/2026/NĐ-CP",
+      "amendment_article": "Điều 20",
+      "target_document": "165/2024/NĐ-CP",
+      "target_article": "Điều 47",
+      "changes": [
+        {
+          "target": "Khoản 1 đến Khoản 4 (K1-K4)",
+          "operation": "MODIFY"
+        }
+      ],
+      "effective_date": "2026-07-01",
+      "valid_interval": "[2026-07-01, null)",
+      "source_locator": "NĐ 241 Điều 20; Công báo 392 (2026-07-13)"
+    },
+    {
+      "amendment_document": "241/2026/NĐ-CP",
+      "amendment_article": "Điều 21",
+      "target_document": "165/2024/NĐ-CP",
+      "target_article": "Điều 52a",
+      "changes": [
+        {
+          "target": "Khoản 1 đến Khoản 5 (K1-K5)",
+          "operation": "ADD"
+        }
+      ],
+      "effective_date": "2026-07-01",
+      "valid_interval": "[2026-07-01, null)",
+      "source_locator": "NĐ 241 Điều 21; Công báo 392 (2026-07-13)"
+    },
+    {
+      "amendment_document": "241/2026/NĐ-CP",
+      "amendment_article": "Điều 22",
+      "target_document": "165/2024/NĐ-CP",
+      "target_article": "Điều 56",
+      "changes": [
+        {
+          "target": "Khoản 3 Điểm a",
+          "operation": "MODIFY"
+        }
+      ],
+      "effective_date": "2026-07-01",
+      "valid_interval": "[2026-07-01, null)",
+      "source_locator": "NĐ 241 Điều 22; Công báo 392 (2026-07-13)"
+    },
+    {
+      "amendment_document": "241/2026/NĐ-CP",
+      "amendment_article": "Điều 23",
+      "target_document": "165/2024/NĐ-CP",
+      "target_article": "Điều 58",
+      "changes": [
+        {
+          "target": "Khoản 4",
+          "operation": "MODIFY"
+        },
+        {
+          "target": "Khoản 5",
+          "operation": "MODIFY"
+        }
+      ],
+      "effective_date": "2026-07-01",
+      "valid_interval": "[2026-07-01, null)",
+      "source_locator": "NĐ 241 Điều 23; Công báo 392 (2026-07-13)"
+    },
+    {
+      "amendment_document": "241/2026/NĐ-CP",
+      "amendment_article": "Điều 24",
+      "target_document": "165/2024/NĐ-CP",
+      "target_article": "Điều 64",
+      "changes": [
+        {
+          "target": "Khoản 1 Điểm d, e, g, h",
+          "operation": "ADD"
+        },
+        {
+          "target": "Khoản 2",
+          "operation": "MODIFY"
+        },
+        {
+          "target": "Khoản 3",
+          "operation": "MODIFY"
+        }
+      ],
+      "effective_date": "2026-07-01",
+      "valid_interval": "[2026-07-01, null)",
+      "source_locator": "NĐ 241 Điều 24; Công báo 392 (2026-07-13)"
+    }
+  ],
+  "repeal_manifest": [
+    {
+      "amendment_document": "241/2026/NĐ-CP",
+      "amendment_article": "Điều 25",
+      "target_document": "165/2024/NĐ-CP",
+      "target_article": "Điều 17",
+      "target_clause": "Khoản 1",
+      "target_point": "Điểm d",
+      "operation": "REPEAL",
+      "effective_date": "2026-07-01",
+      "valid_interval": "[2025-01-01, 2026-07-01)",
+      "source_locator": "NĐ 241 Điều 25 Khoản 5; Công báo 392 (2026-07-13)"
+    }
+  ],
+  "annex_lineage_manifest": [
+    {
+      "target_annex": "Phụ lục I",
+      "forms": [
+        {
+          "form_id": "Mẫu 01",
+          "operation": "REPLACE",
+          "new_source": "NĐ 241 Phụ lục I Mẫu 01",
+          "effective_date": "2026-07-01"
+        },
+        {
+          "form_id": "Mẫu 02",
+          "operation": "REPLACE",
+          "new_source": "NĐ 241 Phụ lục I Mẫu 02",
+          "effective_date": "2026-07-01"
+        },
+        {
+          "form_id": "Mẫu 03",
+          "operation": "ADD",
+          "new_source": "NĐ 241 Phụ lục I Mẫu 03",
+          "effective_date": "2026-07-01"
+        },
+        {
+          "form_id": "Mẫu 04",
+          "operation": "ADD",
+          "new_source": "NĐ 241 Phụ lục I Mẫu 04",
+          "effective_date": "2026-07-01"
+        }
+      ],
+      "source_locator": "NĐ 241 Điều 25 Khoản 4 Điểm a"
+    },
+    {
+      "target_annex": "Phụ lục II",
+      "operation": "REPLACE",
+      "new_source": "Phụ lục II ban hành kèm theo NĐ 241/2026/NĐ-CP",
+      "effective_date": "2026-07-01",
+      "source_locator": "NĐ 241 Điều 25 Khoản 4 Điểm b"
+    },
+    {
+      "target_annex": "Phụ lục III",
+      "forms": [
+        {
+          "form_id": "Mẫu 01-05",
+          "operation": "REPLACE",
+          "new_source": "NĐ 241 Phụ lục III Mẫu 01-05",
+          "effective_date": "2026-07-01"
+        }
+      ],
+      "source_locator": "NĐ 241 Điều 25 Khoản 4 Điểm c"
+    },
+    {
+      "target_annex": "Phụ lục IV",
+      "forms": [
+        {
+          "form_id": "Mẫu 01-02",
+          "operation": "REPLACE",
+          "new_source": "NĐ 241 Phụ lục IV Mẫu 01-02",
+          "effective_date": "2026-07-01"
+        }
+      ],
+      "source_locator": "NĐ 241 Điều 25 Khoản 4 Điểm d"
+    },
+    {
+      "target_annex": "Phụ lục V",
+      "forms": [
+        {
+          "form_id": "Mẫu 01-02",
+          "operation": "REPLACE",
+          "new_source": "NĐ 241 Phụ lục V Mẫu 01-02",
+          "effective_date": "2026-07-01"
+        }
+      ],
+      "source_locator": "NĐ 241 Điều 25 Khoản 4 Điểm đ"
+    },
+    {
+      "target_annex": "Phụ lục VI",
+      "forms": [
+        {
+          "form_id": "Mẫu 01-04",
+          "operation": "REPLACE",
+          "new_source": "NĐ 241 Phụ lục VI Mẫu 01-04",
+          "effective_date": "2026-07-01"
+        }
+      ],
+      "source_locator": "NĐ 241 Điều 25 Khoản 4 Điểm e"
+    },
+    {
+      "target_annex": "Phụ lục VII (NĐ 165)",
+      "operation": "UNCHANGED_BY_241",
+      "effective_date": "2025-01-01",
+      "source_locator": "Giữ nguyên hiệu lực gốc"
+    },
+    {
+      "target_annex": "Phụ lục VIII (NĐ 165)",
+      "operation": "UNCHANGED_BY_241",
+      "effective_date": "2025-01-01",
+      "source_locator": "Giữ nguyên hiệu lực gốc"
+    },
+    {
+      "target_annex": "Phụ lục IX (NĐ 165)",
+      "operation": "UNCHANGED_BY_241",
+      "effective_date": "2025-01-01",
+      "source_locator": "Giữ nguyên hiệu lực gốc"
+    },
+    {
+      "target_annex": "Phụ lục X (NĐ 165)",
+      "operation": "REPLACE",
+      "new_source": "Phụ lục VII ban hành kèm theo NĐ 241/2026/NĐ-CP",
+      "effective_date": "2026-07-01",
+      "source_locator": "NĐ 241 Điều 25 Khoản 4 Điểm h"
+    }
+  ],
+  "text_replacement_manifest": [
+    {
+      "group": "GROUP A",
+      "source_phrase": "Bộ Giao thông vận tải",
+      "target_phrase": "Bộ Xây dựng",
+      "target_provisions": [
+        "khoản 1, 3 Điều 6",
+        "khoản 1 Điều 9",
+        "điểm a khoản 1 và khoản 3 Điều 20",
+        "điểm a khoản 2 Điều 26",
+        "khoản 3 Điều 28",
+        "khoản 6 Điều 58",
+        "khoản 1-5 Điều 60",
+        "điểm c khoản 1 Điều 61",
+        "khoản 2 Điều 62",
+        "điểm a, c, đ khoản 5 Điều 69"
+      ],
+      "operation": "TEXT_REPLACEMENT",
+      "amendment_source": "NĐ 241 Điều 25 Khoản 6 Điểm a",
+      "effective_date": "2026-07-01",
+      "source_locator": "NĐ 241 Điều 25 Khoản 6 Điểm a; Công báo 392"
+    },
+    {
+      "group": "GROUP B",
+      "source_phrase": "Bộ Kế hoạch và Đầu tư",
+      "target_phrase": "Bộ Tài chính",
+      "target_provisions": [
+        "khoản 1 Điều 60",
+        "khoản 2 Điều 60"
+      ],
+      "operation": "TEXT_REPLACEMENT",
+      "amendment_source": "NĐ 241 Điều 25 Khoản 6 Điểm b",
+      "effective_date": "2026-07-01",
+      "source_locator": "NĐ 241 Điều 25 Khoản 6 Điểm b; Công báo 392"
+    },
+    {
+      "group": "GROUP C",
+      "source_phrase": "Sở Giao thông vận tải",
+      "target_phrase": "Sở Xây dựng",
+      "target_provisions": [
+        "khoản 6 Điều 20",
+        "khoản 5 Điều 60"
+      ],
+      "operation": "TEXT_REPLACEMENT",
+      "amendment_source": "NĐ 241 Điều 25 Khoản 6 Điểm c",
+      "effective_date": "2026-07-01",
+      "source_locator": "NĐ 241 Điều 25 Khoản 6 Điểm c; Công báo 392"
+    }
+  ]
+}

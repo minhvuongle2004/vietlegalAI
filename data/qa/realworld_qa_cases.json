@@ -1,0 +1,98 @@
+[
+  {
+    "id": "RW-QA-01",
+    "type": "CÂU HỎI NGẮN / TỪ KHÓA",
+    "query": "lương tối thiểu vùng 1",
+    "notes": "Người dùng chỉ gõ cụm từ khóa ngắn không thành câu."
+  },
+  {
+    "id": "RW-QA-02",
+    "type": "CÂU HỎI NGẮN / TỪ KHÓA",
+    "query": "vượt đèn vàng",
+    "notes": "Hỏi vắn tắt về lỗi vượt đèn vàng."
+  },
+  {
+    "id": "RW-QA-03",
+    "type": "THIẾU CHỦ NGỮ",
+    "query": "nghỉ việc có được lấy tiền luôn không?",
+    "notes": "Không nêu rõ là ai nghỉ việc, hình thức nghỉ việc thế nào."
+  },
+  {
+    "id": "RW-QA-04",
+    "type": "THIẾU CHỦ NGỮ",
+    "query": "bị giữ xe thì bao nhiêu ngày được lấy lại?",
+    "notes": "Câu hỏi đời sống tự nhiên của người vi phạm giao thông."
+  },
+  {
+    "id": "RW-QA-05",
+    "type": "VIẾT KHÔNG DẤU",
+    "query": "uong ruou lai xe may bi phat bao nhieu",
+    "notes": "Người dùng gõ nhanh trên điện thoại không dấu tiếng Việt."
+  },
+  {
+    "id": "RW-QA-06",
+    "type": "VIẾT KHÔNG DẤU",
+    "query": "thoi gian thu viec toi da la bao lau",
+    "notes": "Tra cứu thời gian thử việc không dấu."
+  },
+  {
+    "id": "RW-QA-07",
+    "type": "CÂU HỎI GHÉP NHIỀU Ý",
+    "query": "Đi làm thêm giờ vào ngày chủ nhật thì tính lương thế nào và khoản tiền này có phải đóng thuế thu nhập cá nhân không?",
+    "notes": "Kết hợp Bộ luật Lao động 2019 (tiền lương làm thêm) và Luật Thuế TNCN (thu nhập miễn thuế/chịu thuế)."
+  },
+  {
+    "id": "RW-QA-08",
+    "type": "CÂU HỎI GHÉP NHIỀU Ý",
+    "query": "Người lao động đơn phương chấm dứt hợp đồng lao động đúng luật thì được hưởng những quyền lợi gì và công ty phải thanh toán trong bao lâu?",
+    "notes": "Kết hợp trợ cấp thôi việc, tiền phép năm và thời hạn thanh toán 14 ngày theo BLLĐ."
+  },
+  {
+    "id": "RW-QA-09",
+    "type": "CÂU HỎI CÓ SỐ LIỆU TÌNH HUỐNG",
+    "query": "Tôi làm việc ở công ty được 4 năm 8 tháng với mức lương bình quân 6 tháng liền kề là 12 triệu đồng/tháng. Nếu công ty thu hẹp sản xuất và cho tôi nghỉ việc thì tôi nhận được bao nhiêu tiền trợ cấp mất việc làm?",
+    "notes": "Yêu cầu tính toán cụ thể: làm tròn tháng lẻ, mức tối thiểu 2 tháng lương (Điều 47 BLLĐ)."
+  },
+  {
+    "id": "RW-QA-10",
+    "type": "CÂU HỎI CÓ SỐ LIỆU TÌNH HUỐNG",
+    "query": "Lái xe ô tô con chạy quá tốc độ 18 km/h trên đường cao tốc thì bị phạt bao nhiêu tiền và có bị trừ điểm bằng lái không?",
+    "notes": "Xử phạt vi phạm hành chính TTATGT theo Nghị định 168/2024/NĐ-CP."
+  },
+  {
+    "id": "RW-QA-11",
+    "type": "CÂU HỎI NGOẠI LỆ / ĐIỀU KIỆN",
+    "query": "Uống rượu bia điều khiển phương tiện tham gia giao thông có trường hợp ngoại lệ nào không bị xử phạt tiền không?",
+    "notes": "Kiểm tra xem mô hình có khẳng định tuyệt đối cấm nồng độ cồn hay bịa ra ngoại lệ."
+  },
+  {
+    "id": "RW-QA-12",
+    "type": "CÂU HỎI PHÂN BIỆT KHÁI NIỆM",
+    "query": "Đặt cọc mua bán nhà đất khác gì so với việc trả tiền trước hoặc thanh toán đợt 1?",
+    "notes": "Dựa trên Điều 328 Bộ luật Dân sự 2015 và Luật Kinh doanh Bất động sản 2023."
+  },
+  {
+    "id": "RW-QA-13",
+    "type": "CÂU HỎI DỰA TRÊN THỰC TIỄN",
+    "query": "Bị mất Giấy phép lái xe máy thì phải thi lại hay chỉ cần làm thủ tục xin cấp lại?",
+    "notes": "Hỏi về thủ tục cấp lại bằng lái xe bị mất theo quy định giao thông."
+  },
+  {
+    "id": "RW-QA-14",
+    "type": "CÂU HỎI NGOÀI PHẠM VI (OUT OF CORPUS)",
+    "query": "Thủ tục đăng ký kết hôn với người nước ngoài tại cơ quan đại diện ngoại giao Việt Nam ở nước ngoài cần những giấy tờ gì?",
+    "notes": "Luật Hôn nhân & Gia đình / Hộ tịch — ngoài cơ sở dữ liệu hiện có."
+  },
+  {
+    "id": "RW-QA-15",
+    "type": "CÂU HỎI NGOÀI PHẠM VI (OUT OF CORPUS)",
+    "query": "Quy định về việc nuôi chó mèo và cấm nuôi chó Pitbull trong các khu chung cư hiện nay như thế nào?",
+    "notes": "Nghị định thú y / quy chế quản lý nhà chung cư — ngoài cơ sở dữ liệu."
+  },
+  {
+    "id": "RW-QA-16",
+    "type": "CÂU HỎI MẸO / PHÁP LÝ ĐỜI SỐNG",
+    "query": "Tôi đi xe máy mượn của bạn bị cảnh sát giao thông dừng xe thì có bị phạt lỗi xe không chính chủ không?",
+    "notes": "Làm rõ khái niệm đăng ký sang tên xe vs mượn xe hợp pháp tham gia giao thông."
+  }
+]

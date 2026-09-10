@@ -58,6 +58,7 @@ redis_data/
 # Scratchpad & temporary evaluation dumps
 scratch/
 *.log
+*candidates_cache*.json
 
 # Environment files
 .env

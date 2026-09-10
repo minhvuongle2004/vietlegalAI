@@ -13,6 +13,54 @@ from backend.app.services.rag.embeddings import get_embedding_service, BaseEmbed
 from backend.app.services.rag.vector_store import QdrantVectorStore
 
 
+LEGAL_DOCUMENT_TEMPORAL_REGISTRY = {
+    # Mảng Giao thông đường bộ - Hiệu lực thời gian chuẩn hóa
+    "108/2026/TT-BCA": {"effective_from": "2026-07-01", "effective_to": None},
+    "traffic_driving_license_108_2026_tt_bca": {"effective_from": "2026-07-01", "effective_to": None},
+    "12/2025/TT-BCA": {"effective_from": "2025-03-01", "effective_to": "2026-06-30", "transition_until": "2027-02-28"},
+    "traffic_driving_license_12_2025_tt_bca": {"effective_from": "2025-03-01", "effective_to": "2026-06-30", "transition_until": "2027-02-28"},
+    "79/2024/TT-BCA": {"effective_from": "2025-01-01", "effective_to": None},
+    "traffic_vehicle_registration_79_2024_tt_bca": {"effective_from": "2025-01-01", "effective_to": None},
+    "13/2025/TT-BCA": {"effective_from": "2025-03-01", "effective_to": None},
+    "traffic_amendment_13_2025_tt_bca": {"effective_from": "2025-03-01", "effective_to": None},
+    "51/2025/TT-BCA": {"effective_from": "2025-07-01", "effective_to": None},
+    "traffic_amendment_51_2025_tt_bca": {"effective_from": "2025-07-01", "effective_to": None},
+    "38/2024/TT-BGTVT": {"effective_from": "2025-01-01", "effective_to": None},
+    "traffic_speed_distance_38_2024_tt_bgtvt": {"effective_from": "2025-01-01", "effective_to": None},
+    "105/2026/TT-BCA": {"effective_from": "2026-07-01", "effective_to": None},
+    "traffic_points_recovery_105_2026_tt_bca": {"effective_from": "2026-07-01", "effective_to": None},
+    "73/2024/TT-BCA": {"effective_from": "2025-01-01", "effective_to": None},
+    "traffic_patrol_inspection_73_2024_tt_bca": {"effective_from": "2025-01-01", "effective_to": None},
+    "65/2024/TT-BCA": {"effective_from": "2025-01-01", "effective_to": None},
+    "traffic_points_recovery_65_2024_tt_bca": {"effective_from": "2025-01-01", "effective_to": None},
+    "28/2024/TT-BCA": {"effective_from": "2024-07-01", "effective_to": None},
+    "traffic_amendment_28_2024_tt_bca": {"effective_from": "2024-07-01", "effective_to": None},
+    "89/2026/NĐ-CP": {"effective_from": "2026-07-01", "effective_to": None},
+    "traffic_vehicle_lifespan_89_2026_nd_cp": {"effective_from": "2026-07-01", "effective_to": None},
+    "30/2026/TT-BXD": {"effective_from": "2026-07-01", "effective_to": None},
+    "traffic_vehicle_inspection_30_2026_tt_bxd": {"effective_from": "2026-07-01", "effective_to": None},
+    "12/2025/TT-BXD": {"effective_from": "2025-03-01", "effective_to": None},
+    "traffic_road_weight_12_2025_tt_bxd": {"effective_from": "2025-03-01", "effective_to": None},
+    "19/2026/TT-BXD": {"effective_from": "2026-05-15", "effective_to": None},
+    "traffic_amendment_19_2026_tt_bxd": {"effective_from": "2026-05-15", "effective_to": None},
+    "36/2024/QH15": {"effective_from": "2025-01-01", "effective_to": None},
+    "traffic_order_36_2024_qh15": {"effective_from": "2025-01-01", "effective_to": None},
+    "168/2024/NĐ-CP": {"effective_from": "2025-01-01", "effective_to": None},
+    "traffic_penalty_168_2024_nd_cp": {"effective_from": "2025-01-01", "effective_to": None},
+    "238/2026/NĐ-CP": {"effective_from": "2026-07-01", "effective_to": None},
+    "traffic_penalty_amendment_238_2026_nd_cp": {"effective_from": "2026-07-01", "effective_to": None},
+    # Batch P1.2
+    "94/2026/NĐ-CP": {"effective_from": "2026-07-01", "effective_to": None},
+    "traffic_driver_training_94_2026_nd_cp": {"effective_from": "2026-07-01", "effective_to": None},
+    "241/2026/NĐ-CP": {"effective_from": "2026-07-01", "effective_to": None},
+    "traffic_road_infra_amendment_241_2026_nd_cp": {"effective_from": "2026-07-01", "effective_to": None},
+    "45/2026/TT-BXD": {"effective_from": "2026-07-01", "effective_to": None},
+    "traffic_inspection_amendment_45_2026_tt_bxd": {"effective_from": "2026-07-01", "effective_to": None},
+    "51/2024/TT-BGTVT": {"effective_from": "2025-01-01", "effective_to": None},
+    "traffic_road_signs_qcvn41_51_2024_tt_bgtvt": {"effective_from": "2025-01-01", "effective_to": None},
+}
+
+
 class HybridRetriever:
     """
     Bộ truy xuất kết hợp tiên tiến (Advanced Multi-Intent Hybrid Search Retriever):
@@ -28,10 +76,21 @@ class HybridRetriever:
         vector_store: Optional[QdrantVectorStore] = None,
         embedding_service: Optional[BaseEmbeddingService] = None,
         rrf_constant: int = 60,
+        dense_weight: float = 1.0,
+        sparse_weight: float = 0.1,
+        enable_query_decomposition: Optional[bool] = None,
     ):
         self.vector_store = vector_store or QdrantVectorStore()
         self.embedding_service = embedding_service or get_embedding_service()
         self.rrf_k = rrf_constant
+        self.dense_weight = dense_weight
+        self.sparse_weight = sparse_weight
+
+        # Feature flag for Query Decomposition (Default: False as determined by Gold Retrieval failure diagnosis)
+        if enable_query_decomposition is not None:
+            self.enable_query_decomposition = enable_query_decomposition
+        else:
+            self.enable_query_decomposition = os.getenv("ENABLE_QUERY_DECOMPOSITION", "false").lower() in ("true", "1", "yes")
 
         # Supabase config cho BM25 search & Target Article Hydration
         self.supabase_url = os.getenv("SUPABASE_URL", "").rstrip("/")
@@ -1099,8 +1158,65 @@ class HybridRetriever:
                     },
                 ])
 
-            # 11.9. Intent: Temporal Version-Aware: Mốc chuyển tiếp hiệu lực (2025 vs 2026)
-            if any(kw in q_lower for kw in ["2025", "2026", "hiệu lực", "áp dụng từ", "thời điểm áp dụng", "sửa đổi"]):
+            # 11.9. Intent: Sát hạch lái xe ô tô, thi mô phỏng, giấy phép lái xe (Temporal-Aware TT12 vs TT108)
+            if any(kw in q_lower for kw in ["sát hạch", "thi mô phỏng", "phần mềm mô phỏng", "bài thi mô phỏng", "thi lái xe", "thi bằng lái", "đổi giấy phép lái xe", "cấp lại giấy phép lái xe"]):
+                if as_of_date and as_of_date < "2026-07-01":
+                    sub_queries.extend([
+                        {
+                            "category": "traffic_driving_license_exam_pre_amendment",
+                            "doc_keyword": "traffic_driving_license_12",
+                            "target_article": 14,
+                            "sub_query": (
+                                "nội dung sát hạch lái xe ô tô bắt buộc thi mô phỏng trên máy tính 4 phần thi lý thuyết mô phỏng sa hình đường trường "
+                                "Điều 14 Thông tư 12/2025/TT-BCA"
+                            ),
+                        },
+                        {
+                            "category": "traffic_driving_license_exam_exemption",
+                            "doc_keyword": "traffic_driving_license_12",
+                            "target_article": 12,
+                            "sub_query": (
+                                "miễn sát hạch lý thuyết lái xe mô tô A1 A cho người đã có bằng lái xe ô tô "
+                                "Điều 12 Thông tư 12/2025/TT-BCA"
+                            ),
+                        },
+                    ])
+                else:
+                    sub_queries.extend([
+                        {
+                            "category": "traffic_driving_license_exam_post_amendment",
+                            "doc_keyword": "traffic_driving_license_108",
+                            "target_article": 15,
+                            "sub_query": (
+                                "nội dung và quy trình sát hạch lái xe chính thức bãi bỏ thi mô phỏng tình huống giao thông đạt lý thuyết mới thi thực hành "
+                                "Điều 15 Thông tư 108/2026/TT-BCA"
+                            ),
+                        },
+                        {
+                            "category": "traffic_driving_license_transition",
+                            "doc_keyword": "traffic_driving_license_108",
+                            "target_article": 35,
+                            "sub_query": (
+                                "điều khoản chuyển tiếp đào tạo sát hạch lái xe khai giảng trước ngày 01 tháng 07 năm 2026 tiếp tục áp dụng Thông tư 12/2025 đến 28/02/2027 "
+                                "Điều 35 Thông tư 108/2026/TT-BCA"
+                            ),
+                        },
+                        {
+                            "category": "traffic_driving_license_renewal",
+                            "doc_keyword": "traffic_driving_license_108",
+                            "target_article": 22,
+                            "sub_query": (
+                                "cấp lại đổi giấy phép lái xe quá hạn sử dụng dưới 30 ngày từ 01 năm trở lên "
+                                "Điều 22 Thông tư 108/2026/TT-BCA"
+                            ),
+                        },
+                    ])
+
+            # 11.10. Intent: Temporal Version-Aware: Mốc chuyển tiếp hiệu lực chung của Luật/Nghị định
+            elif (
+                any(kw in q_lower for kw in ["hiệu lực thi hành", "thời điểm có hiệu lực", "kể từ ngày có hiệu lực", "bãi bỏ nghị định", "điều khoản chuyển tiếp"])
+                or ("hiệu lực" in q_lower and any(kw in q_lower for kw in ["luật", "nghị định"]))
+            ):
                 sub_queries.extend([
                     {
                         "category": "traffic_temporal_order_effective",
@@ -1131,8 +1247,15 @@ class HybridRetriever:
         results = self.vector_store.search_similar(query_vector=query_vector, limit=limit, as_of_date=as_of_date)
         return results
 
-    def _sparse_search_bm25(self, query: str, limit: int = 30, as_of_date: Optional[str] = None) -> List[Dict[str, Any]]:
-        """Tìm kiếm từ khóa và số hiệu điều luật chính xác trên Supabase có hỗ trợ Temporal Filtering"""
+    def _sparse_search_postgresql_fts(self, query: str, limit: int = 30, as_of_date: Optional[str] = None, domain: str = "traffic") -> List[Dict[str, Any]]:
+        """
+        Tìm kiếm toàn văn trên Supabase PostgreSQL (PostgreSQL Full-Text Search - FTS).
+        - Sử dụng PostgreSQL Full-Text Search (tsvector / wfts websearch_to_tsquery).
+        - Bắt buộc lọc theo domain (mặc định 'traffic'), ngăn chặn 100% tài liệu ngoại ngành.
+        - Hỗ trợ temporal filtering theo as_of_date.
+        - Trích xuất từ khóa pháp lý thực chất, không hardcode số Điều và không xuyên tạc câu hỏi.
+        - Tái xếp hạng theo mức độ bao phủ từ vựng, trùng khớp tiêu đề và mật độ từ khóa.
+        """
         if not self.supabase_url or not self.supabase_key:
             return []
 
@@ -1141,161 +1264,215 @@ class HybridRetriever:
             "Authorization": f"Bearer {self.supabase_key}",
         }
         endpoint = f"{self.supabase_url}/rest/v1/legal_articles"
-        results = []
-        seen_keys = set()
 
-        # Lấy danh sách doc_ids hợp lệ theo as_of_date từ legal_documents nếu có
-        valid_doc_ids = None
-        if as_of_date:
+        # 1. Khởi tạo / lấy danh sách văn bản giao thông hợp lệ từ Supabase
+        # Đảm bảo 100% không bao giờ lấy văn bản ngoài ngành Giao thông
+        traffic_docs = getattr(self, "_cached_traffic_docs", None)
+        if traffic_docs is None:
             try:
-                doc_params = {
-                    "select": "id",
-                    "effective_date": f"lte.{as_of_date}",
-                    "or": f"(expiry_date.is.null,expiry_date.gte.{as_of_date})",
-                }
                 r_doc = requests.get(
-                    f"{self.supabase_url}/rest/v1/legal_documents",
+                    f"{self.supabase_url}/rest/v1/legal_documents?select=id,official_number,title,effective_date,expiry_date",
                     headers=headers,
-                    params=doc_params,
                     timeout=5,
                 )
                 if r_doc.status_code == 200:
-                    valid_doc_ids = set(d["id"] for d in r_doc.json())
+                    traffic_docs = {
+                        d["id"]: d for d in r_doc.json()
+                        if d["id"] != "bhyt_51_2024_qh15" and ("traffic" in d["id"] or "road" in d["id"])
+                    }
+                    self._cached_traffic_docs = traffic_docs
             except Exception as e:
-                print(f"[!] Lỗi truy vấn legal_documents theo thời gian: {e}")
+                print(f"[!] Lỗi tải danh mục legal_documents: {e}")
+                traffic_docs = {}
 
-        # 1. Trích xuất các số hiệu Điều được nhắc đến trực tiếp (ví dụ: 'Điều 60', 'Điều 49')
-        art_nums = re.findall(r"(?:điều|khoản)\s*(\d+)", query.lower())
-        q_l = query.lower()
-        if any(term in q_l for term in ["biểu thuế luỹ tiến", "biểu thuế lũy tiến", "biểu thuế 5 bậc"]):
-            art_nums.extend(["9", "8"])
-        if "giảm trừ gia cảnh" in q_l:
-            art_nums.append("10")
-        if "chi phí được trừ" in q_l or "khoản chi được trừ" in q_l:
-            art_nums.append("9")
-        if "chậm nộp" in q_l:
-            art_nums.append("16")
-        if "thời hạn nộp thuế" in q_l:
-            art_nums.append("14")
+        if not traffic_docs:
+            return []
 
-        # Real Estate & Investment triggers
-        if "đặt cọc" in q_l or "5%" in q_l or "tiền đặt cọc" in q_l:
-            art_nums.extend(["23", "328"])
-        if "nghiệm thu" in q_l or "móng" in q_l or "mở bán" in q_l:
-            art_nums.append("24")
-        if "chuyển nhượng" in q_l and ("đất" in q_l or "quyền sử dụng đất" in q_l):
-            art_nums.append("45")
-        if "bảng giá đất" in q_l or "định giá đất" in q_l or "khung giá đất" in q_l:
-            art_nums.extend(["158", "159"])
-        if "nhà ở xã hội" in q_l or "noxh" in q_l:
-            art_nums.extend(["76", "78", "89"])
-        if "chấp thuận chủ trương đầu tư" in q_l or "chủ trương đầu tư" in q_l:
-            art_nums.extend(["29", "32"])
-        if "đấu giá" in q_l or "đấu thầu" in q_l:
-            art_nums.extend(["125", "126"])
+        # 2. Lọc theo thời gian hiệu lực (temporal filtering)
+        valid_traffic_ids = []
+        for did, dinfo in traffic_docs.items():
+            eff = dinfo.get("effective_date")
+            exp = dinfo.get("expiry_date")
+            if as_of_date:
+                if eff and eff > as_of_date:
+                    continue
+                if exp and exp < as_of_date:
+                    continue
+            valid_traffic_ids.append(did)
 
-        # Labor & Employment triggers (TC-02, TC-17, TC-20)
-        if any(kw in q_l for kw in ["thời điểm hưởng", "thời điểm nghỉ hưu", "ngày hưởng", "thời điểm bắt đầu hưởng"]):
-            art_nums.append("3")
-        if "trợ cấp thôi việc" in q_l or "thôi việc" in q_l:
-            art_nums.extend(["46", "47", "8"])
-        if "phương án sử dụng lao động" in q_l or "trợ cấp mất việc" in q_l:
-            art_nums.extend(["44", "47", "8"])
+        if not valid_traffic_ids:
+            valid_traffic_ids = list(traffic_docs.keys())
 
-        # Traffic domain triggers (Luật 36, Luật 35, NĐ 168)
-        if "đèn đỏ" in q_l or "vượt đèn đỏ" in q_l:
-            art_nums.extend(["6", "7", "11"])
-        if "tốc độ" in q_l or "quá tốc độ" in q_l:
-            art_nums.extend(["6", "7", "17", "58"])
-        if "nồng độ cồn" in q_l or "rượu bia" in q_l:
-            art_nums.extend(["6", "7", "9"])
-        if "mũ bảo hiểm" in q_l:
-            art_nums.extend(["7", "32"])
-        if "trừ điểm" in q_l or "phục hồi điểm" in q_l:
-            art_nums.extend(["6", "7", "50", "51", "58"])
-        if "tước gplx" in q_l or "không có gplx" in q_l or "sai loại gplx" in q_l or "tước bằng" in q_l:
-            art_nums.extend(["6", "7", "18", "57"])
-        if "đường cao tốc" in q_l or "cao tốc" in q_l or "lùi xe" in q_l or "ngược chiều" in q_l:
-            art_nums.extend(["6", "16", "25", "45"])
-        if any(term in q_l for term in ["hiệu lực", "áp dụng từ", "2025", "2026", "thay thế nghị định 100"]):
-            art_nums.extend(["53", "54", "88"])
+        # 3. Chuẩn hóa câu hỏi và trích xuất từ khóa thực chất
+        q_clean = re.sub(r"[^\w\s]", " ", query.lower())
+        raw_tokens = q_clean.split()
 
-        for num_str in set(art_nums):
+        doc_meta_words = {
+            "luật", "nghị", "định", "thông", "tư", "điều", "khoản", "điểm", "chương", "mục",
+            "quy", "định", "pháp", "văn", "bản", "số", "năm", "nào", "mấy", "bao", "nhiêu",
+            "2024", "2025", "2026", "qh14", "qh15", "bca", "bgtvt", "bxd", "cp", "tt", "nd",
+            "trật", "tự", "an", "toàn", "giao", "thông", "đường", "bộ", "việt", "nam"
+        }
+
+        question_fillers = {
+            "là", "gì", "ở", "đâu", "khi", "có", "được", "không", "thế", "như", "theo", "của",
+            "trong", "vào", "ngày", "tại", "cho", "về", "thì", "phải", "những", "hỏi", "biết",
+            "cho", "em", "mình", "ai", "trước", "tiên", "các", "đối", "với", "ra", "sao"
+        }
+
+        all_stop = doc_meta_words | question_fillers
+
+        tokens = [w for w in raw_tokens if w not in all_stop and len(w) > 1]
+        if len(tokens) < 2:
+            tokens = [w for w in raw_tokens if w not in question_fillers and len(w) > 1]
+        if not tokens:
+            tokens = ["giao", "thông"]
+
+        # 4. Nhận diện văn bản đích nếu câu hỏi có nhắc đích danh văn bản
+        target_doc_id = None
+        q_normalized_text = " ".join(raw_tokens)
+        doc_hints = [
+            ("trật tự an toàn giao thông", "traffic_order_36_2024_qh15", "36/2024/QH15"),
+            ("luật 36", "traffic_order_36_2024_qh15", "36/2024/QH15"),
+            ("luật đường bộ", "road_35_2024_qh15", "35/2024/QH15"),
+            ("luật 35", "road_35_2024_qh15", "35/2024/QH15"),
+            ("168 2024", "traffic_penalty_168_2024_nd_cp", "168/2024/NĐ-CP"),
+            ("nghị định 168", "traffic_penalty_168_2024_nd_cp", "168/2024/NĐ-CP"),
+            ("158 2024", "traffic_transport_158_2024_nd_cp", "158/2024/NĐ-CP"),
+            ("nghị định 158", "traffic_transport_158_2024_nd_cp", "158/2024/NĐ-CP"),
+            ("151 2024", "traffic_guideline_151_2024_nd_cp", "151/2024/NĐ-CP"),
+            ("nghị định 151", "traffic_guideline_151_2024_nd_cp", "151/2024/NĐ-CP"),
+            ("38 2024", "traffic_speed_distance_38_2024_tt_bgtvt", "38/2024/TT-BGTVT"),
+            ("thông tư 38", "traffic_speed_distance_38_2024_tt_bgtvt", "38/2024/TT-BGTVT"),
+            ("73 2024", "traffic_police_patrol_73_2024_tt_bca", "73/2024/TT-BCA"),
+            ("thông tư 73", "traffic_police_patrol_73_2024_tt_bca", "73/2024/TT-BCA"),
+            ("79 2024", "traffic_vehicle_registration_79_2024_tt_bca", "79/2024/TT-BCA"),
+            ("thông tư 79", "traffic_vehicle_registration_79_2024_tt_bca", "79/2024/TT-BCA"),
+            ("12 2025", "traffic_driving_license_12_2025_tt_bca", "12/2025/TT-BCA"),
+            ("108 2026", "traffic_driving_license_108_2026_tt_bca", "108/2026/TT-BCA"),
+            ("89 2026", "traffic_inspection_framework_89_2026_nd_cp", "89/2026/NĐ-CP"),
+            ("30 2026", "traffic_inspection_procedures_30_2026_tt_bxd", "30/2026/TT-BXD"),
+            ("65 2024", "traffic_points_recovery_65_2024_tt_bca", "65/2024/TT-BCA"),
+            ("105 2026", "traffic_points_recovery_105_2026_tt_bca", "105/2026/TT-BCA"),
+            ("51 2024", "traffic_road_signs_qcvn41_51_2024_tt_bgtvt", "51/2024/TT-BGTVT"),
+        ]
+        for pattern, did, off in doc_hints:
+            if pattern in q_normalized_text:
+                target_doc_id = did
+                break
+
+        if target_doc_id and target_doc_id in valid_traffic_ids:
+            doc_filter = f"eq.{target_doc_id}"
+        else:
+            doc_filter = f"in.({','.join(valid_traffic_ids)})"
+
+        # 5. Truy vấn Supabase PostgreSQL FTS bằng wfts
+        search_terms = " ".join(tokens[:3])
+        params = {
+            "document_id": doc_filter,
+            "full_text": f"wfts.{search_terms}",
+            "select": "document_id,article_number,article_title,full_text,chapter_info",
+            "limit": "30",
+        }
+
+        hits = []
+        try:
+            r = requests.get(endpoint, headers=headers, params=params, timeout=5)
+            if r.status_code == 200:
+                hits = r.json()
+        except Exception as e:
+            print(f"[!] Lỗi truy vấn PostgreSQL FTS: {e}")
+
+        # Fallback nếu không có kết quả với 3 từ
+        if not hits and len(tokens) > 2:
+            params["full_text"] = f"wfts.{' '.join(tokens[:2])}"
             try:
-                num = int(num_str)
-                params = {
-                    "article_number": f"eq.{num}",
-                    "select": "document_id,article_number,article_title,full_text,chapter_info,status",
-                    "limit": "25",
-                }
-                res = requests.get(endpoint, headers=headers, params=params, timeout=5)
-                if res.status_code == 200:
-                    for a in res.json():
-                        doc_id = a.get("document_id", "")
-                        if valid_doc_ids is not None and doc_id not in valid_doc_ids:
-                            continue
-                        key = f"{doc_id}_{a.get('article_number')}"
-                        if key not in seen_keys:
-                            seen_keys.add(key)
-                            doc_title = self._get_doc_title(doc_id)
-                            results.append({
-                                "doc_id": doc_id,
-                                "doc_title": doc_title,
-                                "article_number": a.get("article_number"),
-                                "article_title": a.get("article_title"),
-                                "chapter": a.get("chapter_info"),
-                                "content": a.get("full_text"),
-                                "context_header": f"{doc_title}. {a.get('chapter_info')}. Điều {a.get('article_number')}: {a.get('article_title')}",
-                            })
-            except Exception as e:
-                print(f"[!] Lỗi truy vấn điều số: {e}")
+                r = requests.get(endpoint, headers=headers, params=params, timeout=5)
+                if r.status_code == 200:
+                    hits = r.json()
+            except Exception:
+                pass
 
-        # 2. Tìm kiếm theo tiêu đề bài viết (article_title ilike) cho các cụm từ pháp lý quan trọng
-        target_phrases = []
+        # 6. Xếp hạng và chấm điểm ứng viên FTS
+        scored = []
         q_lower = query.lower()
-        if "bảo hiểm xã hội một lần" in q_lower or "bhxh một lần" in q_lower or "rút bhxh" in q_lower:
-            target_phrases.append("bảo hiểm xã hội một lần")
-        if "trợ cấp thất nghiệp" in q_lower or "bảo hiểm thất nghiệp" in q_lower:
-            target_phrases.append("thất nghiệp")
-        if "nghỉ hưu" in q_lower or "hưu trí" in q_lower:
-            target_phrases.append("nghỉ hưu")
-        if "biểu thuế" in q_lower or "lũy tiến" in q_lower or "luỹ tiến" in q_lower:
-            target_phrases.append("biểu thuế")
-        if "giảm trừ gia cảnh" in q_lower:
-            target_phrases.append("giảm trừ")
-        if "chậm nộp" in q_lower:
-            target_phrases.append("chậm nộp")
+        art_match = re.search(r"điều\s*(\d+)", q_lower)
+        target_art_num = art_match.group(1) if art_match else None
 
-        for phrase in target_phrases:
-            try:
-                params = {
-                    "article_title": f"ilike.*{phrase}*",
-                    "select": "document_id,article_number,article_title,full_text,chapter_info,status",
-                    "limit": "5",
-                }
-                res = requests.get(endpoint, headers=headers, params=params, timeout=5)
-                if res.status_code == 200:
-                    for a in res.json():
-                        doc_id = a.get("document_id", "")
-                        if valid_doc_ids is not None and doc_id not in valid_doc_ids:
-                            continue
-                        key = f"{doc_id}_{a.get('article_number')}"
-                        if key not in seen_keys:
-                            seen_keys.add(key)
-                            doc_title = self._get_doc_title(doc_id)
-                            results.append({
-                                "doc_id": doc_id,
-                                "doc_title": doc_title,
-                                "article_number": a.get("article_number"),
-                                "article_title": a.get("article_title"),
-                                "chapter": a.get("chapter_info"),
-                                "content": a.get("full_text"),
-                                "context_header": f"{doc_title}. {a.get('chapter_info')}. Điều {a.get('article_number')}: {a.get('article_title')}",
-                            })
-            except Exception as e:
-                print(f"[!] Lỗi truy vấn cụm từ: {e}")
+        for h in hits:
+            did = h.get("document_id", "")
+            title_lower = (h.get("article_title") or "").lower()
+            text_lower = (h.get("full_text") or "").lower()
+            art_num_str = str(h.get("article_number") or "")
 
-        return results[:limit]
+            score = 0.0
+            if target_doc_id and target_doc_id == did:
+                score += 6.0
+
+            for i in range(len(tokens) - 1):
+                bg = f"{tokens[i]} {tokens[i+1]}"
+                if bg in title_lower:
+                    score += 4.0
+
+            for t in tokens:
+                if t in title_lower:
+                    score += 2.0
+
+            for t in tokens:
+                if t in text_lower:
+                    c = text_lower.count(t)
+                    score += min(c * 0.25, 3.0)
+
+            if target_art_num and target_art_num == art_num_str:
+                score += 10.0
+
+            scored.append((score, h))
+
+        scored.sort(key=lambda x: x[0], reverse=True)
+
+        # 7. Trả về định dạng đầy đủ cho Sparse Retrieval
+        results = []
+        seen_keys = set()
+        for sc, h in scored:
+            did = h.get("document_id", "")
+            art_num = h.get("article_number")
+            key = f"{did}_{art_num}"
+            if key in seen_keys:
+                continue
+            seen_keys.add(key)
+
+            dinfo = traffic_docs.get(did, {})
+            doc_title = self._get_doc_title(did)
+            official_number = dinfo.get("official_number", "N/A")
+
+            results.append({
+                "doc_id": did,
+                "document_id": did,
+                "official_number": official_number,
+                "doc_title": doc_title,
+                "article": art_num,
+                "article_number": art_num,
+                "article_title": h.get("article_title"),
+                "chapter": h.get("chapter_info"),
+                "content": h.get("full_text"),
+                "chunk_id": f"{did}_art_{art_num}",
+                "score": round(sc, 2),
+                "metadata": {
+                    "search_type": "postgresql_full_text_search",
+                    "domain": "traffic",
+                    "effective_date": dinfo.get("effective_date"),
+                    "expiry_date": dinfo.get("expiry_date"),
+                },
+                "context_header": f"{doc_title}. {h.get('chapter_info', '')}. Điều {art_num}: {h.get('article_title')}",
+            })
+            if len(results) >= limit:
+                break
+
+        return results
+
+    def _sparse_search_bm25(self, query: str, limit: int = 30, as_of_date: Optional[str] = None) -> List[Dict[str, Any]]:
+        """Deprecated alias: Chuyển tiếp sang PostgreSQL Full-Text Search chuẩn"""
+        return self._sparse_search_postgresql_fts(query, limit=limit, as_of_date=as_of_date)
 
     def _get_doc_title(self, doc_id: str) -> str:
         """Quy đổi mã văn bản sang tên chính thức đầy đủ"""
@@ -1341,6 +1518,24 @@ class HybridRetriever:
             return "Nghị định 168/2024/NĐ-CP"
         elif "traffic_guideline" in doc_id or "151_2024" in doc_id:
             return "Nghị định 151/2024/NĐ-CP"
+        elif "traffic_transport" in doc_id or "158_2024" in doc_id:
+            return "Nghị định 158/2024/NĐ-CP"
+        elif "traffic_dangerous_goods" in doc_id or "161_2024" in doc_id:
+            return "Nghị định 161/2024/NĐ-CP"
+        elif "traffic_driver_training" in doc_id or "94_2026" in doc_id:
+            return "Nghị định 94/2026/NĐ-CP"
+        elif "traffic_inspection_framework" in doc_id or "89_2026" in doc_id:
+            return "Nghị định 89/2026/NĐ-CP"
+        elif "traffic_police_patrol" in doc_id or "73_2024" in doc_id:
+            return "Thông tư 73/2024/TT-BCA"
+        elif "traffic_points_recovery" in doc_id or "65_2024" in doc_id:
+            return "Thông tư 65/2024/TT-BCA"
+        elif "traffic_road_signs" in doc_id or "51_2024" in doc_id:
+            return "Thông tư 51/2024/TT-BGTVT"
+        elif "traffic_speed_distance" in doc_id or "38_2024" in doc_id:
+            return "Thông tư 38/2024/TT-BGTVT"
+        elif "traffic_vehicle_registration" in doc_id or "79_2024" in doc_id:
+            return "Thông tư 79/2024/TT-BCA"
         elif "road" in doc_id or "35_2024" in doc_id:
             return "Luật Đường bộ 2024"
         elif "bllđ" in doc_id or "bld" in doc_id:
@@ -1376,7 +1571,12 @@ class HybridRetriever:
                     return rows[0]
         except Exception as e:
             print(f"[!] Lỗi hydrate article {doc_id} Điều {article_number}: {e}")
-        return None
+    @staticmethod
+    def _clean_art_num(val: Any) -> str:
+        if val is None:
+            return ""
+        digits = re.findall(r'\d+', str(val))
+        return digits[0] if digits else str(val).strip()
 
     def _hydrate_target_articles(
         self,
@@ -1404,9 +1604,9 @@ class HybridRetriever:
             doc_kw = cfg.get("doc_keyword", "").lower()
             if isinstance(tgt, list):
                 for t in tgt:
-                    targets.append((doc_kw, str(t)))
+                    targets.append((doc_kw, self._clean_art_num(t)))
             else:
-                targets.append((doc_kw, str(tgt)))
+                targets.append((doc_kw, self._clean_art_num(tgt)))
 
         hydrated_count = 0
         for item in items:
@@ -1415,15 +1615,15 @@ class HybridRetriever:
             if not art_num or not doc_id:
                 continue
 
-            art_num_str = str(art_num)
+            art_num_clean = self._clean_art_num(art_num)
             is_target = any(
-                doc_kw in doc_id.lower() and art_num_str == t_art
+                doc_kw in doc_id.lower() and art_num_clean == t_art
                 for doc_kw, t_art in targets
             )
 
             if is_target:
                 try:
-                    num_int = int(art_num)
+                    num_int = int(art_num_clean)
                 except (ValueError, TypeError):
                     continue
                 full_art = self._get_full_article_from_supabase(doc_id, num_int)
@@ -1472,6 +1672,60 @@ class HybridRetriever:
 
         return items
 
+    def _is_candidate_effective_at(self, item: Dict[str, Any], as_of_date: Optional[str]) -> bool:
+        """
+        Kiểm tra một điều khoản/văn bản có đang phát sinh hiệu lực tại mốc thời gian as_of_date hay không.
+        """
+        if not as_of_date:
+            return True
+
+        doc_id = str(item.get("doc_id", "") or "")
+        off_num = str(item.get("official_number", "") or "")
+        doc_title = str(item.get("doc_title", "") or "")
+
+        eff_from = item.get("effective_date") or item.get("effective_from")
+        eff_to = item.get("expiry_date") or item.get("effective_to")
+        trans_until = None
+
+        relations = item.get("relations")
+        if isinstance(relations, dict):
+            replaces = relations.get("replaces")
+            if replaces and isinstance(replaces, list) and len(replaces) > 0:
+                rep_info = replaces[0]
+                if not eff_from and rep_info.get("replacement_date"):
+                    eff_from = rep_info.get("replacement_date")
+                trans = rep_info.get("transition_provision")
+                if trans and trans.get("expiration_date"):
+                    trans_until = trans.get("expiration_date")
+            replaced_by = relations.get("replaced_by")
+            if replaced_by and isinstance(replaced_by, list) and len(replaced_by) > 0:
+                rep_by = replaced_by[0]
+                if not eff_to and rep_by.get("effective_date"):
+                    eff_to = rep_by.get("effective_date")
+
+        # Fallback từ LEGAL_DOCUMENT_TEMPORAL_REGISTRY
+        for k, reg in LEGAL_DOCUMENT_TEMPORAL_REGISTRY.items():
+            if k in doc_id or k in off_num or k in doc_title:
+                if not eff_from:
+                    eff_from = reg.get("effective_from")
+                if not eff_to:
+                    eff_to = reg.get("effective_to")
+                if not trans_until:
+                    trans_until = reg.get("transition_until")
+                break
+
+        # 1. Nếu văn bản chưa phát sinh hiệu lực (effective_from > as_of_date)
+        if eff_from and str(eff_from)[:10] > as_of_date:
+            return False
+
+        # 2. Nếu văn bản đã bị thay thế / hết hiệu lực trước as_of_date (effective_to < as_of_date)
+        if eff_to and str(eff_to)[:10] < as_of_date:
+            if trans_until and as_of_date <= str(trans_until)[:10]:
+                return True
+            return False
+
+        return True
+
     def retrieve(
         self,
         query: str,
@@ -1499,41 +1753,56 @@ class HybridRetriever:
             else:
                 as_of_date = "2026-09-08"
 
-        sub_query_configs = self._decompose_query(query, as_of_date=as_of_date)
+        # 1. Query Decomposition (Tách ý định pháp lý nếu được bật bởi Feature Flag)
+        if self.enable_query_decomposition:
+            sub_query_configs = self._decompose_query(query, as_of_date=as_of_date)
+        else:
+            sub_query_configs = []
         is_multi_intent = len(sub_query_configs) >= 2
 
         doc_store: Dict[str, Dict[str, Any]] = {}
         rrf_scores: Dict[str, float] = {}
 
-        # 1. Thu thập ứng viên từ Dense Retrieval (Query gốc + các Sub-queries)
+        # 1. Thu thập ứng viên từ Dense Retrieval (Query gốc + các Sub-queries nếu bật decomposition)
         search_queries = [query]
-        for item in sub_query_configs:
-            search_queries.append(item["sub_query"])
+        if self.enable_query_decomposition:
+            for item in sub_query_configs:
+                search_queries.append(item["sub_query"])
 
         for q_idx, q_text in enumerate(search_queries):
             hits = self._dense_search(q_text, limit=15, as_of_date=as_of_date)
-            for rank, hit in enumerate(hits, start=1):
+            seen_dense_articles = set()
+            dense_rank = 1
+            for hit in hits:
                 art_num = hit.get("article_number")
                 if not art_num:
                     continue
                 doc_id = hit.get("doc_id", "bllđ_45_2019_qh14")
                 key = f"{doc_id}_{art_num}"
-                weight = 1.0 if q_idx == 0 else 1.3
-                rrf_scores[key] = rrf_scores.get(key, 0.0) + (weight / (self.rrf_k + rank))
+                weight = self.dense_weight if q_idx == 0 else 1.3
+                if key not in seen_dense_articles:
+                    seen_dense_articles.add(key)
+                    rrf_scores[key] = rrf_scores.get(key, 0.0) + (weight / (self.rrf_k + dense_rank))
+                    dense_rank += 1
 
                 # Ưu tiên chunk có nội dung dài/đầy đủ hơn
                 if key not in doc_store or len(hit.get("content", "")) > len(doc_store[key].get("content", "")):
                     doc_store[key] = hit
 
-        # 2. Thu thập ứng viên từ Sparse Search (BM25 & Title Match & Article Number)
-        sparse_hits = self._sparse_search_bm25(query, limit=35, as_of_date=as_of_date)
-        for rank, hit in enumerate(sparse_hits, start=1):
+        # 2. Thu thập ứng viên từ Sparse Search (PostgreSQL Full-Text Search)
+        sparse_hits = self._sparse_search_postgresql_fts(query, limit=35, as_of_date=as_of_date)
+        seen_sparse_articles = set()
+        sparse_rank = 1
+        for hit in sparse_hits:
             art_num = hit.get("article_number")
             if not art_num:
                 continue
             doc_id = hit.get("doc_id", "bllđ_45_2019_qh14")
             key = f"{doc_id}_{art_num}"
-            rrf_scores[key] = rrf_scores.get(key, 0.0) + (1.3 / (self.rrf_k + rank))
+            if key not in seen_sparse_articles:
+                seen_sparse_articles.add(key)
+                rrf_scores[key] = rrf_scores.get(key, 0.0) + (self.sparse_weight / (self.rrf_k + sparse_rank))
+                sparse_rank += 1
 
             # Luôn ưu tiên chunk từ Supabase vì chứa full_text đầy đủ các khoản
             if key not in doc_store or len(hit.get("content", "")) > len(doc_store[key].get("content", "")):
@@ -1552,16 +1821,17 @@ class HybridRetriever:
         # Sắp xếp theo điểm RRF tổng hợp
         sorted_articles = sorted(filtered_scores.items(), key=lambda x: x[1], reverse=True)
 
-        # Bảo toàn Target Evidence từ sub_query_configs vào candidate pool
+        # Bảo toàn Target Evidence từ sub_query_configs vào candidate pool (nếu có sub_query_configs)
         target_keys = set()
-        for cfg in sub_query_configs:
-            tgt = cfg.get("target_article")
-            if tgt:
-                tgt_strs = {str(tgt)} if isinstance(tgt, (int, str)) else {str(t) for t in tgt}
-                doc_kw = cfg.get("doc_keyword", "").lower()
-                for k, v in doc_store.items():
-                    if doc_kw in v.get("doc_id", "").lower() and str(v.get("article_number")) in tgt_strs:
-                        target_keys.add(k)
+        if self.enable_query_decomposition and sub_query_configs:
+            for cfg in sub_query_configs:
+                tgt = cfg.get("target_article")
+                if tgt:
+                    tgt_strs = {self._clean_art_num(t) for t in (tgt if isinstance(tgt, list) else [tgt])}
+                    doc_kw = cfg.get("doc_keyword", "").lower()
+                    for k, v in doc_store.items():
+                        if doc_kw in v.get("doc_id", "").lower() and self._clean_art_num(v.get("article_number")) in tgt_strs:
+                            target_keys.add(k)
 
         candidate_pool_size = max(20, len(sub_query_configs) * 7) if is_multi_intent else (top_k * 2)
         candidate_pool = []
@@ -1595,6 +1865,19 @@ class HybridRetriever:
             except Exception as e:
                 print(f"[!] Reranker lỗi, fallback về RRF: {e}")
 
+        # Temporal Validity Resolution (Phân giải tính hiệu lực thời gian theo as_of_date)
+        if as_of_date and final_ranked:
+            effective_candidates = []
+            non_effective_candidates = []
+            for item in final_ranked:
+                if self._is_candidate_effective_at(item, as_of_date):
+                    effective_candidates.append(item)
+                else:
+                    item_copy = item.copy()
+                    item_copy["temporal_status"] = "CHUA_CO_HIEU_LUC_TAI_AS_OF_DATE"
+                    non_effective_candidates.append(item_copy)
+            final_ranked = effective_candidates + non_effective_candidates
+
         # 5. Phân bổ cân bằng đa văn bản (Balanced Cross-Document Representation)
         effective_top_k = max(top_k, 5) if is_multi_intent else top_k
 
@@ -1609,10 +1892,10 @@ class HybridRetriever:
                 category_hits = [c for c in final_ranked if doc_kw in c.get("doc_id", "").lower()]
 
                 if target_art:
-                    targets = [target_art] if isinstance(target_art, (int, str)) else target_art
-                    target_str_set = {str(t) for t in targets}
+                    targets = target_art if isinstance(target_art, list) else [target_art]
+                    target_str_set = {self._clean_art_num(t) for t in targets}
                     for h in category_hits:
-                        if str(h.get("article_number")) in target_str_set:
+                        if self._clean_art_num(h.get("article_number")) in target_str_set:
                             key = f"{h.get('doc_id')}_{h.get('article_number')}"
                             if key not in selected_keys:
                                 selected_keys.add(key)

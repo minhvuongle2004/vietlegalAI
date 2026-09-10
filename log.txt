@@ -1,222 +1,157 @@
-Anh, bản REVISED này tốt hơn bản trước khá nhiều, và sau khi kiểm tra lại các thông tin cloud hiện tại, em đánh giá kiến trúc đã đủ tốt để chốt và bắt đầu Phase 3A, nhưng em muốn sửa một vài chi tiết kỹ thuật trước khi agent thực thi.
+STEP 2.1 — CLEAN QUERY FLOW EXPERIMENT
 
-1. Quyết định lớn: em nghiêng về Cloud Run trước
+Mục tiêu:
+Loại bỏ các logic đã được chứng minh gây hại:
+- hardcoded traffic intent routing
+- Forced Target Article Injection
+- rule-based Query Decomposition hiện tại
 
-Trong hai lựa chọn backend, với mục tiêu của anh là $0 hoặc gần $0 để public beta, em chọn:
+CHƯA đổi RRF weight.
+CHƯA bật Reranker.
+CHƯA đổi embedding.
+CHƯA sửa benchmark.
+CHƯA sửa production.
 
-Google Cloud Run làm phương án chính của Phase 3.
+==================================================
+1. QUERY FLOW
+==================================================
 
-Lý do là Cloud Run hiện hỗ trợ container, scale-to-zero và request-based billing. Free tier hiện là 2 triệu requests + 360.000 GiB-seconds RAM + 180.000 vCPU-seconds/tháng.
+Production experiment flow:
 
-Quan trọng hơn, Cloud Run cho phép cấu hình 1 vCPU tối đa 4 GiB RAM, hoặc 2 vCPU tối đa 8 GiB, nên backend chứa BGE-M3 của anh có thể bắt đầu ở 1 vCPU/4 GiB hoặc 2 vCPU/4–8 GiB tùy benchmark.
+Original user query
+        ↓
+Dense Retrieval
+        +
+Sparse Retrieval
+        ↓
+RRF
+        ↓
+Final Top-K
 
-Với 4 GiB RAM, riêng free-tier memory tương đương:
+Không tạo subquery trong experiment này.
 
-360,000 GiB-sec / 4 GiB
-= 90,000 sec
-≈ 25 giờ/tháng
+Không ép:
+- tốc độ → NĐ168
+- nồng độ cồn → điều xử phạt
+- làn đường → tài liệu cố định
+- bất kỳ article number hardcoded nào
 
-Nên phép tính của agent là đúng.
+==================================================
+2. FEATURE FLAG
+==================================================
 
-Nhưng cần hiểu:
+Không xóa hoàn toàn Query Decomposition code.
 
-$0 không có nghĩa là Cloud Run được đảm bảo miễn phí vô điều kiện.
+Thêm feature flag:
 
-Free tier được áp dụng sau khi billing được thiết lập và còn phụ thuộc eligibility/khu vực/chính sách Google. Vì vậy mình phải theo dõi billing ngay từ đầu. Cloud Run cũng tính phí khi request đang xử lý, nên SSE dài sẽ tiêu tốn thời gian tính phí giống request bình thường.
+ENABLE_QUERY_DECOMPOSITION=false
 
-2. Có một điểm em muốn sửa trong bảng CPU/RAM
+Default = false.
 
-Agent ghi:
+Giữ code cũ để phục vụ future experiment.
 
-Backend FastAPI + BGE-M3: tối thiểu 3 GB RAM.
+==================================================
+3. FORCED TARGET ARTICLE
+==================================================
 
-Em không muốn dùng 3 GB làm production limit.
+Tắt cơ chế Forced Target Article Injection trong default flow.
 
-Vì 3 GB là mức sát nguy hiểm. Cloud Run nói memory limit bao gồm process, model, file system, cache và memory theo request/concurrency. Nếu vượt limit, instance bị terminate.
+Không xóa implementation nếu chưa cần.
 
-Cho nên ban đầu em sẽ để:
+==================================================
+4. RRF WEIGHTS
+==================================================
 
-Cloud Run
-CPU:    2 vCPU
-RAM:    4–8 GiB
-Min:    0
-Max:    1
-Concurrency: thấp
+GIỮ NGUYÊN cấu hình vừa được chọn:
 
-Sau đó benchmark memory thực tế.
+dense_weight = 1.0
+sparse_weight = 0.1
+rrf_k = 60
 
-Đặc biệt Cloud Run có lưu ý rằng concurrency cao sẽ làm tăng memory theo công thức:
+Không thử thêm weight trong bước này.
 
-standing memory + memory/request × concurrency.
+==================================================
+5. EVALUATION
+==================================================
 
-Với RAG + embedding model lớn, đừng mặc định concurrency 80.
+Chạy toàn bộ Gold V2 225 cases.
 
-3. Em còn muốn sửa một ý trong architecture
+So sánh với:
 
-Hiện sơ đồ:
+Dense-only:
+Hit@1 = 38.22%
+Hit@3 = 51.11%
+Hit@5 = 54.67%
 
-FastAPI
- ├── BGE-M3
- ├── Retrieval
- ├── Reranker
- └── Gemini
+Previous Hybrid 0.10:
+Hit@1 = 32.44%
+Hit@3 = 50.67%
+Hit@5 = 58.67%
 
-Nhưng Phase 3 của mình muốn GPU ở Phase 4.
+Tính:
+- Hit@1
+- Hit@3
+- Hit@5
+- Miss@5
 
-Vì vậy em muốn xác định rõ:
+Ngoài ra:
 
-FastAPI Cloud Run
-├── BGE-M3 embedding
-├── Dense retrieval
-├── Sparse retrieval
-├── RRF
-├── Clause extraction
-├── CPU reranker
-└── Gemini
+- Dense PASS → Clean Hybrid PASS
+- Dense PASS → Clean Hybrid FAIL
+- Dense FAIL → Clean Hybrid PASS
+- Dense FAIL → Clean Hybrid FAIL
 
-Phase 3 = toàn bộ pipeline chạy được trên CPU.
+Đặc biệt liệt kê:
+- các case được cứu
+- các case bị regression
+- các case trước đây bị decomposition làm sai
 
-Sau đó Phase 4:
+==================================================
+6. REGRESSION
+==================================================
 
-FastAPI Cloud Run
-        │
-        ▼
-Remote GPU Reranker
+Chạy 25 frozen regression cases.
 
-Đây là điểm rất quan trọng để benchmark cloud thật sự có ý nghĩa.
+Không sửa cases.
 
-4. Qdrant Cloud: phần này em đồng ý
+Acceptance:
+- Hit@1 >= 92%
+- Hit@2 = 100%
+- Hit@3 = 100%
 
-Thông tin hiện tại của Qdrant đúng:
+==================================================
+7. KHÔNG DÙNG NGƯỠNG 65–70%
+==================================================
 
-0.5 vCPU
-1 GB RAM
-4 GB disk
-single-node free cluster.
+Không coi 65–70% là acceptance requirement.
 
-Qdrant cũng mô tả free tier có thể phục vụ khoảng 1 triệu vector 768 chiều trong điều kiện của họ, nên corpus hiện tại của anh với 7.093 vector chưa phải vấn đề.
+Mục tiêu thực tế:
+- Clean Hybrid không làm tệ hơn Dense baseline ở mức quan trọng.
+- Nếu Hit@5 cải thiện rõ ràng so với Dense-only thì PASS.
+- Nếu chỉ ngang Dense nhưng ổn định thì đánh giá là "marginal benefit" và có thể cân nhắc bỏ Hybrid complexity.
 
-Nhưng có một nuance rất quan trọng:
+==================================================
+8. OUTPUT
+==================================================
 
-Free cluster sẽ suspend sau 1 tuần không hoạt động và bị xoá sau 4 tuần nếu không kích hoạt lại.
+Tạo:
 
-Vì vậy khi public beta, mình phải có ít nhất một monitoring/keep-alive strategy hợp lý hoặc chấp nhận việc free cluster có thể ngủ/xóa theo policy.
+CLEAN_HYBRID_QUERY_FLOW_REPORT.md
 
-5. Phương án VPS vẫn phải giữ
+và:
 
-Anh nên giữ:
+clean_hybrid_225_results.json
 
-Primary:
-Google Cloud Run
+Report phải có:
+1. Before / After
+2. Top-1/3/5
+3. Regression analysis
+4. Rescue cases
+5. Previous decomposition failures
+6. 25 frozen regression result
+7. Recommendation:
+   - KEEP CLEAN HYBRID
+   - DENSE-ONLY PREFERRED
+   - NEEDS FURTHER INVESTIGATION
 
-Fallback:
-4–8GB VPS
-
-Vì nếu Cloud Run gây ra vấn đề như:
-
-cold start quá lâu
-memory pressure
-SSE behavior
-billing khó kiểm soát
-
-thì Phase 2 đã chứng minh Docker Compose của anh chạy được.
-
-Đó là ưu thế rất lớn:
-
-Cloud Run fail
-      ↓
-VPS
-      ↓
-docker compose up -d
-
-Không cần viết lại application architecture.
-
-6. Vercel + Qdrant + Supabase: em giữ nguyên
-
-Frontend:
-
-React/Vite → Vercel
-
-hoàn toàn hợp lý; Vercel hiện có HTTPS/CDN và Hobby plan với free allowance cho delivery network.
-
-Data:
-
-Supabase
-Qdrant Cloud
-
-giữ nguyên.
-
-Không có lý do gì phải gom tất cả vào một VPS ở Phase 3.
-
-7. Một chỉnh sửa nhỏ nhưng quan trọng về “Zero-Code”
-
-Anh đang ghi:
-
-“Phê duyệt kiến trúc & nhà cung cấp trước khi cấu hình.”
-
-Em đồng ý.
-
-Nhưng 3A không cần chờ thêm một vòng research vô tận.
-
-Sau bản revised này, em thấy mình đủ cơ sở để chốt:
-
-Frontend  → Vercel
-Backend   → Google Cloud Run
-Vector DB → Qdrant Cloud
-DB/Auth   → Supabase
-LLM       → Gemini
-GPU       → Phase 4
-Fallback  → 4–8GB VPS
-
-Vậy 3A có thể bắt đầu.
-
-8. Architecture cuối cùng em duyệt
-                         INTERNET
-                            │
-                            ▼
-                    ┌─────────────┐
-                    │   Vercel    │
-                    │ React + SPA │
-                    └──────┬──────┘
-                           │ HTTPS
-                           ▼
-                 ┌───────────────────┐
-                 │   Cloud Run       │
-                 │ FastAPI + Docker  │
-                 │ 4–8 GiB RAM       │
-                 │ CPU-only RAG      │
-                 └──────┬────────────┘
-                        │
-            ┌───────────┼──────────────┐
-            ▼           ▼              ▼
-        Qdrant       Supabase       Gemini
-        Cloud        PostgreSQL       API
-                        │
-                        ▼
-                 Auth + Conversations
-
-                ╔═══════════════════╗
-                ║    PHASE 4        ║
-                ║ Remote GPU        ║
-                ║ Reranker          ║
-                ╚═══════════════════╝
-9. Verdict cuối cùng
-
-Bản revised: em duyệt.
-
-Thứ tự của anh:
-
-3A Cloud setup        → bắt đầu
-3B Qdrant migration   → tiếp theo
-3C Backend Cloud      → tiếp theo
-3D Frontend Cloud     → tiếp theo
-3E E2E Internet       → tiếp theo
-3F Public Beta        → cuối cùng
-
-Và lựa chọn backend em chốt:
-
-Google Cloud Run là primary. VPS 4–8GB là fallback.
-
-Chỉ cần agent sửa một vài wording/assumption: đừng coi 3GB là production-safe, đừng coi Cloud Run là “$0 tuyệt đối”, và phải tính đến Qdrant free-cluster suspension. Những điều này đã được xác nhận theo tài liệu cloud hiện tại.
-
-Từ đây anh có thể cho agent bắt đầu Phase 3A. Em khuyên bước 3A đầu tiên chỉ làm tạo/config account + project + Qdrant cluster + Cloud Run service skeleton + Vercel project, chưa migrate toàn bộ hệ thống ngay.
+Không chuyển sang Reranker cho đến khi báo cáo hoàn thành.

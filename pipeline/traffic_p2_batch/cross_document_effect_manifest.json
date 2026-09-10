@@ -1,0 +1,31 @@
+{
+  "metadata": {
+    "source_document": "241/2026/NĐ-CP",
+    "effective_date": "2026-07-01",
+    "source_locator": "NĐ 241/2026 Điều 26 Khoản 2; Công báo 392"
+  },
+  "cross_document_repeals": [
+    {
+      "target_document": "140/2025/NĐ-CP",
+      "target_article": "Điều 23",
+      "repealed_clauses": [
+        "Khoản 2",
+        "Khoản 3",
+        "Khoản 4",
+        "Khoản 5",
+        "Khoản 6",
+        "Khoản 7"
+      ],
+      "retained_clauses": [
+        "Khoản 1 (General rule về UBND cấp xã)",
+        "Khoản 8 (Ủy quyền liên quan đến Điều 32 Khoản 3 NĐ 165/2024/NĐ-CP)",
+        "Khoản 9 (Ủy quyền liên quan đến NĐ 161/2024/NĐ-CP)"
+      ],
+      "operation": "CROSS_DOCUMENT_REPEAL",
+      "effective_date": "2026-07-01",
+      "valid_interval": "[2025-07-01, 2026-07-01)",
+      "source_locator": "NĐ 241 Điều 26 Khoản 2; Công báo 392 (2026-07-13)",
+      "description": "Bãi bỏ các khoản 2, 3, 4, 5, 6, 7 Điều 23 Nghị định số 140/2025/NĐ-CP. Khoản 8 không bị bãi bỏ và tiếp tục duy trì hiệu lực."
+    }
+  ]
+}

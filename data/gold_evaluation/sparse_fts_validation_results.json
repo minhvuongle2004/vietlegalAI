@@ -1,0 +1,468 @@
+{
+  "summary": {
+    "total_cases": 26,
+    "hit1": 4,
+    "hit3": 4,
+    "hit5": 4,
+    "hit1_pct": 15.38,
+    "hit3_pct": 15.38,
+    "hit5_pct": 15.38,
+    "empty_count": 1,
+    "non_traffic_count": 0
+  },
+  "records": [
+    {
+      "case_num": 1,
+      "test_case_id": "GOLD-DIR-01",
+      "category": "DIRECT_RULE",
+      "query": "Người tham gia giao thông đường bộ phải đi bên nào theo quy định của Luật Trật tự an toàn giao thông đường bộ?",
+      "as_of_date": "2025-01-01",
+      "expected": "36/2024/QH15 Điều 10",
+      "top1_returned": "36/2024/QH15 Đ11",
+      "rank": null,
+      "hit5": false,
+      "top5_hits": [
+        "36/2024/QH15 Đ11 (sc=19.5)",
+        "36/2024/QH15 Đ18 (sc=18.25)",
+        "36/2024/QH15 Đ9 (sc=17.75)",
+        "36/2024/QH15 Đ2 (sc=17.5)",
+        "36/2024/QH15 Đ30 (sc=16.75)"
+      ]
+    },
+    {
+      "case_num": 2,
+      "test_case_id": "GOLD-DIR-02",
+      "category": "DIRECT_RULE",
+      "query": "Khi có người điều khiển giao thông thì người tham gia giao thông phải chấp hành hiệu lệnh của ai trước tiên?",
+      "as_of_date": "2025-01-01",
+      "expected": "36/2024/QH15 Điều 11",
+      "top1_returned": "151/2024/NĐ-CP Đ39",
+      "rank": null,
+      "hit5": false,
+      "top5_hits": [
+        "151/2024/NĐ-CP Đ39 (sc=25.25)",
+        "151/2024/NĐ-CP Đ33 (sc=19.5)",
+        "151/2024/NĐ-CP Đ11 (sc=15.25)",
+        "151/2024/NĐ-CP Đ32 (sc=14.0)",
+        "35/2024/QH15 Đ54 (sc=12.75)"
+      ]
+    },
+    {
+      "case_num": 3,
+      "test_case_id": "GOLD-DIR-03",
+      "category": "DIRECT_RULE",
+      "query": "Người lái xe ô tô có được sử dụng điện thoại bằng tay khi xe đang chạy trên đường không?",
+      "as_of_date": "2025-01-01",
+      "expected": "36/2024/QH15 Điều 10",
+      "top1_returned": "35/2024/QH15 Đ56",
+      "rank": null,
+      "hit5": false,
+      "top5_hits": [
+        "35/2024/QH15 Đ56 (sc=25.0)",
+        "161/2024/NĐ-CP Đ30 (sc=21.75)",
+        "35/2024/QH15 Đ61 (sc=18.25)",
+        "35/2024/QH15 Đ57 (sc=16.5)",
+        "161/2024/NĐ-CP Đ15 (sc=15.5)"
+      ]
+    },
+    {
+      "case_num": 4,
+      "test_case_id": "GOLD-DIR-04",
+      "category": "DIRECT_RULE",
+      "query": "Tốc độ tối đa cho phép xe con chạy trong khu vực đông dân cư trên đường đôi là bao nhiêu km/h?",
+      "as_of_date": "2025-01-01",
+      "expected": "38/2024/TT-BGTVT Điều 6",
+      "top1_returned": "168/2024/NĐ-CP Đ6",
+      "rank": null,
+      "hit5": false,
+      "top5_hits": [
+        "168/2024/NĐ-CP Đ6 (sc=34.0)",
+        "168/2024/NĐ-CP Đ7 (sc=30.25)",
+        "168/2024/NĐ-CP Đ8 (sc=28.5)",
+        "151/2024/NĐ-CP Đ39 (sc=21.75)",
+        "35/2024/QH15 Đ26 (sc=19.0)"
+      ]
+    },
+    {
+      "case_num": 5,
+      "test_case_id": "GOLD-DIR-05",
+      "category": "DIRECT_RULE",
+      "query": "Tốc độ tối đa cho phép xe máy chạy trong khu vực đông dân cư trên đường hai chiều không có dải phân cách giữa là bao nhiêu?",
+      "as_of_date": "2025-01-01",
+      "expected": "38/2024/TT-BGTVT Điều 6",
+      "top1_returned": "168/2024/NĐ-CP Đ6",
+      "rank": null,
+      "hit5": false,
+      "top5_hits": [
+        "168/2024/NĐ-CP Đ6 (sc=42.75)",
+        "168/2024/NĐ-CP Đ8 (sc=42.5)",
+        "168/2024/NĐ-CP Đ7 (sc=38.75)",
+        "151/2024/NĐ-CP Đ39 (sc=25.0)",
+        "35/2024/QH15 Đ26 (sc=23.25)"
+      ]
+    },
+    {
+      "case_num": 6,
+      "test_case_id": "GOLD-ART-01",
+      "category": "ARTICLE_RETRIEVAL",
+      "query": "Điều nào trong Luật Trật tự, an toàn giao thông đường bộ 2024 quy định về việc chuyển hướng xe?",
+      "as_of_date": "2025-01-01",
+      "expected": "36/2024/QH15 Điều 15",
+      "top1_returned": "168/2024/NĐ-CP Đ6",
+      "rank": null,
+      "hit5": false,
+      "top5_hits": [
+        "168/2024/NĐ-CP Đ6 (sc=11.5)",
+        "151/2024/NĐ-CP Đ39 (sc=10.75)",
+        "168/2024/NĐ-CP Đ26 (sc=9.5)",
+        "168/2024/NĐ-CP Đ47 (sc=9.5)",
+        "161/2024/NĐ-CP Đ16 (sc=9.25)"
+      ]
+    },
+    {
+      "case_num": 7,
+      "test_case_id": "GOLD-ART-02",
+      "category": "ARTICLE_RETRIEVAL",
+      "query": "Quy định về việc vượt xe và nhường đường cho xe xin vượt nằm ở Điều mấy của Luật 36/2024/QH15?",
+      "as_of_date": "2025-01-01",
+      "expected": "36/2024/QH15 Điều 14",
+      "top1_returned": "36/2024/QH15 Đ14",
+      "rank": 1,
+      "hit5": true,
+      "top5_hits": [
+        "36/2024/QH15 Đ14 (sc=45.25)",
+        "36/2024/QH15 Đ52 (sc=19.0)",
+        "36/2024/QH15 Đ9 (sc=15.25)",
+        "36/2024/QH15 Đ47 (sc=15.0)",
+        "36/2024/QH15 Đ53 (sc=13.5)"
+      ]
+    },
+    {
+      "case_num": 8,
+      "test_case_id": "GOLD-ART-03",
+      "category": "ARTICLE_RETRIEVAL",
+      "query": "Điều bao nhiêu của Luật Trật tự, an toàn giao thông đường bộ quy định về dừng xe, đỗ xe trên đường?",
+      "as_of_date": "2025-01-01",
+      "expected": "36/2024/QH15 Điều 18",
+      "top1_returned": "36/2024/QH15 Đ18",
+      "rank": 1,
+      "hit5": true,
+      "top5_hits": [
+        "36/2024/QH15 Đ18 (sc=30.5)",
+        "35/2024/QH15 Đ39 (sc=23.0)",
+        "35/2024/QH15 Đ52 (sc=21.25)",
+        "168/2024/NĐ-CP Đ6 (sc=19.0)",
+        "168/2024/NĐ-CP Đ8 (sc=19.0)"
+      ]
+    },
+    {
+      "case_num": 9,
+      "test_case_id": "GOLD-ART-04",
+      "category": "ARTICLE_RETRIEVAL",
+      "query": "Điều nào của Luật 36/2024/QH15 quy định quy tắc giao thông đối với xe ưu tiên?",
+      "as_of_date": "2025-01-01",
+      "expected": "36/2024/QH15 Điều 27",
+      "top1_returned": "None",
+      "rank": null,
+      "hit5": false,
+      "top5_hits": []
+    },
+    {
+      "case_num": 10,
+      "test_case_id": "GOLD-ART-05",
+      "category": "ARTICLE_RETRIEVAL",
+      "query": "Quy định về phân hạng giấy phép lái xe A1, A, B, C1, C, D nằm ở Điều nào trong Luật TTATGTĐB 2024?",
+      "as_of_date": "2025-01-01",
+      "expected": "36/2024/QH15 Điều 58",
+      "top1_returned": "151/2024/NĐ-CP Đ11",
+      "rank": null,
+      "hit5": false,
+      "top5_hits": [
+        "151/2024/NĐ-CP Đ11 (sc=13.75)",
+        "168/2024/NĐ-CP Đ39 (sc=13.75)",
+        "165/2024/NĐ-CP Đ17 (sc=8.75)",
+        "35/2024/QH15 Đ32 (sc=4.5)",
+        "165/2024/NĐ-CP Đ25 (sc=3.75)"
+      ]
+    },
+    {
+      "case_num": 11,
+      "test_case_id": "GOLD-TEM-01",
+      "category": "TEMPORAL_QUERY",
+      "query": "Vào ngày 15/05/2025, người đi thi sát hạch lái xe ô tô hạng B2 phải thi những bài sát hạch nào?",
+      "as_of_date": "2025-05-15",
+      "expected": "12/2025/TT-BCA Điều 14",
+      "top1_returned": "168/2024/NĐ-CP Đ6",
+      "rank": null,
+      "hit5": false,
+      "top5_hits": [
+        "168/2024/NĐ-CP Đ6 (sc=41.0)",
+        "158/2024/NĐ-CP Đ11 (sc=30.0)",
+        "36/2024/QH15 Đ34 (sc=16.5)",
+        "161/2024/NĐ-CP Đ16 (sc=8.0)"
+      ]
+    },
+    {
+      "case_num": 12,
+      "test_case_id": "GOLD-TEM-02",
+      "category": "TEMPORAL_QUERY",
+      "query": "Ngày 15/08/2026, thí sinh sát hạch bằng lái xe ô tô có còn phải thi bài mô phỏng tình huống giao thông không?",
+      "as_of_date": "2026-08-15",
+      "expected": "108/2026/TT-BCA Điều 15",
+      "top1_returned": "168/2024/NĐ-CP Đ32",
+      "rank": null,
+      "hit5": false,
+      "top5_hits": [
+        "168/2024/NĐ-CP Đ32 (sc=29.5)",
+        "158/2024/NĐ-CP Đ56 (sc=8.25)",
+        "238/2026/NĐ-CP Đ2 (sc=3.0)"
+      ]
+    },
+    {
+      "case_num": 13,
+      "test_case_id": "GOLD-TEM-03",
+      "category": "TEMPORAL_QUERY",
+      "query": "Vào ngày 01/02/2025, việc phân hạng giấy phép lái xe được áp dụng theo Luật nào?",
+      "as_of_date": "2025-02-01",
+      "expected": "36/2024/QH15 Điều 58",
+      "top1_returned": "168/2024/NĐ-CP Đ32",
+      "rank": null,
+      "hit5": false,
+      "top5_hits": [
+        "168/2024/NĐ-CP Đ32 (sc=40.5)",
+        "168/2024/NĐ-CP Đ18 (sc=37.75)",
+        "168/2024/NĐ-CP Đ13 (sc=35.25)",
+        "151/2024/NĐ-CP Đ39 (sc=24.25)",
+        "158/2024/NĐ-CP Đ21 (sc=23.5)"
+      ]
+    },
+    {
+      "case_num": 14,
+      "test_case_id": "GOLD-TEM-04",
+      "category": "TEMPORAL_QUERY",
+      "query": "Tính đến ngày 20/07/2026, hồ sơ đề nghị phục hồi điểm giấy phép lái xe có thể nộp trực tuyến qua đâu?",
+      "as_of_date": "2026-07-20",
+      "expected": "105/2026/TT-BCA Điều 1",
+      "top1_returned": "168/2024/NĐ-CP Đ32",
+      "rank": null,
+      "hit5": false,
+      "top5_hits": [
+        "168/2024/NĐ-CP Đ32 (sc=53.0)",
+        "168/2024/NĐ-CP Đ6 (sc=40.5)",
+        "168/2024/NĐ-CP Đ13 (sc=39.0)",
+        "168/2024/NĐ-CP Đ8 (sc=16.25)",
+        "158/2024/NĐ-CP Đ6 (sc=15.0)"
+      ]
+    },
+    {
+      "case_num": 15,
+      "test_case_id": "GOLD-TEM-05",
+      "category": "TEMPORAL_QUERY",
+      "query": "Ngày 05/08/2026, xe khách hợp đồng có được phép đón trả khách tại văn phòng đại diện không?",
+      "as_of_date": "2026-08-05",
+      "expected": "158/2024/NĐ-CP Điều 7",
+      "top1_returned": "158/2024/NĐ-CP Đ56",
+      "rank": null,
+      "hit5": false,
+      "top5_hits": [
+        "158/2024/NĐ-CP Đ56 (sc=21.25)",
+        "158/2024/NĐ-CP Đ43 (sc=19.0)",
+        "36/2024/QH15 Đ57 (sc=14.25)"
+      ]
+    },
+    {
+      "case_num": 16,
+      "test_case_id": "GOLD-DIR-04",
+      "category": "DIRECT_RULE",
+      "query": "Tốc độ tối đa cho phép xe con chạy trong khu vực đông dân cư trên đường đôi là bao nhiêu km/h?",
+      "as_of_date": "2025-01-01",
+      "expected": "38/2024/TT-BGTVT Điều 6",
+      "top1_returned": "168/2024/NĐ-CP Đ6",
+      "rank": null,
+      "hit5": false,
+      "top5_hits": [
+        "168/2024/NĐ-CP Đ6 (sc=34.0)",
+        "168/2024/NĐ-CP Đ7 (sc=30.25)",
+        "168/2024/NĐ-CP Đ8 (sc=28.5)",
+        "151/2024/NĐ-CP Đ39 (sc=21.75)",
+        "35/2024/QH15 Đ26 (sc=19.0)"
+      ]
+    },
+    {
+      "case_num": 17,
+      "test_case_id": "GOLD-DIR-05",
+      "category": "DIRECT_RULE",
+      "query": "Tốc độ tối đa cho phép xe máy chạy trong khu vực đông dân cư trên đường hai chiều không có dải phân cách giữa là bao nhiêu?",
+      "as_of_date": "2025-01-01",
+      "expected": "38/2024/TT-BGTVT Điều 6",
+      "top1_returned": "168/2024/NĐ-CP Đ6",
+      "rank": null,
+      "hit5": false,
+      "top5_hits": [
+        "168/2024/NĐ-CP Đ6 (sc=42.75)",
+        "168/2024/NĐ-CP Đ8 (sc=42.5)",
+        "168/2024/NĐ-CP Đ7 (sc=38.75)",
+        "151/2024/NĐ-CP Đ39 (sc=25.0)",
+        "35/2024/QH15 Đ26 (sc=23.25)"
+      ]
+    },
+    {
+      "case_num": 18,
+      "test_case_id": "GOLD-DIR-06",
+      "category": "DIRECT_RULE",
+      "query": "Khi chạy xe với tốc độ 80 km/h trong điều kiện mặt đường khô ráo thì khoảng cách an toàn tối thiểu giữa hai xe là bao nhiêu mét?",
+      "as_of_date": "2025-01-01",
+      "expected": "38/2024/TT-BGTVT Điều 11",
+      "top1_returned": "168/2024/NĐ-CP Đ6",
+      "rank": null,
+      "hit5": false,
+      "top5_hits": [
+        "168/2024/NĐ-CP Đ6 (sc=37.0)",
+        "168/2024/NĐ-CP Đ8 (sc=33.0)",
+        "168/2024/NĐ-CP Đ7 (sc=27.25)",
+        "35/2024/QH15 Đ26 (sc=23.25)",
+        "158/2024/NĐ-CP Đ11 (sc=22.5)"
+      ]
+    },
+    {
+      "case_num": 19,
+      "test_case_id": "GOLD-DIR-08",
+      "category": "DIRECT_RULE",
+      "query": "Độ tuổi tối thiểu để được cấp Giấy phép lái xe hạng A1 theo Luật 36/2024/QH15 là bao nhiêu?",
+      "as_of_date": "2025-01-01",
+      "expected": "36/2024/QH15 Điều 59",
+      "top1_returned": "36/2024/QH15 Đ59",
+      "rank": 1,
+      "hit5": true,
+      "top5_hits": [
+        "36/2024/QH15 Đ59 (sc=20.5)"
+      ]
+    },
+    {
+      "case_num": 20,
+      "test_case_id": "GOLD-DIR-09",
+      "category": "DIRECT_RULE",
+      "query": "Thời hạn của Giấy phép lái xe ô tô hạng B theo Luật Trật tự, an toàn giao thông đường bộ là bao nhiêu năm?",
+      "as_of_date": "2025-01-01",
+      "expected": "36/2024/QH15 Điều 60",
+      "top1_returned": "36/2024/QH15 Đ57",
+      "rank": null,
+      "hit5": false,
+      "top5_hits": [
+        "36/2024/QH15 Đ57 (sc=43.75)",
+        "161/2024/NĐ-CP Đ13 (sc=26.25)",
+        "161/2024/NĐ-CP Đ15 (sc=24.75)",
+        "36/2024/QH15 Đ89 (sc=21.5)",
+        "151/2024/NĐ-CP Đ39 (sc=21.0)"
+      ]
+    },
+    {
+      "case_num": 21,
+      "test_case_id": "GOLD-DIR-20",
+      "category": "DIRECT_RULE",
+      "query": "Khoảng cách an toàn tối thiểu khi chạy xe trên đường cao tốc với tốc độ trên 100 đến 120 km/h là bao nhiêu?",
+      "as_of_date": "2025-01-01",
+      "expected": "38/2024/TT-BGTVT Điều 11",
+      "top1_returned": "168/2024/NĐ-CP Đ6",
+      "rank": null,
+      "hit5": false,
+      "top5_hits": [
+        "168/2024/NĐ-CP Đ6 (sc=38.25)",
+        "168/2024/NĐ-CP Đ8 (sc=36.25)",
+        "168/2024/NĐ-CP Đ7 (sc=31.25)",
+        "35/2024/QH15 Đ26 (sc=28.0)",
+        "36/2024/QH15 Đ25 (sc=19.0)"
+      ]
+    },
+    {
+      "case_num": 22,
+      "test_case_id": "GOLD-DIR-18",
+      "category": "DIRECT_RULE",
+      "query": "Trên đường cao tốc, người lái xe có được cho xe chạy ở làn dừng xe khẩn cấp không?",
+      "as_of_date": "2025-01-01",
+      "expected": "36/2024/QH15 Điều 26",
+      "top1_returned": "168/2024/NĐ-CP Đ6",
+      "rank": null,
+      "hit5": false,
+      "top5_hits": [
+        "168/2024/NĐ-CP Đ6 (sc=52.0)",
+        "168/2024/NĐ-CP Đ8 (sc=42.75)",
+        "168/2024/NĐ-CP Đ20 (sc=35.75)",
+        "168/2024/NĐ-CP Đ7 (sc=35.25)",
+        "168/2024/NĐ-CP Đ21 (sc=33.25)"
+      ]
+    },
+    {
+      "case_num": 23,
+      "test_case_id": "GOLD-TEM-16",
+      "category": "TEMPORAL_QUERY",
+      "query": "Vào ngày 10/08/2026, trạm đăng kiểm thực hiện kiểm định xe cơ giới theo quy trình của Thông tư nào?",
+      "as_of_date": "2026-08-10",
+      "expected": "30/2026/TT-BXD Điều 5",
+      "top1_returned": "168/2024/NĐ-CP Đ32",
+      "rank": null,
+      "hit5": false,
+      "top5_hits": [
+        "168/2024/NĐ-CP Đ32 (sc=27.25)",
+        "151/2024/NĐ-CP Đ32 (sc=26.0)",
+        "168/2024/NĐ-CP Đ21 (sc=22.5)",
+        "158/2024/NĐ-CP Đ56 (sc=20.5)",
+        "158/2024/NĐ-CP Đ43 (sc=18.5)"
+      ]
+    },
+    {
+      "case_num": 24,
+      "test_case_id": "GOLD-AMD-20",
+      "category": "AMENDMENT_LINEAGE",
+      "query": "Văn bản nào sửa đổi quy định kiểm tra phanh con lăn và phân tích khí thải tự động trong đăng kiểm xe?",
+      "as_of_date": "2026-07-01",
+      "expected": "45/2026/TT-BXD Điều 1",
+      "top1_returned": "45/2026/TT-BXD Đ1",
+      "rank": 1,
+      "hit5": true,
+      "top5_hits": [
+        "45/2026/TT-BXD Đ1 (sc=29.5)",
+        "161/2024/NĐ-CP Đ31 (sc=26.25)",
+        "168/2024/NĐ-CP Đ32 (sc=25.5)",
+        "241/2026/NĐ-CP Đ1 (sc=22.75)",
+        "158/2024/NĐ-CP Đ21 (sc=20.75)"
+      ]
+    },
+    {
+      "case_num": 25,
+      "test_case_id": "GOLD-DIR-24",
+      "category": "DIRECT_RULE",
+      "query": "Người đi bộ đi qua đường không đúng nơi quy định hoặc vượt qua dải phân cách bị xử phạt thế nào?",
+      "as_of_date": "2025-01-01",
+      "expected": "168/2024/NĐ-CP Điều 9",
+      "top1_returned": "35/2024/QH15 Đ23",
+      "rank": null,
+      "hit5": false,
+      "top5_hits": [
+        "35/2024/QH15 Đ23 (sc=16.75)",
+        "35/2024/QH15 Đ56 (sc=15.5)",
+        "35/2024/QH15 Đ84 (sc=15.25)",
+        "151/2024/NĐ-CP Đ5 (sc=14.75)",
+        "35/2024/QH15 Đ32 (sc=12.25)"
+      ]
+    },
+    {
+      "case_num": 26,
+      "test_case_id": "GOLD-DIR-25",
+      "category": "DIRECT_RULE",
+      "query": "Hành vi giao xe cho người không đủ điều kiện điều khiển phương tiện tham gia giao thông bị xử phạt theo điều nào?",
+      "as_of_date": "2025-01-01",
+      "expected": "168/2024/NĐ-CP Điều 30",
+      "top1_returned": "151/2024/NĐ-CP Đ11",
+      "rank": null,
+      "hit5": false,
+      "top5_hits": [
+        "151/2024/NĐ-CP Đ11 (sc=29.75)",
+        "151/2024/NĐ-CP Đ31 (sc=16.0)",
+        "35/2024/QH15 Đ39 (sc=14.5)",
+        "35/2024/QH15 Đ56 (sc=14.0)",
+        "35/2024/QH15 Đ57 (sc=13.25)"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Liveness Probe (/health)",
+    "passed": true,
+    "details": "Status: 200, Body: {'status': 'alive', 'service': 'VietLegal AI', 'environment': 'development'}"
+  },
+  {
+    "name": "Readiness Probe (/api/v1/health)",
+    "passed": true,
+    "details": "Status: 200, Qdrant: connected (collection: True), Reranker: NVIDIA GeForce RTX 3050 Laptop GPU, Supabase: connected"
+  },
+  {
+    "name": "Malformed Request: Empty JSON body",
+    "passed": true,
+    "details": "HTTP 422 (Pydantic validation caught missing fields)"
+  },
+  {
+    "name": "Malformed Request: Empty query string",
+    "passed": true,
+    "details": "HTTP 422 (min_length=2 enforced by schema)"
+  },
+  {
+    "name": "Malformed Request: Single character query",
+    "passed": true,
+    "details": "HTTP 422 (Pydantic rejected single char)"
+  },
+  {
+    "name": "Auth Check: GET /conversations without token",
+    "passed": true,
+    "details": "HTTP 401 (Properly blocks unauthenticated request)"
+  },
+  {
+    "name": "Auth Check: GET /conversations with invalid token",
+    "passed": true,
+    "details": "HTTP 401 (Properly rejects forged/expired JWT)"
+  },
+  {
+    "name": "Rate Limiter Configuration (20/min)",
+    "passed": true,
+    "details": "Configured limit: 20 requests/minute per IP"
+  }
+]

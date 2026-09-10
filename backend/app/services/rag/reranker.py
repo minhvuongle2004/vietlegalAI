@@ -58,7 +58,11 @@ class LegalRerankerService:
 
         pairs = []
         for c in candidates:
-            doc_text = f"{c.get('context_header', '')}\n{c.get('content', '')}"
+            header = str(c.get("context_header") or "").strip()
+            doc_title = str(c.get("doc_title") or "").strip()
+            if doc_title and doc_title.lower() not in header.lower():
+                header = f"{doc_title}. {header}".strip()
+            doc_text = f"{header}\n{str(c.get('content') or '')}".strip()
             pairs.append((query, doc_text))
 
         batch_sz = 16 if getattr(self.model, "device", None) and "cuda" in str(self.model.device) else 8

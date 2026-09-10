@@ -216,25 +216,47 @@ class QdrantVectorStore:
                 should=should_conditions if should_conditions else None,
             )
 
-        # Hỗ trợ cả API query_points mới (Qdrant >= 1.10) và search cũ
-        if hasattr(self.client, "query_points"):
-            results = self.client.query_points(
-                collection_name=self.collection_name,
-                query=query_vector,
-                limit=limit,
-                query_filter=query_filter,
-                with_payload=True,
-            ).points
-        elif hasattr(self.client, "search"):
-            results = self.client.search(
-                collection_name=self.collection_name,
-                query_vector=query_vector,
-                limit=limit,
-                query_filter=query_filter,
-                with_payload=True,
-            )
-        else:
-            raise RuntimeError("QdrantClient has neither query_points nor search method")
+        # Hỗ trợ cả API query_points mới (Qdrant >= 1.10) và search cũ kèm fallback an toàn
+        results = []
+        try:
+            if hasattr(self.client, "query_points"):
+                results = self.client.query_points(
+                    collection_name=self.collection_name,
+                    query=query_vector,
+                    limit=limit,
+                    query_filter=query_filter,
+                    with_payload=True,
+                ).points
+            elif hasattr(self.client, "search"):
+                results = self.client.search(
+                    collection_name=self.collection_name,
+                    query_vector=query_vector,
+                    limit=limit,
+                    query_filter=query_filter,
+                    with_payload=True,
+                )
+            else:
+                raise RuntimeError("QdrantClient has neither query_points nor search method")
+        except Exception as e:
+            if query_filter:
+                # Nếu filter Qdrant thất bại (ví dụ: thiếu datetime payload index trên Cloud), fallback lấy top candidates để in-memory filter xử lý
+                fallback_limit = max(limit * 3, 20)
+                if hasattr(self.client, "query_points"):
+                    results = self.client.query_points(
+                        collection_name=self.collection_name,
+                        query=query_vector,
+                        limit=fallback_limit,
+                        with_payload=True,
+                    ).points
+                else:
+                    results = self.client.search(
+                        collection_name=self.collection_name,
+                        query_vector=query_vector,
+                        limit=fallback_limit,
+                        with_payload=True,
+                    )
+            else:
+                raise e
 
         formatted = []
         for r in results:

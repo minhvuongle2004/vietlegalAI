@@ -393,6 +393,13 @@ export default function App() {
           }
         }
       }
+
+      // Đảm bảo trạng thái isStreaming luôn được tắt khi kết thúc đọc luồng
+      setMessages((prev) =>
+        prev.map((m) =>
+          m.id === assistantMessageId ? { ...m, isStreaming: false } : m
+        )
+      );
     } catch (err) {
       console.error('Lỗi khi gọi API chat:', err);
       setMessages((prev) =>
