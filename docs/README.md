@@ -10,6 +10,7 @@ Tài liệu này đóng vai trò là danh mục tra cứu trung tâm (Master Ind
 | :--- | :--- |
 | 🌟 [CV_HIGHLIGHTS.md](file:///d:/Đi%20làm/VietLegal%20AI/docs/CV_HIGHLIGHTS.md) | **Tổng hợp điểm sáng CV**: Resume bullets chuẩn Google XYZ, số liệu thực nghiệm đã xác minh và bộ câu hỏi phỏng vấn kỹ thuật. |
 | 🏗️ [ARCHITECTURE.md](file:///d:/Đi%20làm/VietLegal%20AI/docs/ARCHITECTURE.md) | **Bản tả kiến trúc kỹ thuật chuẩn**: Sơ đồ Mermaid tuần tự (Request Flow, Retrieval, Reranking, SSE, Citation Modal, Temporal Resolution). |
+| 🚀 [DEPLOYMENT_GUIDE.md](file:///d:/Đi%20làm/VietLegal%20AI/docs/DEPLOYMENT_GUIDE.md) | **Hướng dẫn triển khai & Vận hành (Runbook)**: Chi tiết cách deploy Frontend Vercel, Backend Docker và cách bật server hằng ngày cho người dùng truy cập trực tiếp. |
 | 📘 [SYSTEM_DESIGN.md](file:///d:/Đi%20làm/VietLegal%20AI/docs/architecture/SYSTEM_DESIGN.md) | Thiết kế kiến trúc tổng thể của VietLegal AI: Multi-tier RAG, Vector Search, Sparse FTS, Cross-Encoder Reranker và API Gateway. |
 | 📊 [LEGAL_DATA_PIPELINE.md](file:///d:/Đi%20làm/VietLegal%20AI/docs/architecture/LEGAL_DATA_PIPELINE.md) | Quy trình xử lý dữ liệu văn bản pháp quy từ Raw HTML/PDF, Parsing Điều/Khoản, Metadata Registry, Chunking đến Ingestion. |
 | 🚀 [PRODUCTION_DEPLOYMENT_PLAN.md](file:///d:/Đi%20làm/VietLegal%20AI/docs/architecture/PRODUCTION_DEPLOYMENT_PLAN.md) | Kế hoạch triển khai môi trường Production (Docker, Nginx Reverse Proxy, SSL, FastAPI, Vue/React Chatbot). |

@@ -274,9 +274,11 @@ Truy cập giao diện tại: `http://localhost:5173`.
 
 ---
 
-## 🐳 8. Triển Khai Bằng Docker Compose (Production Deployment)
+## 🐳 8. Triển Khai Bằng Docker Compose & Vercel (Production Deployment)
 
-Hệ thống được đóng gói trọn gói qua Docker Compose gồm 3 services: Backend FastAPI, Frontend React Vite build, và Nginx Reverse Proxy:
+> 📖 **Xem hướng dẫn vận hành chi tiết tại:** [HƯỚNG DẪN TRIỂN KHAI & VẬN HÀNH (DEPLOYMENT & RUNBOOK)](docs/DEPLOYMENT_GUIDE.md) — Chi tiết cách deploy Frontend Vercel, Docker Backend, cấu hình Tunnel công khai và quy trình 3 bước mở server demo cho người dùng bên ngoài truy cập.
+
+Hệ thống được đóng gói trọn gói qua Docker Compose gồm các services Backend FastAPI, Qdrant, Nginx Reverse Proxy và kết nối Vercel Edge:
 
 ```bash
 # Build và khởi chạy toàn bộ cụm container
