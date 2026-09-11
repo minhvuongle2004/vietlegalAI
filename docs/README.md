@@ -24,6 +24,7 @@ Tài liệu này đóng vai trò là danh mục tra cứu trung tâm (Master Ind
 | :--- | :---: | :--- |
 | ⭐ [GENERATION_QUALITY_EVALUATION_REPORT.md](file:///d:/Đi%20làm/VietLegal%20AI/docs/reports/generation/GENERATION_QUALITY_EVALUATION_REPORT.md) | **PASS 🟢** | Nghiệm thu Step 3.0 trên 60 test cases phủ 10 danh mục: **Answer Correctness đạt 86.67%**, **Citation Accuracy 100%**, **Hallucination = 0.00%**, **Từ chối ngoài phạm vi (Abstention) = 100%**. |
 | 🛡️ [PRODUCTION_POLISH_REAL_WORLD_QA_REPORT.md](file:///d:/Đi%20làm/VietLegal%20AI/docs/reports/qa/PRODUCTION_POLISH_REAL_WORLD_QA_REPORT.md) | **PASS 🟢** | Nghiệm thu Step 3.1 kiểm thử 16 câu hỏi người dân thực tế: Liveness/Readiness 8/8 test PASS, vá lỗi ngắt kết nối SSE, kiểm chứng Legal Disclaimer & Citation UX. |
+| 📋 [PUBLIC_BASELINE_VERIFICATION.md](file:///d:/Đi%20làm/VietLegal%20AI/docs/reports/qa/PUBLIC_BASELINE_VERIFICATION.md) | **BASELINE READY 🟢** | Xác minh Baseline công khai: Git clean, Frontend build pass, Backend liveness/readiness healthy, Docker healthy, ngrok tunnel live. |
 
 ---
 
