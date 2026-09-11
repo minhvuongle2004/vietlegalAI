@@ -9,6 +9,7 @@ export default function ArticleModal({ isOpen, onClose, initialArticleNumber, in
   const [article, setArticle] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [fetchError, setFetchError] = useState(false);
   const [copied, setCopied] = useState(false);
   const [mode, setMode] = useState(initialArticleNumber ? 'view' : 'browse');
 
@@ -23,6 +24,7 @@ export default function ArticleModal({ isOpen, onClose, initialArticleNumber, in
 
   const fetchArticle = async (num, dId = docId) => {
     setLoading(true);
+    setFetchError(false);
     try {
       const url = dId
         ? `${API_BASE_URL}/api/v1/legal/articles/${num}?doc_id=${encodeURIComponent(dId)}`
@@ -35,9 +37,12 @@ export default function ArticleModal({ isOpen, onClose, initialArticleNumber, in
         setMode('view');
       } else {
         setArticle(null);
+        setFetchError(true);
       }
     } catch (err) {
       console.error('Lỗi khi tải điều luật:', err);
+      setArticle(null);
+      setFetchError(true);
     } finally {
       setLoading(false);
     }
@@ -375,6 +380,13 @@ export default function ArticleModal({ isOpen, onClose, initialArticleNumber, in
                 <ShieldCheck size={14} />
                 <span>Trạng thái: Đang có hiệu lực thi hành (Hiệu lực từ 01/01/2021)</span>
               </div>
+            </div>
+          ) : fetchError ? (
+            <div style={{ textAlign: 'center', padding: '2.5rem 1rem', color: '#f59e0b' }}>
+              <p style={{ fontWeight: 600, fontSize: '0.92rem', marginBottom: '0.5rem' }}>⚠️ Không thể tải toàn văn điều luật</p>
+              <p style={{ fontSize: '0.84rem', color: '#94a3b8' }}>
+                Máy chủ Backend demo hiện đang tạm ngưng hoặc chưa bật kết nối. Vui lòng thử lại sau khi backend online.
+              </p>
             </div>
           ) : (
             <div style={{ textAlign: 'center', padding: '3rem 1rem', color: '#64748b' }}>

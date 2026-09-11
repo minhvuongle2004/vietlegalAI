@@ -22,6 +22,7 @@ import {
 import ArticleModal from './components/ArticleModal';
 import ProfileModal from './components/ProfileModal';
 import LoginPromptModal from './components/LoginPromptModal';
+import OfflineFallbackCard from './components/OfflineFallbackCard';
 import { useAuth } from './context/AuthContext';
 import { API_BASE_URL } from './lib/api';
 import './App.css';
@@ -50,34 +51,28 @@ const GoogleIcon = () => (
 
 const SAMPLE_QUESTIONS = [
   {
+    icon: '⚖️',
     title: 'Thời gian thử việc',
-    sub: 'Quy định tối đa đối với trình độ đại học',
-    query: 'Thời gian thử việc tối đa là bao lâu đối với vị trí công việc cần trình độ đại học trở lên?',
+    sub: 'Quy định tối đa đối với trình độ đại học trở lên',
+    query: 'Thời gian thử việc tối đa là bao lâu đối với vị trí công việc cần trình độ đại học trở lên theo Bộ luật Lao động?',
   },
   {
-    title: 'Nghỉ việc riêng',
-    sub: 'Kết hôn, người thân mất hưởng nguyên lương',
-    query: 'Bản thân người lao động kết hôn thì được nghỉ việc riêng hưởng nguyên lương mấy ngày?',
+    icon: '🚗',
+    title: 'Trừ 12 điểm bằng lái',
+    sub: 'Các lỗi vi phạm bị trừ toàn bộ điểm giấy phép lái xe',
+    query: 'Người điều khiển phương tiện vi phạm lỗi gì thì bị trừ hết 12 điểm giấy phép lái xe theo Nghị định mới?',
   },
   {
-    title: 'Tiền lương làm thêm giờ',
-    sub: 'Mức tính làm thêm ban đêm ngày nghỉ lễ',
-    query: 'Tiền lương làm thêm giờ vào ban ngày và ban đêm trong ngày nghỉ lễ, tết được tính ít nhất bằng bao nhiêu phần trăm?',
+    icon: '🏖️',
+    title: 'Nghỉ việc riêng có lương',
+    sub: 'Kết hôn hoặc người thân mất hưởng nguyên lương',
+    query: 'Bản thân người lao động kết hôn thì được nghỉ việc riêng hưởng nguyên lương mấy ngày theo quy định?',
   },
   {
-    title: 'Xử lý kỷ luật sa thải',
-    sub: 'Tự ý bỏ việc bao nhiêu ngày thì bị sa thải',
-    query: 'Người lao động tự ý bỏ việc bao nhiêu ngày cộng dồn trong một tháng thì có thể bị áp dụng hình thức sa thải?',
-  },
-  {
-    title: 'Hưởng trợ cấp thất nghiệp',
-    sub: 'Điều kiện hưởng trợ cấp thất nghiệp theo Luật Việc làm',
-    query: 'Mức hưởng trợ cấp thất nghiệp hằng tháng được tính thế nào theo Luật Việc làm 2013 và tối đa bao nhiêu tháng?',
-  },
-  {
-    title: 'Rút BHXH một lần',
-    sub: 'Điều kiện hưởng BHXH một lần theo Luật BHXH',
-    query: 'Người lao động được hưởng bảo hiểm xã hội một lần trong những trường hợp nào theo quy định của Luật Bảo hiểm xã hội 2014?',
+    icon: '💰',
+    title: 'Trợ cấp thất nghiệp',
+    sub: 'Điều kiện và mức hưởng tối đa theo Luật Việc làm',
+    query: 'Mức hưởng trợ cấp thất nghiệp hằng tháng được tính thế nào theo Luật Việc làm 2013 và tối đa được hưởng bao nhiêu tháng?',
   },
 ];
 
@@ -322,19 +317,46 @@ export default function App() {
         headers['Authorization'] = `Bearer ${session.access_token}`;
       }
 
-      const response = await fetch(`${API_BASE_URL}/api/v1/chat/completions`, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({
-          query: queryText,
-          conversation_id: activeId,
-          top_k: 3,
-          use_reranker: useReranker,
-        }),
-      });
+      // Timeout controller: 35s tối đa cho truy vấn LLM / reranker
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 35000);
+
+      let response;
+      try {
+        response = await fetch(`${API_BASE_URL}/api/v1/chat/completions`, {
+          method: 'POST',
+          headers,
+          signal: controller.signal,
+          body: JSON.stringify({
+            query: queryText,
+            conversation_id: activeId,
+            top_k: 3,
+            use_reranker: useReranker,
+          }),
+        });
+      } finally {
+        clearTimeout(timeoutId);
+      }
 
       if (!response.ok) {
-        throw new Error(`Lỗi phản hồi máy chủ: HTTP ${response.status}`);
+        const status = response.status;
+        if (status === 401) {
+          const customErr = new Error('Phiên đăng nhập đã hết hạn.');
+          customErr.errorType = 'auth_expired';
+          throw customErr;
+        } else if (status === 429) {
+          const customErr = new Error('Hệ thống đạt giới hạn tần suất gọi API (20 câu/phút).');
+          customErr.errorType = 'rate_limit';
+          throw customErr;
+        } else if (status === 502 || status === 503 || status === 504) {
+          const customErr = new Error('Backend demo tạm thời ngắt kết nối.');
+          customErr.errorType = 'offline';
+          throw customErr;
+        } else {
+          const customErr = new Error(`Máy chủ phản hồi mã lỗi HTTP ${status}`);
+          customErr.errorType = 'server_error';
+          throw customErr;
+        }
       }
 
       const reader = response.body.getReader();
@@ -402,13 +424,34 @@ export default function App() {
       );
     } catch (err) {
       console.error('Lỗi khi gọi API chat:', err);
+      let detectedErrorType = err.errorType || 'offline';
+
+      if (err.name === 'AbortError') {
+        detectedErrorType = 'timeout';
+      } else if (
+        !err.errorType &&
+        (err.message?.includes('Failed to fetch') ||
+          err.message?.includes('NetworkError') ||
+          err.message?.includes('Load failed') ||
+          err.message?.includes('Network request failed') ||
+          err.message?.includes('ERR_CONNECTION_REFUSED') ||
+          err.message?.includes('ERR_NAME_NOT_RESOLVED'))
+      ) {
+        detectedErrorType = 'offline';
+      }
+
       setMessages((prev) =>
         prev.map((m) =>
           m.id === assistantMessageId
             ? {
                 ...m,
                 isStreaming: false,
-                text: `⚠️ **Không thể kết nối đến máy chủ AI:**\n${err.message}. Vui lòng kiểm tra lại backend service.`,
+                errorType: detectedErrorType,
+                retryQuery: queryText,
+                text:
+                  detectedErrorType === 'offline'
+                    ? 'Xin lỗi bạn, VietLegal AI đang tạm offline 😅\n\nBackend demo hiện đang được vận hành trên máy cá nhân của tác giả nên đôi lúc hệ thống sẽ được tạm ngưng.\n\nBạn muốn trải nghiệm đầy đủ tính năng? Hãy liên hệ trực tiếp với tác giả để được bật demo:\n• 📱 Zalo: 0353234113\n• 📧 Email: vuong8aqhqlna@gmail.com\n\n*Bạn vừa bắt gặp mình lúc chủ nhân đang tắt máy 😄*'
+                    : 'Yêu cầu không thể hoàn tất. Vui lòng thử lại sau giây lát.',
               }
             : m
         )
@@ -665,7 +708,24 @@ export default function App() {
         {messages.length === 0 ? (
           /* Welcome Screen (Centered like ChatGPT) */
           <div className="welcome-center">
-            <h1 className="welcome-heading">Hôm nay bạn cần hỗ trợ pháp lý gì?</h1>
+            {/* Brand Logo & Headline */}
+            <div className="welcome-brand-header">
+              <div className="welcome-logo-badge">
+                <Scale size={28} />
+              </div>
+              <div className="welcome-title-row">
+                <h1 className="welcome-brand-title">VietLegal AI</h1>
+                <span className="welcome-version-pill">Production Demo</span>
+              </div>
+              <p className="welcome-desc">
+                Trợ lý Trí tuệ Nhân tạo Tra cứu & Giải đáp Pháp luật Việt Nam chuẩn xác từ căn cứ văn bản quy phạm pháp luật
+              </p>
+              <div className="welcome-corpus-chips">
+                <span className="corpus-chip">⚡ Clean Hybrid Search (RRF k=60)</span>
+                <span className="corpus-chip">🎯 BGE-Reranker GPU</span>
+                <span className="corpus-chip">📚 42 Bộ luật & Nghị định</span>
+              </div>
+            </div>
 
             {/* Centered Input Box */}
             <div className="input-container" style={{ marginBottom: '16px' }}>
@@ -673,7 +733,7 @@ export default function App() {
                 ref={textareaRef}
                 rows={2}
                 className="input-textarea"
-                placeholder="Hỏi bất kỳ điều gì về quy định pháp luật..."
+                placeholder="Hỏi bất kỳ điều gì về quy định pháp luật lao động, giao thông, BHXH, doanh nghiệp..."
                 value={input}
                 onChange={handleInputChange}
                 onKeyDown={handleKeyDown}
@@ -702,7 +762,26 @@ export default function App() {
               </div>
             </div>
 
-            <div className="input-disclaimer" style={{ marginTop: '24px' }}>
+            {/* Suggested Prompts Cards Grid (3-4 gợi ý chuẩn) */}
+            <div className="welcome-prompts">
+              {SAMPLE_QUESTIONS.map((q, idx) => (
+                <button
+                  key={idx}
+                  className="welcome-prompt-card"
+                  onClick={() => handleSend(q.query)}
+                  disabled={loading}
+                  title="Bấm để gửi ngay câu hỏi mẫu này"
+                >
+                  <div className="welcome-prompt-header">
+                    <span style={{ fontSize: '1.05rem' }}>{q.icon || '⚖️'}</span>
+                    <span className="welcome-prompt-title">{q.title}</span>
+                  </div>
+                  <span className="welcome-prompt-sub">{q.sub}</span>
+                </button>
+              ))}
+            </div>
+
+            <div className="input-disclaimer" style={{ marginTop: '20px' }}>
               ⚠️ <strong>Khuyến cáo pháp lý:</strong> VietLegal AI là trợ lý tra cứu & suy luận quy định pháp luật tự động. Mọi câu trả lời chỉ mang tính chất tham khảo, không thay thế cho ý kiến tư vấn pháp lý chính thức từ Luật sư hoặc cơ quan Nhà nước có thẩm quyền.
             </div>
           </div>
@@ -729,10 +808,18 @@ export default function App() {
                       {msg.sender === 'user' ? (user ? userName : 'Bạn') : 'VietLegal AI'}
                     </div>
 
-                    <div className="markdown-content">
-                      <ReactMarkdown>{msg.text}</ReactMarkdown>
-                      {msg.isStreaming && <span className="typing-dot" style={{ marginLeft: '4px' }}></span>}
-                    </div>
+                    {msg.errorType ? (
+                      <OfflineFallbackCard
+                        errorType={msg.errorType}
+                        onRetry={() => handleSend(msg.retryQuery || msg.text)}
+                        onLogin={signInWithGoogle}
+                      />
+                    ) : (
+                      <>
+                        <div className="markdown-content">
+                          <ReactMarkdown>{msg.text}</ReactMarkdown>
+                          {msg.isStreaming && <span className="typing-dot" style={{ marginLeft: '4px' }}></span>}
+                        </div>
 
                     {/* Citations Tag Pills */}
                     {msg.citations && msg.citations.length > 0 && (
@@ -792,7 +879,9 @@ export default function App() {
                         <span>{msg.mode === 'rerank' ? 'Chuyên sâu (GPU)' : 'Tiêu chuẩn'}</span>
                       </div>
                     )}
-                  </div>
+                  </>
+                )}
+              </div>
                 </div>
               </div>
             ))}
